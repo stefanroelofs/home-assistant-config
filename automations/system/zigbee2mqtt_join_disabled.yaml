@@ -1,0 +1,17 @@
+# Automation to stop timer when switch turned off and turn off switch when timer finished
+- alias         : system_zigbee2mqtt_join_disabled
+  id            : 41c9dda1-2a60-4dc4-a5ec-8d70e40e22a6
+  trigger:
+    - platform  : event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.zigbee_permit_join
+    - platform  : state
+      entity_id : switch.zigbee2mqtt_main_join
+      to        : "off"
+  action:
+    - service   : timer.cancel
+      data:
+        entity_id: timer.zigbee_permit_join
+    - service   : switch.turn_off
+      entity_id : switch.zigbee2mqtt_main_join

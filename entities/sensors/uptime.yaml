@@ -1,0 +1,3 @@
+- platform    : uptime
+  name        : "Home Assistant Uptime"
+  unit_of_measurement : minutes

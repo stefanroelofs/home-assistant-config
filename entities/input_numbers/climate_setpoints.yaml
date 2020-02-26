@@ -1,0 +1,17 @@
+bathroom_target_temp_low:
+  name                : Bathroom Low Target Temperature
+  min                 : 15
+  max                 : 30
+  step                : 0.5
+  unit_of_measurement : °C
+  icon                : mdi:target
+  mode                : slider
+
+bathroom_target_temp_high:
+  name                : Bathroom High Target Temperature
+  min                 : 15
+  max                 : 30
+  step                : 0.5
+  unit_of_measurement : °C
+  icon                : mdi:target
+  mode                : slider

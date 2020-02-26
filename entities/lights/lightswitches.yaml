@@ -1,0 +1,3 @@
+- platform : switch
+  name     : dining_area_sideboard
+  entity_id: switch.ikeaoutlet1_switch

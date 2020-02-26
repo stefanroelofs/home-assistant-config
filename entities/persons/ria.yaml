@@ -1,0 +1,5 @@
+- name    : Ria
+  id      : ria
+  device_trackers:
+    - device_tracker.ria_phone_wifi
+    - device_tracker.ria_phone_bt

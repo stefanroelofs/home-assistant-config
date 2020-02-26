@@ -1,0 +1,2 @@
+- platform    : rpi_power
+  text_state  : true

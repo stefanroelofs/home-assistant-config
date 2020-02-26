@@ -1,0 +1,11 @@
+# Automation for sending MQTT message on input select change
+- alias         : system_zigbee2mqtt_log_level
+  id            : 78cdb2f5-e250-4687-ba47-68c3aeea52e3
+  trigger:
+    - platform  : state
+      entity_id : input_select.zigbee2mqtt_log_level
+  action:
+    - service   : mqtt.publish
+      data:
+        topic   : zigbee2mqtt/bridge/config/log_level
+        payload_template: "{{ states('input_select.zigbee2mqtt_log_level') }}"

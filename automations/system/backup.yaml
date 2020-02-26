@@ -1,0 +1,22 @@
+#################################################################
+## Makes a backup of Home Assistant every Sunday at 3:00 am so that I can store it on my NAS.
+#################################################################
+- alias         : system_configuration_backup
+  id            : fb3b5edb-3cf5-45a1-811b-fc523e715e91
+  initial_state : true
+  trigger:
+    - platform  : time
+      at        : '03:00:00'
+  condition:
+    - condition : time
+      weekday:
+        - tue
+        - thu
+        - sun
+  action:
+    - service   : hassio.snapshot_full
+      data_template:
+        name    : Backup {{ now().strftime('%Y-%m-%d') }} (HA v.{{ states('sensor.version_current') }})
+    - delay:
+        minutes : 45 # Delay of 45 minutes
+    - service   : rest_command.google_backup

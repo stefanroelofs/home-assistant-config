@@ -1,0 +1,209 @@
+title: Home
+icon : mdi:home
+path : default_view
+
+badges:
+  - person.stefan
+  - person.marcella
+  - sun.sun
+
+cards:
+
+  - type       : custom:button-card
+    entity     : light.all
+    name       : Switch off all lights
+    icon       : mdi:lightbulb-multiple
+    show_icon  : true
+    color_type : icon
+    color      : "#5ade02"
+    tap_action:
+      action   : call-service
+      service  : "light.turn_off"
+      service_data:
+        entity_id: all
+    lock:
+      enabled  : true
+      duration : 30
+      unlock   : tap
+
+# ----------------------------------------------------------------------
+  - type           : entities
+    title          : Lights Downstairs
+    show_header_toggle: false
+
+    entities:
+
+      - type       : custom:fold-entity-row
+        head:
+          type     : custom:slider-entity-row
+          entity   : light.livingroom_lights
+          toggle   : true
+        entities:
+          - type   : custom:slider-entity-row
+            entity : light.huebulb_livingroomcolor_light
+          - type   : custom:slider-entity-row
+            entity : light.huestrip_livingroom_light
+          - type   : custom:slider-entity-row
+            entity : light.huespotwoonkamertrapkast_light
+          - type   : custom:slider-entity-row
+            entity : light.livingroom_backspot_light
+          - entity : light.dining_area_sideboard
+
+      - type       : custom:fold-entity-row
+        head:
+          type     : custom:slider-entity-row
+          entity   : light.kitchen_lights
+          toggle   : true
+        entities:
+          - type   : custom:slider-entity-row
+            entity : light.kitchen_ceiling_light
+          - entity : light.kitchen_counter_light
+          - type   : custom:slider-entity-row
+            entity : light.dining_area_ceiling_light
+
+      - type       : custom:fold-entity-row
+        head       : light.hallway_lights
+        entities:
+          - light.hallway_light
+          - light.toilet_light
+          - timer.restroom_light_timeout
+
+
+# ----------------------------------------------------------------------
+  - type           : entities
+    title          : Lights Upstairs
+    show_header_toggle: false
+
+    entities:
+
+      - type       : custom:slider-entity-row
+        entity     : light.overloop_color
+        toggle     : true
+
+      - type       : custom:fold-entity-row
+        head:
+          type     : custom:slider-entity-row
+          entity   : light.bathroom_lights
+          toggle   : true
+        entities:
+          - type   : custom:slider-entity-row
+            entity : light.badkamer_white
+          - type   : custom:slider-entity-row
+            entity : light.lightstrip_badkamer
+
+      - type       : custom:slider-entity-row
+        entity     : light.slaapkamer_color
+        toggle     : true
+
+      - type       : custom:fold-entity-row
+        head:
+          type     : custom:slider-entity-row
+          entity   : light.damiansroom_lights
+          toggle   : true
+        entities:
+          - type   : custom:slider-entity-row
+            entity : light.huebulb_damiansroom_light
+          - type   : custom:slider-entity-row
+            entity : light.ikeabulb_damiansroom_light
+
+      - type       : custom:slider-entity-row
+        entity     : light.babykamer_color
+        toggle     : true
+
+
+# ----------------------------------------------------------------------
+  - type           : entities
+    title          : Lights Attic
+    show_header_toggle: false
+
+    entities:
+      - light.overloop_zolder_color
+      - light.attic_laundry_room
+
+      - type       : custom:fold-entity-row
+        head       : light.attic_study_light
+        entities:
+          - light.attic_study_1
+          - light.attic_study_2
+          - light.attic_study_3
+
+      - light.attic_bedroom
+
+
+# ----------------------------------------------------------------------
+  - type  : entities
+    title : Switches
+    show_header_toggle: false
+    entities:
+      - entity: switch.powerplug_2_relay
+#      - entity: switch.ikeaoutlet1_switch    # Is converted to a light
+      - entity: switch.ikeaoutlet2_switch
+      - entity: switch.powerplug_1_relay
+#      - entity: switch.xiaomi_switch_2 Christmas tree
+      - entity: switch.doorbell_v3_chime_active
+      - entity: switch.wake_up_vaste_pc
+
+  - type  : entities
+    title : Afval
+    show_header_toggle : false
+    entities:
+      - entity: sensor.afval_vandaag
+      - entity: sensor.afval_morgen
+      - entity: sensor.afval_rest
+      - entity: sensor.afval_gft
+      - entity: sensor.afval_papier
+      - entity: sensor.afval_pmd
+
+  - type : custom:vertical-style-card
+    title: Livingroom TV
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type       : custom:button-card
+            entity     : switch.living_room_activity_tv
+            icon       : mdi:television
+            color_type : card
+            color      : "#7CBE6E"
+          - type       : custom:button-card
+            entity     : switch.living_room_activity_radio
+            icon       : mdi:radio
+            color_type : card
+            color      : "#7CBE6E"
+          - type       : custom:button-card
+            entity     : switch.living_room_activity_plex
+            icon       : mdi:plex
+            color_type : card
+            color      : "#7CBE6E"
+      - type: horizontal-stack
+        cards:
+          - type       : custom:button-card
+            entity     : switch.living_room_activity_chromecast
+            icon       : mdi:google-chrome
+            color_type : card
+            color      : "#7CBE6E"
+          - type       : custom:button-card
+            entity     : switch.living_room_activity_dvd
+            icon       : mdi:disc-player
+            color_type : card
+            color      : "#7CBE6E"
+          - type       : custom:button-card
+            entity     : remote.roelofs_harmony_hub
+            name       : 'Power Off'
+            icon       : mdi:power
+            color_type : card
+            color      : "#CE2841"
+
+  - type  : media-control
+    entity: media_player.slaapkamer
+
+  - type  : media-control
+    entity: media_player.woonkamer
+
+  - type  : media-control
+    entity: media_player.rasplex
+
+  - type  : entities
+    title : Remotes
+    show_header_toggle: false
+    entities:
+      - remote.roelofs_harmony_hub

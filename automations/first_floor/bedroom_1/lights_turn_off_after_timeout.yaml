@@ -1,0 +1,16 @@
+- alias         : bedroom1_lights_turn_off_after_timeout
+  id            : 3f693bb2-6c1a-43d2-86be-ed9573916f6a
+  trigger:
+    - platform  : state
+      entity_id : light.ikeabulb_damiansroom_light
+      from      : 'off'
+      to        : 'on'
+      for:
+        minutes : 10
+  condition:
+    - condition : state
+      entity_id : binary_sensor.kinderbedtijd
+      state     : 'on'
+  action:
+    - service   : scene.turn_on
+      entity_id : scene.bedroom_damian_lights_slow_off

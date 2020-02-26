@@ -1,0 +1,6 @@
+substitutions:
+  devicename     : "shelly_4"
+  devicelocation : "First Floor Landing"
+  ip_address     : !secret ip_address_shelly4
+
+<<: !include .shellyforhue_base.yaml

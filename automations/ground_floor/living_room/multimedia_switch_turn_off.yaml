@@ -1,0 +1,38 @@
+#################################################################
+## Shutdown multimedia setup at night
+#################################################################
+- alias         : living_room_multimedia_switch_turn_off
+  id            : c6baaa8f-c8c4-4169-94d4-07870f24b59a
+  trigger:
+    - platform  : state
+      entity_id : remote.roelofs_harmony_hub
+      to        : 'off'
+      for       : '00:01:00'    # 1 minute
+    - platform  : time_pattern  # Trigger every 10 minutes from 1:00 to 2:00 hours
+      hours     : '1'
+      minutes   : '/10'
+  condition:
+    - condition : state
+      entity_id : remote.roelofs_harmony_hub
+      state     : 'off'
+    - condition : time
+      after     : '22:00:00'
+      before    : '04:00:00'
+    - condition : or
+      conditions:
+        - condition : state
+          entity_id : switch.powerplug_2_relay
+          state     : 'on'
+        - condition : state
+          entity_id : switch.wake_up_vaste_pc
+          state     : 'on'
+  action:
+#    - service: switch.turn_off
+#      entity_id: switch.rasplex_woonkamer
+#    - delay     : '00:01:00'    # 1 minute
+    - service   : switch.turn_off
+      entity_id : switch.powerplug_2_relay  # multimedia
+    - service   : switch.turn_off
+      entity_id : switch.powerplug_1_relay  # charging station
+    - service   : switch.turn_off
+      entity_id : switch.wake_up_vaste_pc

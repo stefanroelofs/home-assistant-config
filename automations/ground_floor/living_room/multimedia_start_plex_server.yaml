@@ -1,0 +1,14 @@
+#################################################################
+## Start VastePC when Plex activity started on Harmony
+#################################################################
+- alias         : living_room_multimedia_start_plex_server
+  id            : 96df9ee4-4e02-4b73-b9a1-8f4ea05eb271
+  trigger:
+    - platform  : state
+      entity_id : remote.roelofs_harmony_hub
+  condition:
+    - condition : template
+      value_template: '{{ trigger.to_state.attributes.current_activity == "Plex starten " }}'
+  action:
+    - service   : switch.turn_on
+      entity_id : switch.wake_up_vaste_pc

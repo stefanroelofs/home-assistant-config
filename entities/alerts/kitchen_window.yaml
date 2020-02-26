@@ -1,0 +1,10 @@
+kitchenwindow:
+  title        : Keukenraam
+  name         : Keukenraam staat al {{ relative_time(states.binary_sensor.xiaomidoorcontact1_contact.last_changed) }} open!
+  done_message : Keukenraam gesloten
+  entity_id    : binary_sensor.xiaomidoorcontact1_contact
+  state        : 'on'
+  repeat       : 30
+  skip_first   : true
+  notifiers:
+    - all

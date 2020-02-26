@@ -1,0 +1,22 @@
+#################################################################
+## Switch harmony to correct channel if somebody starts casting to the Chromecast
+#################################################################
+- alias         : living_room_harmony_start_activity_on_cast
+  id            : 12d00317-e454-452a-a37b-fddbef97a0ac
+  trigger:
+    - platform  : state
+      entity_id : media_player.woonkamer
+      to        : 'playing'
+# This will interrupt someone if they are watching TV. I think it's ok.
+#  condition:
+#    - condition : state
+#      entity_id : remote.roelofs_harmony_hub
+#      state     : 'off'
+  condition:
+    - condition : template
+      value_template: "{{ not is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Chromecast/Netflix') }}"
+  action:
+    - service   : remote.turn_on
+      entity_id : remote.roelofs_harmony_hub
+      data:
+         activity: "Chromecast/Netflix"

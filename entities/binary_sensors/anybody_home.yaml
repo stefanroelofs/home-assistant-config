@@ -1,0 +1,12 @@
+- platform : template
+  sensors:
+    anybody_home:
+      value_template: >-
+        {{ is_state('person.marcella', 'home')
+        or is_state('person.stefan', 'home')
+        or is_state('input_boolean.guest_mode', 'on')
+        or is_state('binary_sensor.xiaomidoorcontact3_contact', 'open')
+        or is_state('binary_sensor.xiaomidoorcontact4_contact', 'open')
+        or is_state('binary_sensor.xiaomimotionsensor_occupancy', 'detected')
+        or is_state('binary_sensor.overloop_motionsensor_motion', 'detected')
+        or is_state('binary_sensor.badkamer_motionsensor_motion', 'detected') }}

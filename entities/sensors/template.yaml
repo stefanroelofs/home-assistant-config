@@ -1,0 +1,6 @@
+- platform    : template
+  sensors:
+    min_max_temperature_last_24h:
+      friendly_name       : "Min/Max temperatuur afgelopen 24h"
+      unit_of_measurement : '°C'
+      value_template      : "{{ state_attr('sensor.livingroom_temperature_stats', 'min_value') }} / {{ state_attr('sensor.livingroom_temperature_stats', 'max_value') }}"

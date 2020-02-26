@@ -1,0 +1,22 @@
+- alias         : general_home_on_arrival
+  id            : a9b9b8e8-2c0f-4a79-b48f-8223b334c30f
+  initial_state : false
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.anybody_home
+      to        : 'on'
+  condition:
+    - condition : state
+      entity_id : binary_sensor.darkness
+      state     : 'on'
+  action:
+    - service   : light.turn_on
+      entity_id : light.hallway_light
+    - service   : light.turn_on
+      entity_id : light.livingroom_backspot_light
+    - service   : light.turn_on
+      entity_id : light.huestrip_livingroom_light
+    - service   : light.turn_on
+      entity_id : light.dining_area_ceiling_light
+#    - service   : switch.turn_on
+#      entity_id : switch.xiaomi_switch_2   # christmas tree

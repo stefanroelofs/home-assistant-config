@@ -1,0 +1,8 @@
+{
+  "domain": "acv",
+  "name": "ACV garbage collection sensor",
+  "documentation": "https://github.com/cadsters/acv-hass-component/blob/master/README.md",
+  "dependencies": [],
+  "codeowners": ["@Vloris", "@Cadsters", "@aritmeester"],
+  "requirements": []
+}

@@ -1,0 +1,12 @@
+- alias              : living_room_dimmer_press_double_off
+  id                 : 6a80a77a-c5ba-4562-adf0-386c1ed8ed89
+  trigger:
+    - platform       : state
+      entity_id      : sensor.hueremote_livingroom_action
+      to             : 'off-press'
+  condition:
+    - condition      : template
+      value_template : '{{ trigger.to_state.attributes.counter == 2 }}'   # Double click only
+  action:
+    - service        : scene.turn_on
+      entity_id      : scene.livingroom_lights_off

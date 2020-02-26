@@ -1,0 +1,27 @@
+#################################################################
+## Switches
+#################################################################
+
+# Currently not in use!
+#- platform    : xiaomi_miio
+#  host        : 192.168.2.191
+#  token       : !secret xiaomi_miio_1_token
+#  name        : xiaomi_switch_1
+#  model       : chuangmi.plug.m3
+
+# Christmas tree
+#- platform    : xiaomi_miio
+#  host        : 192.168.2.192
+#  token       : !secret xiaomi_miio_2_token
+#  name        : xiaomi_switch_2
+#  model       : chuangmi.plug.m3
+
+- platform    : wake_on_lan
+  name        : "Wake up Vaste PC"
+  host        : "192.168.2.110"
+  mac         : !secret vaste_pc_mac_address
+  turn_off:
+    service   : hassio.addon_stdin
+    data:
+      addon   : core_rpc_shutdown
+      input   : VastePC

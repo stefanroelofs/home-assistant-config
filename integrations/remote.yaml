@@ -1,0 +1,4 @@
+remote:
+  - platform : harmony
+    name     : Roelofs Harmony Hub
+    host     : 192.168.2.105

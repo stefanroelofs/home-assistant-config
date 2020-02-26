@@ -1,0 +1,16 @@
+- alias         : bedroom2_lights_turn_off_after_timeout
+  id            : 16421514-3952-43f2-9759-b1887e184169
+  trigger:
+    - platform  : state
+      entity_id : light.babykamer_color
+      from      : 'off'
+      to        : 'on'
+      for:
+        minutes : 15
+  condition:
+    - condition : state
+      entity_id : binary_sensor.kinderbedtijd
+      state     : 'on'
+  action:
+    - service   : light.turn_off
+      entity_id : light.babykamer_color

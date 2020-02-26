@@ -1,0 +1,2 @@
+hacs:
+  token: !secret hacs_token

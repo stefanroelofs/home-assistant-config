@@ -1,0 +1,15 @@
+- alias         : living_room_wallswitch_ceiling_dining_area
+  id            : 267b50f3-97af-41b5-949b-f08cfb795d4d
+  initial_state : false
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.xiaomidoorcontact5_contact
+      from      : 'off'
+      to        : 'on'
+    - platform  : state
+      entity_id : binary_sensor.xiaomidoorcontact5_contact
+      from      : 'on'
+      to        : 'off'
+  action:
+    - service   : light.toggle
+      entity_id : light.dining_area_ceiling_light

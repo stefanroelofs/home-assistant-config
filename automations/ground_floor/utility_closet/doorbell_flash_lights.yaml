@@ -1,0 +1,24 @@
+#################################################################
+## Flash light when doorbell is pushed and chime is disabled.
+#################################################################
+- alias         : utility_closet_doorbell_pushed_flash_lights
+  id            : 41309159-285e-4c61-b47b-134d3945191d
+  trigger:
+    platform    : state
+    entity_id   : binary_sensor.doorbell_v3_button
+    to          : 'on'
+  condition:
+    - condition : state
+      entity_id : switch.doorbell_v3_chime_active
+      state     : 'off'
+  action:
+    - service   : light.turn_on
+      data:
+        entity_id : light.huebulb_livingroomcolor_light
+        brightness: 255
+        flash     : long
+    - service   : light.turn_on
+      data:
+        entity_id : light.overloop_color
+        brightness: 255
+        flash     : long

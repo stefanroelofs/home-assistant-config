@@ -1,0 +1,6 @@
+substitutions:
+  devicename     : "shelly_2"
+  devicelocation : "Hallway"
+  ip_address     : !secret ip_address_shelly2
+
+<<: !include .shelly_base.yaml

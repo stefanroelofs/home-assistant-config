@@ -1,0 +1,29 @@
+- platform     : tod
+  name         : Darkness
+  after        : sunset
+  after_offset : '-00:15'
+  before       : sunrise
+  before_offset: '00:15'
+
+- platform     : tod
+  name         : Morning
+  after        : sunrise
+  after_offset : '00:15'
+  before       : '12:00'
+
+- platform     : tod
+  name         : Afternoon
+  after        : '12:00'
+  before       : sunset
+  before_offset: '-00:15'
+
+- platform     : tod
+  name         : Evening
+  after        : sunset
+  after_offset : '-00:15'
+  before       : '23:00'
+
+- platform     : tod
+  name         : Kinderbedtijd
+  after        : '20:30'
+  before       : '06:30'

@@ -1,0 +1,12 @@
+shelly:
+  discovery  : false
+  id_prefix  : ''
+  discover_by_ip:
+    - '192.168.2.213'
+  sensors:
+    - all
+  devices:      #devices to be added
+    - id        : "F3C2A7"
+      entity_id : bedroom_master_wardrobe_light
+      name      : Masterbedroom Wardrobe Light   #set friendly name
+      light_switch : true  #add this switch as a light

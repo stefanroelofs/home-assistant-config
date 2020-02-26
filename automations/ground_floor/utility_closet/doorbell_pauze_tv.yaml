@@ -1,0 +1,22 @@
+#################################################################
+## Pauze TV when doorbell is pushed
+#################################################################
+- alias         : utility_closet_doorbell_pushed_pauze_tv
+  id            : 51e691bc-6e10-4d23-996d-d44bbd7d2541
+  trigger:
+    platform    : state
+    entity_id   : binary_sensor.doorbell_v3_button
+    to          : 'on'
+  condition:
+    - condition : state
+      entity_id : remote.roelofs_harmony_hub
+      state     : 'on'
+    - condition : template
+      value_template: "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Tv kijken') }}"
+  action:
+    - service   : remote.send_command
+      data:
+        entity_id: remote.roelofs_harmony_hub
+        device  : 38314425
+        command:
+          - Pause

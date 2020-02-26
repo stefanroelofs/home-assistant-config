@@ -1,0 +1,11 @@
+#################################################################
+## Disable doorbell after 20:00 h.
+#################################################################
+- alias         : utility_closet_doorbell_disable
+  id            : e18a80e3-aca3-431e-8f4d-029ca71a50ea
+  trigger:
+    platform    : time
+    at          : "20:00:00"
+  action:
+    service     : switch.turn_off
+    entity_id   : switch.doorbell_v3_chime_active

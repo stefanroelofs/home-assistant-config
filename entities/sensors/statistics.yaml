@@ -1,0 +1,5 @@
+- platform    : statistics
+  name        : Livingroom temperature stats
+  entity_id   : sensor.tempsensor_livingroom_temperature
+  max_age:
+    hours     : 24

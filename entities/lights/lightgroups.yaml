@@ -1,0 +1,55 @@
+# https://www.home-assistant.io/components/light.group/
+
+- platform : group
+  name     : Kitchen Ceiling Light
+  entities:
+    - light.huebulb_kitchenceiling1_light
+    - light.huebulb_kitchenceiling2_light
+    - light.huebulb_kitchenceiling3_light
+
+- platform : group
+  name     : Dining Area Ceiling Light
+  entities:
+    - light.huebulb_diningtable1_light
+    - light.huebulb_diningtable2_light
+
+- platform : group
+  name     : Attic Study Light
+  entities:
+    - light.attic_study_1
+    - light.attic_study_2
+    - light.attic_study_3
+
+- platform : group
+  name     : Kitchen Lights
+  entities:
+    - light.kitchen_ceiling_light
+#    - light.kitchen_counter_light      # Do not switch the counter with the complete kitchen.
+    - light.dining_area_ceiling_light
+
+- platform : group
+  name     : Livingroom Lights
+  entities:
+    - light.huespotwoonkamertrapkast_light
+#    - light.livingroom_backspot_light  # Do not switch the back spot with the complete living room.
+    - light.huestrip_livingroom_light
+    - light.huebulb_livingroomcolor_light
+    - light.dining_area_sideboard
+
+- platform : group
+  name     : Hallway Lights
+  entities:
+    - light.hallway_light
+    - light.toilet_light
+
+- platform : group
+  name     : Bathroom Lights
+  entities:
+    - light.badkamer_white
+    - light.lightstrip_badkamer
+
+- platform : group
+  name     : Damiansroom Lights
+  entities:
+    - light.huebulb_damiansroom_light
+    - light.ikeabulb_damiansroom_light

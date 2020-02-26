@@ -1,0 +1,27 @@
+switch.ikeaoutlet2_switch:
+  friendly_name : "Livingroom Floorheating"
+  icon          : mdi:radiator
+
+switch.powerplug_2_relay:
+  friendly_name : "TV power enable"
+  icon          : mdi:power-plug
+
+switch.powerplug_1_relay:
+  friendly_name : "Charging station enable"
+  icon          : mdi:power-plug
+
+#switch.powerplug_1_relay:
+#  friendly_name : "Christmas star"
+#  icon          : mdi:pine-tree
+
+#switch.xiaomi_switch_2:
+#  friendly_name : "Christmas tree"
+#  icon          : mdi:pine-tree
+
+switch.wake_up_vaste_pc:
+  friendly_name : "Vaste PC"
+  icon          : mdi:desktop-tower
+
+switch.doorbell_v3_chime_active:
+  friendly_name : "Deurbel Actief"
+  icon          : mdi:bell-off

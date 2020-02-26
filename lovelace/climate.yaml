@@ -1,0 +1,249 @@
+title: Climate
+path : climate
+cards:
+
+# ----------------------------------------------------------------------
+  - type : custom:vertical-style-card
+    title: Livingroom
+    cards:
+      - type            : custom:mini-graph-card
+        name            : Temperature
+        entities:
+          - entity      : sensor.tempsensor_livingroom_temperature
+            name        : Actual
+        icon            : mdi:thermometer-lines
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 2
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+          
+      - type            : custom:mini-graph-card
+        name            : Humidity
+        entities:
+          - entity      : sensor.tempsensor_livingroom_humidity
+            name        : Actual
+        icon            : mdi:water-percent
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 3
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+
+      - type            : thermostat
+        entity          : climate.livingroom
+
+# ----------------------------------------------------------------------
+  - type : custom:vertical-style-card
+    title: Bathroom
+    cards:
+      - type            : custom:mini-graph-card
+        name            : Temperature
+        entities:
+          - entity      : sensor.tempsensor_bathroom_temperature
+            name        : Actual
+        icon            : mdi:thermometer-lines
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 2
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+          
+      - type            : custom:mini-graph-card
+        name            : Humidity
+        entities:
+          - entity      : sensor.tempsensor_bathroom_humidity
+            name        : Actual
+        icon            : mdi:water-percent
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 3
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+
+      - type            : thermostat
+        entity          : climate.bathroom
+
+      - type            : entities
+        show_header_toggle: false
+        title           : Settings
+        entities:
+          - entity      : input_number.bathroom_target_temp_high
+          - entity      : input_number.bathroom_target_temp_low
+
+# ----------------------------------------------------------------------
+  - type : custom:vertical-style-card
+    title: Porch
+    cards:
+      - type            : custom:mini-graph-card
+        name            : Temperature
+        entities:
+          - entity      : sensor.tempsensor_porch_temperature
+            name        : Actual
+        icon            : mdi:thermometer-lines
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 2
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+          
+      - type            : custom:mini-graph-card
+        name            : Humidity
+        entities:
+          - entity      : sensor.tempsensor_porch_humidity
+            name        : Actual
+        icon            : mdi:water-percent
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 3
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+
+      - type            : weather-forecast
+        entity          : weather.dark_sky
+
+# ----------------------------------------------------------------------
+  - type : custom:vertical-style-card
+    title: Fridge
+    cards:
+      - type            : custom:mini-graph-card
+        name            : Temperature
+        entities:
+          - entity      : sensor.tempsensor_fridge_temperature
+            name        : Actual
+        icon            : mdi:thermometer-lines
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 2
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+          
+      - type            : custom:mini-graph-card
+        name            : Humidity
+        entities:
+          - entity      : sensor.tempsensor_fridge_humidity
+            name        : Actual
+        icon            : mdi:water-percent
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 3
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+
+# ----------------------------------------------------------------------
+  - type : custom:vertical-style-card
+    title: Masterbedroom
+    cards:
+      - type            : custom:mini-graph-card
+        name            : Temperature
+        entities:
+          - entity      : sensor.tempsensor_masterbedroom_temperature
+            name        : Actual
+        icon            : mdi:thermometer-lines
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 2
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true
+          
+      - type            : custom:mini-graph-card
+        name            : Humidity
+        entities:
+          - entity      : sensor.tempsensor_masterbedroom_humidity
+            name        : Actual
+        icon            : mdi:water-percent
+        font_size_header: 16
+        hours_to_show   : 48
+        points_per_hour : 3
+        update_interval : 30
+        height          : 150
+        hour24          : true
+        graph           : line
+        line_color:
+          - '#FFFFFF'
+          - '#03a9f4'
+        show:
+          state         : true
+          points        : hover
+          extrema       : true

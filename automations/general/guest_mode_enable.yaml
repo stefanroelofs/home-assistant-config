@@ -1,0 +1,20 @@
+- alias         : general_guest_mode_enable
+  id            : 6cdd2fc2-7666-4930-ae3c-a018e44c7da2
+  trigger:
+    - platform  : state
+      entity_id : person.dija
+      to        : 'home'
+    - platform  : state
+      entity_id : person.ria
+      to        : 'home'
+  condition:
+    - condition : state
+      entity_id : input_boolean.guest_mode
+      state     : 'off'
+  action:
+    - service   : input_boolean.turn_on
+      entity_id : input_boolean.guest_mode
+    - service   : notify.stefan
+      data:
+        title   : Guest mode
+        message : Guest mode is enabled.

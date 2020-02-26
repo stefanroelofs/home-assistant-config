@@ -1,0 +1,238 @@
+    title : Floorplan
+    path  : floorplan_1stfloor
+    panel : true
+    cards:
+      - type  : picture-elements
+        image : /local/floorplans/first_floor.png
+        elements:
+          - type     : image
+            entity   : light.dining_area_ceiling_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 65%
+              left   : 50.5%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.kitchen_ceiling_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 61%
+              left   : 66%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.kitchen_counter_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 78%
+              left   : 65%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.hallway_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 45%
+              left   : 66%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.toilet_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 24%
+              left   : 73%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.livingroom_backspot_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 52%
+              left   : 32%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.huespotwoonkamertrapkast_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 42%
+              left   : 52%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.huestrip_livingroom_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 78%
+              left   : 32%
+              width  : 2.5%
+
+          - type     : image
+            entity   : switch.ikeaoutlet1_switch
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 28%
+              left   : 50%
+              width  : 2.5%
+
+          - type     : image
+            entity   : light.huebulb_livingroomcolor_light
+            tap_action:
+              action : toggle
+            hold_action:
+              action : more-info
+            state_image:
+              "on"   : /local/icons/light_bulb_on.png?v=1
+              "off"  : /local/icons/light_bulb_off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 28%
+              left   : 40%
+              width  : 2.5%
+
+
+          # Switch to control multimedia cabinet
+          - type     : image
+            entity   : switch.powerplug_2_relay
+            tap_action:
+              action : more-info
+         #  hold_action:
+         #    action : more-info
+            state_image:
+              "on"   : /local/icons/power-plug.png?v=1
+              "off"  : /local/icons/power-plug-off.png?v=1
+            state_filter:
+              "on"   : brightness(130%) saturate(1.5) drop-shadow(0px 0px 5px gold)
+              "off"  : brightness(80%) saturate(0.8)
+            style:
+              top    : 28%
+              left   : 27%
+              width  : 2.5%
+
+
+          # Front window
+          - type     : state-icon
+            entity   : binary_sensor.xiaomidoorcontact1_contact
+            tap_action:
+              action : more-info
+            style:
+              top    : 62%
+              left   : 78%
+              transform: scale(2,2)
+
+          # Frontdoor
+          - type     : state-icon
+            entity   : binary_sensor.xiaomidoorcontact4_contact
+            tap_action:
+              action : more-info
+            style:
+              top    : 36%
+              left   : 78%
+              transform: scale(2,2)
+
+          # Backdoor
+          - type     : state-icon
+            entity   : binary_sensor.xiaomidoorcontact3_contact
+            tap_action:
+              action : more-info
+            style:
+              top    : 50%
+              left   : 19%
+              transform: scale(2,2)
+
+          # Toilet motion
+          - type     : state-icon
+            entity   : binary_sensor.xiaomimotionsensor_occupancy
+            tap_action:
+              action : more-info
+            style:
+              top    : 26%
+              left   : 75.5%
+              transform: scale(2,2)
+
+

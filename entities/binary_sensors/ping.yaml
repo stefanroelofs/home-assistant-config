@@ -1,0 +1,9 @@
+#- platform     : ping
+#  host         : 192.168.2.191
+#  name         : xiaomi_miio_ping_1
+#  scan_interval: 30
+
+#- platform     : ping
+#  host         : 192.168.2.192
+#  name         : xiaomi_miio_ping_2
+#  scan_interval: 30

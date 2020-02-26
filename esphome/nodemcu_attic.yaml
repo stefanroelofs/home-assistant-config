@@ -1,0 +1,193 @@
+# I/O List
+#
+# OUTPUTS:
+#   GPIO4   D2    relay1_output   Study 1
+#   GPIO5   D1    relay2_output   Study 2
+#   GPIO12  D6    relay3_output   Study 3
+#   GPIO13  D7    relay4_output   Bedroom
+#   GPIO14  D5    relay5_output   Laundry room
+#   GPIO15  D8    relay6_output   Landing (power toggle)  Boot fails if pulled HIGH
+#   GPIO2   D4                    Status Led              connected to on-board LED, pin is high at BOOT, boot failure if pulled LOW
+#
+# INPUTS:
+#   GPIO0   D3                    Switch Bedroom          boot failure if pulled LOW
+#   GPIO1   TX                    Switch Laundry room     pin is high at BOOT, boot failure if pulled LOW
+#   GPIO3   RX                    Switch Office           pin is high at BOOT
+#
+# LET OP!!!!!!!! ALLE 3 DE SCHAKELAARS MOETEN NAAR BENEDEN STAAN! DAN ZIJN DE 3 INPUTS LAAG.
+#
+# Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
+
+substitutions:
+  devicename     : "nodemcu_attic"
+  devicelocation : "Attic"
+  ip_address     : !secret ip_address_nodemcu_1
+
+esphome:
+  name        : $devicename
+  platform    : ESP8266
+  board       : nodemcuv2
+  on_boot:
+    priority  : -10
+    then:
+      - switch.turn_on: switch_relay6
+
+wifi:
+  ssid        : !secret wifi_attic_ssid
+  password    : !secret wifi_attic_password
+  ap:
+    ssid      : "${devicelocation} Fallback Hotspot"
+    password  : !secret wifi_fallback_password
+  manual_ip:
+    static_ip : ${ip_address}
+    gateway   : !secret gateway_ip
+    subnet    : 255.255.255.0
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable Web server.
+web_server:
+  port        : 80
+
+# Sync time with Home Assistant.
+time:
+  - platform             : homeassistant
+    id                   : homeassistant_time
+
+sensor:
+  # Sensors with general information.
+  - platform             : uptime
+    name                 : "${devicelocation} Uptime Sensor"
+    update_interval      : 60s
+
+  - platform             : wifi_signal
+    name                 : "${devicelocation} WiFi Signal"
+    update_interval      : 60s
+
+output:
+  - platform        : gpio
+    id              : relay1_output
+    pin             : GPIO4
+    inverted        : true
+  - platform        : gpio
+    id              : relay2_output
+    pin             : GPIO5
+    inverted        : true
+  - platform        : gpio
+    id              : relay3_output
+    pin             : GPIO12
+    inverted        : true
+  - platform        : gpio
+    id              : relay4_output
+    pin             : GPIO13
+    inverted        : true
+  - platform        : gpio
+    id              : relay5_output
+    pin             : GPIO14
+    inverted        : true
+  - platform        : gpio
+    id              : relay6_output
+    pin             : GPIO15
+    inverted        : true
+
+light:
+  - platform        : binary
+    id              : lightstudy1
+    name            : "${devicelocation} Study 1"
+    output          : relay1_output
+  - platform        : binary
+    id              : lightstudy2
+    name            : "${devicelocation} Study 2"
+    output          : relay2_output
+  - platform        : binary
+    id              : lightstudy3
+    name            : "${devicelocation} Study 3"
+    output          : relay3_output
+  - platform        : binary
+    id              : lightbedroom
+    name            : "${devicelocation} Bedroom"
+    output          : relay4_output
+  - platform        : binary
+    id              : lightlaundry
+    name            : "${devicelocation} Laundry room"
+    output          : relay5_output
+
+switch:
+  # Switch to restart the plug
+  - platform        : restart
+    name            : "${devicelocation} Restart"
+  - platform        : output
+    name            : "${devicelocation} Landing Power"
+    output          : relay6_output
+    id              : switch_relay6
+
+binary_sensor:
+
+# Bedroom switch
+  - platform   : gpio
+    name       : "${devicelocation} Switch Bedroom"
+    pin:
+      number   : GPIO0
+      inverted : True
+      mode     : INPUT_PULLUP
+    filters:
+      - delayed_on_off : 20ms
+    on_state:
+      then:
+        - light.toggle : lightbedroom
+
+# Laundry room switch
+  - platform   : gpio
+    name       : "${devicelocation} Switch Laundry room"
+    pin:
+      number   : GPIO1
+      inverted : True
+      mode     : INPUT_PULLUP
+    filters:
+      - delayed_on_off : 20ms
+    on_state:
+      then:
+        - light.toggle : lightlaundry
+
+# Office switch
+  - platform   : gpio
+    name       : "${devicelocation} Switch Office"
+    pin:
+      number   : GPIO3
+      inverted : True
+      mode     : INPUT_PULLUP
+    filters:
+      - delayed_on_off : 20ms
+    on_state:
+      then:
+        - if:
+            condition:
+              or:
+                - light.is_on  : lightstudy1
+                - light.is_on  : lightstudy2
+                - light.is_on  : lightstudy3
+            then:
+              - light.turn_off : lightstudy3
+              - delay          : 300ms
+              - light.turn_off : lightstudy2
+              - delay          : 300ms
+              - light.turn_off : lightstudy1
+            else:
+              - light.turn_on  : lightstudy1
+              - delay          : 300ms
+              - light.turn_on  : lightstudy2
+              - delay          : 300ms
+              - light.turn_on  : lightstudy3
+
+status_led:
+  pin:
+    number     : GPIO2
+    inverted   : True

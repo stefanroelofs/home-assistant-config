@@ -1,0 +1,26 @@
+#################################################################
+## Start activity TV kijken when Marcella is home at 20:00h
+#################################################################
+- alias         : living_room_harmony_start_activity_gtst
+  id            : 9e6f9c28-6ade-492f-8346-3bccb57b1b27
+  trigger:
+    - platform  : time
+      at        : '20:00:00'
+  condition:
+    - condition : state
+      entity_id : person.marcella
+      state     : 'home'
+    - condition : state
+      entity_id : 'binary_sensor.workday_sensor'
+      state     : 'on'
+    - condition : state
+      entity_id : remote.roelofs_harmony_hub
+      state     : 'off'
+  action:
+    - service   : switch.turn_on
+      entity_id : switch.powerplug_2_relay
+    - delay     : '00:00:10'
+    - service   : remote.turn_on
+      entity_id : remote.roelofs_harmony_hub
+      data:
+         activity: "Tv kijken"

@@ -1,0 +1,14 @@
+- alias         : bathroom_climate_setpoint_converter_window_closed
+  id            : 779e9a35-3d6e-4899-ba37-2ca8c07db32e
+  trigger:
+    platform    : mqtt
+    topic       : zigbee2mqtt/Thermostat_Bathroom/set-ha
+  condition:
+    - condition : state
+      entity_id : binary_sensor.windowswitch_bathroom_contact
+      state     : 'off' # closed
+  action:
+    - service   : mqtt.publish
+      data_template:
+        topic   : zigbee2mqtt/Thermostat_Bathroom/set
+        payload : '{"current_heating_setpoint": {{trigger.payload}}}'

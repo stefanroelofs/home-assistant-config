@@ -1,0 +1,15 @@
+- alias              : bedroom1_dimmer_press_on_day
+  id                 : 4b2371cd-b712-47e2-b495-b125067ef53a
+  trigger:
+    - platform       : state
+      entity_id      : sensor.hueremote_damiansroom_action
+      to             : 'on-press'
+  condition:
+    - condition      : template
+      value_template : '{{ trigger.to_state.attributes.counter == 1 }}'   # Single click only
+    - condition      : state
+      entity_id      : binary_sensor.kinderbedtijd
+      state          : 'off'
+  action:
+    - service        : scene.turn_on
+      entity_id      : scene.bedroom_damian_lights_on

@@ -1,0 +1,121 @@
+esphome:
+  name        : $devicename
+  platform    : ESP8266
+  board       : esp01_1m
+
+wifi:
+  ssid        : !secret wifi_ssid
+  password    : !secret wifi_password
+  ap:
+    ssid      : "${devicelocation} Fallback Hotspot"
+    password  : !secret wifi_fallback_password
+  manual_ip:
+    static_ip : ${ip_address}
+    gateway   : !secret gateway_ip
+    subnet    : 255.255.255.0
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable Web server.
+web_server:
+  port        : 80
+
+# Sync time with Home Assistant.
+time:
+  - platform             : homeassistant
+    id                   : homeassistant_time
+
+sensor:
+  # Sensors with general information.
+  - platform             : uptime
+    name                 : "${devicelocation} Uptime Sensor"
+    update_interval      : 60s
+
+  - platform             : wifi_signal
+    name                 : "${devicelocation} WiFi Signal"
+    update_interval      : 60s
+
+
+# Global to store the on/off state of the chime
+globals:
+  - id              : chime
+    type            : bool
+    restore_value   : true
+    initial_value   : 'true'
+
+output:
+  - platform        : gpio
+    id              : relay_output
+    pin             : GPIO0
+    inverted        : true
+
+script:
+  id                : reset_chime
+  then:
+  - delay           : 500ms  # timer length
+  - switch.turn_off : chime_output
+
+# Exposed switches.
+switch:
+  # Switch to restart the doorbell.
+  - platform        : restart
+    name            : "${devicelocation} Restart"
+
+  # Switch to turn on/off the chime from Home Assistant.
+  - platform        : output
+    id              : chime_output
+    name            : "${devicelocation} Chime"
+    output          : relay_output
+    on_turn_on:
+    - script.execute: reset_chime
+
+  # Switch to turn on/off chime when doorbell button is pushed.
+  # It creates a "virtual" switch based on a global variable.
+  - platform        : template
+    name            : "${devicelocation} Chime Active"
+    id              : chime_active
+    restore_state   : false
+    turn_on_action:
+      - globals.set:
+          id        : chime
+          value     : 'true'
+    turn_off_action:
+      - globals.set:
+          id        : chime
+          value     : 'false'
+    lambda: |-
+      return id(chime);
+
+# Binary sensor representing the Doorbell button push.
+binary_sensor:
+  - platform        : gpio
+    id              : button
+    name            : "${devicelocation} Button"
+    pin:
+      # Connected to GPIO on the ESP-01S.
+      number        : GPIO2
+      mode          : INPUT_PULLUP
+      inverted      : true
+    filters:
+      # Small filter, to debounce the button press.
+      - delayed_on  : 50ms
+      - delayed_off : 50ms
+    on_press:
+      # Only turn on the chime when it is active.
+      then:
+        if:
+          condition:
+            - switch.is_on   : chime_active
+          then:
+            - switch.turn_on : chime_output
+    on_release:
+      # On release, turn of the chime.
+      - switch.turn_off      : chime_output

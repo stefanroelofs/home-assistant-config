@@ -1,0 +1,4 @@
+- name    : Dija
+  id      : dija
+  device_trackers:
+    - device_tracker.dija_phone_wifi

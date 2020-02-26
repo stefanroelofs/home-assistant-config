@@ -1,0 +1,15 @@
+- alias         : living_room_wallswitch_backspot
+  id            : 28743714-b8d2-453d-a3c2-988a8b3eb8c4
+  initial_state : false
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.xiaomidoorcontact8_contact
+      from      : 'off'
+      to        : 'on'
+    - platform  : state
+      entity_id : binary_sensor.xiaomidoorcontact8_contact
+      from      : 'on'
+      to        : 'off'
+  action:
+    - service   : light.toggle
+      entity_id : light.livingroom_backspot_light

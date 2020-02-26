@@ -1,0 +1,10 @@
+substitutions:
+  devicename     : "powerplug_2"
+  devicelocation : "Powerplug 2"
+  # Higher value gives lower watt readout
+  current_res    : '0.00290'
+  # Lower value gives lower voltage readout
+  voltage_div    : '940'
+  ip_address     : !secret ip_address_powerplug2
+
+<<: !include .powerplug_base.yaml

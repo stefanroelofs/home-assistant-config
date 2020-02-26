@@ -1,0 +1,55 @@
+- alias              : living_room_dimmer_press_up_down
+  id                 : 9abdb9c5-6427-4162-ada9-3f97d91ffbde
+  trigger:
+    - platform       : state
+      entity_id      : sensor.hueremote_livingroom_action
+      to             : 'up-press'
+    - platform       : state
+      entity_id      : sensor.hueremote_livingroom_action
+      to             : 'down-press'
+  action:
+    - service        : light.turn_on
+      data_template:
+        entity_id  : light.huebulb_livingroomcolor_light
+        brightness : >-
+          {% if trigger.to_state.attributes.brightness is none %}
+            255
+          {% elif (trigger.to_state.attributes.brightness < 6) %}
+            5
+          {% elif (trigger.to_state.attributes.brightness > 249) %}
+            255
+          {% else %}
+            {{ trigger.to_state.attributes.brightness }}
+          {% endif %}
+    - service        : light.turn_on
+      data_template:
+        entity_id  : light.huestrip_livingroom_light
+        brightness : >-
+          {% if trigger.to_state.attributes.brightness is none %}
+            255
+          {% elif (trigger.to_state.attributes.brightness < 6) %}
+            5
+          {% elif (trigger.to_state.attributes.brightness > 249) %}
+            255
+          {% else %}
+            {{ trigger.to_state.attributes.brightness }}
+          {% endif %}
+    - service        : light.turn_on
+      data_template:
+        entity_id  : light.huespotwoonkamertrapkast_light
+        brightness : >-
+          {% if trigger.to_state.attributes.brightness is none %}
+            255
+          {% elif (trigger.to_state.attributes.brightness < 6) %}
+            5
+          {% elif (trigger.to_state.attributes.brightness > 249) %}
+            255
+          {% else %}
+            {{ trigger.to_state.attributes.brightness }}
+          {% endif %}
+
+# DEBUG
+#    - service        : notify.stefan
+#      data_template:
+#        message      : "Action: {{trigger.to_state.attributes.action}}, Brightness: {{trigger.to_state.attributes.brightness}}, Bulb: {{states.light.huebulb_damiansroom_light.attributes.brightness}}, Count: {{trigger.to_state.attributes.counter}}"
+

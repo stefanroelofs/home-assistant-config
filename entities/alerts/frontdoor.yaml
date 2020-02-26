@@ -1,0 +1,10 @@
+frontdoor:
+  title        : Voordeur
+  name         : Voordeur staat al {{ relative_time(states.binary_sensor.xiaomidoorcontact4_contact.last_changed) }} open!
+  done_message : Voordeur gesloten
+  entity_id    : binary_sensor.xiaomidoorcontact4_contact
+  state        : 'on'
+  repeat       : 5
+  skip_first   : true
+  notifiers:
+    - all

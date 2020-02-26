@@ -1,0 +1,4 @@
+privacy_mode:
+  name    : Privacy Mode
+  initial : off
+  icon    : mdi:motion-sensor

@@ -1,0 +1,21 @@
+#################################################################
+## Switch lights when darkness falls
+#################################################################
+- alias         : living_room_sunset_lights_on
+  id            : 6a4d749f-c854-4e68-9b58-c031fa06cd13
+  trigger:
+    - platform  : numeric_state
+      entity_id : sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      below     : 3.0 # Can be a positive or negative number
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'on'
+  action:
+    - service   : light.turn_on
+      entity_id : light.huestrip_livingroom_light
+    - service   : light.turn_on
+      entity_id : light.dining_area_ceiling_light
+#    - service   : switch.turn_on
+#      entity_id : switch.xiaomi_switch_2   # christmas tree

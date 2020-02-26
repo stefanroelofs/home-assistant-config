@@ -1,0 +1,12 @@
+- alias              : bedroom1_dimmer_press_off
+  id                 : de7ec6f4-2ccc-4f30-9597-8d206dcf0504
+  trigger:
+    - platform       : state
+      entity_id      : sensor.hueremote_damiansroom_action
+      to             : 'off-press'
+  condition:
+    - condition      : template
+      value_template : '{{ trigger.to_state.attributes.counter == 1 }}'   # Single click only
+  action:
+    - service        : scene.turn_on
+      entity_id      : scene.bedroom_damian_lights_slow_off

@@ -1,0 +1,10 @@
+- alias         : system_alert_shutdown
+  id            : 2ea4c440-e8d1-40dd-8473-2785cbd7be18
+  trigger:
+    platform    : homeassistant
+    event       : shutdown
+  action:
+    - service   : notify.stefan
+      data:
+        title   : Shutdown pending
+        message : Home assisant is shutting down.

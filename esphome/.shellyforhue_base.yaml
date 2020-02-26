@@ -1,0 +1,71 @@
+esphome:
+  name        : $devicename
+  platform    : ESP8266
+  board       : esp01_1m
+  on_boot:
+    priority  : -10
+    then:
+      - switch.turn_on: switch_output
+
+wifi:
+  ssid        : !secret wifi_ssid
+  password    : !secret wifi_password
+  ap:
+    ssid      : "${devicelocation} Hotspot"
+    password  : !secret wifi_fallback_password
+  manual_ip:
+    static_ip : ${ip_address}
+    gateway   : !secret gateway_ip
+    subnet    : 255.255.255.0
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable Web server.
+web_server:
+  port        : 80
+
+# Sync time with Home Assistant.
+time:
+  - platform             : homeassistant
+    id                   : homeassistant_time
+
+sensor:
+  # Sensors with general information.
+  - platform             : uptime
+    name                 : "${devicelocation} Uptime Sensor"
+    update_interval      : 60s
+
+  - platform             : wifi_signal
+    name                 : "${devicelocation} WiFi Signal"
+    update_interval      : 60s
+
+binary_sensor:
+  - platform             : gpio
+    pin                  : GPIO5
+    name                 : "${devicelocation} Switch"
+    filters:
+      - delayed_on       : 10ms
+      - delayed_off      : 10ms
+
+switch:
+  - platform             : output
+    name                 : "${devicelocation} Light Power"
+    output               : 'relay_output'
+    id                   : switch_output
+
+  # Switch to restart the plug
+  - platform             : restart
+    name                 : "${devicelocation} Restart"
+
+output:
+  - platform             : gpio
+    pin                  : GPIO4
+    id                   : relay_output

@@ -1,0 +1,33 @@
+#################################################################
+## Notify on phone when new Home Assistant version is available
+#################################################################
+- alias         : system_alert_upgrade
+  id            : f91e8ddf-fd5c-47b6-8443-880303081333
+  trigger:
+    platform    : state
+    entity_id   : sensor.version_latest
+  condition:
+    - condition : template
+      value_template: >-
+        {{
+          states('sensor.version_latest')
+          !=
+          states('sensor.version_current')
+        }}
+  action:
+    - service   : notify.stefan
+      data_template:
+        title   : Upgrade time!
+        message: >-
+          Upgrade available for Home Assistant {{ states('sensor.version_current') }}
+          Version {{ states('sensor.version_latest') }} is ready!
+        data:
+          tag   : ha_upgrade
+          icon  : !secret url_update_icon
+    - service   : persistent_notification.create
+      data_template:
+        title   : Upgrade time!
+        message: >-
+          Upgrade available for Home Assistant {{ states('sensor.version_current') }}
+          Version {{ states('sensor.version_latest') }} is ready!
+        notification_id: ha_upgrade

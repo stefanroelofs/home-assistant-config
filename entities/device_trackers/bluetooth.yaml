@@ -1,0 +1,7 @@
+# https://www.home-assistant.io/components/bluetooth_tracker/
+- platform            : bluetooth_tracker
+  # these are 3 global variables that need to be set to the first configured device tracker
+  interval_seconds    : 12       # Seconds between each scan for new devices
+  consider_home       : 0:01:00  # Seconds to wait till marking someone as not home after not being seen. (4 minutes)
+  new_device_defaults:
+    track_new_devices : false

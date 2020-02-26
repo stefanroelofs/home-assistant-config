@@ -1,0 +1,15 @@
+#################################################################
+## MQTT config
+#################################################################
+
+mqtt:
+  discovery : true
+  broker    : !secret mqtt_broker_ip  # Remove if you want to use built-in MQTT broker
+  username  : !secret mqtt_username
+  password  : !secret mqtt_password
+  birth_message:
+    topic   : 'hass/status'
+    payload : 'online'
+  will_message:
+    topic   : 'hass/status'
+    payload : 'offline'

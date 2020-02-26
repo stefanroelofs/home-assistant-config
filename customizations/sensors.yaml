@@ -1,0 +1,27 @@
+# Front window
+binary_sensor.xiaomidoorcontact1_contact:
+  device_class : window
+
+# Wallswitch Olivias room
+binary_sensor.xiaomidoorcontact2_contact:
+  device_class : None
+
+# Wallswitch Livingroom table
+binary_sensor.xiaomidoorcontact5_contact:
+  device_class : None
+
+# Wallswitch Livingroom kitchen
+binary_sensor.xiaomidoorcontact6_contact:
+  device_class : None
+
+# Wallswitch Damians room
+binary_sensor.xiaomidoorcontact7_contact:
+  device_class : None
+
+# Wallswitch Livingroom back spot
+binary_sensor.xiaomidoorcontact8_contact:
+  device_class : None
+
+# Is anybody home template sensor
+binary_sensor.anybody_home:
+  device_class : presence

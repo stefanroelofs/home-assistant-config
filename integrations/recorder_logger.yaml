@@ -1,0 +1,78 @@
+#################################################################
+## Recorder
+#################################################################
+
+# Adjust the default recorder settings
+recorder:
+  # Specify the number of history days to keep in recorder database after a purge. (default: 10)
+  purge_keep_days : 5
+  # How often (in days) the purge task runs. (default: 1) 
+  purge_interval  : 1 
+
+
+#################################################################
+## Logger
+#################################################################
+
+logger:
+  default: info
+  logs:
+#    homeassistant.components.mqtt              : debug
+    homeassistant.components.plex.media_player : error           # To mute log messages when PC is down
+    homeassistant.components.withings          : error
+#    homeassistant.components.life360           : debug          # To show circles information during boot
+    custom_components.experiaboxv10.device_tracker : error
+
+#################################################################
+## Logbook
+#################################################################
+
+# https://www.home-assistant.io/components/logbook/
+logbook:
+  exclude:
+    entities:
+      - sensor.buienradar_humidity
+      - sensor.buienradar_precipitation
+      - sensor.buienradar_rain_1d
+      - sensor.buienradar_rainchance_1d
+      - sensor.buienradar_sunchance_1d
+      - sensor.buienradar_symbol
+      - sensor.buienradar_symbol_1d
+      - sensor.buienradar_symbol_2d
+      - sensor.buienradar_symbol_3d
+      - sensor.buienradar_symbol_4d
+      - sensor.buienradar_symbol_5d
+      - sensor.buienradar_temperature
+      - sensor.buienradar_temperature_1d
+      - sensor.buienradar_wind_direction
+      - sensor.buienradar_wind_speed
+      - binary_sensor.overloop_motionsensor_motion
+      - binary_sensor.badkamer_motionsensor_motion
+    domains:
+      - weather
+      - sun
+
+
+#################################################################
+## History
+#################################################################
+
+# Enables support for tracking state changes over time
+history:
+  exclude:
+    entities:
+      - sensor.buienradar_humidity
+      - sensor.buienradar_precipitation
+      - sensor.buienradar_rain_1d
+      - sensor.buienradar_rainchance_1d
+      - sensor.buienradar_sunchance_1d
+      - sensor.buienradar_symbol
+      - sensor.buienradar_symbol_1d
+      - sensor.buienradar_symbol_2d
+      - sensor.buienradar_symbol_3d
+      - sensor.buienradar_symbol_4d
+      - sensor.buienradar_symbol_5d
+      - sensor.buienradar_temperature
+      - sensor.buienradar_temperature_1d
+      - sensor.buienradar_wind_direction
+      - sensor.buienradar_wind_speed

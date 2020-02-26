@@ -1,0 +1,20 @@
+# Disabled, integration not working anymore.
+# Info here:
+# https://github.com/home-assistant/home-assistant/pull/30902
+
+
+#- platform    : postnl
+#  username    : !secret postnl_username
+#  password    : !secret postnl_password
+
+# misschien nuttig ????????????
+
+# PostNL Template Sensors
+#  - platform: template
+#    sensors:
+#      postnl_jimmy_packages:
+#        value_template: >-
+#          {{ states.sensor.postnl_jimmy_delivery.state }}
+#      postnl_stephanie_packages:
+#        value_template: >-
+#          {{ states.sensor.postnl_stephanie_delivery.state }}

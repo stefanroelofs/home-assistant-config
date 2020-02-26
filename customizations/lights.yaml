@@ -1,0 +1,105 @@
+# Living
+light.livingroom_lights:
+  friendly_name : "Living"
+  icon          : mdi:sofa
+
+light.huebulb_livingroomcolor_light:
+  friendly_name : "TV Light"
+
+light.huestrip_livingroom_light:
+  friendly_name : "Display cabinet"
+
+light.huespotwoonkamertrapkast_light:
+  friendly_name : "Ceiling Middle"
+
+light.livingroom_backspot_light:
+  friendly_name : "Ceiling Backdoor"
+
+light.dining_area_sideboard:
+  friendly_name : "Sideboard"
+
+# Kitchen
+light.kitchen_lights:
+  friendly_name : "Kitchen"
+  icon          : mdi:food-fork-drink
+
+light.kitchen_ceiling_light:
+  friendly_name : "Kitchen Ceiling"
+
+light.kitchen_counter_light:
+  friendly_name : "Kitchen Counter"
+
+light.dining_area_ceiling_light:
+  friendly_name : "Dining Ceiling"
+
+# Hallway
+light.hallway_lights:
+  friendly_name : "Hallway"
+  icon          : mdi:toilet
+
+light.hallway_light:
+  friendly_name : "Hallway"
+
+light.toilet_light:
+  friendly_name : "Toilet"
+
+
+# Upstairs
+light.overloop_color:
+  friendly_name : "Landing"
+  icon          : mdi:home-floor-1
+
+light.bathroom_lights:
+  friendly_name : "Bathroom"
+  icon          : mdi:shower
+
+light.badkamer_white:
+  friendly_name : "Ceiling"
+
+light.lightstrip_badkamer:
+  friendly_name : "Bath strip"
+
+light.slaapkamer_color:
+  friendly_name : "Master bedroom"
+  icon          : mdi:bed-queen
+
+light.damiansroom_lights:
+  friendly_name : "Damian's bedroom"
+  icon          : mdi:hotel
+
+light.huebulb_damiansroom_light:
+  friendly_name : "Ceiling"
+
+light.ikeabulb_damiansroom_light:
+  friendly_name : "Table lamp"
+
+light.babykamer_color:
+  friendly_name : "Olivia's bedroom"
+  icon          : mdi:hotel
+
+# Attic
+light.overloop_zolder_color:
+  friendly_name : "Landing"
+  icon          : mdi:home-floor-2
+
+
+light.attic_laundry_room:
+  friendly_name : "Laundry"
+  icon          : mdi:washing-machine
+
+light.attic_study_light:
+  friendly_name : "Study"
+  icon          : mdi:briefcase
+
+light.attic_study_1:
+  friendly_name : "Light 1"
+
+light.attic_study_2:
+  friendly_name : "Light 2"
+
+light.attic_study_3:
+  friendly_name : "Light 3"
+
+light.attic_bedroom:
+  friendly_name : "Attic bedroom"
+  icon          : mdi:bed-empty

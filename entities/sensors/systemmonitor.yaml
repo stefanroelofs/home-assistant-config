@@ -1,0 +1,10 @@
+- platform    : systemmonitor
+  resources:
+    - type    : processor_use
+    - type    : disk_use_percent
+      arg     : /
+    - type    : memory_use_percent
+    - type    : swap_use_percent
+    - type    : ipv4_address
+      arg     : eth0
+    - type    : last_boot

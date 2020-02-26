@@ -1,0 +1,35 @@
+List of randomly generated uuid's.
+Use as id's for automations
+
+Generate with linux ssh command:    cat /proc/sys/kernel/random/uuid
+
+
+  id            : 4e4eb45b-1705-4342-a2dc-c611f667b87d
+  id            : 94accde4-9624-4f1b-8b82-11af89bdd380
+  id            : ae29cef8-aafa-4c01-92e4-be04136f5604
+  id            : 73dcb58b-bbd3-4e07-9204-a0c77f46be80
+  id            : 32b75373-d85b-4704-b29d-8d72ac1ca4c1
+  id            : d23629a9-9a6a-4989-a772-40350352691f
+  id            : 2d7d4372-2f2e-49a3-a60c-dce49cf85b9a
+  id            : ccee983f-d01a-443b-af7b-9254e0a00424
+  id            : b7bc0402-cf46-4c74-b034-380683f5d60b
+  id            : 74a44f3f-605a-4add-91b1-83cd51d48c06
+  id            : e39bacf5-86dd-4b2d-8494-1b2327f5d5cf
+  id            : 6721c5ec-5944-4bc3-9d48-0c7bbdd480a2
+  id            : 7c20a41e-53bd-4f48-a7a7-b1deb99c3441
+  id            : c42a2d96-bfa2-4ca0-bd41-4df0cd222dc0
+  id            : 1bf2c5fa-ea69-414c-8e25-58be55c97cd8
+  id            : ae0a33c0-fafa-4b8c-858b-7a4d7c946794
+  id            : 64711a0d-372a-4f94-bb9d-8dd6cd4db70c
+  id            : c21ea7d9-28ee-48cb-a202-dee9da1ea3e1
+  id            : abaa1bbd-2038-4d5d-8e96-4de8546d8545
+  id            : fc1efe54-b3ee-4651-bd20-d9e9699766bc
+  id            : 5a4a7d19-92b8-4c08-861b-969be242ec53
+  id            : 20360cbd-f858-4d81-879b-3b802d656035
+  id            : aa5fbcb6-1bb0-4e9e-9b5c-7865be529e19
+  id            : 7c3097bf-46ae-4da5-8295-d4094e88492c
+  id            : 7dd10eb2-cd05-4822-a5ea-e41fa9e96495
+  id            : d53084cd-64f4-4b41-877e-334a9c74f32f
+  id            : 2ce8821b-b6aa-4234-9a3e-50a93ea8b4fb
+  id            : d0c1a5d5-947c-4b34-bf42-b378ed6a110b
+  id            : 95d99235-f834-4cd1-ae6f-41c0fb96e163

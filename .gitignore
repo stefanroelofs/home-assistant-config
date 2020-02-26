@@ -1,0 +1,51 @@
+# Generic ignores
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+
+# Directory (contents) ignores
+.cloud
+.storage
+deps
+glances
+tts
+www/profile_pics
+
+# Specific file ignores
+.config_entries.json
+.homekit.state
+.ios.conf
+.spotify-token-cache
+.uuid
+core
+html5_push_registrations.conf
+harmony_roelofs_harmony_hub.conf
+plex.conf
+ip_bans.yaml
+known_devices.yaml
+options.xml
+OZW_Log.txt
+pyozw.sqlite
+secrets.yaml
+zwcfg_*
+zwscene.xml
+www/google5d94d8bd4509d7af.html
+www/community/zigbee2mqtt_networkmap/source.js
+
+# Ignore add-on files
+aircast.xml
+airsonos.xml
+notebooks
+
+# Ignore files created by IDE's
+.vscode
+*.code-workspace
+.theia
+.Trash*
+
+# Specific keeps
+!.gitkeep

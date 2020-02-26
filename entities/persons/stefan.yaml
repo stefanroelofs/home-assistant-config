@@ -1,0 +1,7 @@
+- name    : Stefan
+  id      : stefan
+  user_id : !secret user_id_stefan
+  device_trackers:
+    - device_tracker.stefan_phone_wifi
+    - device_tracker.stefan_phone_bt
+    - device_tracker.life360_stefan

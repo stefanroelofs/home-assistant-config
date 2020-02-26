@@ -1,0 +1,16 @@
+#################################################################
+## Stop playback on streaming device on chromecast when you kill the TV
+#################################################################
+- alias         : living_room_harmony_stop_chromecast
+  id            : 6ddff49f-537b-4122-a8f9-cf92778e0c10
+  trigger:
+    - platform  : state
+      entity_id : switch.living_room_activity_chromecast
+      to        : 'off'
+      for       : "00:00:30"
+  action:
+    - service   : media_player.media_stop
+      entity_id : media_player.woonkamer
+    - delay     : '00:00:10'
+    - service   : media_player.turn_off
+      entity_id : media_player.woonkamer
