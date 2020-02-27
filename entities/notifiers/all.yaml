@@ -1,0 +1,5 @@
+- platform      : group
+  name          : All
+  services:
+    - service   : mobile_app_stefan_phone_app
+    - service   : mobile_app_marcella_phone_app

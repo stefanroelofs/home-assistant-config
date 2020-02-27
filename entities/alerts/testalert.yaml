@@ -4,10 +4,10 @@ testalert:
   done_message : Message is done
   entity_id    : input_boolean.test_input1
   state        : 'on'
-  repeat       : 3
+  repeat       : 1
   skip_first   : false
   notifiers:
-    - all
+    - stefan
 
 testalert1:
   title        : Test Alert

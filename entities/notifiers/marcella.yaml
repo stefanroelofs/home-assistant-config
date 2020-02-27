@@ -1,0 +1,4 @@
+- platform      : group
+  name          : Marcella
+  services:
+    - service   : mobile_app_marcella_phone_app

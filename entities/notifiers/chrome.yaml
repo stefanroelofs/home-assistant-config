@@ -1,0 +1,7 @@
+- platform      : html5
+  name          : chrome_notifier
+  vapid_pub_key : !secret html5_notifier_pub_key
+  vapid_prv_key : !secret html5_notifier_prv_key
+  vapid_email   : !secret html5_notifier_email
+
+# DEPRECATED. Use mobile app notify function instead.

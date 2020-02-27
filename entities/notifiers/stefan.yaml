@@ -1,0 +1,4 @@
+- platform      : group
+  name          : Stefan
+  services:
+    - service   : mobile_app_stefan_phone_app
