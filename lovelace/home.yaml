@@ -48,6 +48,7 @@ cards:
           - type   : custom:slider-entity-row
             entity : light.livingroom_backspot_light
           - entity : light.dining_area_sideboard
+          - entity : light.staircase_closet_light
 
       - type       : custom:fold-entity-row
         head:

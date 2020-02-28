@@ -1,0 +1,10 @@
+- alias         : staircase_closet_light_on
+  id            : 73dcb58b-bbd3-4e07-9204-a0c77f46be80
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.staircase_closet_door_contact
+      to        : 'on' # Door opens
+
+  action:
+    - service   : light.turn_on
+      entity_id : light.staircase_closet_light

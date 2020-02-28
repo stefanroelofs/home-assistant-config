@@ -32,6 +32,7 @@
   entities:
     - light.huespotwoonkamertrapkast_light
 #    - light.livingroom_backspot_light  # Do not switch the back spot with the complete living room.
+#    - light.staircase_closet_light  # Do not switch the staircase closet light with the complete living room.
     - light.huestrip_livingroom_light
     - light.huebulb_livingroomcolor_light
     - light.dining_area_sideboard
