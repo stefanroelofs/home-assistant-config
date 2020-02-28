@@ -1,0 +1,14 @@
+- alias         : living_room_dimmer_hold_dim_up
+  id            : 94accde4-9624-4f1b-8b82-11af89bdd380
+  trigger:
+    - platform  : state
+      entity_id : sensor.hueremote_livingroom_action
+      to        : 'up-hold'
+  action:
+    - service   : light.turn_on
+      data:
+        brightness_step_pct: 5
+        entity_id:
+        - light.huebulb_livingroomcolor_light
+        - light.huestrip_livingroom_light
+        - light.huespotwoonkamertrapkast_light
