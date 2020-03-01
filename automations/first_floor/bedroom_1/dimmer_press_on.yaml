@@ -1,0 +1,11 @@
+- alias           : bedroom1_dimmer_press_on
+  id              : 64711a0d-372a-4f94-bb9d-8dd6cd4db70c
+  trigger:
+  - platform      : event
+    event_type    : zha_event
+    event_data:
+      device_ieee : 00:17:88:01:02:1b:48:1d
+      command     : 'on'
+  action:
+    - service        : light.turn_on
+      entity_id      : light.bedroom1_lights

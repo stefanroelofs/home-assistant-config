@@ -43,7 +43,3 @@ views:
   - !include lovelace/firstfloor.yaml
   - !include lovelace/climate.yaml
   - !include lovelace/automations.yaml
-#  - !include lovelace/devicestatus.yaml
-#  - !include lovelace/ha.yaml
-#  - !include lovelace/weather.yaml
-#  - !include lovelace/statsndata.yaml

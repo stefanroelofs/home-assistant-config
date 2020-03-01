@@ -1,10 +1,8 @@
 - alias         : kitchen_window_closes_light_off
   id            : 26a3030d-f272-4b62-bb5f-83b9312757a6
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact1_contact
-      from      : 'on'
+      entity_id : binary_sensor.kitchen_windowswitch
       to        : 'off' # Window closes
   condition:
     - condition : state
@@ -12,4 +10,4 @@
       state     : 'on'
   action:
     - service   : light.turn_off
-      entity_id : light.huebulb_kitchenceiling1_light
+      entity_id : light.kitchen_ceiling

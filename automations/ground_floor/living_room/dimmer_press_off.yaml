@@ -1,12 +1,14 @@
-- alias              : living_room_dimmer_press_off
-  id                 : a0c4412b-5168-4177-a378-efca885d573c
+- alias           : living_room_dimmer_press_off
+  id              : a0c4412b-5168-4177-a378-efca885d573c
   trigger:
-    - platform       : state
-      entity_id      : sensor.hueremote_livingroom_action
-      to             : 'off-press'
-  condition:
-    - condition      : template
-      value_template : '{{ trigger.to_state.attributes.counter == 1 }}'   # Single click only
+  - platform      : event
+    event_type    : zha_event
+    event_data:
+      device_ieee : 00:17:88:01:10:3f:ca:d4
+      command     : off_with_effect
+      args:
+      - 0
+      - 0
   action:
-    - service        : scene.turn_on
-      entity_id      : scene.livingroom_lights_off
+    - service        : light.turn_off
+      entity_id      : light.living_room_lights

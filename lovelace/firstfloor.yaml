@@ -6,7 +6,7 @@
         image : /local/floorplans/first_floor.png
         elements:
           - type     : image
-            entity   : light.dining_area_ceiling_light
+            entity   : light.dining_area_ceiling
             tap_action:
               action : toggle
             hold_action:
@@ -23,7 +23,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.kitchen_ceiling_light
+            entity   : light.kitchen_ceiling
             tap_action:
               action : toggle
             hold_action:
@@ -91,7 +91,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.livingroom_backspot_light
+            entity   : light.living_room_ceiling_back
             tap_action:
               action : toggle
             hold_action:
@@ -108,7 +108,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.huespotwoonkamertrapkast_light
+            entity   : light.living_room_ceiling_middle
             tap_action:
               action : toggle
             hold_action:
@@ -125,7 +125,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.huestrip_livingroom_light
+            entity   : light.living_room_display_cabinet
             tap_action:
               action : toggle
             hold_action:
@@ -142,7 +142,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : switch.ikeaoutlet1_switch
+            entity   : light.living_room_sideboard
             tap_action:
               action : toggle
             hold_action:
@@ -159,7 +159,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.huebulb_livingroomcolor_light
+            entity   : light.living_room_tv_desk
             tap_action:
               action : toggle
             hold_action:
@@ -197,7 +197,7 @@
 
           # Front window
           - type     : state-icon
-            entity   : binary_sensor.xiaomidoorcontact1_contact
+            entity   : binary_sensor.kitchen_windowswitch
             tap_action:
               action : more-info
             style:
@@ -207,7 +207,7 @@
 
           # Frontdoor
           - type     : state-icon
-            entity   : binary_sensor.xiaomidoorcontact4_contact
+            entity   : binary_sensor.hallway_doorswitch
             tap_action:
               action : more-info
             style:
@@ -217,7 +217,7 @@
 
           # Backdoor
           - type     : state-icon
-            entity   : binary_sensor.xiaomidoorcontact3_contact
+            entity   : binary_sensor.living_room_doorswitch
             tap_action:
               action : more-info
             style:
@@ -227,7 +227,7 @@
 
           # Toilet motion
           - type     : state-icon
-            entity   : binary_sensor.xiaomimotionsensor_occupancy
+            entity   : binary_sensor.restroom_motionsensor_occupancy
             tap_action:
               action : more-info
             style:

@@ -1,5 +1,5 @@
-switch.ikeaoutlet2_switch:
-  friendly_name : "Livingroom Floorheating"
+switch.staircase_closet_floorheatingpump:
+  friendly_name : "Living room Floorheating"
   icon          : mdi:radiator
 
 switch.powerplug_2_relay:

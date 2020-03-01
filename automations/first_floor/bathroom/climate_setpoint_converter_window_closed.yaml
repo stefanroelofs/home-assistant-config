@@ -5,7 +5,7 @@
     topic       : zigbee2mqtt/Thermostat_Bathroom/set-ha
   condition:
     - condition : state
-      entity_id : binary_sensor.windowswitch_bathroom_contact
+      entity_id : binary_sensor.bathroom_windowswitch
       state     : 'off' # closed
   action:
     - service   : mqtt.publish

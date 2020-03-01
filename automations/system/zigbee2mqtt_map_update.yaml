@@ -1,9 +1,9 @@
 # Sends a signal to Zigbee2MQTT every 20 minutes to update the map
-- alias         : system_zigbee2mqtt_map_update
-  id            : 4cbf66db-02c7-4b93-be6c-e688146d2085
-  trigger:
-    platform    : time_pattern
-    minutes     : '/20'
-    seconds     : 00
-  action:
-    service     : zigbee2mqtt_networkmap.update
+#- alias         : system_zigbee2mqtt_map_update
+#  id            : 4cbf66db-02c7-4b93-be6c-e688146d2085
+#  trigger:
+#    platform    : time_pattern
+#    minutes     : '/20'
+#    seconds     : 00
+#  action:
+#    service     : zigbee2mqtt_networkmap.update

@@ -1,17 +1,12 @@
 - alias         : bedroom1_wallswitch_light_ceiling
   id            : a6023b6b-78f9-40bf-948c-0d0be1f239d7
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact7_contact
-      from      : 'off'
+      entity_id : binary_sensor.bedroom1_wallswitch
       to        : 'on'
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact7_contact
-      from      : 'on'
+      entity_id : binary_sensor.bedroom1_wallswitch
       to        : 'off'
   action:
     - service   : light.toggle
-      entity_id : light.huebulb_damiansroom_light
-    - service   : light.toggle
-      entity_id : light.ikeabulb_damiansroom_light
+      entity_id : light.bedroom1_lights

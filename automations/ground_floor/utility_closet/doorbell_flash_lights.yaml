@@ -14,11 +14,11 @@
   action:
     - service   : light.turn_on
       data:
-        entity_id : light.huebulb_livingroomcolor_light
+        entity_id : light.living_room_tv_desk
         brightness: 255
         flash     : long
     - service   : light.turn_on
       data:
-        entity_id : light.overloop_color
+        entity_id : light.first_floor_landing_ceiling
         brightness: 255
         flash     : long

@@ -1,14 +1,18 @@
-- alias         : living_room_dimmer_press_dim_up
-  id            : 9abdb9c5-6427-4162-ada9-3f97d91ffbde
+- alias           : living_room_dimmer_press_dim_up
+  id              : 9abdb9c5-6427-4162-ada9-3f97d91ffbde
   trigger:
-    - platform  : state
-      entity_id : sensor.hueremote_livingroom_action
-      to        : 'up-press'
+  - platform      : event
+    event_type    : zha_event
+    event_data:
+      device_ieee : 00:17:88:01:10:3f:ca:d4
+      command     : step
+      args:
+      - 0
+      - 30
+      - 9
   action:
-    - service   : light.turn_on
+    - service     : light.turn_on
       data:
-        brightness_step_pct: 10
-        entity_id:
-        - light.huebulb_livingroomcolor_light
-        - light.huestrip_livingroom_light
-        - light.huespotwoonkamertrapkast_light
+        brightness_step_pct : 20
+        transition          : 0.5
+        entity_id           : light.living_room_lights

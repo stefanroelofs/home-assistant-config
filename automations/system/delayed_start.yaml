@@ -1,13 +1,13 @@
 #################################################################
 ## Delayed start option for automations (to get correct state of sensors)
 #################################################################
-- alias         : system_delayed_start_automations
-  id            : 9df323a7-705b-400a-b92f-27b5c505a94f
-  trigger:
-    platform    : homeassistant
-    event       : start  # Event can also be 'shutdown'
-  action:
-    - delay     : '00:05:00'    # 5 minute delay
-    - service   : automation.turn_on
-      entity_id : all
+#- alias         : system_delayed_start_automations
+#  id            : 9df323a7-705b-400a-b92f-27b5c505a94f
+#  trigger:
+#    platform    : homeassistant
+#    event       : start  # Event can also be 'shutdown'
+#  action:
+#    - delay     : '00:05:00'    # 5 minute delay
+#    - service   : automation.turn_on
+#      entity_id : all
 

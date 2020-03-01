@@ -1,0 +1,18 @@
+- alias           : bedroom_master_dimmer_press_dim_down
+  id              : ccee983f-d01a-443b-af7b-9254e0a00424
+  trigger:
+  - platform      : event
+    event_type    : zha_event
+    event_data:
+      device_ieee : 00:17:88:01:02:0d:09:8e
+      command     : step
+      args:
+      - 1
+      - 30
+      - 9
+  action:
+    - service     : light.turn_on
+      data:
+        brightness_step_pct : -20
+        transition          : 0.5
+        entity_id           : light.bedroom_master_ceiling

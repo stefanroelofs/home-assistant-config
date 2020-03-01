@@ -2,8 +2,7 @@
   id            : 16421514-3952-43f2-9759-b1887e184169
   trigger:
     - platform  : state
-      entity_id : light.babykamer_color
-      from      : 'off'
+      entity_id : light.bedroom2_ceiling
       to        : 'on'
       for:
         minutes : 15
@@ -13,4 +12,4 @@
       state     : 'on'
   action:
     - service   : light.turn_off
-      entity_id : light.babykamer_color
+      entity_id : light.bedroom2_ceiling

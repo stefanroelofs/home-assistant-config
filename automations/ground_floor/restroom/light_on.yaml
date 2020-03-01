@@ -2,10 +2,10 @@
   id            : 7c39b021-8e64-4039-ae42-55537f15eb2d
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomimotionsensor_occupancy
+      entity_id : binary_sensor.restroom_motionsensor_occupancy
       to        : 'on'
     - platform  : state
-      entity_id : binary_sensor.xiaomimotionsensor_occupancy
+      entity_id : binary_sensor.restroom_motionsensor_occupancy
       to        : 'off'
     - platform  : state
       entity_id : light.toilet_light

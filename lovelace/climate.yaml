@@ -4,12 +4,12 @@ cards:
 
 # ----------------------------------------------------------------------
   - type : custom:vertical-style-card
-    title: Livingroom
+    title: Living room
     cards:
       - type            : custom:mini-graph-card
         name            : Temperature
         entities:
-          - entity      : sensor.tempsensor_livingroom_temperature
+          - entity      : sensor.living_room_tempsensor_temperature
             name        : Actual
         icon            : mdi:thermometer-lines
         font_size_header: 16
@@ -30,7 +30,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Humidity
         entities:
-          - entity      : sensor.tempsensor_livingroom_humidity
+          - entity      : sensor.living_room_tempsensor_humidity
             name        : Actual
         icon            : mdi:water-percent
         font_size_header: 16
@@ -49,7 +49,7 @@ cards:
           extrema       : true
 
       - type            : thermostat
-        entity          : climate.livingroom
+        entity          : climate.living_room
 
 # ----------------------------------------------------------------------
   - type : custom:vertical-style-card
@@ -58,7 +58,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Temperature
         entities:
-          - entity      : sensor.tempsensor_bathroom_temperature
+          - entity      : sensor.bathroom_tempsensor_temperature
             name        : Actual
         icon            : mdi:thermometer-lines
         font_size_header: 16
@@ -79,7 +79,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Humidity
         entities:
-          - entity      : sensor.tempsensor_bathroom_humidity
+          - entity      : sensor.bathroom_tempsensor_humidity
             name        : Actual
         icon            : mdi:water-percent
         font_size_header: 16
@@ -114,7 +114,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Temperature
         entities:
-          - entity      : sensor.tempsensor_porch_temperature
+          - entity      : sensor.veranda_tempsensor_temperature
             name        : Actual
         icon            : mdi:thermometer-lines
         font_size_header: 16
@@ -135,7 +135,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Humidity
         entities:
-          - entity      : sensor.tempsensor_porch_humidity
+          - entity      : sensor.veranda_tempsensor_humidity
             name        : Actual
         icon            : mdi:water-percent
         font_size_header: 16
@@ -163,7 +163,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Temperature
         entities:
-          - entity      : sensor.tempsensor_fridge_temperature
+          - entity      : sensor.kitchen_fridge_tempsensor_temperature
             name        : Actual
         icon            : mdi:thermometer-lines
         font_size_header: 16
@@ -184,7 +184,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Humidity
         entities:
-          - entity      : sensor.tempsensor_fridge_humidity
+          - entity      : sensor.kitchen_fridge_tempsensor_humidity
             name        : Actual
         icon            : mdi:water-percent
         font_size_header: 16
@@ -209,7 +209,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Temperature
         entities:
-          - entity      : sensor.tempsensor_masterbedroom_temperature
+          - entity      : sensor.bedroom_master_tempsensor_temperature
             name        : Actual
         icon            : mdi:thermometer-lines
         font_size_header: 16
@@ -230,7 +230,7 @@ cards:
       - type            : custom:mini-graph-card
         name            : Humidity
         entities:
-          - entity      : sensor.tempsensor_masterbedroom_humidity
+          - entity      : sensor.bedroom_master_tempsensor_humidity
             name        : Actual
         icon            : mdi:water-percent
         font_size_header: 16

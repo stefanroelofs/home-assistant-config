@@ -1,15 +1,12 @@
 - alias         : kitchen_wallswitch_light_ceiling
   id            : 809340a3-3e1a-49b7-9bea-7ead121fcd1c
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact6_contact
-      from      : 'off'
+      entity_id : binary_sensor.kitchen_wallswitch
       to        : 'on'
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact6_contact
-      from      : 'on'
+      entity_id : binary_sensor.kitchen_wallswitch
       to        : 'off'
   action:
     - service   : light.toggle
-      entity_id : light.kitchen_ceiling_light
+      entity_id : light.kitchen_ceiling

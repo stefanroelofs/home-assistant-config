@@ -1,10 +1,8 @@
 - alias         : living_room_backdoor_closes_light_off
   id            : 1ffed76c-0e3a-40f6-a02f-4e597e296b89
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact3_contact
-      from      : 'on'
+      entity_id : binary_sensor.living_room_doorswitch
       to        : 'off' # Window closes
   condition:
     - condition : state
@@ -12,4 +10,4 @@
       state     : 'on'
   action:
     - service   : light.turn_off
-      entity_id : light.livingroom_backspot_light
+      entity_id : light.living_room_ceiling_back

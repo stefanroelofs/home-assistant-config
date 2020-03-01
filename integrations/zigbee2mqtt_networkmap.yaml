@@ -4,13 +4,13 @@
 
 # https://github.com/rgruebel/ha_zigbee2mqtt_networkmap
 
-webhook:
+#webhook:
 
-zigbee2mqtt_networkmap:
+#zigbee2mqtt_networkmap:
 
-panel_iframe:
-  networkmap:
-    title : Zigbee Map
-    icon  : mdi:graphql
-    url   : '/local/community/zigbee2mqtt_networkmap/map.html'
+#panel_iframe:
+#  networkmap:
+#    title : Zigbee Map
+#    icon  : mdi:graphql
+#    url   : '/local/community/zigbee2mqtt_networkmap/map.html'
 

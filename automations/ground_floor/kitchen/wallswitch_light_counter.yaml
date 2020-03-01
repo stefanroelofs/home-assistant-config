@@ -1,18 +1,15 @@
 - alias         : kitchen_wallswitch_light_counter
   id            : f958d195-66a7-409d-b278-0d0a4c001882
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact6_contact
-      from      : 'off'
+      entity_id : binary_sensor.kitchen_wallswitch
       to        : 'on'
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact6_contact
-      from      : 'on'
+      entity_id : binary_sensor.kitchen_wallswitch
       to        : 'off'
   condition:
     - condition     : template
-      value_template: "{{ states.light.kitchen_ceiling_light.state == states.light.kitchen_counter_light.state }}"
+      value_template: "{{ states.light.kitchen_ceiling.state == states.light.kitchen_counter_light.state }}"
   action:
     - service   : light.toggle
       entity_id : light.kitchen_counter_light

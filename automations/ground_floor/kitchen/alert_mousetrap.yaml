@@ -1,6 +1,5 @@
 - alias         : kitchen_alert_mousetrap
   id            : c411aabf-7162-49ff-a1cf-7fba6c3892a1
-  initial_state : false
   trigger:
     - platform    : state
       entity_id   : sensor.vibrationsensor_1_action

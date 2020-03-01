@@ -19,7 +19,7 @@
       data_template:
         title   : Upgrade time!
         message: >-
-          Upgrade available for Home Assistant {{ states('sensor.version_current') }}
+          Upgrade available for HA{{ states('sensor.version_current') }}.
           Version {{ states('sensor.version_latest') }} is ready!
         data:
           tag   : ha_upgrade
@@ -28,6 +28,6 @@
       data_template:
         title   : Upgrade time!
         message: >-
-          Upgrade available for Home Assistant {{ states('sensor.version_current') }}
+          Upgrade available for HA{{ states('sensor.version_current') }}.
           Version {{ states('sensor.version_latest') }} is ready!
         notification_id: ha_upgrade

@@ -36,31 +36,44 @@ cards:
       - type       : custom:fold-entity-row
         head:
           type     : custom:slider-entity-row
-          entity   : light.livingroom_lights
+          entity   : light.living_room_lights
           toggle   : true
         entities:
           - type   : custom:slider-entity-row
-            entity : light.huebulb_livingroomcolor_light
+            entity : light.living_room_tv_desk
           - type   : custom:slider-entity-row
-            entity : light.huestrip_livingroom_light
+            entity : light.living_room_display_cabinet
           - type   : custom:slider-entity-row
-            entity : light.huespotwoonkamertrapkast_light
+            entity : light.living_room_ceiling_middle
           - type   : custom:slider-entity-row
-            entity : light.livingroom_backspot_light
-          - entity : light.dining_area_sideboard
+            entity : light.living_room_ceiling_back
+          - entity : light.living_room_sideboard
           - entity : light.staircase_closet_light
 
       - type       : custom:fold-entity-row
         head:
           type     : custom:slider-entity-row
-          entity   : light.kitchen_lights
+          entity   : light.dining_area_ceiling
           toggle   : true
         entities:
           - type   : custom:slider-entity-row
-            entity : light.kitchen_ceiling_light
-          - entity : light.kitchen_counter_light
+            entity : light.dining_area_ceiling_1
           - type   : custom:slider-entity-row
-            entity : light.dining_area_ceiling_light
+            entity : light.dining_area_ceiling_2
+
+      - type       : custom:fold-entity-row
+        head:
+          type     : custom:slider-entity-row
+          entity   : light.kitchen_ceiling
+          toggle   : true
+        entities:
+          - type   : custom:slider-entity-row
+            entity : light.kitchen_ceiling_1
+          - type   : custom:slider-entity-row
+            entity : light.kitchen_ceiling_2
+          - type   : custom:slider-entity-row
+            entity : light.kitchen_ceiling_3
+          - entity : light.kitchen_counter_light
 
       - type       : custom:fold-entity-row
         head       : light.hallway_lights
@@ -78,7 +91,7 @@ cards:
     entities:
 
       - type       : custom:slider-entity-row
-        entity     : light.overloop_color
+        entity     : light.first_floor_landing_ceiling
         toggle     : true
 
       - type       : custom:fold-entity-row
@@ -88,27 +101,27 @@ cards:
           toggle   : true
         entities:
           - type   : custom:slider-entity-row
-            entity : light.badkamer_white
+            entity : light.bathroom_ceiling
           - type   : custom:slider-entity-row
-            entity : light.lightstrip_badkamer
+            entity : light.bathroom_bath_ledstrip
 
       - type       : custom:slider-entity-row
-        entity     : light.slaapkamer_color
+        entity     : light.bedroom_master_ceiling
         toggle     : true
 
       - type       : custom:fold-entity-row
         head:
           type     : custom:slider-entity-row
-          entity   : light.damiansroom_lights
+          entity   : light.bedroom1_lights
           toggle   : true
         entities:
           - type   : custom:slider-entity-row
-            entity : light.huebulb_damiansroom_light
+            entity : light.bedroom1_ceiling
           - type   : custom:slider-entity-row
-            entity : light.ikeabulb_damiansroom_light
+            entity : light.bedroom1_table
 
       - type       : custom:slider-entity-row
-        entity     : light.babykamer_color
+        entity     : light.bedroom2_ceiling
         toggle     : true
 
 
@@ -122,7 +135,7 @@ cards:
       - light.attic_laundry_room
 
       - type       : custom:fold-entity-row
-        head       : light.attic_study_light
+        head       : light.attic_study
         entities:
           - light.attic_study_1
           - light.attic_study_2
@@ -137,8 +150,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: switch.powerplug_2_relay
-#      - entity: switch.ikeaoutlet1_switch    # Is converted to a light
-      - entity: switch.ikeaoutlet2_switch
+      - entity: switch.staircase_closet_floorheatingpump
       - entity: switch.powerplug_1_relay
 #      - entity: switch.xiaomi_switch_2 Christmas tree
       - entity: switch.doorbell_v3_chime_active
@@ -156,7 +168,7 @@ cards:
       - entity: sensor.afval_pmd
 
   - type : custom:vertical-style-card
-    title: Livingroom TV
+    title: Living room TV
     cards:
       - type: horizontal-stack
         cards:

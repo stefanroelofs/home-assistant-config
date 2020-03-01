@@ -1,10 +1,8 @@
 - alias         : kitchen_window_opens_light_on
   id            : ca6688cf-0c08-4048-98b3-3871a56fcde6
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact1_contact
-      from      : 'off'
+      entity_id : binary_sensor.kitchen_windowswitch
       to        : 'on' # Window opens
   condition:
     - condition : state
@@ -13,6 +11,6 @@
   action:
     - service   : light.turn_on
       data:
-        entity_id  : light.huebulb_kitchenceiling1_light
+        entity_id  : light.kitchen_ceiling
         brightness : 255  # max brightness
         kelvin     : 6500 # white light

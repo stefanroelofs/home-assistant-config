@@ -1,25 +1,34 @@
-# Front window
-binary_sensor.xiaomidoorcontact1_contact:
+# Windows
+binary_sensor.kitchen_windowswitch:
   device_class : window
 
-# Wallswitch Olivias room
-binary_sensor.xiaomidoorcontact2_contact:
+binary_sensor.bathroom_windowswitch:
+  device_class : window
+
+# Doors
+binary_sensor.staircase_closet_doorswitch:
+  device_class : door
+
+binary_sensor.living_room_doorswitch:
+  device_class : door
+
+binary_sensor.hallway_doorswitch:
+  device_class : door
+
+# Wallswitches
+binary_sensor.living_room_wallswitch:
   device_class : None
 
-# Wallswitch Livingroom table
-binary_sensor.xiaomidoorcontact5_contact:
+binary_sensor.kitchen_wallswitch:
   device_class : None
 
-# Wallswitch Livingroom kitchen
-binary_sensor.xiaomidoorcontact6_contact:
+binary_sensor.dining_area_wallswitch:
   device_class : None
 
-# Wallswitch Damians room
-binary_sensor.xiaomidoorcontact7_contact:
+binary_sensor.bedroom1_wallswitch:
   device_class : None
 
-# Wallswitch Livingroom back spot
-binary_sensor.xiaomidoorcontact8_contact:
+binary_sensor.bedroom2_wallswitch:
   device_class : None
 
 # Is anybody home template sensor

@@ -1,0 +1,12 @@
+- alias         : living_room_wallswitch_ceiling_back
+  id            : 28743714-b8d2-453d-a3c2-988a8b3eb8c4
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.living_room_wallswitch
+      to        : 'on'
+    - platform  : state
+      entity_id : binary_sensor.living_room_wallswitch
+      to        : 'off'
+  action:
+    - service   : light.toggle
+      entity_id : light.living_room_ceiling_back

@@ -1,5 +1,5 @@
-zigbee_permit_join:
-  name     : Time remaining
-  duration : '00:10:00'
+#zigbee_permit_join:
+#  name     : Time remaining
+#  duration : '00:10:00'
 
 # Timer for joining time remaining

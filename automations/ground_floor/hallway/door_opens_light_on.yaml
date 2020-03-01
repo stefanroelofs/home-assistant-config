@@ -1,9 +1,8 @@
 - alias         : hallway_door_opens_light_on
   id            : 5c993de0-5ce3-465a-ab2a-e2b5837df02a
-  initial_state : false
   trigger:
     - platform  : state
-      entity_id : binary_sensor.xiaomidoorcontact4_contact
+      entity_id : binary_sensor.hallway_doorswitch
       to        : 'on' # Door opens
   condition:
     - condition : state
