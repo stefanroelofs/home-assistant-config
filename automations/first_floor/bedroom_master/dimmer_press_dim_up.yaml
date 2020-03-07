@@ -13,6 +13,6 @@
   action:
     - service     : light.turn_on
       data:
-        brightness_step_pct : 20
+        brightness_step_pct : 10
         transition          : 0.5
         entity_id           : light.bedroom_master_ceiling

@@ -220,3 +220,45 @@ cards:
     show_header_toggle: false
     entities:
       - remote.roelofs_harmony_hub
+
+  - type : custom:vertical-style-card
+    title: "Coronavirus Tracker \U0001F9A0"
+    cards:
+      - type  : glance
+        title : "Wereldwijd \U0001F30D"
+        show_icon : true
+        show_name : true
+        show_state: true
+        entities:
+          - entity: sensor.worldwide_coronavirus_confirmed
+            icon  : 'mdi:emoticon-neutral-outline'
+            name  : Bevestigd
+          - entity: sensor.worldwide_coronavirus_current
+            icon  : 'mdi:emoticon-frown-outline'
+            name  : Huidig
+          - entity: sensor.worldwide_coronavirus_recovered
+            icon  : 'mdi:emoticon-happy-outline'
+            name  : Hersteld
+          - entity: sensor.worldwide_coronavirus_deaths
+            icon  : 'mdi:emoticon-dead-outline'
+            name  : Dood
+    
+      - type  : glance
+        title : "Nederland \U0001F1F3\U0001F1F1"
+        show_icon : true
+        show_name : true
+        show_state: true
+        entities:
+          - entity: sensor.netherlands_coronavirus_confirmed
+            icon  : 'mdi:emoticon-neutral-outline'
+            name  : "Bevestigd"
+          - entity: sensor.netherlands_coronavirus_current
+            icon  : 'mdi:emoticon-frown-outline'
+            name  : "Huidig"
+          - entity: sensor.netherlands_coronavirus_recovered
+            icon  : 'mdi:emoticon-happy-outline'
+            name  : "Hersteld"
+          - entity: sensor.netherlands_coronavirus_deaths
+            icon  : 'mdi:emoticon-dead-outline'
+            name  : "Dood"
+

@@ -1,0 +1,19 @@
+- alias            : first_floor_landing_ceiling_on_night
+  id               : abec1825-9610-4eb3-bd5a-05b2f5d81aab
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_motionsensor_occupancy
+      to           : 'on'
+  condition:
+    - condition    : state
+      entity_id    : binary_sensor.night
+      state        : 'on'
+  action:
+    - service      : light.turn_on
+      data:
+        entity_id  : light.first_floor_landing_ceiling
+        brightness : 5              # Integer between 0 and 255
+        xy_color:
+          - 0.675
+          - 0.322
+        transition : 3

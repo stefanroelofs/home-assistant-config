@@ -1,0 +1,12 @@
+- alias            : first_floor_landing_ceiling_off
+  id               : d006b716-282b-42fc-be99-25536765a3ac
+  trigger:
+    - platform     : event
+      event_type   : timer.finished
+      event_data:
+        entity_id  : timer.first_floor_landing_light_timeout
+  action:
+    - service      : light.turn_off
+      data:
+        entity_id  : light.first_floor_landing_ceiling
+        transition : 20

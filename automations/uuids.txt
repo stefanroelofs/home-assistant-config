@@ -3,4 +3,48 @@ Use as id's for automations
 
 Generate with linux ssh command:    cat /proc/sys/kernel/random/uuid
 
-
+  id            : ae3036b8-0ccf-43e9-ad8c-8bf5be20f251
+  id            : 71c97848-24f6-40d2-9836-43651b4efa45
+  id            : dc815ffc-d5c6-4b14-9dd5-91c99a512b95
+  id            : d6221e3c-a64d-4cf6-976d-4c0337419620
+  id            : e8b7fe39-a428-4682-99d5-087e2e49f2bf
+  id            : f8d0b63b-55a8-4916-969d-ccd6b7a9f06a
+  id            : dd4833db-a11d-4abc-937d-745a135cdcef
+  id            : 944d1061-0948-4f4a-a405-d1777711fc5f
+  id            : b9c1e457-0162-4ece-9231-125575f577c3
+  id            : 1e2c724a-2cca-403e-aa94-49e91807e4a7
+  id            : 9e201844-67ad-48b6-9ded-6a5679cf02a2
+  id            : 62123e86-1fba-483e-8210-1a33e32aaf7e
+  id            : 6558a82e-0b40-4e6f-ab5a-e97fc9feab11
+  id            : d3e2f726-5a49-4597-99e5-27e905bac4d5
+  id            : 5343f814-a6dc-4150-83d5-35d195a6ca1c
+  id            : f8b34f5b-d54a-4552-8889-7863b5ab0ced
+  id            : 4ac7359d-bfc3-4c18-8e78-b81996d1d425
+  id            : e516fb1e-d550-4777-b6a4-6ebe2ebda623
+  id            : ae780114-eab6-4dfb-80ed-c30283b4442a
+  id            : de5b1450-48c0-41fd-9760-6e7301eee1f4
+  id            : 37370bd1-340e-4834-bb4d-c987f4c9a8bd
+  id            : b5dea37e-a370-44ec-aa36-72065c1f5584
+  id            : d1d93675-120a-4649-9268-cc9097b06a2a
+  id            : cc99321c-a134-46c0-80e2-23e0521298db
+  id            : 9a7ded06-d39f-4747-b972-d7066b9aef35
+  id            : c772372b-8079-4f0d-984e-68cb8751be78
+  id            : 62424087-dbe4-43ef-913b-e8f8f64aa0dd
+  id            : 21758de0-53e8-4fb5-a469-ae0f408ddcf1
+  id            : 62d8bc21-a58a-40fc-8a3b-88327d985d84
+  id            : 5e5a5c85-c2e8-4214-89ce-c5cd65766662
+  id            : 2071ac75-6b77-4907-9665-ebd91e5f85d9
+  id            : ab2a3bfb-318b-43e0-bfc6-9283a17b3b75
+  id            : 9cf37838-b4db-49ff-9780-510181e45d21
+  id            : b4e4acff-1d11-4db5-ae92-dca7e9b0ab1d
+  id            : 414a6534-ed82-4261-97d4-e4977a2678ea
+  id            : 98600e09-a3cc-4057-87ce-3e92bf3e30a3
+  id            : 924a53f9-1054-42c8-8fff-8715116b6566
+  id            : 1c0b8b89-ed6e-4b0b-af8f-ee3de5a66d7f
+  id            : 9bfe60c3-e6a8-4bf3-a323-6f2fb1e39d47
+  id            : 68271453-353a-48d9-82ab-7c78a4592f99
+  id            : 36258000-10e2-4af8-b280-aff94110ec60
+  id            : 759bd337-0cb1-4f3b-9c48-837d8cafeb3b
+  id            : 1e156de7-f90d-43c9-b61f-ae5fa75366cc
+  id            : 17837dc3-f66d-447f-a06f-2a379a2aeace
+  id            : 423da36f-ebbf-4453-8475-a13e355ec0ba

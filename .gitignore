@@ -14,6 +14,7 @@ deps
 glances
 tts
 www/profile_pics
+neighbours
 
 # Specific file ignores
 .config_entries.json

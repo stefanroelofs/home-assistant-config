@@ -1,0 +1,11 @@
+Philis Hue default light profiles:
+
+id            x         y         brightness        Kelvin    Mired
+relax         0.5119    0.4147    144           ->  2137      468
+concentrate   0.5119    0.4147    219           ->  2137      468
+energize      0.368	    0.3686    203           ->  4302      232
+reading       0.4448    0.4066    240           ->  2893      346
+
+red           0.675     0.322
+
+https://github.com/home-assistant/core/blob/master/homeassistant/components/light/light_profiles.csv

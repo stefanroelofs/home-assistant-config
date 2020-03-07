@@ -24,22 +24,31 @@ resources:
   - url  : /community_plugin/custom-header/custom-header.js
     type : module
 
+  - url  : /community_plugin/zha-network-card/zha-network-card.js
+    type : js
+
+  - url  : /local/manual/zha-network-visualization-card/zha-network-visualization-card.js
+    type : module
+
 title      : Home
 background : var(--lovelace-background)
 
-custom_header:
-  compact_mode          : true
-  background            : var(--app-header-background-color)
-  elements_color        : var(--app-header-text-color)
-  active_tab_color      : var(--state-icon-active-color)
-  tab_indicator_color   : var(--state-icon-active-color)
-  button_text:
-    options             : '{{ hours24 }}:{{ minutesLZ }}'
-  swipe_animate         : fade
-  swipe_prevent_default : true
+#custom_header:
+#  compact_mode          : false
+#  background            : var(--app-header-background-color)
+#  elements_color        : var(--app-header-text-color)
+#  active_tab_color      : var(--state-icon-active-color)
+#  tab_indicator_color   : var(--state-icon-active-color)
+#  button_text:
+#    options             : '{{ hours24 }}:{{ minutesLZ }}'
+#  swipe_animate         : fade
+#  swipe_prevent_default : true
 
 views:
   - !include lovelace/home.yaml
   - !include lovelace/firstfloor.yaml
-  - !include lovelace/climate.yaml
   - !include lovelace/automations.yaml
+  - !include lovelace/climate.yaml
+  - !include lovelace/map.yaml
+  - !include lovelace/zha.yaml
+
