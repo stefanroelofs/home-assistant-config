@@ -1,0 +1,18 @@
+- alias                     : bathroom_dimmer_hold_dim_down
+  id                        : c21ea7d9-28ee-48cb-a202-dee9da1ea3e1
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:0d:09:1e
+        command             : step
+        args:
+        - 1
+        - 56
+        - 9
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bathroom_lights
+        transition          : 0.5
+        brightness_step_pct : -10

@@ -1,0 +1,16 @@
+- alias                     : bedroom1_dimmer_press_off
+  id                        : 1bf2c5fa-ea69-414c-8e25-58be55c97cd8
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:1b:48:1d
+        command             : off_with_effect
+        args:
+        - 0
+        - 0
+  action:
+    - service               : light.turn_off
+      data:
+        entity_id           : light.bedroom1_lights
+        transition          : 1.5

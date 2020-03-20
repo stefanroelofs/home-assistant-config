@@ -1,0 +1,12 @@
+- alias            : bathroom_lights_off
+  id               : dd4833db-a11d-4abc-937d-745a135cdcef
+  trigger:
+    - platform     : event
+      event_type   : timer.finished
+      event_data:
+        entity_id  : timer.bathroom_light_timeout
+  action:
+    - service      : light.turn_off
+      data:
+        entity_id  : light.bathroom_lights
+        transition : 20

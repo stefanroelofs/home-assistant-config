@@ -1,0 +1,18 @@
+- alias                     : bedroom2_dimmer_hold_dim_up
+  id                        : 7dd10eb2-cd05-4822-a5ea-e41fa9e96495
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:1b:47:be
+        command             : step
+        args:
+        - 0
+        - 56
+        - 9
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bedroom2_ceiling
+        transition          : 0.5
+        brightness_step_pct : 10

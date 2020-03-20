@@ -1,0 +1,18 @@
+- alias                     : bedroom2_dimmer_press_on_when_on
+  id                        : f8b34f5b-d54a-4552-8889-7863b5ab0ced
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:1b:47:be
+        command             : 'on'
+  condition:
+    - condition             : state
+      entity_id             : light.bedroom2_ceiling
+      state                 : 'on'
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bedroom2_ceiling
+        transition          : 2
+        profile             : relax

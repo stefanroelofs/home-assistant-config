@@ -27,7 +27,7 @@
 #    - light.living_room_ceiling_back  # Do not switch the back spot with the complete living room.
     - light.living_room_display_cabinet
     - light.living_room_ceiling_middle
-    - light.living_room_sideboard
+#    - c # Sideboard has its own remote
 
 - platform : group
   name     : hallway_lights

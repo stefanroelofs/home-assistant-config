@@ -1,17 +1,14 @@
-- alias         : restroom_light_on
-  id            : 7c39b021-8e64-4039-ae42-55537f15eb2d
+- alias            : restroom_light_on
+  id               : 7c39b021-8e64-4039-ae42-55537f15eb2d
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.restroom_motionsensor_occupancy
-      to        : 'on'
-    - platform  : state
-      entity_id : binary_sensor.restroom_motionsensor_occupancy
-      to        : 'off'
-    - platform  : state
-      entity_id : light.toilet_light
-      to        : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
+    - platform     : state
+      entity_id    : binary_sensor.restroom_motionsensor_zone   # Use zone instead of occupancy. Occupancy has a built in 8 minute delay before becoming Clear again.
+      to           : 'on'
+    - platform     : state
+      entity_id    : light.toilet_light
+      to           : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
   action:
-    - service   : light.turn_on
-      entity_id : light.toilet_light
-    - service   : timer.start     # this restarts the timer if it is already running
-      entity_id : timer.restroom_light_timeout
+    - service      : light.turn_on
+      entity_id    : light.toilet_light
+    - service      : timer.start     # this restarts the timer if it is already running
+      entity_id    : timer.restroom_light_timeout

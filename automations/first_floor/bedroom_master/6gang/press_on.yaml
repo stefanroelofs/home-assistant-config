@@ -1,0 +1,17 @@
+- alias                     : bedroom_master_6gang_press_on   # TOP RIGHT
+  id                        : d1d93675-120a-4649-9268-cc9097b06a2a
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 04:cf:8c:df:3c:75:b3:fb
+        command             : 'on'
+  condition:
+    - condition             : state
+      entity_id             : light.bedroom_master_ceiling
+      state                 : 'off'
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bedroom_master_ceiling
+        transition          : 1.5

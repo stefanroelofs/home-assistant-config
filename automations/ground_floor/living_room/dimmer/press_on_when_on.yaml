@@ -1,0 +1,18 @@
+- alias                     : living_room_dimmer_press_on_when_on
+  id                        : e8b7fe39-a428-4682-99d5-087e2e49f2bf
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:10:3f:ca:d4
+        command             : 'on'
+  condition:
+    - condition             : state
+      entity_id             : light.living_room_lights
+      state                 : 'on'
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.living_room_lights
+        transition          : 2
+        profile             : relax

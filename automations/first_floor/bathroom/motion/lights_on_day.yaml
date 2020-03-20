@@ -1,0 +1,33 @@
+- alias            : bathroom_lights_on_day
+  id               : 944d1061-0948-4f4a-a405-d1777711fc5f
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.bathroom_motionsensor_occupancy
+      to           : 'on'
+    - platform     : state
+      entity_id    : light.bathroom_lights
+      to           : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
+  condition:
+    - condition    : numeric_state
+      entity_id    : sensor.bathroom_motionsensor_illuminance
+      below        : 35            # Lux
+    - condition    : state
+      entity_id    : timer.bathroom_light_timeout
+      state        : 'idle'
+    - condition    : or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.morning
+          state    : 'on'
+        - condition: state
+          entity_id: binary_sensor.afternoon
+          state    : 'on'
+  action:
+    - service      : light.turn_on
+      data:
+        entity_id  : light.bathroom_lights
+        brightness : 255            # Integer between 0 and 255
+        color_temp : 200            # in mireds. 153=white, 500=yellow
+        transition : 1
+    - service      : timer.start    # this restarts the timer if it is already running
+      entity_id    : timer.bathroom_light_timeout

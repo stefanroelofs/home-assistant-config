@@ -1,0 +1,16 @@
+- alias         : dining_area_wallswitch_ceiling
+  id            : 267b50f3-97af-41b5-949b-f08cfb795d4d
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.dining_area_wallswitch
+      to        : 'on'
+    - platform  : state
+      entity_id : binary_sensor.dining_area_wallswitch
+      to        : 'off'
+  action:
+    - service   : zha.issue_zigbee_group_command
+      data:
+        group        : 2  # dining area group
+        cluster_id   : 6
+        manufacturer : 0
+        command      : 2  # toggle lights

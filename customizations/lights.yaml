@@ -49,7 +49,7 @@ light.bedroom2_ceiling:
   icon          : mdi:hotel
 
 # Attic
-light.overloop_zolder_color:
+light.second_floor_landing_ceiling:
   friendly_name : "Landing"
   icon          : mdi:home-floor-2
 

@@ -1,0 +1,14 @@
+- alias            : bathroom_lights_on_restart
+  id               : 62424087-dbe4-43ef-913b-e8f8f64aa0dd
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.bathroom_motionsensor_occupancy
+      to           : 'on'
+  condition:
+    - condition    : template
+      value_template: "{{ not is_state('timer.bathroom_light_timeout', 'idle') }}"
+  action:
+    - service      : light.turn_on
+      entity_id    : light.bathroom_lights
+    - service      : timer.start    # this restarts the timer if it is already running
+      entity_id    : timer.bathroom_light_timeout

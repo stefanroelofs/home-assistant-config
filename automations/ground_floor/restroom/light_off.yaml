@@ -1,10 +1,10 @@
-- alias         : restroom_light_off
-  id            : 2f2f88d3-bc9d-4f68-aeea-d72a2af2caec
+- alias            : restroom_light_off
+  id               : 2f2f88d3-bc9d-4f68-aeea-d72a2af2caec
   trigger:
-    - platform  : event
-      event_type: timer.finished
+    - platform     : event
+      event_type   : timer.finished
       event_data:
-        entity_id: timer.restroom_light_timeout
+        entity_id  : timer.restroom_light_timeout
   action:
-    - service   : light.turn_off
-      entity_id : light.toilet_light
+    - service      : light.turn_off
+      entity_id    : light.toilet_light

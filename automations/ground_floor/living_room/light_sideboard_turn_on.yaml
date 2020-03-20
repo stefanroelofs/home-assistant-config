@@ -1,9 +1,0 @@
-#- alias         : living_room_light_sideboard_turn_on
-#  id            : 26c2b6a7-a8da-4dcf-883b-66c818eb3d9e
-#  trigger:
-#    - platform  : state
-#      entity_id : light.huestrip_livingroom_light
-#      to        : 'on'
-#  action:
-#    - service   : light.turn_on
-#      entity_id : light.dining_area_sideboard

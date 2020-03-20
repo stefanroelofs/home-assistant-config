@@ -1,0 +1,30 @@
+- alias                     : bedroom_master_6gang_press_house_off
+  id                        : cc99321c-a134-46c0-80e2-23e0521298db
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 04:cf:8c:df:3c:75:b3:fb
+        command             : step_color_temp       # BOTTOM LEFT
+        args:
+        - 1
+        - 69
+        - 7
+        - 0
+        - 0
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 04:cf:8c:df:3c:75:b3:fb
+        command             : step_color_temp       # BOTTOM RIGHT
+        args:
+        - 3
+        - 69
+        - 7
+        - 0
+        - 0
+  action:
+    - service               : light.turn_off
+      data:
+        entity_id           : all
+        transition          : 0.5

@@ -1,9 +1,0 @@
-- alias            : first_floor_landing_timer_start
-  id               : 71d250cf-7467-4848-9f8a-349c18e2e062
-  trigger:
-    - platform     : state
-      entity_id    : light.first_floor_landing_ceiling
-      to           : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
-  action:
-    - service      : timer.start    # this restarts the timer if it is already running
-      entity_id    : timer.first_floor_landing_light_timeout

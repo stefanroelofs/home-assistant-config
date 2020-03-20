@@ -1,0 +1,21 @@
+- alias                     : bathroom_dimmer_press_dim_down_when_off
+  id                        : d6221e3c-a64d-4cf6-976d-4c0337419620
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:0d:09:1e
+        command             : step
+        args:
+        - 1
+        - 30
+        - 9
+  condition:
+    - condition             : state
+      entity_id             : light.bathroom_lights
+      state                 : 'off'
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bathroom_lights
+        brightness          : 1

@@ -1,0 +1,14 @@
+- alias            : first_floor_landing_ceiling_on_restart
+  id               : c772372b-8079-4f0d-984e-68cb8751be78
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_motionsensor_occupancy
+      to           : 'on'
+  condition:
+    - condition    : template
+      value_template: "{{ not is_state('timer.first_floor_landing_light_timeout', 'idle') }}"
+  action:
+    - service      : light.turn_on
+      entity_id    : light.first_floor_landing_ceiling
+    - service      : timer.start    # this restarts the timer if it is already running
+      entity_id    : timer.first_floor_landing_light_timeout

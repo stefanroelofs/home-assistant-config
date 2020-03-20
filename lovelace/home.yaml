@@ -131,7 +131,7 @@ cards:
     show_header_toggle: false
 
     entities:
-      - light.overloop_zolder_color
+      - light.second_floor_landing_ceiling
       - light.attic_laundry_room
 
       - type       : custom:fold-entity-row

@@ -1,0 +1,11 @@
+- alias                     : living_room_sideboard_switch
+  id                        : 9a7ded06-d39f-4747-b972-d7066b9aef35
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:15:8d:00:04:24:15:26
+        command             : 'single'
+  action:
+    - service               : light.toggle
+      entity_id             : light.living_room_sideboard

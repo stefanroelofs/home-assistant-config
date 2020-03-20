@@ -8,5 +8,9 @@
       entity_id : binary_sensor.kitchen_wallswitch
       to        : 'off'
   action:
-    - service   : light.toggle
-      entity_id : light.kitchen_ceiling
+    - service   : zha.issue_zigbee_group_command
+      data:
+        group        : 1  # kitchen ceiling group
+        cluster_id   : 6
+        manufacturer : 0
+        command      : 2  # toggle lights

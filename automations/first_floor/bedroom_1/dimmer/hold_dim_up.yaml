@@ -1,0 +1,18 @@
+- alias                     : bedroom1_dimmer_hold_dim_up
+  id                        : 7c20a41e-53bd-4f48-a7a7-b1deb99c3441
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_ieee         : 00:17:88:01:02:1b:48:1d
+        command             : step
+        args:
+        - 0
+        - 56
+        - 9
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bedroom1_lights
+        transition          : 0.5
+        brightness_step_pct : 10
