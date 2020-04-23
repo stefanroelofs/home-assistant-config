@@ -24,7 +24,7 @@ neighbours
 .uuid
 core
 html5_push_registrations.conf
-harmony_roelofs_harmony_hub.conf
+harmony_*.conf
 plex.conf
 ip_bans.yaml
 known_devices.yaml
