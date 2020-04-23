@@ -18,10 +18,15 @@ logger:
   default: info
   logs:
 #    homeassistant.components.mqtt              : debug
-    homeassistant.components.plex.media_player : error           # To mute log messages when PC is down
+    # To mute log messages about Plex when PC is down
+    homeassistant.components.plex.media_player : error           
     homeassistant.components.withings          : error
-#    homeassistant.components.life360           : debug          # To show circles information during boot
+    # To show circles information during boot
+#    homeassistant.components.life360           : debug
     custom_components.experiaboxv10.device_tracker : error
+    # Debug info about ZHA (usefull for firmware updates)
+#    homeassistant.components.zha               : debug
+#    zigpy                                      : debug
 
 #################################################################
 ## Logbook
