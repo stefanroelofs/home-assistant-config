@@ -16,6 +16,6 @@
     - service   : light.turn_on
       entity_id : light.living_room_lights
     - service   : light.turn_on
-      entity_id : light.dining_area_ceiling
+      entity_id : light.dining_area_ceiling_group
 #    - service   : switch.turn_on
 #      entity_id : switch.xiaomi_switch_2   # christmas tree

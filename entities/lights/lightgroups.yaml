@@ -1,19 +1,6 @@
 # https://www.home-assistant.io/components/light.group/
 
 - platform : group
-  name     : kitchen_ceiling
-  entities:
-    - light.kitchen_ceiling_1
-    - light.kitchen_ceiling_2
-    - light.kitchen_ceiling_3
-
-- platform : group
-  name     : dining_area_ceiling
-  entities:
-    - light.dining_area_ceiling_1
-    - light.dining_area_ceiling_2
-
-- platform : group
   name     : attic_study
   entities:
     - light.attic_study_1

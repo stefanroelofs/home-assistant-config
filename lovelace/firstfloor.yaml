@@ -6,7 +6,7 @@
         image : /local/floorplans/first_floor.png
         elements:
           - type     : image
-            entity   : light.dining_area_ceiling
+            entity   : light.dining_area_ceiling_group
             tap_action:
               action : toggle
             hold_action:
@@ -23,7 +23,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.kitchen_ceiling
+            entity   : light.kitchen_ceiling_group
             tap_action:
               action : toggle
             hold_action:

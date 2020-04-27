@@ -11,6 +11,6 @@
   action:
     - service   : light.turn_on
       data:
-        entity_id  : light.kitchen_ceiling
+        entity_id  : light.kitchen_ceiling_group
         brightness : 255  # max brightness
         kelvin     : 6500 # white light

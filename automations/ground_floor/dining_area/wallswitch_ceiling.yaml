@@ -8,9 +8,5 @@
       entity_id : binary_sensor.dining_area_wallswitch
       to        : 'off'
   action:
-    - service   : zha.issue_zigbee_group_command
-      data:
-        group        : 2  # dining area group
-        cluster_id   : 6
-        manufacturer : 0
-        command      : 2  # toggle lights
+    - service   : light.toggle
+      entity_id : light.dining_area_ceiling_group

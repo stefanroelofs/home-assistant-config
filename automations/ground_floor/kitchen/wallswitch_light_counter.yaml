@@ -9,7 +9,7 @@
       to        : 'off'
   condition:
     - condition     : template
-      value_template: "{{ states.light.kitchen_ceiling.state == states.light.kitchen_counter_light.state }}"
+      value_template: "{{ states.light.kitchen_ceiling_group.state == states.light.kitchen_counter_light.state }}"
   action:
     - service   : light.toggle
       entity_id : light.kitchen_counter_light

@@ -7,12 +7,12 @@ light.living_room_sideboard:
   friendly_name : "Sideboard"
 
 # Dining area
-light.dining_area_ceiling:
+light.dining_area_ceiling_group:
   friendly_name : "Dining Table"
   icon          : mdi:silverware
 
 # Kitchen
-light.kitchen_ceiling:
+light.kitchen_ceiling_group:
   friendly_name : "Kitchen"
   icon          : mdi:food-fork-drink
 
