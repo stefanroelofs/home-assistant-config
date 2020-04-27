@@ -34,3 +34,6 @@ binary_sensor.bedroom2_wallswitch:
 # Is anybody home template sensor
 binary_sensor.anybody_home:
   device_class : presence
+
+binary_sensor.bedroom_master_wardrobe_doors_opened:
+  device_class : door

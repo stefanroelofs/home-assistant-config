@@ -14,3 +14,6 @@
       data:
         entity_id           : light.bedroom_master_ceiling
         transition          : 1.5
+    - service               : light.turn_off
+      data:
+        entity_id           : light.bedroom_master_wardrobe_light

@@ -1,0 +1,21 @@
+- alias                     : bedroom_master_wardrobe_door_opened_day
+  id                        : ab2a3bfb-318b-43e0-bfc6-9283a17b3b75
+  trigger:
+    - platform              : state
+      entity_id             : binary_sensor.bedroom_master_wardrobe_doors_opened
+      to                    : 'on'
+  condition:
+    - condition             : or
+      conditions:
+        - condition         : state
+          entity_id         : binary_sensor.morning
+          state             : 'on'
+        - condition         : state
+          entity_id         : binary_sensor.afternoon
+          state             : 'on'
+  action:
+    - service               : light.turn_on
+      data:
+        entity_id           : light.bedroom_master_wardrobe_light
+#        transition          : 1.5    Transitions are not supported: https://github.com/StyraHem/ShellyForHASS/issues/114
+        brightness          : 255
