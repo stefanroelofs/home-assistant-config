@@ -6,8 +6,6 @@
 recorder:
   # Specify the number of history days to keep in recorder database after a purge. (default: 10)
   purge_keep_days : 5
-  # How often (in days) the purge task runs. (default: 1) 
-  purge_interval  : 1 
 
 
 #################################################################
@@ -27,6 +25,7 @@ logger:
     # Debug info about ZHA (usefull for firmware updates)
 #    homeassistant.components.zha               : debug
 #    zigpy                                      : debug
+#    homeassistant.components.http              : debug
 
 #################################################################
 ## Logbook
