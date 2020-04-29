@@ -1,0 +1,11 @@
+- alias         : system_alert_speedtestnet_upload
+  id            : 94055e8f-2d27-45df-a985-bd06c0303e4b
+  trigger:
+      platform  : numeric_state
+      entity_id : sensor.speedtest_upload
+      below     : 10
+  action:
+    - service   : notify.stefan
+      data:
+        title   : Internet down?
+        message : Speedtest.net is reporting a slow upload speed

@@ -267,3 +267,27 @@ cards:
             icon  : 'mdi:emoticon-dead-outline'
             name  : "Dood"
 
+  - type : custom:vertical-style-card
+    title: "Speedtest.net"
+    cards:
+      - type  : gauge
+        name  : Download
+        entity: sensor.speedtest_download
+        min   : 60
+        max   : 135
+        severity:
+          green : 115
+          yellow: 100
+          red   : 0
+    
+      - type  : gauge
+        name  : Upload
+        entity: sensor.speedtest_upload
+        min   : 20
+        max   : 45
+        severity:
+          green : 38
+          yellow: 30
+          red   : 0
+
+

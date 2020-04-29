@@ -1,0 +1,11 @@
+- alias         : system_alert_speedtestnet_download
+  id            : 5f84e46c-29c7-49b7-b5fa-434f46e0faaa
+  trigger:
+      platform  : numeric_state
+      entity_id : sensor.speedtest_download
+      below     : 60
+  action:
+    - service   : notify.stefan
+      data:
+        title   : Internet down?
+        message : Speedtest.net is reporting a slow download speed
