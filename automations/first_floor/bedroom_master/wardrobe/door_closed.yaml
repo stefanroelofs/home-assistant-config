@@ -1,10 +1,14 @@
 - alias                     : bedroom_master_wardrobe_door_closed
   id                        : 62d8bc21-a58a-40fc-8a3b-88327d985d84
   trigger:
-    - platform              : state
+    - platform              : state   # Turn off lights 4 seconds after closing doors
       entity_id             : binary_sensor.bedroom_master_wardrobe_doors_opened
       to                    : 'off'
       for                   : "00:00:04"
+    - platform              : state   # Turn off lights if they are on for 5 minutes
+      entity_id             : light.bedroom_master_wardrobe_light
+      to                    : 'on'
+      for                   : "00:05:00"
   action:
     - service               : light.turn_off
       data:
