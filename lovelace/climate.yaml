@@ -3,7 +3,7 @@ path : climate
 cards:
 
 # ----------------------------------------------------------------------
-  - type : custom:vertical-style-card
+  - type : custom:vertical-stack-in-card
     title: Living room
     cards:
       - type            : custom:mini-graph-card
@@ -52,7 +52,7 @@ cards:
         entity          : climate.living_room
 
 # ----------------------------------------------------------------------
-  - type : custom:vertical-style-card
+  - type : custom:vertical-stack-in-card
     title: Bathroom
     cards:
       - type            : custom:mini-graph-card
@@ -108,7 +108,7 @@ cards:
           - entity      : input_number.bathroom_target_temp_low
 
 # ----------------------------------------------------------------------
-  - type : custom:vertical-style-card
+  - type : custom:vertical-stack-in-card
     title: Porch
     cards:
       - type            : custom:mini-graph-card
@@ -157,7 +157,7 @@ cards:
         entity          : weather.dark_sky
 
 # ----------------------------------------------------------------------
-  - type : custom:vertical-style-card
+  - type : custom:vertical-stack-in-card
     title: Fridge
     cards:
       - type            : custom:mini-graph-card
@@ -203,7 +203,7 @@ cards:
           extrema       : true
 
 # ----------------------------------------------------------------------
-  - type : custom:vertical-style-card
+  - type : custom:vertical-stack-in-card
     title: Masterbedroom
     cards:
       - type            : custom:mini-graph-card

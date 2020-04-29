@@ -2,9 +2,6 @@ lovelace:
   mode     : yaml
 
   resources:
-    - url  : /local/vertical-style-card.js?v=0.1
-      type : js
-
     - url  : /local/manual/zha-network-visualization-card/zha-network-visualization-card.js
       type : module
 
