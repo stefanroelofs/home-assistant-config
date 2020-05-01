@@ -162,6 +162,15 @@ cards:
       - entity: switch.wake_up_vaste_pc
 
   - type  : entities
+    title : Circadian Lighting
+    show_header_toggle: true
+    entities:
+      - entity: switch.circadian_lighting_landings
+      - entity: switch.circadian_lighting_bathroom
+      - entity: switch.circadian_lighting_bedroom_master
+      - entity: switch.circadian_lighting_ground_floor
+
+  - type  : entities
     title : Afval
     show_header_toggle : false
     entities:
