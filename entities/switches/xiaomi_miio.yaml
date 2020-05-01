@@ -1,0 +1,13 @@
+# Currently not in use!
+#- platform    : xiaomi_miio
+#  host        : 192.168.2.191
+#  token       : !secret xiaomi_miio_1_token
+#  name        : xiaomi_switch_1
+#  model       : chuangmi.plug.m3
+
+# Christmas tree
+#- platform    : xiaomi_miio
+#  host        : 192.168.2.192
+#  token       : !secret xiaomi_miio_2_token
+#  name        : xiaomi_switch_2
+#  model       : chuangmi.plug.m3
