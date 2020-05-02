@@ -170,16 +170,43 @@ cards:
       - entity: switch.circadian_lighting_bedroom_master
       - entity: switch.circadian_lighting_ground_floor
 
-  - type  : entities
-    title : Afval
-    show_header_toggle : false
-    entities:
-      - entity: sensor.afval_vandaag
-      - entity: sensor.afval_morgen
-      - entity: sensor.afval_rest
-      - entity: sensor.afval_gft
-      - entity: sensor.afval_papier
-      - entity: sensor.afval_pmd
+  - type : custom:vertical-stack-in-card
+    title: Afvalkalender
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type  : picture-entity
+            entity: sensor.afval_vandaag
+            name  : Vandaag
+            state_image:
+              'Geen'  : /local/icons/acv/Geen.png
+              'GFT'   : /local/icons/acv/GFT.png
+              'PMD'   : /local/icons/acv/PMD.png
+              'Papier': /local/icons/acv/Papier.png
+              'Rest'  : /local/icons/acv/Rest.png
+          - type  : picture-entity
+            entity: sensor.afval_morgen
+            name  : Morgen
+            state_image:
+              'Geen'  : /local/icons/acv/Geen.png
+              'GFT'   : /local/icons/acv/GFT.png
+              'PMD'   : /local/icons/acv/PMD.png
+              'Papier': /local/icons/acv/Papier.png
+              'Rest'  : /local/icons/acv/Rest.png
+      - type  : custom:auto-entities
+        card:
+          type  : glance
+        filter:
+          exclude:
+            - entity_id: sensor.afval_vandaag
+            - entity_id: sensor.afval_morgen
+          include:
+            - entity_id: sensor.afval*
+        show_header_toggle: false
+        sort:
+          method   : attribute
+          attribute: date
+      #   numeric  : true
 
   - type : custom:vertical-stack-in-card
     title: Living room TV
