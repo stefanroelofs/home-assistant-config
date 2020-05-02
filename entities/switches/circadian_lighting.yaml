@@ -17,10 +17,6 @@
 - platform : circadian_lighting
   name     : ground_floor
   lights_ct:
-    - light.dining_area_ceiling_1
-    - light.dining_area_ceiling_2
-    - light.kitchen_ceiling_1
-    - light.kitchen_ceiling_2
-    - light.kitchen_ceiling_3
-
+    - light.dining_area_ceiling_group
+    - light.kitchen_ceiling_group
 
