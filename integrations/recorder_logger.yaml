@@ -5,7 +5,7 @@
 # Adjust the default recorder settings
 recorder:
   # Specify the number of history days to keep in recorder database after a purge. (default: 10)
-  purge_keep_days : 5
+  purge_keep_days : 8
 
 
 #################################################################

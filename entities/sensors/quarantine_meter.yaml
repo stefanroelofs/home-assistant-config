@@ -1,0 +1,36 @@
+## covid19 at home tracker
+- platform  : history_stats
+  name      : stefan_quarantine_time_home
+  entity_id : person.stefan
+  state     : "home"
+  type      : ratio
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : stefan_quarantine_times_left
+  entity_id : person.stefan
+  state     : "home"
+  type      : count
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : marcella_quarantine_time_home
+  entity_id : person.marcella
+  state     : "home"
+  type      : ratio
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : marcella_quarantine_times_left
+  entity_id : person.marcella
+  state     : "home"
+  type      : count
+  duration:
+    days    : 7
+  end       : "{{ now() }}"

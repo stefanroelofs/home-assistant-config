@@ -247,15 +247,21 @@ cards:
             color_type : card
             color      : "#CE2841"
 
-  - type  : media-control
-    entity: media_player.slaapkamer
+  - type : custom:vertical-stack-in-card
+    title: "Media"
+    cards:
+      - type  : media-control
+        entity: media_player.woonkamer
+    
+      - type  : media-control
+        entity: media_player.rasplex
 
-  - type  : media-control
-    entity: media_player.woonkamer
+      - type  : media-control
+        entity: media_player.kitchen
 
-  - type  : media-control
-    entity: media_player.rasplex
-
+      - type  : media-control
+        entity: media_player.slaapkamer
+    
   - type  : entities
     title : Remotes
     show_header_toggle: false
@@ -302,6 +308,40 @@ cards:
           - entity: sensor.netherlands_coronavirus_deaths
             icon  : 'mdi:emoticon-dead-outline'
             name  : "Dood"
+
+  - type : custom:vertical-stack-in-card
+    title: "Quarantine-o-meter"
+    cards:
+      - type : markdown
+        content: >-
+          The meters display the amount of time spend at home in the
+          last 7 days. Where Stefan left the house (on average)
+          {{ (states("sensor.stefan_quarantine_times_left")|int / 7) | round(1) }}
+          times per day and Marcella
+          {{ (states("sensor.marcella_quarantine_times_left")|int / 7) | round(1) }}
+          times per day.
+        
+      - type : horizontal-stack
+        cards:
+          - type  : gauge
+            name  : Stefan Home %
+            entity: sensor.stefan_quarantine_time_home
+            max   : 100
+            min   : 0
+            severity:
+              green : 95
+              red   : 0
+              yellow: 80
+            
+          - type  : gauge
+            name  : Marcella Home %
+            entity: sensor.marcella_quarantine_time_home
+            max   : 100
+            min   : 0
+            severity:
+              green: 95
+              red: 0
+              yellow: 80
 
   - type : custom:vertical-stack-in-card
     title: "Speedtest.net"
