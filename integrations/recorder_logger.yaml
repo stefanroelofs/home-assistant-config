@@ -19,12 +19,16 @@ logger:
     # To mute log messages about Plex when PC is down
     homeassistant.components.plex.media_player : error           
     homeassistant.components.withings          : error
-    # To show circles information during boot
+    # To show circles (zones) information during boot
 #    homeassistant.components.life360           : debug
     custom_components.experiaboxv10.device_tracker : error
     # Debug info about ZHA (usefull for firmware updates)
-#    homeassistant.components.zha               : debug
-#    zigpy                                      : debug
+ #   homeassistant.components.zha               : debug
+ #   zigpy                                      : debug
+ #   zigpy_deconz                               : debug
+ #   custom_components.zha_map                  : debug
+ #   bellows                                    : debug
+
 #    homeassistant.components.http              : debug
 
 #################################################################
