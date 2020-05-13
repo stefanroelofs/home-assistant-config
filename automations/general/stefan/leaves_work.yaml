@@ -1,0 +1,20 @@
+- alias         : general_stefan_leaves_work
+  id            : 98600e09-a3cc-4057-87ce-3e92bf3e30a3
+  trigger:
+    - platform  : zone
+      entity_id : person.stefan
+      zone      : zone.work_stefan
+      event     : leave   # Event is either enter or leave
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'on'
+    - condition : time
+      after     : '15:00:00'
+      before    : '19:00:00'
+  action:
+    - service   : tts.google_say
+      entity_id : media_player.kitchen
+      data:
+        message : 'Opgelet! Stefan is onderweg naar huis.'
+        language: 'nl'

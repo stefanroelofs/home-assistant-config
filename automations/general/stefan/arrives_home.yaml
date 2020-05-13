@@ -1,0 +1,17 @@
+- alias         : general_stefan_arrives_home
+  id            : 414a6534-ed82-4261-97d4-e4977a2678ea
+  trigger:
+    - platform  : zone
+      entity_id : person.stefan
+      zone      : zone.home
+      event     : enter   # Event is either enter or leave
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'on'
+  action:
+    - service   : tts.google_say
+      entity_id : media_player.kitchen
+      data:
+        message : 'Opgelet! Stefan is thuis.'
+        language: 'nl'

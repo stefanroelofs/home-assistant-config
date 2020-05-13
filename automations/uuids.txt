@@ -3,10 +3,6 @@ Use as id's for automations
 
 Generate with linux ssh command:    cat /proc/sys/kernel/random/uuid
 
-  id            : 9cf37838-b4db-49ff-9780-510181e45d21
-  id            : b4e4acff-1d11-4db5-ae92-dca7e9b0ab1d
-  id            : 414a6534-ed82-4261-97d4-e4977a2678ea
-  id            : 98600e09-a3cc-4057-87ce-3e92bf3e30a3
   id            : 924a53f9-1054-42c8-8fff-8715116b6566
   id            : 1c0b8b89-ed6e-4b0b-af8f-ee3de5a66d7f
   id            : 9bfe60c3-e6a8-4bf3-a323-6f2fb1e39d47

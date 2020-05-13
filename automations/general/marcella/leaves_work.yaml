@@ -1,0 +1,24 @@
+- alias         : general_marcella_leaves_work
+  id            : 9cf37838-b4db-49ff-9780-510181e45d21
+  trigger:
+    - platform  : zone
+      entity_id : person.marcella
+      zone      : zone.work_marcella
+      event     : leave   # Event is either enter or leave
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'on'
+  action:
+    - service   : tts.google_say
+      entity_id : media_player.kitchen
+      data:
+        message : 'Opgelet! Marcella is eindelijk onderweg naar huis.'
+        language: 'nl'
+    - service     : notify.stefan
+      data:
+        title     : Marcella is vertrokken
+        message   : 'Opgelet! Marcella is eindelijk onderweg naar huis.'
+        data:
+          tag     : leaving_alert
+          icon    : mdi:home-export-outline

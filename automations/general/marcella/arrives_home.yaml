@@ -1,0 +1,21 @@
+- alias         : general_marcella_arrives_home
+  id            : b4e4acff-1d11-4db5-ae92-dca7e9b0ab1d
+  trigger:
+    - platform  : zone
+      entity_id : person.marcella
+      zone      : zone.home
+      event     : enter   # Event is either enter or leave
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'on'
+  action:
+    - service   : tts.google_say
+      entity_id : media_player.kitchen
+      data:
+        message : 'Opgelet! Marcella is thuis.'
+        language: 'nl'
+    - service     : notify.stefan
+      data:
+        title     : Marcella is vertrokken
+        message   : 'Opgelet! Marcella is thuis.'
