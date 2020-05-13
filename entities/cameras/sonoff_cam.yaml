@@ -1,0 +1,7 @@
+- platform        : generic
+  name            : sonoff
+  still_image_url : !secret sonoff_cam_rtsp_url
+  stream_source   : !secret sonoff_cam_rtsp_url
+
+# camera model: Sonoff GK-200MP2-B
+# info about PZT control hack: https://community.home-assistant.io/t/sonoff-gk-200mp2-b-ip-camera/157400
