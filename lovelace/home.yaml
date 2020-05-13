@@ -136,8 +136,11 @@ cards:
     show_header_toggle: false
 
     entities:
-      - light.second_floor_landing_ceiling
-      - light.attic_laundry_room
+      - type       : custom:slider-entity-row
+        entity     : light.second_floor_landing_ceiling
+        toggle     : true
+
+      - entity     : light.attic_laundry_room
 
       - type       : custom:fold-entity-row
         head       : light.attic_study
@@ -146,7 +149,7 @@ cards:
           - light.attic_study_2
           - light.attic_study_3
 
-      - light.attic_bedroom
+      - entity     : light.attic_bedroom
 
 
 # ----------------------------------------------------------------------
@@ -154,12 +157,13 @@ cards:
     title : Switches
     show_header_toggle: false
     entities:
-      - entity: switch.powerplug_2_relay
-      - entity: switch.staircase_closet_floorheatingpump
-      - entity: switch.powerplug_1_relay
-#      - entity: switch.xiaomi_switch_2 Christmas tree
-      - entity: switch.doorbell_v3_chime_active
-      - entity: switch.wake_up_vaste_pc
+      - switch.powerplug_2_relay
+      - switch.staircase_closet_floorheatingpump
+      - switch.powerplug_1_relay
+#      - switch.xiaomi_switch_2 Christmas tree
+      - switch.doorbell_v3_chime_active
+      - switch.wake_up_vaste_pc
+      - remote.roelofs_harmony_hub
 
   - type  : entities
     title : Circadian Lighting
@@ -262,12 +266,6 @@ cards:
       - type  : media-control
         entity: media_player.slaapkamer
     
-  - type  : entities
-    title : Remotes
-    show_header_toggle: false
-    entities:
-      - remote.roelofs_harmony_hub
-
   - type : custom:vertical-stack-in-card
     title: "Coronavirus Tracker \U0001F9A0"
     cards:
@@ -354,3 +352,10 @@ cards:
         name  : Upload
         entity: sensor.speedtest_upload
         graph : line
+
+  - type : picture-entity
+    entity : camera.sonoff
+    name : Olivia's room
+    camera_view: live
+    show_state : false
+    
