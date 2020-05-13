@@ -1,6 +1,6 @@
 - platform    : wake_on_lan
   name        : "Wake up Vaste PC"
-  host        : "192.168.2.110"
+  host        : !secret ip_address_vaste_pc
   mac         : !secret vaste_pc_mac_address
   turn_off:
     service   : hassio.addon_stdin
