@@ -4,3 +4,7 @@
       friendly_name       : "Min/Max temperatuur afgelopen 24h"
       unit_of_measurement : '°C'
       value_template      : "{{ state_attr('sensor.living_room_temperature_stats', 'min_value') }} / {{ state_attr('sensor.living_room_temperature_stats', 'max_value') }}"
+
+    dining_area_ceiling_group_brightness:
+      friendly_name       : "dining_area_ceiling_group_brightness"
+      value_template      : "{{ state_attr('light.dining_area_ceiling_group', 'brightness') }}"
