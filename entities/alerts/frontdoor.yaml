@@ -4,7 +4,7 @@ frontdoor:
   done_message : Voordeur gesloten
   entity_id    : binary_sensor.hallway_doorswitch
   state        : 'on'
-  repeat       : 5
+  repeat       : 10
   skip_first   : true
   notifiers:
     - all
