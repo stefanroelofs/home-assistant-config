@@ -1,8 +1,8 @@
 frontdoor:
   title        : Voordeur
-  name         : Voordeur staat al {{ relative_time(states.binary_sensor.hallway_doorswitch.last_changed) }} open!
+  name         : Voordeur staat al {{ relative_time(states.binary_sensor.hallway_doorsensor.last_changed) }} open!
   done_message : Voordeur gesloten
-  entity_id    : binary_sensor.hallway_doorswitch
+  entity_id    : binary_sensor.hallway_doorsensor
   state        : 'on'
   repeat       : 10
   skip_first   : true

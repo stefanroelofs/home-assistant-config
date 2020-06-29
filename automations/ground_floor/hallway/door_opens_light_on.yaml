@@ -2,7 +2,7 @@
   id            : 5c993de0-5ce3-465a-ab2a-e2b5837df02a
   trigger:
     - platform  : state
-      entity_id : binary_sensor.hallway_doorswitch
+      entity_id : binary_sensor.hallway_doorsensor
       to        : 'on' # Door opens
   condition:
     - condition : state

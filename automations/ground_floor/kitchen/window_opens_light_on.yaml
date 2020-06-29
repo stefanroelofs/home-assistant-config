@@ -2,7 +2,7 @@
   id            : ca6688cf-0c08-4048-98b3-3871a56fcde6
   trigger:
     - platform  : state
-      entity_id : binary_sensor.kitchen_windowswitch
+      entity_id : binary_sensor.kitchen_windowsensor
       to        : 'on' # Window opens
   condition:
     - condition : state

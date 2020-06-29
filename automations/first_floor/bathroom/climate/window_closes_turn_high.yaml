@@ -1,11 +1,11 @@
-- alias         : bathroom_climate_window_closes_turn_high
-  id            : bce26246-be1a-4385-82e0-75d87fb5ecf4
-  trigger:
-    platform    : state
-    entity_id   : binary_sensor.bathroom_windowswitch
-    to          : 'off' # closed
-  action:
-    - service   : mqtt.publish
-      data:
-        topic   : "zigbee2mqtt/Thermostat_Bathroom/set"
-        payload : '{"eurotronic_system_mode": "16"}'
+#- alias         : bathroom_climate_window_closes_turn_high
+#  id            : bce26246-be1a-4385-82e0-75d87fb5ecf4
+#  trigger:
+#    platform    : state
+#    entity_id   : binary_sensor.bathroom_windowsensor
+#    to          : 'off' # closed
+#  action:
+#    - service   : mqtt.publish
+#      data:
+#        topic   : "zigbee2mqtt/Thermostat_Bathroom/set"
+#        payload : '{"eurotronic_system_mode": "16"}'

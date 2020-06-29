@@ -1,12 +1,12 @@
-- alias         : bedroom2_wallswitch_light_ceiling
+- alias         : bedroom_2_wallswitch_light_ceiling
   id            : b2621218-813d-4bd9-b89e-fd967b8246fb
   trigger:
     - platform  : state
-      entity_id : binary_sensor.bedroom2_wallswitch
+      entity_id : binary_sensor.bedroom_2_wallswitch
       to        : 'on'
     - platform  : state
-      entity_id : binary_sensor.bedroom2_wallswitch
+      entity_id : binary_sensor.bedroom_2_wallswitch
       to        : 'off'
   action:
     - service   : light.toggle
-      entity_id : light.bedroom2_ceiling
+      entity_id : light.bedroom_2_ceiling

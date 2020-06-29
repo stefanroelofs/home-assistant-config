@@ -1,4 +1,4 @@
-- alias                     : bedroom1_dimmer_press_dim_up
+- alias                     : bedroom_1_dimmer_press_dim_up
   id                        : ae0a33c0-fafa-4b8c-858b-7a4d7c946794
   trigger:
     - platform              : event
@@ -13,6 +13,6 @@
   action:
     - service               : light.turn_on
       data:
-        entity_id           : light.bedroom1_lights
+        entity_id           : light.bedroom_1_lights
         transition          : 0.5
         brightness_step_pct : 10

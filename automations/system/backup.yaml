@@ -17,6 +17,6 @@
     - service   : hassio.snapshot_full
       data_template:
         name    : Backup {{ now().strftime('%Y-%m-%d') }} (HA v.{{ states('sensor.version_current') }})
-    - delay:
-        minutes : 45 # Delay of 45 minutes
-    - service   : rest_command.google_backup
+#    - delay:
+#        minutes : 45 # Delay of 45 minutes
+#    - service   : rest_command.google_backup

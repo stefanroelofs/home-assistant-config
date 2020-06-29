@@ -1,13 +1,10 @@
-switch.staircase_closet_floorheatingpump:
-  friendly_name : "Living room Floorheating"
+switch.staircase_closet_floorheatingpump_outlet:
   icon          : mdi:radiator
 
 switch.powerplug_2_relay:
-  friendly_name : "TV power enable"
   icon          : mdi:power-plug
 
 switch.powerplug_1_relay:
-  friendly_name : "Charging station enable"
   icon          : mdi:power-plug
 
 #switch.powerplug_1_relay:
@@ -23,5 +20,4 @@ switch.wake_up_vaste_pc:
   icon          : mdi:desktop-tower
 
 switch.doorbell_v3_chime_active:
-  friendly_name : "Deurbel Actief"
   icon          : mdi:bell-off

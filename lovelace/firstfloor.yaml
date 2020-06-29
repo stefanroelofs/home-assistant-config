@@ -197,7 +197,7 @@
 
           # Front window
           - type     : state-icon
-            entity   : binary_sensor.kitchen_windowswitch
+            entity   : binary_sensor.kitchen_windowsensor
             tap_action:
               action : more-info
             style:
@@ -207,7 +207,7 @@
 
           # Frontdoor
           - type     : state-icon
-            entity   : binary_sensor.hallway_doorswitch
+            entity   : binary_sensor.hallway_doorsensor
             tap_action:
               action : more-info
             style:
@@ -217,7 +217,7 @@
 
           # Backdoor
           - type     : state-icon
-            entity   : binary_sensor.living_room_doorswitch
+            entity   : binary_sensor.living_room_doorsensor
             tap_action:
               action : more-info
             style:

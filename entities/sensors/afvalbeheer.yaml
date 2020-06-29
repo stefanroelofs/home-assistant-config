@@ -1,0 +1,13 @@
+- platform       : afvalbeheer
+  wastecollector : ACV
+  resources:
+    - restafval
+    - gft
+    - papier
+    - pmd
+  postcode       : 6718MR
+  streetnumber   : 33
+  upcomingsensor : 1
+  builtinicons   : 0
+  disableicons   : 0
+  dutch          : 1

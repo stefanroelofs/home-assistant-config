@@ -1,66 +1,47 @@
-# Living
 light.living_room_lights:
-  friendly_name : "Living"
+  friendly_name : "Woonkamer"
   icon          : mdi:sofa
 
 light.living_room_sideboard:
-  friendly_name : "Sideboard"
+  friendly_name : "Servieskast"
+  icon          : mdi:food-variant
 
-# Dining area
 light.dining_area_ceiling_group:
-  friendly_name : "Dining Table"
   icon          : mdi:silverware
 
-# Kitchen
 light.kitchen_ceiling_group:
-  friendly_name : "Kitchen"
   icon          : mdi:food-fork-drink
 
-# Hallway
 light.hallway_lights:
-  friendly_name : "Hallway"
+  friendly_name : "Hal"
   icon          : mdi:toilet
 
-# Upstairs
 light.first_floor_landing_ceiling:
-  friendly_name : "Landing"
   icon          : mdi:home-floor-1
 
 light.bathroom_lights:
-  friendly_name : "Bathroom"
+  friendly_name : "Badkamer"
   icon          : mdi:shower
 
-light.badkamer_white:
-  friendly_name : "Ceiling"
-
-light.lightstrip_badkamer:
-  friendly_name : "Bath strip"
-
 light.bedroom_master_ceiling:
-  friendly_name : "Master bedroom"
   icon          : mdi:bed-queen
 
-light.bedroom1_lights:
-  friendly_name : "Damian's bedroom"
+light.bedroom_1_lights:
+  friendly_name : "Damian's kamer"
   icon          : mdi:hotel
 
-light.bedroom2_ceiling:
-  friendly_name : "Olivia's bedroom"
+light.bedroom_2_ceiling:
   icon          : mdi:hotel
 
-# Attic
 light.second_floor_landing_ceiling:
-  friendly_name : "Landing"
   icon          : mdi:home-floor-2
 
 light.attic_laundry_room:
-  friendly_name : "Laundry"
   icon          : mdi:washing-machine
 
 light.attic_study:
-  friendly_name : "Study"
+  friendly_name : "Thuiskantoor"
   icon          : mdi:briefcase
 
 light.attic_bedroom:
-  friendly_name : "Attic bedroom"
   icon          : mdi:bed-empty

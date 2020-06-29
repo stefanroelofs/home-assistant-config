@@ -1,1 +1,0 @@
-"""ACV garbage collection sensor"""

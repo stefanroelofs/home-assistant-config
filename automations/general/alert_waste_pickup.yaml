@@ -4,13 +4,27 @@
     - platform  : time
       at        : '19:00:00'
   condition:
-    - condition : template
-      value_template: "{{ not is_state('sensor.afval_morgen', 'Geen') }}"
+    condition   : not
+    conditions:
+      - condition: state
+        entity_id: sensor.acv_morgen
+        state    : 'Geen'
   action:
+    - service   : media_player.turn_off
+      entity_id : media_player.smart_speaker
+    - delay     : '00:00:01'
+    - service   : media_player.turn_on
+      entity_id : media_player.smart_speaker
+    - delay     : '00:00:01'
+    - service   : tts.google_translate_say
+      entity_id : media_player.smart_speaker
+      data:
+        message : "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
+        language: 'nl'
     - service   : notify.all
       data_template:
         title   : 'Afval aan de weg!'
-        message : "{{ states('sensor.afval_morgen') }} word morgen opgehaald."
+        message : "{{ states('sensor.acv_morgen') }} word morgen opgehaald."
         data:
           tag   : waste_alert
           icon  : !secret url_waste_icon

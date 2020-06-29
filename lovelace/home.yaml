@@ -117,16 +117,16 @@ cards:
       - type       : custom:fold-entity-row
         head:
           type     : custom:slider-entity-row
-          entity   : light.bedroom1_lights
+          entity   : light.bedroom_1_lights
           toggle   : true
         entities:
           - type   : custom:slider-entity-row
-            entity : light.bedroom1_ceiling
+            entity : light.bedroom_1_ceiling
           - type   : custom:slider-entity-row
-            entity : light.bedroom1_table
+            entity : light.bedroom_1_table
 
       - type       : custom:slider-entity-row
-        entity     : light.bedroom2_ceiling
+        entity     : light.bedroom_2_ceiling
         toggle     : true
 
 
@@ -158,7 +158,7 @@ cards:
     show_header_toggle: false
     entities:
       - switch.powerplug_2_relay
-      - switch.staircase_closet_floorheatingpump
+      - switch.staircase_closet_floorheatingpump_outlet
       - switch.powerplug_1_relay
 #      - switch.xiaomi_switch_2 Christmas tree
       - switch.doorbell_v3_chime_active
@@ -180,30 +180,30 @@ cards:
       - type: horizontal-stack
         cards:
           - type  : picture-entity
-            entity: sensor.afval_vandaag
+            entity: sensor.acv_vandaag
             name  : Vandaag
             state_image:
-              'Geen'  : /local/icons/acv/Geen.png
-              'GFT'   : /local/icons/acv/GFT.png
-              'PMD'   : /local/icons/acv/PMD.png
-              'Papier': /local/icons/acv/Papier.png
-              'Rest'  : /local/icons/acv/Rest.png
+              'Geen'       : /local/icons/acv/Geen.png
+              'GFT'        : /local/icons/acv/GFT.png
+              'PMD'        : /local/icons/acv/PMD.png
+              'Papier'     : /local/icons/acv/Papier.png
+              'Restafval'  : /local/icons/acv/Rest.png
           - type  : picture-entity
-            entity: sensor.afval_morgen
+            entity: sensor.acv_morgen
             name  : Morgen
             state_image:
-              'Geen'  : /local/icons/acv/Geen.png
-              'GFT'   : /local/icons/acv/GFT.png
-              'PMD'   : /local/icons/acv/PMD.png
-              'Papier': /local/icons/acv/Papier.png
-              'Rest'  : /local/icons/acv/Rest.png
+              'Geen'       : /local/icons/acv/Geen.png
+              'GFT'        : /local/icons/acv/GFT.png
+              'PMD'        : /local/icons/acv/PMD.png
+              'Papier'     : /local/icons/acv/Papier.png
+              'Restafval'  : /local/icons/acv/Rest.png
       - type  : custom:auto-entities
         card:
           type  : glance
         filter:
           exclude:
-            - entity_id: sensor.afval_vandaag
-            - entity_id: sensor.afval_morgen
+            - entity_id: sensor.acv_vandaag
+            - entity_id: sensor.acv_morgen
           include:
             - entity_id: sensor.afval*
         show_header_toggle: false
@@ -261,7 +261,7 @@ cards:
         entity: media_player.rasplex
 
       - type  : media-control
-        entity: media_player.kitchen
+        entity: media_player.smart_speaker
 
       - type  : media-control
         entity: media_player.slaapkamer

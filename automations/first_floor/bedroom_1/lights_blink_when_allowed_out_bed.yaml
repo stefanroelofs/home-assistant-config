@@ -1,4 +1,4 @@
-- alias         : bedroom1_lights_blink_when_allowed_out_bed
+- alias         : bedroom_1_lights_blink_when_allowed_out_bed
   id            : 924a53f9-1054-42c8-8fff-8715116b6566
   trigger:
     - platform  : time
@@ -10,6 +10,6 @@
   action:
     - service     : light.turn_on
       data:
-        entity_id : light.bedroom1_lights
+        entity_id : light.bedroom_1_lights
         brightness: 255
         flash     : long

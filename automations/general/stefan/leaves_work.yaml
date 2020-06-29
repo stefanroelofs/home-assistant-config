@@ -13,8 +13,14 @@
       after     : '15:00:00'
       before    : '19:00:00'
   action:
-    - service   : tts.google_say
-      entity_id : media_player.kitchen
+    - service   : media_player.turn_off
+      entity_id : media_player.smart_speaker
+    - delay     : '00:00:01'
+    - service   : media_player.turn_on
+      entity_id : media_player.smart_speaker
+    - delay     : '00:00:01'
+    - service   : tts.google_translate_say
+      entity_id : media_player.smart_speaker
       data:
-        message : 'Opgelet! Stefan is onderweg naar huis.'
+        message : 'Stefan is onderweg naar huis.'
         language: 'nl'

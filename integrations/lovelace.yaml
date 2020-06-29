@@ -1,5 +1,4 @@
 lovelace:
-  mode     : yaml
 
   resources:
     - url  : /hacsfiles/button-card/button-card.js
@@ -28,12 +27,3 @@ lovelace:
 
     - url  : /local/manual/zha-network-visualization-card/zha-network-visualization-card.js
       type : module
-
-  dashboards:
-      lovelace-generated: # Needs to contain a hyphen (-)
-        mode            : yaml
-        filename        : notexist.yaml
-        title           : Generated
-        icon            : mdi:tools
-        show_in_sidebar : true
-        require_admin   : true

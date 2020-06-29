@@ -1,3 +1,5 @@
+circadian_lighting:
+
 # Circadian Lighting slowly synchronizes your color changing lights with the
 # regular naturally occuring color temperature of the sky throughout the day.
 #
@@ -6,4 +8,3 @@
 #
 # https://github.com/claytonjn/hass-circadian_lighting
 
-circadian_lighting:

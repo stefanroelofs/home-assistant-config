@@ -1,21 +1,21 @@
-- alias         : bathroom_climate_setpoint_converter_window_open_alert
-  id            : 58fb0254-7fa9-4e24-9518-26641ec9a44e
-  trigger:
-    platform    : mqtt
-    topic       : zigbee2mqtt/Thermostat_Bathroom/set-ha
-  condition:
-    - condition : state
-      entity_id : binary_sensor.bathroom_windowswitch
-      state     : 'on' # open
-  action:
-    - service   : persistent_notification.create
-      data:
-        message : 'Bathroom radiator did not turn on because the window is open.'
-        title   : Bathroom schedule setpoint missed
-    - service   : notify.stefan
-      data:
-        message : 'Bathroom radiator did not turn on because the window is open.'
-        title   : Bathroom schedule setpoint missed
-        data:
-          tag   : bathroom_alert
-          icon  : mdi:shower
+#- alias         : bathroom_climate_setpoint_converter_window_open_alert
+#  id            : 58fb0254-7fa9-4e24-9518-26641ec9a44e
+#  trigger:
+#    platform    : mqtt
+#    topic       : zigbee2mqtt/Thermostat_Bathroom/set-ha
+#  condition:
+#    - condition : state
+#      entity_id : binary_sensor.bathroom_windowsensor
+#      state     : 'on' # open
+#  action:
+#    - service   : persistent_notification.create
+#      data:
+#        message : 'Bathroom radiator did not turn on because the window is open.'
+#        title   : Bathroom schedule setpoint missed
+#    - service   : notify.stefan
+#      data:
+#        message : 'Bathroom radiator did not turn on because the window is open.'
+#        title   : Bathroom schedule setpoint missed
+#        data:
+#          tag   : bathroom_alert
+#          icon  : mdi:shower

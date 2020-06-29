@@ -1,11 +1,11 @@
-- alias         : bathroom_climate_window_opens_turn_low
-  id            : 8e6aed4c-ffdd-4323-9461-513800ea6df1
-  trigger:
-    platform    : state
-    entity_id   : binary_sensor.bathroom_windowswitch
-    to          : 'on' # open
-  action:
-    - service   : mqtt.publish
-      data:
-        topic   : "zigbee2mqtt/Thermostat_Bathroom/set"
-        payload : '{"eurotronic_system_mode": "32"}'
+#- alias         : bathroom_climate_window_opens_turn_low
+#  id            : 8e6aed4c-ffdd-4323-9461-513800ea6df1
+#  trigger:
+#    platform    : state
+#    entity_id   : binary_sensor.bathroom_windowsensor
+#    to          : 'on' # open
+#  action:
+#    - service   : mqtt.publish
+#      data:
+#        topic   : "zigbee2mqtt/Thermostat_Bathroom/set"
+#        payload : '{"eurotronic_system_mode": "32"}'

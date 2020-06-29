@@ -1,4 +1,0 @@
-remote:
-  - platform : harmony
-    name     : Roelofs Harmony Hub
-    host     : !secret ip_address_harmonyhub

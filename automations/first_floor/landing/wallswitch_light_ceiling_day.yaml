@@ -1,0 +1,28 @@
+- alias            : first_floor_landing_wallswitch_light_ceiling_day
+  id               : 21a10a9c-c9ab-412a-a300-5ee717bae26c
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_switch
+      to           : 'on'
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_switch
+      to           : 'off'
+  condition:
+    - condition    : numeric_state
+      entity_id    : sensor.first_floor_landing_motionsensor_illuminance
+      below        : 35            # Lux
+    - condition    : or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.morning
+          state    : 'on'
+        - condition: state
+          entity_id: binary_sensor.afternoon
+          state    : 'on'
+  action:
+    - service      : light.toggle
+      data:
+        entity_id  : light.first_floor_landing_ceiling
+        brightness : 255            # Integer between 0 and 255
+        color_temp : 200            # in mireds. 153=white, 500=yellow
+        transition : 2

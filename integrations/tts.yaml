@@ -1,7 +1,4 @@
-#################################################################
-## Text to speech
-#################################################################
-
 tts:
   - platform     : google_translate
-    service_name : google_say
+
+# Text to speech

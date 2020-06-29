@@ -1,4 +1,4 @@
-- alias                     : bedroom1_dimmer_press_off
+- alias                     : bedroom_1_dimmer_press_off
   id                        : 1bf2c5fa-ea69-414c-8e25-58be55c97cd8
   trigger:
     - platform              : event
@@ -12,5 +12,5 @@
   action:
     - service               : light.turn_off
       data:
-        entity_id           : light.bedroom1_lights
+        entity_id           : light.bedroom_1_lights
         transition          : 1.5

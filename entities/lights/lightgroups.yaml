@@ -29,7 +29,7 @@
     - light.bathroom_bath_ledstrip
 
 - platform : group
-  name     : bedroom1_lights
+  name     : bedroom_1_lights
   entities:
-    - light.bedroom1_ceiling
-    - light.bedroom1_table
+    - light.bedroom_1_ceiling
+    - light.bedroom_1_table

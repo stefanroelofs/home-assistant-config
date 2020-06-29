@@ -1,9 +1,0 @@
-#################################################################
-## Rest Commands
-#################################################################
-
-# Rest command to perform Google Drive backup
-rest_command:
-  google_backup:
-    url: 'http://localhost:8055/gb/doBackup'
-    timeout: '300'

@@ -2,7 +2,7 @@
   id            : 26a3030d-f272-4b62-bb5f-83b9312757a6
   trigger:
     - platform  : state
-      entity_id : binary_sensor.kitchen_windowswitch
+      entity_id : binary_sensor.kitchen_windowsensor
       to        : 'off' # Window closes
   condition:
     - condition : state

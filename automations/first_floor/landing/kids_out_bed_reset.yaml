@@ -1,0 +1,11 @@
+- alias         : first_floor_landing_kids_out_bed_reset
+  id            : cfc92d77-d895-4ef3-b63f-e63b176bfc96
+  trigger:
+    - platform  : state
+      entity_id : input_boolean.privacy_mode
+      to        : 'on'
+      for:
+        minutes : 45
+  action:
+    - service   : input_boolean.turn_off
+      entity_id : input_boolean.privacy_mode

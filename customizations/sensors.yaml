@@ -1,18 +1,21 @@
 # Windows
-binary_sensor.kitchen_windowswitch:
+binary_sensor.kitchen_windowsensor:
   device_class : window
 
-binary_sensor.bathroom_windowswitch:
+binary_sensor.bathroom_windowsensor:
   device_class : window
 
 # Doors
-binary_sensor.staircase_closet_doorswitch:
+binary_sensor.staircase_closet_doorsensor:
   device_class : door
 
-binary_sensor.living_room_doorswitch:
+binary_sensor.living_room_doorsensor:
   device_class : door
 
-binary_sensor.hallway_doorswitch:
+binary_sensor.hallway_doorsensor:
+  device_class : door
+
+binary_sensor.bedroom_master_wardrobe_doorsensor:
   device_class : door
 
 # Wallswitches
@@ -25,15 +28,12 @@ binary_sensor.kitchen_wallswitch:
 binary_sensor.dining_area_wallswitch:
   device_class : None
 
-binary_sensor.bedroom1_wallswitch:
+binary_sensor.bedroom_1_wallswitch:
   device_class : None
 
-binary_sensor.bedroom2_wallswitch:
+binary_sensor.bedroom_2_wallswitch:
   device_class : None
 
-# Is anybody home template sensor
+# Presence sensors
 binary_sensor.anybody_home:
   device_class : presence
-
-binary_sensor.bedroom_master_wardrobe_doors_opened:
-  device_class : door

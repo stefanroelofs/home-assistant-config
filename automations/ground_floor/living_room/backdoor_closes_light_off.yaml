@@ -2,7 +2,7 @@
   id            : 1ffed76c-0e3a-40f6-a02f-4e597e296b89
   trigger:
     - platform  : state
-      entity_id : binary_sensor.living_room_doorswitch
+      entity_id : binary_sensor.living_room_doorsensor
       to        : 'off' # Window closes
   condition:
     - condition : state

@@ -1,8 +1,8 @@
-- alias         : bedroom1_lights_turn_off_after_timeout
+- alias         : bedroom_1_lights_turn_off_after_timeout
   id            : 3f693bb2-6c1a-43d2-86be-ed9573916f6a
   trigger:
     - platform  : state
-      entity_id : light.bedroom1_lights
+      entity_id : light.bedroom_1_lights
       to        : 'on'
       for:
         minutes : 10
@@ -12,4 +12,4 @@
       state     : 'on'
   action:
     - service   : light.turn_off
-      entity_id : light.bedroom1_lights
+      entity_id : light.bedroom_1_lights

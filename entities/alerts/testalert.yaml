@@ -9,24 +9,24 @@ testalert:
   notifiers:
     - stefan
 
-testalert1:
-  title        : Test Alert
-  name         : This is a test message1
-  done_message : Message is done
-  entity_id    : input_boolean.test_input2
-  state        : 'on'
-  repeat       : 3
-  skip_first   : false
-  notifiers:
-    - all
-
-testalert2:
-  title        : Test Alert
-  name         : This is a test message2
-  done_message : Message is done
-  entity_id    : input_boolean.test_input3
-  state        : 'on'
-  repeat       : 3
-  skip_first   : false
-  notifiers:
-    - all
+#testalert1:
+#  title        : Test Alert
+#  name         : This is a test message1
+#  done_message : Message is done
+#  entity_id    : input_boolean.test_input2
+#  state        : 'on'
+#  repeat       : 3
+#  skip_first   : false
+#  notifiers:
+#    - all
+#
+#testalert2:
+#  title        : Test Alert
+#  name         : This is a test message2
+#  done_message : Message is done
+#  entity_id    : input_boolean.test_input3
+#  state        : 'on'
+#  repeat       : 3
+#  skip_first   : false
+#  notifiers:
+#    - all

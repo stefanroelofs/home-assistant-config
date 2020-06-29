@@ -2,7 +2,7 @@
   id                        : 2071ac75-6b77-4907-9665-ebd91e5f85d9
   trigger:
     - platform              : state
-      entity_id             : binary_sensor.bedroom_master_wardrobe_doors_opened
+      entity_id             : binary_sensor.bedroom_master_wardrobe_doorsensor
       to                    : 'on'
   condition:
     - condition             : state
