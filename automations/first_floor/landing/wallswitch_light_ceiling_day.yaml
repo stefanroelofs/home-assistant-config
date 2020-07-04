@@ -3,9 +3,11 @@
   trigger:
     - platform     : state
       entity_id    : binary_sensor.first_floor_landing_switch
+      from         : 'off'
       to           : 'on'
     - platform     : state
       entity_id    : binary_sensor.first_floor_landing_switch
+      from         : 'on'
       to           : 'off'
   condition:
     - condition    : numeric_state

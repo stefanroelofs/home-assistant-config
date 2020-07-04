@@ -3,10 +3,16 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.dining_area_wallswitch
+      from      : 'off'
       to        : 'on'
     - platform  : state
       entity_id : binary_sensor.dining_area_wallswitch
+      from      : 'on'
       to        : 'off'
+  condition:
+    - condition : numeric_state
+      entity_id : sensor.home_assistant_uptime
+      above     : 2
   action:
     - service   : light.toggle
       entity_id : light.dining_area_ceiling_group

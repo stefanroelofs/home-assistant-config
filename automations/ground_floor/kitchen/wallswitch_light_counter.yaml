@@ -3,13 +3,18 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.kitchen_wallswitch
+      from      : 'off'
       to        : 'on'
     - platform  : state
       entity_id : binary_sensor.kitchen_wallswitch
+      from      : 'on'
       to        : 'off'
   condition:
     - condition     : template
       value_template: "{{ states.light.kitchen_ceiling_group.state == states.light.kitchen_counter_light.state }}"
+    - condition : numeric_state
+      entity_id : sensor.home_assistant_uptime
+      above     : 2
   action:
     - service   : light.toggle
       entity_id : light.kitchen_counter_light
