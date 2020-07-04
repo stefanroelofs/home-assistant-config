@@ -80,7 +80,7 @@ class ZteH369ADeviceScanner(DeviceScanner):
         """Ensure the information from the ZTE router is up to date.
         Return boolean if scanning successful.
         """
-        _LOGGER.info("Loading wireless clients...")
+        _LOGGER.debug("Loading wireless clients...")
         session = requests.Session()
 
         # Generate a timestamp for the request
