@@ -2,10 +2,9 @@
   id            : 6cdd2fc2-7666-4930-ae3c-a018e44c7da2
   trigger:
     - platform  : state
-      entity_id : person.dija
-      to        : 'home'
-    - platform  : state
-      entity_id : person.ria
+      entity_id:
+        - person.dija
+        - person.ria
       to        : 'home'
   condition:
     - condition : state

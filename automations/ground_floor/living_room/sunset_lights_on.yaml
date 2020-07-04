@@ -13,9 +13,12 @@
       entity_id : 'binary_sensor.anybody_home'
       state     : 'on'
   action:
-    - service   : light.turn_on
-      entity_id : light.living_room_lights
-    - service   : light.turn_on
-      entity_id : light.dining_area_ceiling_group
+    - service               : light.turn_on
+      data:
+        entity_id:
+          - light.living_room_lights
+          - light.dining_area_ceiling_group
+        transition          : 2
+        profile             : relax
 #    - service   : switch.turn_on
 #      entity_id : switch.xiaomi_switch_2   # christmas tree
