@@ -10,12 +10,6 @@
       entity_id : 'binary_sensor.anybody_home'
       state     : 'on'
   action:
-    - service   : media_player.turn_off
-      entity_id : media_player.smart_speaker
-    - delay     : '00:00:01'
-    - service   : media_player.turn_on
-      entity_id : media_player.smart_speaker
-    - delay     : '00:00:01'
     - service   : tts.google_translate_say
       entity_id : media_player.smart_speaker
       data:
@@ -23,5 +17,5 @@
         language: 'nl'
     - service     : notify.stefan
       data:
-        title     : Marcella is vertrokken
+        title     : Marcella is thuis
         message   : 'Opgelet! Marcella is thuis.'

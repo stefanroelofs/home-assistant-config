@@ -10,15 +10,9 @@
         entity_id: sensor.acv_morgen
         state    : 'Geen'
   action:
-    - service   : media_player.turn_off
-      entity_id : media_player.smart_speaker
-    - delay     : '00:00:01'
-    - service   : media_player.turn_on
-      entity_id : media_player.smart_speaker
-    - delay     : '00:00:01'
     - service   : tts.google_translate_say
       entity_id : media_player.smart_speaker
-      data:
+      data_template:
         message : "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
         language: 'nl'
     - service   : notify.all
