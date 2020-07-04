@@ -74,7 +74,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.toilet_light
+            entity   : light.restroom_light
             tap_action:
               action : toggle
             hold_action:
@@ -178,7 +178,7 @@
 
           # Switch to control multimedia cabinet
           - type     : image
-            entity   : switch.powerplug_2_relay
+            entity   : switch.living_room_entertainment_outlet_relay
             tap_action:
               action : more-info
          #  hold_action:
@@ -225,7 +225,7 @@
               left   : 19%
               transform: scale(2,2)
 
-          # Toilet motion
+          # Restroom motion
           - type     : state-icon
             entity   : binary_sensor.restroom_motionsensor_occupancy
             tap_action:

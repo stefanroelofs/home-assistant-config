@@ -18,6 +18,6 @@
       state     : 'on'
   action:
     - service   : switch.turn_on
-      entity_id : switch.powerplug_2_relay  # multimedia switch
+      entity_id : switch.living_room_entertainment_outlet_relay  # multimedia switch
     - service   : switch.turn_on
-      entity_id : switch.powerplug_1_relay  # charging station
+      entity_id : switch.living_room_charging_station_outlet_relay  # charging station

@@ -5,7 +5,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Tv kijken') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:
@@ -21,7 +21,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Radio luisteren') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:
@@ -37,7 +37,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Plex starten ') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:
@@ -53,7 +53,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Een DVD kijken') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:
@@ -69,7 +69,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Chromecast/Netflix') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:
@@ -85,7 +85,7 @@
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'SNES') }}"
       turn_on:
         - service     : switch.turn_on
-          entity_id   : switch.powerplug_2_relay
+          entity_id   : switch.living_room_entertainment_outlet_relay
         - delay       : '00:00:03'
         - service     : remote.turn_on
           data:

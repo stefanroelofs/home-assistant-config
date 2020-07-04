@@ -20,7 +20,7 @@
   name     : hallway_lights
   entities:
     - light.hallway_light
-    - light.toilet_light
+    - light.restroom_light
 
 - platform : group
   name     : bathroom_lights

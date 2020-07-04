@@ -8,7 +8,7 @@
 #      below     : 3.0
 #  action:
 #    - service   : switch.turn_on
-#      entity_id : switch.powerplug_1_relay  # christmas star
+#      entity_id : switch.living_room_charging_station_outlet_relay  # christmas star
 
 #- alias         : general_christmas_star_off
 #  id            : f0b92cd1-b2db-495a-becc-dff5b2362808
@@ -17,4 +17,4 @@
 #      at        : '23:45:00'
 #  action:
 #    - service   : switch.turn_off
-#      entity_id : switch.powerplug_1_relay  # christmas star
+#      entity_id : switch.living_room_charging_station_outlet_relay  # christmas star

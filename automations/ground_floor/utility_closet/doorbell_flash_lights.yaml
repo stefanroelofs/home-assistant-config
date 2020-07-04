@@ -5,11 +5,11 @@
   id            : 41309159-285e-4c61-b47b-134d3945191d
   trigger:
     platform    : state
-    entity_id   : binary_sensor.doorbell_v3_button
+    entity_id   : binary_sensor.utility_closet_doorbell_button
     to          : 'on'
   condition:
     - condition : state
-      entity_id : switch.doorbell_v3_chime_active
+      entity_id : switch.utility_closet_doorbell_chime_active
       state     : 'off'
   action:
     - service   : light.turn_on

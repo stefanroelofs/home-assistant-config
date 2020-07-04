@@ -1,4 +1,4 @@
 restroom_light_timeout:
   duration : '00:04:00'
 
-# Toilet light turns off after 4 minutes without motion
+# Restroom light turns off after 4 minutes without motion

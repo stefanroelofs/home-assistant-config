@@ -17,9 +17,9 @@
       entity_id : remote.roelofs_harmony_hub
     - delay     : '00:01:00'
     - service   : switch.turn_off
-      entity_id : switch.powerplug_2_relay
+      entity_id : switch.living_room_entertainment_outlet_relay
     - service   : switch.turn_off
-      entity_id : switch.powerplug_1_relay    # charging station
+      entity_id : switch.living_room_charging_station_outlet_relay    # charging station
 
     - service     : notify.stefan
       data:

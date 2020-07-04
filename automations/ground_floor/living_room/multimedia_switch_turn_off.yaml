@@ -21,7 +21,7 @@
     - condition : or
       conditions:
         - condition : state
-          entity_id : switch.powerplug_2_relay
+          entity_id : switch.living_room_entertainment_outlet_relay
           state     : 'on'
         - condition : state
           entity_id : switch.wake_up_vaste_pc
@@ -31,8 +31,8 @@
 #      entity_id: switch.rasplex_woonkamer
 #    - delay     : '00:01:00'    # 1 minute
     - service   : switch.turn_off
-      entity_id : switch.powerplug_2_relay  # multimedia
+      entity_id : switch.living_room_entertainment_outlet_relay  # multimedia
     - service   : switch.turn_off
-      entity_id : switch.powerplug_1_relay  # charging station
+      entity_id : switch.living_room_charging_station_outlet_relay  # charging station
     - service   : switch.turn_off
       entity_id : switch.wake_up_vaste_pc

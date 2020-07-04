@@ -1,13 +1,13 @@
 switch.staircase_closet_floorheatingpump_outlet:
   icon          : mdi:radiator
 
-switch.powerplug_2_relay:
+switch.living_room_entertainment_outlet_relay:
   icon          : mdi:power-plug
 
-switch.powerplug_1_relay:
+switch.living_room_charging_station_outlet_relay:
   icon          : mdi:power-plug
 
-#switch.powerplug_1_relay:
+#switch.living_room_charging_station_outlet_relay:
 #  friendly_name : "Christmas star"
 #  icon          : mdi:pine-tree
 
@@ -19,5 +19,5 @@ switch.wake_up_vaste_pc:
   friendly_name : "Vaste PC"
   icon          : mdi:desktop-tower
 
-switch.doorbell_v3_chime_active:
+switch.utility_closet_doorbell_chime_active:
   icon          : mdi:bell-off

@@ -7,4 +7,4 @@
         entity_id  : timer.restroom_light_timeout
   action:
     - service      : light.turn_off
-      entity_id    : light.toilet_light
+      entity_id    : light.restroom_light

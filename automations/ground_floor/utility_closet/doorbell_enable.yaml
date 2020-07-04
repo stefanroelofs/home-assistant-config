@@ -8,4 +8,4 @@
     at          : "07:00:00"
   action:
     service     : switch.turn_on
-    entity_id   : switch.doorbell_v3_chime_active
+    entity_id   : switch.utility_closet_doorbell_chime_active

@@ -5,7 +5,7 @@
   id            : cb691e30-51a3-4130-9b7c-2f3238f86d73
   trigger:
     platform    : state
-    entity_id   : binary_sensor.doorbell_v3_button
+    entity_id   : binary_sensor.utility_closet_doorbell_button
     to          : 'on'
   action:
     - service   : notify.all
