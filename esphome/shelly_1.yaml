@@ -1,6 +1,6 @@
 substitutions:
   devicename     : "shelly_1"
-  devicelocation : "Toilet"
+  devicelocation : "Restroom"
   ip_address     : !secret ip_address_shelly1
 
 <<: !include .shelly_base.yaml

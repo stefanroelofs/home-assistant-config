@@ -1,6 +1,6 @@
 substitutions:
   devicename     : "powerplug_2"
-  devicelocation : "Powerplug 2"
+  devicelocation : "Living Room Entertainment Outlet"
   # Higher value gives lower watt readout
   current_res    : '0.00290'
   # Lower value gives lower voltage readout

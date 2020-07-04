@@ -11,8 +11,8 @@
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 substitutions:
-  devicename     : "nodemcu_fusebox"
-  devicelocation : "Doorbell V3"
+  devicename     : "nodemcu_utility_closet"
+  devicelocation : "Utility closet Doorbell"
   ip_address     : !secret ip_address_nodemcu_2
 
 esphome:
@@ -24,7 +24,7 @@ wifi:
   ssid        : !secret wifi_ssid
   password    : !secret wifi_password
   ap:
-    ssid      : "${devicelocation} Fallback Hotspot"
+    ssid      : "Utility closet Fallback Hotspot"
     password  : !secret wifi_fallback_password
   manual_ip:
     static_ip : ${ip_address}

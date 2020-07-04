@@ -1,6 +1,0 @@
-substitutions:
-  devicename     : "esp01s_1"
-  devicelocation : "Doorbell V1"
-  ip_address     : !secret ip_address_esp01s_1
-
-<<: !include .doorbell_base.yaml
