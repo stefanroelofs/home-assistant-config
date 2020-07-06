@@ -1,3 +1,4 @@
+# Never enable the switch for the landings! Landing lights are turned on too short to have any effect.
 - platform : circadian_lighting
   name     : landings
   lights_rgb:
@@ -19,4 +20,3 @@
   lights_ct:
     - light.dining_area_ceiling_group
     - light.kitchen_ceiling_group
-

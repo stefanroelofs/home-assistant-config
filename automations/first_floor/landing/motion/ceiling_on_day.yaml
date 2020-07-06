@@ -8,26 +8,21 @@
       entity_id    : light.first_floor_landing_ceiling
       to           : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
   condition:
-    - condition    : numeric_state
-      entity_id    : sensor.first_floor_landing_motionsensor_illuminance
-      below        : 35            # Lux
+    - condition    : state
+      entity_id    : binary_sensor.night
+      state        : 'off'
     - condition    : state
       entity_id    : timer.first_floor_landing_light_timeout
       state        : 'idle'
-    - condition    : or
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.morning
-          state    : 'on'
-        - condition: state
-          entity_id: binary_sensor.afternoon
-          state    : 'on'
+    - condition    : numeric_state
+      entity_id    : sensor.first_floor_landing_motionsensor_illuminance
+      below        : 35            # Lux
   action:
     - service      : light.turn_on
-      data:
-        entity_id  : light.first_floor_landing_ceiling
-        brightness : 255            # Integer between 0 and 255
-        color_temp : 200            # in mireds. 153=white, 500=yellow
-        transition : 1
+      data_template:
+        entity_id     : light.first_floor_landing_ceiling
+        kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
+        brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
+        transition    : 1
     - service      : timer.start    # this restarts the timer if it is already running
       entity_id    : timer.first_floor_landing_light_timeout
