@@ -14,11 +14,11 @@
   name         : evening
   after        : sunset
   after_offset : '-00:15'
-  before       : '00:30'
+  before       : '00:00'
 
 - platform     : tod
   name         : night
-  after        : '00:30'
+  after        : '00:00'
   before       : sunrise
   before_offset: '00:15'
 
