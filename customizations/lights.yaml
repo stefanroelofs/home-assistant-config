@@ -28,10 +28,10 @@ light.bedroom_master_ceiling:
 
 light.bedroom_1_lights:
   friendly_name : "Damian's kamer"
-  icon          : mdi:hotel
+  icon          : mdi:bed
 
 light.bedroom_2_ceiling:
-  icon          : mdi:hotel
+  icon          : mdi:bed
 
 light.second_floor_landing_ceiling:
   icon          : mdi:home-floor-2

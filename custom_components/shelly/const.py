@@ -234,7 +234,7 @@ SENSOR_TYPES_CFG = {
     SENSOR_TYPE_RSSI:
         ['RSSI', 'dB', 'mdi:wifi', None, None],
     SENSOR_TYPE_UPTIME:
-        ['Uptime', 's', 'mdi:timer', None, None],
+        ['Uptime', 's', 'mdi:timer-outline', None, None],
     SENSOR_TYPE_BATTERY:
         ['Battery', '%', None, DEVICE_CLASS_BATTERY, None],
     SENSOR_TYPE_OVER_POWER:

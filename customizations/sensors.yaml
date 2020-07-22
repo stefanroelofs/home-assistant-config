@@ -20,25 +20,25 @@ binary_sensor.bedroom_master_wardrobe_doorsensor:
 
 # Wallswitches
 binary_sensor.living_room_wallswitch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.kitchen_wallswitch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.dining_area_wallswitch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.bedroom_1_wallswitch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.bedroom_2_wallswitch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.first_floor_landing_switch:
-  device_class : None
+  device_class : ~
 
 binary_sensor.second_floor_landing_switch:
-  device_class : None
+  device_class : ~
 
 # Presence sensors
 binary_sensor.anybody_home:
