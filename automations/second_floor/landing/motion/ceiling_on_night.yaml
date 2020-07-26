@@ -18,7 +18,7 @@
     - service      : light.turn_on
       data:
         entity_id  : light.second_floor_landing_ceiling
-        brightness : 5              # Integer between 0 and 255
+        brightness : 70             # Integer between 0 and 255
         xy_color:
           - 0.675
           - 0.322
