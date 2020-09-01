@@ -2,11 +2,10 @@
   id               : 759bd337-0cb1-4f3b-9c48-837d8cafeb3b
   trigger:
     - platform     : state
-      entity_id    : binary_sensor.second_floor_landing_motionsensor_occupancy
+      entity_id:
+        - binary_sensor.second_floor_landing_motionsensor_zone
+        - light.second_floor_landing_ceiling
       to           : 'on'
-    - platform     : state
-      entity_id    : light.second_floor_landing_ceiling
-      to           : 'on'            # Needed because its possible to start the light by hand without motion sensor detecting motion.
   condition:
     - condition    : state
       entity_id    : binary_sensor.night
