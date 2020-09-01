@@ -3,6 +3,7 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.living_room_doorsensor
+      from      : 'off'
       to        : 'on' # Window opens
   condition:
     - condition : state

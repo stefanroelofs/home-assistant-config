@@ -3,6 +3,7 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.kitchen_windowsensor
+      from      : 'on'
       to        : 'off' # Window closes
   condition:
     - condition : state

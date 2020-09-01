@@ -3,6 +3,7 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.staircase_closet_doorsensor
+      from      : 'on'
       to        : 'off' # Door closes
       for       : '00:00:05'
     - platform  : state

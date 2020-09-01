@@ -3,6 +3,7 @@
   trigger:
     - platform              : state   # Turn off lights 4 seconds after closing doors
       entity_id             : binary_sensor.bedroom_master_wardrobe_doorsensor
+      from                  : 'on'
       to                    : 'off'
       for                   : "00:00:04"
     - platform              : state   # Turn off lights if they are on for 5 minutes

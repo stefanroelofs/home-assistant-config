@@ -3,6 +3,7 @@
   trigger:
     - platform  : state
       entity_id : binary_sensor.staircase_closet_doorsensor
+      from      : 'off'
       to        : 'on' # Door opens
   action:
     - service   : light.turn_on
