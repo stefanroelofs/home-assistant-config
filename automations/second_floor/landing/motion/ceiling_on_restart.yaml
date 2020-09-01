@@ -2,11 +2,14 @@
   id               : 68271453-353a-48d9-82ab-7c78a4592f99
   trigger:
     - platform     : state
-      entity_id    : binary_sensor.second_floor_landing_motionsensor_occupancy
+      entity_id    : binary_sensor.second_floor_landing_motionsensor_zone
       to           : 'on'
   condition:
-    - condition    : template
-      value_template: "{{ not is_state('timer.second_floor_landing_light_timeout', 'idle') }}"
+    condition      : not
+    conditions:
+      - condition  : state
+        entity_id  : timer.second_floor_landing_light_timeout
+        state      : 'idle'
   action:
     - service      : light.turn_on
       entity_id    : light.second_floor_landing_ceiling
