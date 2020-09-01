@@ -1,5 +1,6 @@
 - alias         : general_stefan_leaves_work
   id            : 98600e09-a3cc-4057-87ce-3e92bf3e30a3
+  mode          : single # Which is the default
   trigger:
     - platform  : zone
       entity_id : person.stefan
@@ -18,3 +19,5 @@
       data:
         message : 'Stefan is onderweg naar huis.'
         language: 'nl'
+    - delay:
+        seconds : 5 # cooldown timer

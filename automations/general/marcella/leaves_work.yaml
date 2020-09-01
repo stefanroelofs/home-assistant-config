@@ -1,5 +1,6 @@
 - alias         : general_marcella_leaves_work
   id            : 9cf37838-b4db-49ff-9780-510181e45d21
+  mode          : single # Which is the default
   trigger:
     - platform  : zone
       entity_id : person.marcella
@@ -15,10 +16,12 @@
       data:
         message : 'Opgelet! Marcella is eindelijk onderweg naar huis.'
         language: 'nl'
-    - service     : notify.stefan
+    - service   : notify.stefan
       data:
-        title     : Marcella is vertrokken
-        message   : 'Opgelet! Marcella is eindelijk onderweg naar huis.'
+        title   : Marcella is vertrokken
+        message : 'Opgelet! Marcella is eindelijk onderweg naar huis.'
         data:
-          tag     : leaving_alert
-          icon    : mdi:home-export-outline
+          tag   : leaving_alert
+          icon  : mdi:home-export-outline
+    - delay:
+        seconds : 5 # cooldown timer

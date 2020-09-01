@@ -1,5 +1,6 @@
 - alias         : general_marcella_arrives_home
   id            : b4e4acff-1d11-4db5-ae92-dca7e9b0ab1d
+  mode          : single # Which is the default
   trigger:
     - platform  : zone
       entity_id : person.marcella
@@ -15,7 +16,9 @@
       data:
         message : 'Opgelet! Marcella is thuis.'
         language: 'nl'
-    - service     : notify.stefan
+    - service   : notify.stefan
       data:
-        title     : Marcella is thuis
-        message   : 'Opgelet! Marcella is thuis.'
+        title   : Marcella is thuis
+        message : 'Opgelet! Marcella is thuis.'
+    - delay:
+        seconds : 5 # cooldown timer

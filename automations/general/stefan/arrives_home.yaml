@@ -1,5 +1,6 @@
 - alias         : general_stefan_arrives_home
   id            : 414a6534-ed82-4261-97d4-e4977a2678ea
+  mode          : single # Which is the default
   trigger:
     - platform  : zone
       entity_id : person.stefan
@@ -15,3 +16,5 @@
       data:
         message : 'Stefan is thuis.'
         language: 'nl'
+    - delay:
+        seconds : 5 # cooldown timer
