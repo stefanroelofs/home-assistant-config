@@ -1,14 +1,19 @@
-- alias         : second_floor_landing_wallswitch_light_ceiling
-  id            : 070061ac-b0a7-4dc9-a168-879ce6809d7e
+- alias             : second_floor_landing_wallswitch_light_ceiling
+  id                : 070061ac-b0a7-4dc9-a168-879ce6809d7e
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.second_floor_landing_switch
-      from      : 'off'
-      to        : 'on'
-    - platform  : state
-      entity_id : binary_sensor.second_floor_landing_switch
-      from      : 'on'
-      to        : 'off'
+    - platform      : state
+      entity_id     : binary_sensor.second_floor_landing_switch
+      from          : 'off'
+      to            : 'on'
+    - platform      : state
+      entity_id     : binary_sensor.second_floor_landing_switch
+      from          : 'on'
+      to            : 'off'
+    - platform      : event
+      event_type    : zha_event
+      event_data:
+        device_ieee : 00:15:8d:00:05:21:65:45
+        command     : 'single'
   action:
-    - service   : light.toggle
-      entity_id : light.second_floor_landing_ceiling
+    - service       : light.toggle
+      entity_id     : light.second_floor_landing_ceiling
