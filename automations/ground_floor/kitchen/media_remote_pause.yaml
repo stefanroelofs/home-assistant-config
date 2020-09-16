@@ -1,0 +1,14 @@
+- alias             : kitchen_media_remote_pause
+  id                : 7a51b3c9-146a-441e-bb6e-ded3887623c2
+  mode              : single
+  trigger:
+    - platform      : event
+      event_type    : zha_event
+      event_data:
+        device_ieee : 68:0a:e2:ff:fe:31:4c:20
+        command     : 'toggle'
+  action:
+    - service       : media_player.media_play_pause
+      entity_id     : media_player.smart_speaker
+    - delay:
+        milliseconds  : 100
