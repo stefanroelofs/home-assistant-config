@@ -5,8 +5,11 @@
       entity_id    : binary_sensor.first_floor_landing_motionsensor_occupancy
       to           : 'on'
   condition:
-    - condition    : template
-      value_template: "{{ not is_state('timer.first_floor_landing_light_timeout', 'idle') }}"
+    condition      : not
+    conditions:
+      - condition  : state
+        entity_id  : timer.first_floor_landing_light_timeout
+        state      : 'idle'
   action:
     - service      : light.turn_on
       entity_id    : light.first_floor_landing_ceiling

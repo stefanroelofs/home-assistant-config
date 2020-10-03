@@ -3,13 +3,13 @@
 #  trigger:
 #    - platform  : numeric_state
 #      entity_id : sun.sun
-#      value_template: "{{ state.attributes.elevation }}"
+#      attribute : elevation
 #      # Can be a positive or negative number
 #      below     : 3.0
 #  action:
 #    - service   : switch.turn_on
 #      entity_id : switch.living_room_charging_station_outlet_relay  # christmas star
-
+  
 #- alias         : general_christmas_star_off
 #  id            : f0b92cd1-b2db-495a-becc-dff5b2362808
 #  trigger:

@@ -5,8 +5,11 @@
       entity_id    : binary_sensor.bathroom_motionsensor_occupancy
       to           : 'on'
   condition:
-    - condition    : template
-      value_template: "{{ not is_state('timer.bathroom_light_timeout', 'idle') }}"
+    condition      : not
+    conditions:
+      - condition  : state
+        entity_id  : timer.bathroom_light_timeout
+        state      : 'idle'
   action:
     - service      : light.turn_on
       entity_id    : light.bathroom_lights
