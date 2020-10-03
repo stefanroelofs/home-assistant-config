@@ -1,0 +1,28 @@
+#################################################################
+## Logbook
+#################################################################
+
+# https://www.home-assistant.io/components/logbook/
+logbook:
+#  exclude:
+#    entities:
+#      - sensor.buienradar_humidity
+#      - sensor.buienradar_precipitation
+#      - sensor.buienradar_rain_1d
+#      - sensor.buienradar_rainchance_1d
+#      - sensor.buienradar_sunchance_1d
+#      - sensor.buienradar_symbol
+#      - sensor.buienradar_symbol_1d
+#      - sensor.buienradar_symbol_2d
+#      - sensor.buienradar_symbol_3d
+#      - sensor.buienradar_symbol_4d
+#      - sensor.buienradar_symbol_5d
+#      - sensor.buienradar_temperature
+#      - sensor.buienradar_temperature_1d
+#      - sensor.buienradar_wind_direction
+#      - sensor.buienradar_wind_speed
+#      - binary_sensor.overloop_motionsensor_motion
+#      - binary_sensor.badkamer_motionsensor_motion
+#    domains:
+#      - weather
+#      - sun
