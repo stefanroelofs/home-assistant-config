@@ -1,7 +1,6 @@
 - platform     : tod
   name         : morning
-  after        : sunrise
-  after_offset : '00:15'
+  after        : '07:00'
   before       : '12:00'
 
 - platform     : tod
@@ -19,8 +18,7 @@
 - platform     : tod
   name         : night
   after        : '00:00'
-  before       : sunrise
-  before_offset: '00:15'
+  before       : '07:00'
 
 
 - platform     : tod
@@ -33,4 +31,4 @@
 - platform     : tod
   name         : kinderbedtijd
   after        : '20:30'
-  before       : '06:30'
+  before       : '07:00'
