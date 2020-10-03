@@ -1,6 +1,7 @@
 - alias             : kitchen_media_remote_pause
   id                : 7a51b3c9-146a-441e-bb6e-ded3887623c2
   mode              : single
+  max_exceeded      : silent
   trigger:
     - platform      : event
       event_type    : zha_event

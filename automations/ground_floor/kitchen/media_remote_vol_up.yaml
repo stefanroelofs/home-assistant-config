@@ -1,6 +1,7 @@
 - alias             : kitchen_media_remote_vol_up
   id                : 1098d2f9-948e-4e61-8708-687c18c42c07
   mode              : single
+  max_exceeded      : silent
   trigger:
     - platform      : event
       event_type    : zha_event
