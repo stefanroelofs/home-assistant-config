@@ -16,7 +16,7 @@
         }}
   action:
     - service   : notify.stefan
-      data_template:
+      data:
         title   : Upgrade time!
         message: >-
           Upgrade available for HA{{ states('sensor.version_current') }}.
@@ -25,7 +25,7 @@
           tag   : ha_upgrade
           icon  : !secret url_update_icon
     - service   : persistent_notification.create
-      data_template:
+      data:
         title   : Upgrade time!
         message: >-
           Upgrade available for HA{{ states('sensor.version_current') }}.

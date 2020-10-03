@@ -15,7 +15,7 @@
       state        : 'off'
   action:
     - service      : light.toggle
-      data_template:
+      data:
         entity_id     : light.first_floor_landing_ceiling
         kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
         brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"

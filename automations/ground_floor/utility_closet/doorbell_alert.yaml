@@ -9,7 +9,7 @@
     to          : 'on'
   action:
     - service   : notify.all
-      data_template:
+      data:
         title   : Doorbell
         message : '{{now().strftime("%H:%M:%S")}} Ding Dong! Someone is at the door.'
         data:

@@ -15,7 +15,7 @@
       above     : 2
   action:
     - service      : light.toggle
-      data_template:
+      data:
         entity_id     : light.dining_area_ceiling_group
         kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
         brightness_pct: "{{ state_attr('switch.circadian_lighting_ground_floor', 'brightness') | int }}"

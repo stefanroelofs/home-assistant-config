@@ -9,6 +9,6 @@
       state        : 'off'
   action:
     - service      : climate.set_temperature
-      data_template:
+      data:
         entity_id  : climate.bathroom
         temperature: "{{ states('input_number.bathroom_target_temp_low') | int }}"

@@ -18,7 +18,7 @@
       below        : 35            # Lux
   action:
     - service      : light.turn_on
-      data_template:
+      data:
         entity_id     : light.second_floor_landing_ceiling
         kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
         brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"

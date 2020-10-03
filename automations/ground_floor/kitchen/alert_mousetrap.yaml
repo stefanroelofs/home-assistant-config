@@ -12,10 +12,10 @@
       to          : 'drop'
   action:
   - service     : persistent_notification.create
-    data_template:
+    data:
       message   : '{{now().strftime("%H:%M:%S")}} Another mouse bites the dust!'
       title     : Mousetrap
   - service     : notify.all
-    data_template:
+    data:
       message   : '{{now().strftime("%H:%M:%S")}} Another mouse bites the dust!'
       title     : Mousetrap

@@ -12,11 +12,11 @@
   action:
     - service   : tts.google_translate_say
       entity_id : media_player.smart_speaker
-      data_template:
+      data:
         message : "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
         language: 'nl'
     - service   : notify.all
-      data_template:
+      data:
         title   : 'Afval aan de weg!'
         message : "{{ states('sensor.acv_morgen') }} word morgen opgehaald."
         data:

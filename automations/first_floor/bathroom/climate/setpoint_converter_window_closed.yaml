@@ -9,6 +9,6 @@
 #      state     : 'off' # closed
 #  action:
 #    - service   : mqtt.publish
-#      data_template:
+#      data:
 #        topic   : zigbee2mqtt/Thermostat_Bathroom/set
 #        payload : '{"current_heating_setpoint": {{trigger.payload}}}'
