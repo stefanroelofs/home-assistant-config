@@ -1,7 +1,7 @@
 """
 Sensor component for waste pickup dates from dutch and belgium waste collectors
 Original Author: Pippijn Stortelder
-Current Version: 4.6.4 2020915 - Pippijn Stortelder
+Current Version: 4.6.7 2020923 - Pippijn Stortelder
 20200419 - Major code refactor (credits @basschipper)
 20200420 - Add sensor even though not in mapping
 20200420 - Added support for DeAfvalApp
@@ -42,6 +42,9 @@ Current Version: 4.6.4 2020915 - Pippijn Stortelder
 20200811 - Fix mapping for RecycleApp and added translations for dutch month names
 20200814 - Fix bug with dateobject and fix mapping for MijnAfvalWijzer
 20200915 - Switch MijnAfvalwijzer to app API
+20200920 - Update mapping for RecycleApp
+20200923 - Update mapping for Cranendonck
+20200930 - Fix Ormin date
 
 Example config:
 Configuration.yaml:
@@ -166,6 +169,7 @@ WASTE_TYPE_GLASS = 'glas'
 WASTE_TYPE_GREEN = 'gft'
 WASTE_TYPE_GREENGREY = 'duobak'
 WASTE_TYPE_GREY = 'restafval'
+WASTE_TYPE_GREY_BAGS = 'restafvalzakken'
 WASTE_TYPE_SORTI = 'sortibak'
 WASTE_TYPE_KCA = 'chemisch'
 WASTE_TYPE_MILIEUB = 'milieuboer'
@@ -870,7 +874,7 @@ class OmrinCollector(WasteCollector):
                     continue
 
                 collection = WasteCollection.create(
-                    date=datetime.strptime(item['Datum'], '%Y-%m-%dT%H:%M:%S'),
+                    date=datetime.strptime(item['Datum'], '%Y-%m-%dT%H:%M:%S+02:00'),
                     waste_type=waste_type
                 )
                 self.collections.add(collection)
@@ -890,6 +894,7 @@ class OpzetCollector(WasteCollector):
         'gft': WASTE_TYPE_GREEN,
         'chemisch': WASTE_TYPE_KCA,
         'kca': WASTE_TYPE_KCA,
+        'restafvalzakken': WASTE_TYPE_GREY_BAGS,
         'rest': WASTE_TYPE_GREY,
         'plastic': WASTE_TYPE_PACKAGES,
         'papier': WASTE_TYPE_PAPER,
@@ -1024,6 +1029,7 @@ class RecycleApp(WasteCollector):
     WASTE_TYPE_MAPPING = {
         'grof': WASTE_TYPE_BULKLITTER,
         # 'glas': WASTE_TYPE_GLASS,
+        'glas': WASTE_TYPE_GLASS,
         # 'duobak': WASTE_TYPE_GREENGREY,
         # 'groente': WASTE_TYPE_GREEN,
         'gft': WASTE_TYPE_GREEN,
