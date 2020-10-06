@@ -1,0 +1,79 @@
+- alias         : bathroom_climate
+  id            : 818bccea-3335-4f3d-b62b-4490c4f9ea03
+  mode          : queued
+  trigger:
+    - platform  : homeassistant
+      event     : start
+    - platform  : event
+      event_type: automation_reloaded
+    - platform  : state
+      entity_id : binary_sensor.bathroom_windowsensor
+    - platform  : state
+      entity_id : binary_sensor.anybody_home
+    - platform  : state
+      entity_id : input_number.bathroom_target_temp
+    - platform  : time
+      at:
+        - "18:45:00"
+        - "22:30:00"
+        - "06:30:00"
+        - "07:30:00"
+        - "08:30:00"
+
+  action:
+    - choose:
+        # Turn radiator off
+        - conditions:
+            condition         : or
+            conditions:
+              - condition     : state
+                entity_id     : binary_sensor.bathroom_windowsensor
+                state         : 'on' # window is open
+              - condition     : state
+                entity_id     : binary_sensor.anybody_home
+                state         : 'off' # nobody is home
+          sequence:
+            - service         : climate.set_hvac_mode
+              data:
+                entity_id     : climate.bathroom_thermostatic_radiator_valve_thermostat
+                hvac_mode     : "off"
+
+        # Set high temperature
+        - conditions:
+            condition         : or
+            conditions:
+              - condition     : and    # Set temp on weekday mornings
+                conditions:
+                  - condition : state
+                    entity_id : binary_sensor.workday_sensor
+                    state     : 'on' # it is a weekday
+                  - condition : time
+                    after     : "06:30:00"
+                    before    : "07:30:00"
+              - condition     : and    # Set temp on weekend mornings
+                conditions:
+                  - condition : state
+                    entity_id : binary_sensor.workday_sensor
+                    state     : 'off' # it is weekend
+                  - condition : time
+                    after     : "07:30:00"
+                    before    : "08:30:00"
+              - condition     : time   # Set temp on evenings
+                after         : "18:45:00"
+                before        : "22:30:00"
+          sequence:
+            - service         : climate.set_temperature
+              data:
+                entity_id     : climate.bathroom_thermostatic_radiator_valve_thermostat
+                hvac_mode     : heat
+                temperature   : "{{ states('input_number.bathroom_target_temp') }}"
+
+      # Default: Set low temperature
+      default:
+        - service             : climate.set_temperature
+          data:
+            entity_id         : climate.bathroom_thermostatic_radiator_valve_thermostat
+            hvac_mode         : heat
+            temperature       : 15.0
+
+# Credits: https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/bedroom_flynn/climate.yaml
