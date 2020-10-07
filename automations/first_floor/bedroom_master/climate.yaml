@@ -1,0 +1,59 @@
+- alias         : bedroom_master_climate
+  id            : 3ed7cd1f-1296-48bb-b90d-887aaf3f9dbb
+  mode          : queued
+  trigger:
+    - platform  : homeassistant
+      event     : start
+    - platform  : event
+      event_type: automation_reloaded
+    - platform  : state
+      entity_id:
+        - binary_sensor.bedroom_master_windowsensor_left
+        - binary_sensor.bedroom_master_windowsensor_right
+        - binary_sensor.anybody_home
+        - input_number.bedroom_master_target_temp
+    - platform  : time
+      at:
+        - "22:00:00"
+        - "23:00:00"
+
+  action:
+    - choose:
+        # Turn radiator off
+        - conditions:
+            condition         : or
+            conditions:
+              - condition     : state
+                entity_id     : binary_sensor.bedroom_master_windowsensor_left
+                state         : 'on' # left window is open
+              - condition     : state
+                entity_id     : binary_sensor.bedroom_master_windowsensor_right
+                state         : 'on' # right window is open
+              - condition     : state
+                entity_id     : binary_sensor.anybody_home
+                state         : 'off' # nobody is home
+          sequence:
+            - service         : climate.set_hvac_mode
+              data:
+                entity_id     : climate.bedroom_master_thermostatic_radiator_valve_thermostat
+                hvac_mode     : "off"
+
+        # Set high temperature
+        - conditions:
+            - condition       : time   # Set temp on evenings
+              after           : "22:00:00"
+              before          : "23:00:00"
+          sequence:
+            - service         : climate.set_temperature
+              data:
+                entity_id     : climate.bedroom_master_thermostatic_radiator_valve_thermostat
+                hvac_mode     : heat
+                temperature   : "{{ states('input_number.bedroom_master_target_temp') }}"
+
+      # Default: Set low temperature
+      default:
+        - service             : climate.set_temperature
+          data:
+            entity_id         : climate.bedroom_master_thermostatic_radiator_valve_thermostat
+            hvac_mode         : heat
+            temperature       : 15.0
