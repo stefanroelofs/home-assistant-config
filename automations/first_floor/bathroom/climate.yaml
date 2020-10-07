@@ -7,11 +7,10 @@
     - platform  : event
       event_type: automation_reloaded
     - platform  : state
-      entity_id : binary_sensor.bathroom_windowsensor
-    - platform  : state
-      entity_id : binary_sensor.anybody_home
-    - platform  : state
-      entity_id : input_number.bathroom_target_temp
+      entity_id:
+        - binary_sensor.bathroom_windowsensor
+        - binary_sensor.anybody_home
+        - input_number.bathroom_target_temp
     - platform  : time
       at:
         - "18:45:00"
