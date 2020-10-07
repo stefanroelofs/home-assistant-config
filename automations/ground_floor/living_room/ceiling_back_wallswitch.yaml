@@ -1,6 +1,7 @@
-- alias         : living_room_wallswitch_ceiling_back
+- alias         : living_room_ceiling_back_wallswitch
   id            : 28743714-b8d2-453d-a3c2-988a8b3eb8c4
   trigger:
+    # Prevent triggering on 'unavailable' states
     - platform  : state
       entity_id : binary_sensor.living_room_wallswitch
       from      : 'off'
