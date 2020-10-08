@@ -1,0 +1,7 @@
+- platform  : filter
+  name      : veranda_illuminancesensor_filtered
+  entity_id : sensor.veranda_illuminancesensor
+  filters:
+    - filter        : lowpass
+      time_constant : 10
+      precision     : 0
