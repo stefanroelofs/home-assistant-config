@@ -8,3 +8,23 @@
     dining_area_ceiling_group_brightness:
       friendly_name       : "dining_area_ceiling_group_brightness"
       value_template      : "{{ state_attr('light.dining_area_ceiling_group', 'brightness') }}"
+
+#    unavailable_entities:
+#      entity_id           : sensor.time
+#      friendly_name       : Unavailable Entities
+#      unit_of_measurement : items
+#      icon_template: >
+#        {% if states('sensor.unavailable_entities')|int == 0 %} mdi:check-circle
+#        {% else %} mdi:alert-circle
+#        {% endif %}
+#      value_template: >
+#        {% set count = states|selectattr('state','in',['unavailable','unknown','none'])
+#          |rejectattr('entity_id','in',state_attr('group.ignored_sensors', 'entity_id'))
+#          |rejectattr('domain','eq','group')|list|length %}
+#        {{ count }}
+#      attribute_templates:
+#        entities: >
+#          {% set entities = states|selectattr('state','in',['unavailable','unknown','none'])
+#            |rejectattr('entity_id', 'in', state_attr('group.ignored_sensors', 'entity_id'))
+#            |rejectattr('domain','eq','group')|list|join(', ') %}
+#          {{- entities -}}
