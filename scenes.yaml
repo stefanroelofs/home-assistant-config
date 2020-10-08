@@ -1,0 +1,125 @@
+- id: '1602192492906'
+  name: living_room_movie_pause
+  entities:
+    light.living_room_ceiling_back:
+      off_brightness:
+      friendly_name: Plafond Achterdeur
+      supported_features: 41
+      state: 'off'
+    light.living_room_tv_desk:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 144
+      color_temp: 387
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      off_brightness:
+      friendly_name: TV Bureau
+      supported_features: 63
+      state: 'on'
+    light.living_room_display_cabinet:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 144
+      color_temp: 437
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      off_brightness:
+      friendly_name: Buffetkast
+      supported_features: 63
+      state: 'on'
+    light.living_room_ceiling_middle:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 29
+      color_temp: 261
+      off_brightness:
+      friendly_name: Plafond Trapkast
+      supported_features: 43
+      state: 'on'
+    light.dining_area_ceiling_group:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 144
+      color_temp: 403
+      off_brightness:
+      friendly_name: Eettafel
+      supported_features: 43
+      icon: mdi:silverware
+      state: 'on'
+  icon: mdi:television-pause
+- id: '1602192896462'
+  name: living_room_movie_play
+  entities:
+    light.living_room_ceiling_back:
+      brightness: 1
+      off_brightness:
+      friendly_name: Plafond Achterdeur
+      supported_features: 41
+      state: 'on'
+    light.living_room_tv_desk:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      off_brightness:
+      friendly_name: TV Bureau
+      supported_features: 63
+      state: 'off'
+    light.living_room_ceiling_middle:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 37
+      color_temp: 261
+      off_brightness:
+      friendly_name: Plafond Trapkast
+      supported_features: 43
+      state: 'on'
+    light.living_room_display_cabinet:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      off_brightness: 144
+      friendly_name: Buffetkast
+      supported_features: 63
+      state: 'off'
+    light.dining_area_ceiling_group:
+      min_mireds: 153
+      max_mireds: 454
+      brightness: 24
+      color_temp: 403
+      off_brightness:
+      friendly_name: Eettafel
+      supported_features: 43
+      icon: mdi:silverware
+      state: 'on'
+    light.kitchen_ceiling_group:
+      min_mireds: 153
+      max_mireds: 454
+      off_brightness:
+      friendly_name: Keuken
+      supported_features: 43
+      icon: mdi:food-fork-drink
+      state: 'off'
+  icon: mdi:television-play
