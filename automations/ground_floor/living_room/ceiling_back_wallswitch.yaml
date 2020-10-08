@@ -16,4 +16,7 @@
       above     : 2
   action:
     - service   : light.toggle
-      entity_id : light.living_room_ceiling_back
+      data:
+        entity_id  : light.living_room_ceiling_back
+        brightness : 150
+

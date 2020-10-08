@@ -17,8 +17,8 @@
   action:
     - service      : light.turn_on
       data:
-        entity_id  : light.bathroom_lights
-        brightness : 5              # Integer between 0 and 255
+        entity_id  : light.bathroom_bath_ledstrip
+        brightness : 50             # Integer between 0 and 255
         xy_color:
           - 0.675
           - 0.322

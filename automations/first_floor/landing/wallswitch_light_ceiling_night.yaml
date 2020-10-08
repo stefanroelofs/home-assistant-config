@@ -17,7 +17,7 @@
     - service      : light.toggle
       data:
         entity_id  : light.first_floor_landing_ceiling
-        brightness : 5              # Integer between 0 and 255
+        brightness : 15             # Integer between 0 and 255
         xy_color:
           - 0.675
           - 0.322
