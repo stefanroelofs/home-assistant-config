@@ -4,19 +4,3 @@
   lights_rgb:
     - light.first_floor_landing_ceiling
     - light.second_floor_landing_ceiling
-
-- platform : circadian_lighting
-  name     : bathroom
-  lights_rgb:
-    - light.bathroom_bath_ledstrip
-
-- platform : circadian_lighting
-  name     : bedroom_master
-  lights_rgb:
-    - light.bedroom_master_ceiling
-
-- platform : circadian_lighting
-  name     : ground_floor
-  lights_ct:
-    - light.dining_area_ceiling_group
-    - light.kitchen_ceiling_group
