@@ -12,9 +12,9 @@ light.dining_area_ceiling_group:
 light.kitchen_ceiling_group:
   icon          : mdi:food-fork-drink
 
-light.hallway_lights:
-  friendly_name : "Hal"
-  icon          : mdi:toilet
+#light.hallway_lights:
+#  friendly_name : "Hal"
+#  icon          : mdi:toilet
 
 light.first_floor_landing_ceiling:
   icon          : mdi:home-floor-1

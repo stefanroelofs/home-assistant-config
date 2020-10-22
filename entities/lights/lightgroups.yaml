@@ -16,11 +16,11 @@
     - light.living_room_ceiling_middle
 #    - c # Sideboard has its own remote
 
-- platform : group
-  name     : hallway_lights
-  entities:
-    - light.hallway_light
-    - light.restroom_light
+#- platform : group
+#  name     : hallway_lights
+#  entities:
+#    - light.hallway_light
+#    - light.restroom_light
 
 - platform : group
   name     : bathroom_lights
