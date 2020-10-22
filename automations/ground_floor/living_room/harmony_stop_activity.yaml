@@ -7,7 +7,7 @@
     - platform  : state
       entity_id : media_player.woonkamer
       to        : 'off'
-      for       : "00:01:00"
+      for       : "00:08:00"
   condition:
     - condition : state
       entity_id : switch.living_room_activity_chromecast
