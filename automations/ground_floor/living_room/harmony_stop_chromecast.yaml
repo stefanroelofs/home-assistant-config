@@ -5,9 +5,14 @@
   id            : 6ddff49f-537b-4122-a8f9-cf92778e0c10
   trigger:
     - platform  : state
-      entity_id : switch.living_room_activity_chromecast
-      to        : 'off'
-      for       : "00:00:30"
+      entity_id : remote.roelofs_harmony_hub
+      attribute : current_activity
+      to        : 'PowerOff'
+  condition:
+    - condition : state
+      entity_id : remote.roelofs_harmony_hub
+      attribute : last_activity
+      state     : "Chromecast/Netflix"
   action:
     - service   : media_player.media_stop
       entity_id : media_player.woonkamer
