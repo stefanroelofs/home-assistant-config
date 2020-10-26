@@ -1,0 +1,33 @@
+- alias            : first_floor_landing_wallswitch_light_ceiling
+  id               : ae3036b8-0ccf-43e9-ad8c-8bf5be20f251
+  trigger:
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_switch
+      from         : 'off'
+      to           : 'on'
+    - platform     : state
+      entity_id    : binary_sensor.first_floor_landing_switch
+      from         : 'on'
+      to           : 'off'
+  action:
+    - choose:
+        - conditions:
+          - condition         : state
+            entity_id         : binary_sensor.night
+            state             : 'off'
+          sequence:
+            - service         : light.toggle
+              data:
+                entity_id     : light.first_floor_landing_ceiling
+                kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
+                brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
+                transition    : 2
+      default:
+        - service             : light.toggle
+          data:
+            entity_id         : light.first_floor_landing_ceiling
+            brightness        : 15             # Integer between 0 and 255
+            xy_color:
+              - 0.675
+              - 0.322
+            transition        : 0.5
