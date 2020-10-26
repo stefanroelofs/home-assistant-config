@@ -1,5 +1,6 @@
 - alias         : dining_area_wallswitch_ceiling
   id            : 267b50f3-97af-41b5-949b-f08cfb795d4d
+  mode          : queued
   trigger:
     - platform  : state
       entity_id : binary_sensor.dining_area_wallswitch
@@ -18,5 +19,5 @@
       data:
         entity_id     : light.dining_area_ceiling_group
         kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
-        brightness_pct: "{{ state_attr('switch.circadian_lighting_ground_floor', 'brightness') | int }}"
+#        brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
         transition    : 1
