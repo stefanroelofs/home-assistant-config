@@ -2,10 +2,14 @@
   id               : 7c39b021-8e64-4039-ae42-55537f15eb2d
   trigger:
     - platform     : state
-      entity_id:
-        - binary_sensor.restroom_motionsensor_zone  # Use zone instead of occupancy. Occupancy has a built in 8 minute delay before becoming Clear again.
-        - light.restroom_light                      # Needed because its possible to start the light by hand without motion sensor detecting motion.
+      entity_id    : binary_sensor.restroom_motionsensor_zone  # Use zone instead of occupancy. Occupancy has a built in 8 minute delay before becoming Clear again.
+    - platform     : state
+      entity_id    : light.restroom_light                      # Needed because its possible to start the light by hand without motion sensor detecting motion.
       to           : 'on'
+  condition:
+    - condition     : numeric_state
+      entity_id     : sensor.home_assistant_uptime
+      above         : 2
   action:
     - service      : light.turn_on
       entity_id    : light.restroom_light

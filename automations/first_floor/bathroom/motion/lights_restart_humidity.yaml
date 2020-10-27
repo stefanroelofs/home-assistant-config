@@ -1,0 +1,16 @@
+- alias            : bathroom_lights_restart_humidity
+  id               : b0f1764f-b4ee-422a-a075-f9180964f28e
+  trigger:
+    - platform     : state
+      entity_id    : sensor.bathroom_tempsensor_humidity
+  condition:
+    - condition    : numeric_state
+      entity_id    : sensor.bathroom_tempsensor_humidity
+      above        : 67
+  action:
+    - service      : light.turn_on
+      entity_id    : light.bathroom_lights
+    - service      : timer.start    # this restarts the timer if it is already running
+      entity_id    : timer.bathroom_light_timeout
+    - delay:
+        seconds    : 5 # cooldown timer

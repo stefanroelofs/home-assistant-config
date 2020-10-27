@@ -1,9 +1,9 @@
-- alias            : bathroom_lights_on_restart
+- alias            : bathroom_lights_restart
   id               : 62424087-dbe4-43ef-913b-e8f8f64aa0dd
   trigger:
+    # Restart timer on any state change of motion sensor
     - platform     : state
       entity_id    : binary_sensor.bathroom_motionsensor_occupancy
-      to           : 'on'
   condition:
     condition      : not
     conditions:

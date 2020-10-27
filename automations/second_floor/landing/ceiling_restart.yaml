@@ -1,9 +1,9 @@
-- alias            : second_floor_landing_ceiling_on_restart
+- alias            : second_floor_landing_ceiling_restart
   id               : 68271453-353a-48d9-82ab-7c78a4592f99
   trigger:
+    # Restart timer on any state change of motion sensor
     - platform     : state
       entity_id    : binary_sensor.second_floor_landing_motionsensor_zone
-      to           : 'on'
   condition:
     condition      : not
     conditions:

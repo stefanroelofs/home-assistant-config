@@ -14,6 +14,29 @@
       event_data:
         device_ieee : 00:15:8d:00:05:21:65:45
         command     : 'single'
+  condition:
+    - condition     : numeric_state
+      entity_id     : sensor.home_assistant_uptime
+      above         : 2
   action:
-    - service       : light.toggle
-      entity_id     : light.second_floor_landing_ceiling
+    - choose:
+        - conditions:
+          - condition         : state
+            entity_id         : binary_sensor.night
+            state             : 'off'
+          sequence:
+            - service         : light.toggle
+              data:
+                entity_id     : light.second_floor_landing_ceiling
+                kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
+                brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
+                transition    : 2
+      default:
+        - service             : light.toggle
+          data:
+            entity_id         : light.second_floor_landing_ceiling
+            brightness        : 70             # Integer between 0 and 255
+            xy_color:
+              - 0.675
+              - 0.322
+            transition        : 0.5

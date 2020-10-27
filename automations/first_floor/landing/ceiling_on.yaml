@@ -1,0 +1,39 @@
+- alias            : first_floor_landing_ceiling_on
+  id               : 997e3172-eaae-4a75-98ed-bca25e751faa
+  trigger:
+    - platform     : state
+      entity_id:
+        - binary_sensor.first_floor_landing_motionsensor_occupancy
+        - light.first_floor_landing_ceiling
+      to           : 'on'
+  condition:
+    - condition    : state          # Only choose light level when timer is stopped.
+      entity_id    : timer.first_floor_landing_light_timeout
+      state        : 'idle'
+    - condition    : numeric_state  # Only start light when it's dark enough
+      entity_id    : sensor.first_floor_landing_motionsensor_illuminance
+      below        : 35             # Lux
+  action:
+    - service      : timer.start    # this restarts the timer if it is already running
+      entity_id    : timer.first_floor_landing_light_timeout
+    - choose:
+      - conditions:
+          condition         : state
+          entity_id         : binary_sensor.night
+          state             : 'off'
+        sequence:
+          - service         : light.turn_on
+            data:
+              entity_id     : light.first_floor_landing_ceiling
+              kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
+              brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
+              transition    : 1
+      default:
+        - service           : light.turn_on
+          data:
+            entity_id       : light.first_floor_landing_ceiling
+            brightness      : 15             # Integer between 0 and 255
+            xy_color:
+              - 0.675
+              - 0.322
+            transition      : 0.5

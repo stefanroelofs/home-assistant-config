@@ -1,14 +1,18 @@
-- alias            : first_floor_landing_wallswitch_light_ceiling
-  id               : ae3036b8-0ccf-43e9-ad8c-8bf5be20f251
+- alias             : first_floor_landing_wallswitch_light_ceiling
+  id                : ae3036b8-0ccf-43e9-ad8c-8bf5be20f251
   trigger:
-    - platform     : state
-      entity_id    : binary_sensor.first_floor_landing_switch
-      from         : 'off'
-      to           : 'on'
-    - platform     : state
-      entity_id    : binary_sensor.first_floor_landing_switch
-      from         : 'on'
-      to           : 'off'
+    - platform      : state
+      entity_id     : binary_sensor.first_floor_landing_switch
+      from          : 'off'
+      to            : 'on'
+    - platform      : state
+      entity_id     : binary_sensor.first_floor_landing_switch
+      from          : 'on'
+      to            : 'off'
+  condition:
+    - condition     : numeric_state
+      entity_id     : sensor.home_assistant_uptime
+      above         : 2
   action:
     - choose:
         - conditions:
