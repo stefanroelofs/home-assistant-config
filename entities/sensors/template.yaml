@@ -9,6 +9,14 @@
       friendly_name       : "dining_area_ceiling_group_brightness"
       value_template      : "{{ state_attr('light.dining_area_ceiling_group', 'brightness') }}"
 
+    bedroom_master_ceiling_brightness:
+      friendly_name       : "bedroom_master_ceiling_brightness"
+      value_template      : "{{ state_attr('light.bedroom_master_ceiling', 'brightness') }}"
+  
+    sun_elevation:
+      friendly_name       : "sun_elevation"
+      value_template      : "{{ state_attr('sun.sun', 'elevation') }}"
+
 #    unavailable_entities:
 #      entity_id           : sensor.time
 #      friendly_name       : Unavailable Entities
