@@ -6,5 +6,14 @@
       event_data:
         entity_id  : timer.restroom_light_timeout
   action:
-    - service      : light.turn_off
-      entity_id    : light.restroom_light
+    - choose:
+      - conditions:
+          condition    : state
+          entity_id    : binary_sensor.restroom_motionsensor_zone
+          state        : 'on'             # Do not turn off light if the motion event is still active.
+        sequence:                         # In this case restart the timer and wait for it to trigger on a falling edge.
+          - service    : timer.start
+            entity_id  : timer.restroom_light_timeout
+      default:
+        - service      : light.turn_off
+          entity_id    : light.restroom_light

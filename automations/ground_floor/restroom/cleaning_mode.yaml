@@ -1,0 +1,9 @@
+- alias            : restroom_cleaning_mode
+  id               : 04e87245-e901-4883-9319-1af8a43c36aa
+  trigger:
+    - platform     : state
+      entity_id    : input_boolean.cleaning_mode
+      to           : 'on'
+  action:
+    - service      : timer.cancel
+      entity_id    : timer.restroom_light_timeout

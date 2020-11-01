@@ -1,0 +1,8 @@
+- alias         : general_cleaning_mode_disable
+  id            : 88fb3051-6b20-4947-aa6a-4f5273233eee
+  trigger:
+    - platform  : time
+      at        : '02:00:00'
+  action:
+    - service   : input_boolean.turn_off
+      entity_id : input_boolean.cleaning_mode

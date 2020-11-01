@@ -5,6 +5,9 @@
       entity_id : binary_sensor.staircase_closet_doorsensor
       from      : 'off'
       to        : 'on' # Door opens
+    - platform  : state
+      entity_id : input_boolean.cleaning_mode
+      to        : 'on'
   action:
     - service   : light.turn_on
       entity_id : light.staircase_closet_light

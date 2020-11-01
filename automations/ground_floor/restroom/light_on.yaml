@@ -7,9 +7,12 @@
       entity_id    : light.restroom_light                      # Needed because its possible to start the light by hand without motion sensor detecting motion.
       to           : 'on'
   condition:
-    - condition     : numeric_state
-      entity_id     : sensor.home_assistant_uptime
-      above         : 2
+    - condition    : numeric_state
+      entity_id    : sensor.home_assistant_uptime
+      above        : 2
+    - condition    : state
+      entity_id    : input_boolean.cleaning_mode
+      state        : 'off'
   action:
     - service      : light.turn_on
       entity_id    : light.restroom_light

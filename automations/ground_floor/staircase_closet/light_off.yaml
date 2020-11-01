@@ -9,7 +9,14 @@
     - platform  : state
       entity_id : light.staircase_closet_light
       to        : 'on'
-      for       : '00:01:00'
+      for       : '00:01:30'
+    - platform  : state
+      entity_id : input_boolean.cleaning_mode
+      to        : 'off'
+  condition:
+    - condition : state
+      entity_id : input_boolean.cleaning_mode
+      state     : 'off'
   action:
     - service   : light.turn_off
       entity_id : light.staircase_closet_light

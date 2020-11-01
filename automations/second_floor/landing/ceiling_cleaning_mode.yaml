@@ -1,0 +1,15 @@
+- alias            : second_floor_landing_ceiling_cleaning_mode
+  id               : e97179d3-e7eb-405c-b8fd-f1a34f37328d
+  trigger:
+    - platform     : state
+      entity_id    : input_boolean.cleaning_mode
+      to           : 'on'
+  action:
+    - service      : timer.cancel
+      entity_id    : timer.second_floor_landing_light_timeout
+    - service      : light.turn_on
+      data:
+        entity_id  : light.second_floor_landing_ceiling
+        color_temp : 180
+        brightness : 255
+        transition : 1

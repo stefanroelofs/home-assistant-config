@@ -1,0 +1,6 @@
+cleaning_mode:
+  name    : Cleaning Mode
+  initial : off
+  icon    : mdi:spray-bottle
+
+# Option to disable the motion sensors.

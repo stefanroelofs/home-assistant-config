@@ -2,38 +2,47 @@
   id               : 759bd337-0cb1-4f3b-9c48-837d8cafeb3b
   trigger:
     - platform     : state
-      entity_id:
-        - binary_sensor.second_floor_landing_motionsensor_zone
-        - light.second_floor_landing_ceiling
+      entity_id    : binary_sensor.second_floor_landing_motionsensor_zone
+    - platform     : state          # Start timer when manually turned on without detecting motion
+      entity_id    : light.second_floor_landing_ceiling
       to           : 'on'
   condition:
-    - condition    : state          # Only choose light level when timer is stopped.
-      entity_id    : timer.second_floor_landing_light_timeout
-      state        : 'idle'
     - condition    : numeric_state  # Only start light when it's dark enough
       entity_id    : sensor.second_floor_landing_motionsensor_illuminance
       below        : 40             # Lux
+    - condition    : state
+      entity_id    : input_boolean.cleaning_mode
+      state        : 'off'
   action:
-    - service      : timer.start    # this restarts the timer if it is already running
-      entity_id    : timer.second_floor_landing_light_timeout
     - choose:
       - conditions:
-          condition         : state
-          entity_id         : binary_sensor.night
-          state             : 'off'
+          condition               : state          # Only choose new light level when timer is stopped.
+          entity_id               : timer.second_floor_landing_light_timeout
+          state                   : 'idle'
         sequence:
-          - service         : light.turn_on
-            data:
-              entity_id     : light.second_floor_landing_ceiling
-              kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
-              brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
-              transition    : 1
+          - choose:
+            - conditions:
+                condition         : state
+                entity_id         : binary_sensor.night
+                state             : 'off'
+              sequence:
+                - service         : light.turn_on
+                  data:
+                    entity_id     : light.second_floor_landing_ceiling
+                    kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
+                    brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
+                    transition    : 1
+            default:
+              - service           : light.turn_on
+                data:
+                  entity_id       : light.second_floor_landing_ceiling
+                  brightness      : 70             # Integer between 0 and 255
+                  xy_color:
+                    - 0.675
+                    - 0.322
+                  transition      : 0.5
       default:
-        - service           : light.turn_on
-          data:
-            entity_id       : light.second_floor_landing_ceiling
-            brightness      : 70             # Integer between 0 and 255
-            xy_color:
-              - 0.675
-              - 0.322
-            transition      : 0.5
+        - service                 : light.turn_on
+          entity_id               : light.second_floor_landing_ceiling
+    - service                     : timer.start    # this restarts the timer if it is already running
+      entity_id                   : timer.second_floor_landing_light_timeout

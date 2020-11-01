@@ -1,0 +1,15 @@
+- alias            : bathroom_lights_cleaning_mode
+  id               : fcdac39a-9635-43cc-a8af-6ea5f3965db6
+  trigger:
+    - platform     : state
+      entity_id    : input_boolean.cleaning_mode
+      to           : 'on'
+  action:
+    - service      : timer.cancel
+      entity_id    : timer.first_floor_landing_light_timeout
+    - service      : light.turn_on
+      data:
+        entity_id  : light.bathroom_lights
+        color_temp : 180
+        brightness : 255
+        transition : 1

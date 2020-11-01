@@ -6,7 +6,16 @@
       event_data:
         entity_id  : timer.first_floor_landing_light_timeout
   action:
-    - service      : light.turn_off
-      data:
-        entity_id  : light.first_floor_landing_ceiling
-        transition : 5
+    - choose:
+      - conditions:
+          condition    : state
+          entity_id    : binary_sensor.first_floor_landing_motionsensor_occupancy
+          state        : 'on'             # Do not turn off light if the motion event is still active.
+        sequence:                         # In this case restart the timer and wait for it to trigger on a falling edge.
+          - service    : timer.start
+            entity_id  : timer.first_floor_landing_light_timeout
+      default:
+        - service      : light.turn_off
+          data:
+            entity_id  : light.first_floor_landing_ceiling
+            transition : 5
