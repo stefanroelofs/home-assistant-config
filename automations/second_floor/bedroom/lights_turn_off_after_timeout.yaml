@@ -1,8 +1,8 @@
-- alias         : bedroom_2_lights_turn_off_after_timeout
-  id            : 16421514-3952-43f2-9759-b1887e184169
+- alias         : second_floor_bedroom_lights_turn_off_after_timeout
+  id            : cb837c46-abaf-4cc3-ac21-63e7546eae10
   trigger:
     - platform  : state
-      entity_id : light.bedroom_2_ceiling
+      entity_id : light.attic_bedroom
       to        : 'on'
       for:
         minutes : 15
@@ -15,4 +15,4 @@
       state     : 'off'
   action:
     - service   : light.turn_off
-      entity_id : light.bedroom_2_ceiling
+      entity_id : light.attic_bedroom
