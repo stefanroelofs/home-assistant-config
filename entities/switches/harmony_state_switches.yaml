@@ -15,23 +15,7 @@
         service       : remote.turn_off
         data:
           entity_id   : remote.roelofs_harmony_hub
-          
-    living_room_activity_radio:
-      friendly_name   : 'Radio'
-      value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Radio luisteren') }}"
-      turn_on:
-        - service     : switch.turn_on
-          entity_id   : switch.living_room_entertainment_outlet_relay
-        - delay       : '00:00:03'
-        - service     : remote.turn_on
-          data:
-            entity_id : remote.roelofs_harmony_hub
-            activity  : 'Radio luisteren'
-      turn_off:
-        service       : remote.turn_off
-        data:
-          entity_id   : remote.roelofs_harmony_hub
-    
+
     living_room_activity_plex:
       friendly_name   : 'PLEX'
       value_template  : "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Plex starten ') }}"

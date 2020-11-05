@@ -17,6 +17,6 @@
     - service   : remote.send_command
       data:
         entity_id: remote.roelofs_harmony_hub
-        device  : 38314425
+        device  : 72059194
         command:
           - Pause
