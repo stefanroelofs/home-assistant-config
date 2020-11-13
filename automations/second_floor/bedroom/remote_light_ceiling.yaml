@@ -8,4 +8,4 @@
         command     : 'single'
   action:
     - service       : light.toggle
-      entity_id     : light.attic_bedroom
+      entity_id     : light.second_floor_bedroom_lights

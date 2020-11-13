@@ -2,11 +2,19 @@
   id            : cb837c46-abaf-4cc3-ac21-63e7546eae10
   trigger:
     - platform  : state
-      entity_id : light.attic_bedroom
+      entity_id : light.second_floor_bedroom_lights
       to        : 'on'
       for:
         minutes : 15
+    - platform  : state
+      entity_id : binary_sensor.kinderbedtijd
+      to        : 'on'
   condition:
+    - condition : state
+      entity_id : light.second_floor_bedroom_lights
+      state     : 'on'
+      for:
+        minutes : 15
     - condition : state
       entity_id : binary_sensor.kinderbedtijd
       state     : 'on'
@@ -15,4 +23,4 @@
       state     : 'off'
   action:
     - service   : light.turn_off
-      entity_id : light.attic_bedroom
+      entity_id : light.second_floor_bedroom_lights

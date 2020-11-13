@@ -6,7 +6,15 @@
       to        : 'on'
       for:
         minutes : 15
+    - platform  : state
+      entity_id : binary_sensor.kinderbedtijd
+      to        : 'on'
   condition:
+    - condition : state
+      entity_id : light.bedroom_2_ceiling
+      state     : 'on'
+      for:
+        minutes : 15
     - condition : state
       entity_id : binary_sensor.kinderbedtijd
       state     : 'on'

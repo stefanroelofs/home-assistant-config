@@ -32,4 +32,10 @@
   name     : bedroom_1_lights
   entities:
     - light.bedroom_1_ceiling
-    - light.bedroom_1_table
+#    - light.bedroom_1_table
+
+- platform : group
+  name     : second_floor_bedroom_lights
+  entities:
+    - light.second_floor_landing_ceiling
+    - light.second_floor_bedroom_table
