@@ -132,7 +132,7 @@ binary_sensor:
       inverted      : true
     filters:
       # Small filter, to debounce the button press.
-      - delayed_on  : 25ms
+      - delayed_on  : 10ms
       - delayed_off : 50ms
     on_press:
       # Only turn on the chime when it is active.
