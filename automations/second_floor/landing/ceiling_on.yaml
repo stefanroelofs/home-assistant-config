@@ -1,5 +1,6 @@
 - alias            : second_floor_landing_ceiling_on
   id               : 759bd337-0cb1-4f3b-9c48-837d8cafeb3b
+  mode             : queued
   trigger:
     - platform     : state
       entity_id    : binary_sensor.second_floor_landing_motionsensor_zone

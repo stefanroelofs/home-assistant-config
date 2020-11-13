@@ -1,5 +1,6 @@
 - alias            : bathroom_lights_on
   id               : 944d1061-0948-4f4a-a405-d1777711fc5f
+  mode             : queued
   trigger:
     - platform     : state
       entity_id    : binary_sensor.bathroom_motionsensor_occupancy

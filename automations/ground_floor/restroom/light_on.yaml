@@ -1,5 +1,6 @@
 - alias            : restroom_light_on
   id               : 7c39b021-8e64-4039-ae42-55537f15eb2d
+  mode             : queued
   trigger:
     - platform     : state
       entity_id    : binary_sensor.restroom_motionsensor_zone  # Use zone instead of occupancy. Occupancy has a built in 8 minute delay before becoming Clear again.
