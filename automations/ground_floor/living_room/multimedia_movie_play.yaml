@@ -2,7 +2,9 @@
   id            : 7caf50eb-e0a3-4940-96c5-86e129088f46
   trigger:
     - platform  : state
-      entity_id : media_player.plex_plexhometheater_rasplex
+      entity_id:
+        - media_player.plex_plexhometheater_rasplex
+        - media_player.woonkamer
       to        : 'playing'
   condition:
     - condition : time

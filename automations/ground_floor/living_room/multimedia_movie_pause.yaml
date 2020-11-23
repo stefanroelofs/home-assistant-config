@@ -2,8 +2,11 @@
   id            : c7c499db-808b-448d-af4c-a4b501056a6b
   trigger:
     - platform  : state
-      entity_id : media_player.plex_plexhometheater_rasplex
-      to        : 'paused'
+      entity_id:
+        - media_player.plex_plexhometheater_rasplex
+        - media_player.woonkamer
+      from      : 'playing'
+      for       : "00:00:05"
   condition:
     - condition : time
       after     : "21:00:00"
