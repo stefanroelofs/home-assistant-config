@@ -37,5 +37,5 @@
 - platform : group
   name     : second_floor_bedroom_lights
   entities:
-    - light.second_floor_landing_ceiling
+    - light.attic_bedroom
     - light.second_floor_bedroom_table
