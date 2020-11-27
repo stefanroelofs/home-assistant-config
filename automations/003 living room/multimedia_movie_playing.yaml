@@ -1,4 +1,4 @@
-- alias         : living_room_movie_play
+- alias         : living_room_movie_playing
   id            : 7caf50eb-e0a3-4940-96c5-86e129088f46
   trigger:
     - platform  : state
@@ -13,5 +13,5 @@
   action:
     - service   : scene.turn_on
       data:
-        entity_id : scene.living_room_movie_play
+        entity_id : scene.living_room_movie_playing
         transition: 10

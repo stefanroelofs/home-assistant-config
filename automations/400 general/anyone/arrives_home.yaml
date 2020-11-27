@@ -10,6 +10,10 @@
       state     : 'on'
   action:
     - service   : light.turn_on
-      entity_id:
-      - light.hallway_light
-      - light.living_room_lights
+      entity_id : light.hallway_light
+    - service   : scene.turn_on
+      data:
+        entity_id:
+          - scene.living_room_comfort
+          - scene.dining_area_comfort
+        transition: 2

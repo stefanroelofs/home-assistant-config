@@ -1,4 +1,4 @@
-- alias         : living_room_movie_pause
+- alias         : living_room_movie_paused
   id            : c7c499db-808b-448d-af4c-a4b501056a6b
   trigger:
     - platform  : state
@@ -14,5 +14,5 @@
   action:
     - service   : scene.turn_on
       data:
-        entity_id : scene.living_room_movie_pause
+        entity_id : scene.living_room_comfort
         transition: 10
