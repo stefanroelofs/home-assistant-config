@@ -2,6 +2,3 @@ homeassistant:
   packages: !include_dir_named integrations
 
 default_config:
-
-# Must be in configuration.yaml for the scene editor to work.
-scene: !include scenes.yaml

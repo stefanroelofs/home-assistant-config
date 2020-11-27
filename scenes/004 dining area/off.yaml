@@ -1,0 +1,6 @@
+name          : dining_area_off
+id            : 3c2d8b5d-2bd1-4ac9-a202-d2177e41c4ba
+icon          : mdi:ceiling-light
+entities:
+  light.dining_area_ceiling_group:
+    state     : 'off'

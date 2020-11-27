@@ -1,0 +1,20 @@
+name          : living_room_movie_playing
+id            : 883b41fa-17c0-4c9d-965d-ce60b06f3187
+icon          : mdi:television-play
+entities:
+  light.living_room_tv_desk:
+    state     : 'off'
+    brightness: 144
+    color_temp: 454
+  light.living_room_ceiling_back:
+    state     : 'off'
+  light.living_room_display_cabinet:
+    state     : 'off'
+    brightness: 144
+    color_temp: 454
+  light.living_room_ceiling_middle:
+    state     : 'on'
+    brightness: 35
+    color_temp: 261
+  light.living_room_sideboard:
+    state     : 'off'

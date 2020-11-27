@@ -1,0 +1,20 @@
+name          : living_room_comfort
+id            : 86cd38f2-1a82-46a4-a82b-8de4636a59ef
+icon          : mdi:television-pause
+entities:
+  light.living_room_tv_desk:
+    state     : 'on'
+    brightness: 144
+    color_temp: 454
+  light.living_room_ceiling_back:
+    state     : 'off'
+  light.living_room_display_cabinet:
+    state     : 'on'
+    brightness: 144
+    color_temp: 454
+  light.living_room_ceiling_middle:
+    state     : 'on'
+    brightness: 144
+    color_temp: 454
+  light.living_room_sideboard:
+    state     : 'off'

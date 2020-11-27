@@ -1,0 +1,4 @@
+scene                   : !include_dir_list ../scenes
+scene fromfrontend      : !include ../scenes.yaml       #This include is for the scene editor/UI
+
+#fromfrontend keyword does nothing. this is a trick to load multiply scene sources/files.

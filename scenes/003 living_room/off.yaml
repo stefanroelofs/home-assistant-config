@@ -1,0 +1,14 @@
+name          : living_room_off
+id            : e0844c2b-661b-4719-a0c3-140c413bc596
+icon          : mdi:television-pause
+entities:
+  light.living_room_tv_desk:
+    state     : 'off'
+  light.living_room_ceiling_back:
+    state     : 'off'
+  light.living_room_display_cabinet:
+    state     : 'off'
+  light.living_room_ceiling_middle:
+    state     : 'off'
+  light.living_room_sideboard:
+    state     : 'off'
