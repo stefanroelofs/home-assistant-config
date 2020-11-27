@@ -1,0 +1,15 @@
+- alias            : bathroom_auto_lights
+  id               : db7f7aef-5ebd-4afc-8ebc-2c225e50bdcd
+  trigger:
+    - platform     : time
+      at           : '22:55:00'
+  condition:
+    - condition    : state
+      entity_id    : 'binary_sensor.anybody_home'
+      state        : 'off'
+  action:
+    - service      : light.turn_on
+      entity_id    : light.bathroom_ceiling
+    - delay        : "{{ range(8 * 60, 12 * 60 + 1) | random }}"
+    - service      : light.turn_off
+      entity_id    : light.bathroom_ceiling

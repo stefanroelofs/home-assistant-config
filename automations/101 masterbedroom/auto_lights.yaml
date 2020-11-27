@@ -1,0 +1,18 @@
+- alias         : bedroom_master_auto_lights
+  id            : 7635cff0-cb1d-409e-9c2d-df9d4a5b0348
+  trigger:
+    - platform  : time
+      at        : '23:11:00'
+  condition:
+    - condition : state
+      entity_id : 'binary_sensor.anybody_home'
+      state     : 'off'
+    - condition : state
+      entity_id : binary_sensor.darkness
+      state     : 'on'
+  action:
+    - service   : light.turn_on
+      entity_id : light.bedroom_master_ceiling
+    - delay     : "{{ range(8 * 60, 12 * 60 + 1) | random }}"
+    - service   : light.turn_off
+      entity_id : light.bedroom_master_ceiling
