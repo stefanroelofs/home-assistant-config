@@ -1,0 +1,4 @@
+home_marcella:
+  devices            : person.marcella
+  tolerance          : 10
+  unit_of_measurement: m
