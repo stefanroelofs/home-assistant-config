@@ -2,8 +2,9 @@
   id            : 3ed7cd1f-1296-48bb-b90d-887aaf3f9dbb
   mode          : queued
   trigger:
-    - platform  : homeassistant
-      event     : start
+    - platform  : numeric_state
+      entity_id : sensor.home_assistant_uptime
+      above     : 2
     - platform  : event
       event_type: automation_reloaded
     - platform  : state
