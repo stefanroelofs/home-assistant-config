@@ -1,4 +1,4 @@
 - name    : Dija
   id      : dija
   device_trackers:
-    - device_tracker.dija_phone_wifi
+    - device_tracker.galaxy_a21s
