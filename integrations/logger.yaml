@@ -14,7 +14,6 @@ logger:
 #    homeassistant.components.zha               : debug
 #    zigpy                                      : debug
 #    zigpy_deconz                               : debug
-#    custom_components.zha_map                  : debug
 #    bellows                                    : debug
 
 #    homeassistant.components.http              : debug
