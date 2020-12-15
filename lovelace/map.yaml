@@ -1,5 +1,0 @@
-title          : MAP
-panel          : true
-
-cards:
-  - type       : 'custom:zha-network-visualization-card' 
