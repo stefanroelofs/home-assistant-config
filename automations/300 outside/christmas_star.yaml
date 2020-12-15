@@ -1,0 +1,35 @@
+- alias         : outside_christmas_star
+  id            : 9c93a7e9-ea9d-401a-b88f-2ceef305f743
+  mode          : queued
+  trigger:
+    - platform  : time
+      at:
+        - "07:30:00"      # Turn on light in the morning
+        - "00:00:05"      # Turn off light a couple seconds after midnight
+    - platform  : sun     # Turn off light at sunrise
+      event     : sunrise
+      offset    : "00:00:00"
+    - platform  : sun     # Turn on light at sunset
+      event     : sunset
+      offset    : "00:00:00"
+  condition:
+    - condition : state
+      entity_id : input_boolean.christmas_time
+      state     : 'on'
+  action:
+    - choose:
+        - conditions:
+            condition       : or
+            conditions:
+              - condition   : time        # Condition to turn on in the morning
+                after       : "07:25:00"
+                before      : "08:35:00"
+              - condition   : sun         # Condition to turn on in the evening
+                after       : sunset
+                after_offset: "-00:15:00"
+          sequence:
+            - service       : switch.turn_on
+              entity_id     : switch.living_room_charging_station_outlet_relay  # christmas star
+      default:
+        - service           : switch.turn_off
+          entity_id         : switch.living_room_charging_station_outlet_relay  # christmas star
