@@ -15,9 +15,8 @@
         device_ieee : 00:15:8d:00:05:21:65:45
         command     : 'single'
   condition:
-    - condition     : numeric_state
-      entity_id     : sensor.home_assistant_uptime
-      above         : 2
+    - condition    : template
+      value_template: "{{  (((as_timestamp(now()) - as_timestamp(states('sensor.home_assistant_uptime'))) % 3600) / 60) | int > 2 }}"
   action:
     - choose:
         - conditions:
