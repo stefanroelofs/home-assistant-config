@@ -1,4 +1,3 @@
 vacation_mode:
   name    : Vacation Mode
-  initial : off
   icon    : mdi:beach
