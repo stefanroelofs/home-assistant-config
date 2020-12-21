@@ -6,7 +6,10 @@ logger:
   default: info
   logs:
     homeassistant.components.plex.media_player : info
-    custom_components.experiaboxv10.device_tracker : error
+    
+#    homeassistant.components.modbus            : debug
+#    pymodbus.client                            : debug
+
 #    homeassistant.components.withings          : error
 #    homeassistant.components.life360           : debug     # To show circles (zones) information during boot
 
