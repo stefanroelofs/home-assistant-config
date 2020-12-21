@@ -1,4 +1,4 @@
-- alias         : outside_christmas_star
+- alias         : outside_christmas_lights
   id            : 9c93a7e9-ea9d-401a-b88f-2ceef305f743
   mode          : queued
   trigger:
@@ -30,6 +30,10 @@
           sequence:
             - service       : switch.turn_on
               entity_id     : switch.living_room_charging_station_outlet_relay  # christmas star
+            - service       : light.turn_on
+              entity_id     : light.wled1                                       # christmas light string in hedge
       default:
         - service           : switch.turn_off
           entity_id         : switch.living_room_charging_station_outlet_relay  # christmas star
+        - service           : light.turn_off
+          entity_id         : light.wled1                                       # christmas light string in hedge
