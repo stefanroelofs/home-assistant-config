@@ -1,0 +1,13 @@
+[]
+#- platform: modbus
+#  scan_interval: 10
+#  registers:
+#    - name : Watchdog
+#      hub: MachineSystem
+#      slave: 0
+#      register: 0
+#      register_type: input
+#      reverse_order: true
+#      count: 2
+#      data_type: int
+#      unit_of_measurement: mg
