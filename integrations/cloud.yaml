@@ -1,0 +1,226 @@
+  # https://www.home-assistant.io/integrations/cloud/
+  # https://www.nabucasa.com/config/google_assistant/
+  cloud:
+    google_actions:
+  
+      # Filters for entities to include/exclude from Google Assistant.
+      filter:
+        include_domains:
+          - light
+          - climate
+
+        exclude_entities:
+          - light.living_room_lights
+          - light.staircase_closet_floorheatingpump_outlet_state_led
+          - light.living_room_entertainment_outlet_state_led
+
+          - light.dining_area_ceiling_1
+          - light.dining_area_ceiling_2
+
+          - light.kitchen_ceiling_1
+          - light.kitchen_ceiling_2
+          - light.kitchen_ceiling_3
+
+          - light.home_office_1
+          - light.home_office_2
+          - light.home_office_3
+
+          - light.bedroom_1_ceiling
+
+          - light.bedroom_3_ceiling
+          - light.bedroom_3_table
+
+          - light.bathroom_ceiling
+          - light.bathroom_bath_ledstrip
+
+          - light.ikea_of_sweden_tradfri_bulb_e14_cws_opal_600lm_275a99fe_level_light_color_on_off
+
+        include_entities:
+          - input_boolean.cleaning_mode
+          - input_boolean.guest_mode
+          - input_boolean.vacation_mode
+
+          - binary_sensor.living_room_doorsensor
+          - binary_sensor.hallway_doorsensor
+
+
+
+      # Entity specific configuration for Google Assistant.
+      entity_config:
+
+        # Begane grond
+        climate.living_room:
+          name: Thermostaat
+          room: Woonkamer
+          aliases:
+            - woonkamer thermostaat
+            - livingroom
+            - livingroom thermostat
+            - thermostaat
+            - thermostat
+            - vloerverwarming
+            - woonkamer
+            - woonkamer temperatuur
+        
+        light.dining_area_ceiling_group:
+          name: Eettafel
+          room: Woonkamer
+          aliases:
+            - woonkamer eettafel
+            - eettafel
+            - tafel
+            - woonkamer tafel
+            - eethoek
+            - woonkamer eethoek
+            - eetkamer
+            - living room dining table
+            - living room dinner table
+            - dining table
+            - dinner table
+            - dining
+            - dinner
+
+        light.living_room_ceiling_back:
+          name: Plafond achterdeur
+          room: Woonkamer
+          aliases:
+            - Spotje achterdeur
+            - Spot achterdeur
+            - Plafond bij achterdeur
+
+        light.living_room_ceiling_middle:
+          name: Plafond midden
+          room: Woonkamer
+          aliases:
+            - Spotje woonkamer
+            - Spot woonkamer
+            - Spotje plafond
+            - Plafond
+
+        light.living_room_display_cabinet:
+          name: Buffetkast
+          room: Woonkamer
+          aliases:
+            - Display cabinet
+            - Glazen kast
+
+        light.living_room_sideboard:
+          name: Servieskast
+          room: Keuken
+          aliases:
+            - Bordenkast
+
+        light.living_room_tv_desk:
+          name: TV lamp
+          room: Woonkamer
+          aliases:
+            - Lamp bij TV
+
+        light.restroom_light:
+          name: Lamp
+          room: Toilet
+          aliases:
+            - Toiletverlichting
+            - WC lamp
+
+        light.staircase_closet_light:
+          name: Trapkast
+          room: Woonkamer
+
+        light.hallway_light:
+          name: Plafond
+          room: Hal
+          aliases:
+            - Lamp bij voordeur
+
+        light.kitchen_ceiling_group:
+          name: Keukenplafond
+          room: Keuken
+          aliases:
+            - Keukenverlichting
+
+        light.kitchen_counter_light:
+          name: Aanrechtverlichting
+          room: Keuken
+          aliases:
+            - Aanrecht
+            - Boven het aanrecht
+            - Werkbladverlichting
+
+
+        # 1e verdieping
+        light.first_floor_landing_ceiling:
+          name: Plafond
+          room: Overloop
+          aliases:
+            - Overlooplamp
+
+        light.bathroom_lights:
+          name: Badkamer
+          room: Badkamer
+          aliases:
+            - Badkamer verlichting
+
+        light.bedroom_master_ceiling:
+          name: Plafond
+          room: Grote slaapkamer
+          aliases:
+            - Masterbedroom
+
+        light.bedroom_master_wardrobe_light:
+          name: Garderobekast
+          room: Grote slaapkamer
+          aliases:
+            - Kast in slaapkamer
+            - Kledingkast
+            - Garderobe
+
+        light.bedroom_1_lights:
+          name: Olivia's kamer
+          room: Slaapkamer 1
+          aliases:
+            - Olivia's slaapkamer
+
+        light.bedroom_2_ceiling:
+          name: Babykamer
+          room: Slaapkamer 2
+          aliases:
+            - Babykamer
+            - Kind nummer 3
+
+
+        # 2e verdieping
+        light.second_floor_landing_ceiling:
+          name: Plafond
+          room: Zolder Overloop
+          aliases:
+            - Overloop tweede verdieping
+
+        light.bedroom_3_lights:
+          name: Damian's kamer
+          room: Slaapkamer 3
+          aliases:
+            - Damian's slaapkamer
+
+        light.home_office:
+          name: Thuiskantoor
+          room: Thuiskantoor
+          aliases:
+            - Study
+            - Kantoor
+            - Thuiswerkplek
+            - Bureau
+
+        light.laundry_room_ceiling:
+          name: Plafond
+          room: Waskamer
+          aliases:
+            - Wasruimte
+
+        # Buiten
+        light.wled1:
+          name: Kerstverlichting Heg
+          room: Buiten
+          aliases:
+            - Gekleurde lampjes
+
