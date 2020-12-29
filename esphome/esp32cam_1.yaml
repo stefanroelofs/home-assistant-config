@@ -49,6 +49,14 @@ sensor:
     name            : "${devicelocation} WiFi Signal"
     update_interval : 60s
 
+text_sensor:
+  - platform        : version
+    name            : "${devicelocation} Version"
+
+binary_sensor:
+  - platform        : status
+    name            : "${devicelocation} Status"
+
 switch:
   # Switch to restart the plug
   - platform        : restart

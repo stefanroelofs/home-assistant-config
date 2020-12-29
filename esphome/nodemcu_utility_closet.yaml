@@ -7,6 +7,8 @@
 #
 # INPUTS:
 #   GPIO1   TX                    Switch Doorbell         pin is high at BOOT, boot failure if pulled LOW
+#   GPIO14  D5                    Motion sensor
+
 #
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
@@ -60,6 +62,9 @@ sensor:
     name                 : "${devicelocation} WiFi Signal"
     update_interval      : 60s
 
+text_sensor:
+  - platform             : version
+    name                 : "${devicelocation} Version"
 
 # Global to store the on/off state of the chime
 globals:
@@ -133,7 +138,7 @@ binary_sensor:
     filters:
       # Small filter, to debounce the button press.
       - delayed_on  : 10ms
-      - delayed_off : 50ms
+      - delayed_off : 200ms
     on_press:
       # Only turn on the chime when it is active.
       then:
@@ -145,6 +150,14 @@ binary_sensor:
     on_release:
       # On release, turn of the chime.
       - switch.turn_off      : chime_output
+
+  - platform        : gpio
+    pin             : GPIO14
+    name            : "${devicelocation} Motion"
+    device_class    : motion
+
+  - platform        : status
+    name            : "${devicelocation} Status"
 
 status_led:
   pin:

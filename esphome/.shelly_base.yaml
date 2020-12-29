@@ -43,6 +43,10 @@ sensor:
     name                 : "${devicelocation} WiFi Signal"
     update_interval      : 60s
 
+text_sensor:
+  - platform             : version
+    name                 : "${devicelocation} Version"
+
 binary_sensor:
   - platform             : gpio
     pin                  : GPIO5
@@ -53,6 +57,9 @@ binary_sensor:
     on_state:
       then:
         - light.toggle   : light_output
+
+  - platform             : status
+    name                 : "${devicelocation} Status"
 
 light:
   - platform             : binary

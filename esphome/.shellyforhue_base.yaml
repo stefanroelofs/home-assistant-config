@@ -47,6 +47,10 @@ sensor:
     name                 : "${devicelocation} WiFi Signal"
     update_interval      : 60s
 
+text_sensor:
+  - platform             : version
+    name                 : "${devicelocation} Version"
+
 binary_sensor:
   - platform             : gpio
     pin                  : GPIO5
@@ -54,6 +58,9 @@ binary_sensor:
     filters:
       - delayed_on       : 10ms
       - delayed_off      : 10ms
+      
+  - platform             : status
+    name                 : "${devicelocation} Status"
 
 switch:
   - platform             : output

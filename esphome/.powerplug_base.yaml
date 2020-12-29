@@ -110,7 +110,10 @@ sensor:
         - multiply       : 0.001
     unit_of_measurement  : kWh
     icon                 : mdi:clock-alert
- 
+
+text_sensor:
+  - platform             : version
+    name                 : "${devicelocation} Version"
 
 binary_sensor:
   # Binary sensor for the button press
@@ -125,6 +128,9 @@ binary_sensor:
       - delayed_off      : 10ms
     on_press:
       - switch.toggle    : relay
+      
+  - platform             : status
+    name                 : "${devicelocation} Status"
 
 switch:
   # Switch to restart the plug
