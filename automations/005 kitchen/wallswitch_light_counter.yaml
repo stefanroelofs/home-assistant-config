@@ -13,7 +13,7 @@
     - condition     : template
       value_template: "{{ states.light.kitchen_ceiling_group.state == states.light.kitchen_counter_light.state }}"
     - condition     : template
-      value_template: "{{  (((as_timestamp(now()) - as_timestamp(states('sensor.home_assistant_uptime'))) % 3600) / 60) | int > 2 }}"
+      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
     - service   : light.toggle
       entity_id : light.kitchen_counter_light
