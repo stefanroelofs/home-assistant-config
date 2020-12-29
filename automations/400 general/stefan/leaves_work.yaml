@@ -14,10 +14,10 @@
       after     : '15:00:00'
       before    : '19:00:00'
   action:
-    - service   : tts.google_translate_say
+    - service   : tts.cloud_say
       entity_id : media_player.smart_speaker
       data:
         message : 'Stefan is onderweg naar huis.'
-        language: 'nl'
+        language: 'nl-NL'
     - delay:
         seconds : 5 # cooldown timer

@@ -10,11 +10,11 @@
         entity_id: sensor.acv_morgen
         state    : 'Geen'
   action:
-    - service   : tts.google_translate_say
+    - service   : tts.cloud_say
       entity_id : media_player.smart_speaker
       data:
         message : "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
-        language: 'nl'
+        language: 'nl-NL'
     - service   : notify.all
       data:
         title   : 'Afval aan de weg!'

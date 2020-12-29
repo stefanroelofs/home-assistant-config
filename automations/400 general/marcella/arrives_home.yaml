@@ -11,11 +11,11 @@
       entity_id : 'binary_sensor.anybody_home'
       state     : 'on'
   action:
-    - service   : tts.google_translate_say
+    - service   : tts.cloud_say
       entity_id : media_player.smart_speaker
       data:
         message : 'Opgelet! Marcella is thuis.'
-        language: 'nl'
+        language: 'nl-NL'
     - service   : notify.stefan
       data:
         title   : Marcella is thuis
