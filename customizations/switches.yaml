@@ -1,15 +1,15 @@
-switch.staircase_closet_floorheatingpump_outlet:
+switch.staircase_closet_floorheatingpump_outlet_relay:
   icon          : mdi:radiator
 
 switch.living_room_entertainment_outlet_relay:
   icon          : mdi:power-plug
 
-#switch.living_room_charging_station_outlet_relay:
-#  icon          : mdi:power-plug
-
 switch.living_room_charging_station_outlet_relay:
-  friendly_name : "Christmas star"
-  icon          : mdi:pine-tree
+  icon          : mdi:power-plug
+
+#switch.living_room_charging_station_outlet_relay:
+#  friendly_name : "Christmas star"
+#  icon          : mdi:pine-tree
 
 #switch.xiaomi_switch_2:
 #  friendly_name : "Christmas tree"

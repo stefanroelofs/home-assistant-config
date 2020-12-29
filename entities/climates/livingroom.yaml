@@ -1,6 +1,6 @@
 - platform          : generic_thermostat
   name              : living_room
-  heater            : switch.staircase_closet_floorheatingpump_outlet
+  heater            : switch.staircase_closet_floorheatingpump_outlet_relay
   target_sensor     : sensor.living_room_tempsensor_temperature
   min_temp          : 15
   max_temp          : 25

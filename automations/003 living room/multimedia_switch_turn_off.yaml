@@ -32,7 +32,7 @@
 #    - delay     : '00:01:00'    # 1 minute
     - service   : switch.turn_off
       entity_id : switch.living_room_entertainment_outlet_relay  # multimedia
-#    - service   : switch.turn_off
-#      entity_id : switch.living_room_charging_station_outlet_relay  # charging station
+    - service   : switch.turn_off
+      entity_id : switch.living_room_charging_station_outlet_relay  # charging station
 #    - service   : switch.turn_off
 #      entity_id : switch.wake_up_vaste_pc
