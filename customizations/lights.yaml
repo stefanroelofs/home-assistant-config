@@ -39,7 +39,7 @@ light.second_floor_landing_ceiling:
 light.attic_laundry_room:
   icon          : mdi:washing-machine
 
-light.attic_study:
+light.home_office:
   friendly_name : "Thuiskantoor"
   icon          : mdi:briefcase
 

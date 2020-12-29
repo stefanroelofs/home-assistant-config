@@ -1,4 +1,4 @@
-- alias             : second_floor_bedroom_remote_light_ceiling
+- alias             : bedroom_3_remote_light_ceiling
   id                : 17837dc3-f66d-447f-a06f-2a379a2aeace
   trigger:
     - platform      : event
@@ -8,4 +8,4 @@
         command     : 'single'
   action:
     - service       : light.toggle
-      entity_id     : light.second_floor_bedroom_lights
+      entity_id     : light.bedroom_3_lights

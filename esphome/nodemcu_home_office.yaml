@@ -1,9 +1,9 @@
 # I/O List
 #
 # OUTPUTS:
-#   GPIO4   D2    relay1_output   Study 1
-#   GPIO5   D1    relay2_output   Study 2
-#   GPIO12  D6    relay3_output   Study 3
+#   GPIO4   D2    relay1_output   Home office 1
+#   GPIO5   D1    relay2_output   Home office 2
+#   GPIO12  D6    relay3_output   Home office 3
 #   GPIO13  D7    relay4_output   Bedroom
 #   GPIO14  D5    relay5_output   Laundry room
 #   GPIO15  D8    relay6_output   Landing (power toggle)  Boot fails if pulled HIGH
@@ -19,8 +19,8 @@
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 substitutions:
-  devicename     : "nodemcu_attic"
-  devicelocation : "Attic"
+  devicename     : "nodemcu_office"
+  devicelocation : "Home Office"
   ip_address     : !secret ip_address_nodemcu_1
 
 esphome:
@@ -72,6 +72,10 @@ sensor:
     name                 : "${devicelocation} WiFi Signal"
     update_interval      : 60s
 
+text_sensor:
+  - platform             : version
+    name                 : "${devicelocation} Version"
+
 output:
   - platform        : gpio
     id              : relay1_output
@@ -101,23 +105,23 @@ output:
 light:
   - platform        : binary
     id              : lightstudy1
-    name            : "${devicelocation} Study 1"
+    name            : "${devicelocation} 1"
     output          : relay1_output
   - platform        : binary
     id              : lightstudy2
-    name            : "${devicelocation} Study 2"
+    name            : "${devicelocation} 2"
     output          : relay2_output
   - platform        : binary
     id              : lightstudy3
-    name            : "${devicelocation} Study 3"
+    name            : "${devicelocation} 3"
     output          : relay3_output
   - platform        : binary
     id              : lightbedroom
-    name            : "${devicelocation} Bedroom"
+    name            : "Bedroom 3 Ceiling"
     output          : relay4_output
   - platform        : binary
     id              : lightlaundry
-    name            : "${devicelocation} Laundry room"
+    name            : "Laundry room Ceiling"
     output          : relay5_output
 
 switch:
@@ -125,7 +129,7 @@ switch:
   - platform        : restart
     name            : "${devicelocation} Restart"
   - platform        : output
-    name            : "${devicelocation} Landing Power"
+    name            : "Second Floor Landing Ceiling Power"
     output          : relay6_output
     id              : switch_relay6
 
@@ -133,7 +137,7 @@ binary_sensor:
 
 # Bedroom switch
   - platform   : gpio
-    name       : "${devicelocation} Switch Bedroom"
+    name       : "Bedroom 3 Switch"
     pin:
       number   : GPIO0
       inverted : True
@@ -146,7 +150,7 @@ binary_sensor:
 
 # Laundry room switch
   - platform   : gpio
-    name       : "${devicelocation} Switch Laundry room"
+    name       : "Laundry room Switch"
     pin:
       number   : GPIO1
       inverted : True
@@ -159,7 +163,7 @@ binary_sensor:
 
 # Office switch
   - platform   : gpio
-    name       : "${devicelocation} Switch Office"
+    name       : "${devicelocation} Switch"
     pin:
       number   : GPIO3
       inverted : True
@@ -186,6 +190,10 @@ binary_sensor:
               - light.turn_on  : lightstudy2
               - delay          : 300ms
               - light.turn_on  : lightstudy3
+
+
+  - platform        : status
+    name            : "${devicelocation} Status"
 
 status_led:
   pin:

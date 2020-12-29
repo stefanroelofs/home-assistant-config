@@ -143,11 +143,11 @@ cards:
       - entity     : light.attic_laundry_room
 
       - type       : custom:fold-entity-row
-        head       : light.attic_study
+        head       : light.home_office
         entities:
-          - light.attic_study_1
-          - light.attic_study_2
-          - light.attic_study_3
+          - light.home_office_1
+          - light.home_office_2
+          - light.home_office_3
 
       - entity     : light.attic_bedroom
 
@@ -158,7 +158,7 @@ cards:
     show_header_toggle: false
     entities:
       - switch.living_room_entertainment_outlet_relay
-      - switch.staircase_closet_floorheatingpump_outlet
+      - switch.staircase_closet_floorheatingpump_outlet_relay
       - switch.living_room_charging_station_outlet_relay
 #      - switch.xiaomi_switch_2 Christmas tree
       - switch.utility_closet_doorbell_chime_active

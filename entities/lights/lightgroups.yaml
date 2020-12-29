@@ -1,11 +1,11 @@
 # https://www.home-assistant.io/components/light.group/
 
 - platform : group
-  name     : attic_study
+  name     : home_office
   entities:
-    - light.attic_study_1
-    - light.attic_study_2
-    - light.attic_study_3
+    - light.home_office_1
+    - light.home_office_2
+    - light.home_office_3
 
 - platform : group
   name     : living_room_lights
@@ -15,12 +15,6 @@
     - light.living_room_display_cabinet
     - light.living_room_ceiling_middle
 #    - c # Sideboard has its own remote
-
-#- platform : group
-#  name     : hallway_lights
-#  entities:
-#    - light.hallway_light
-#    - light.restroom_light
 
 - platform : group
   name     : bathroom_lights
@@ -35,7 +29,7 @@
 #    - light.bedroom_1_table
 
 - platform : group
-  name     : second_floor_bedroom_lights
+  name     : bedroom_3_lights
   entities:
-    - light.attic_bedroom
-    - light.second_floor_bedroom_table
+    - light.bedroom_3_ceiling
+    - light.bedroom_3_table
