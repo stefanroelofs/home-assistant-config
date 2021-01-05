@@ -2,8 +2,8 @@
   id            : 3ed7cd1f-1296-48bb-b90d-887aaf3f9dbb
   mode          : queued
   trigger:
-#    - platform  : template
-#      value_template: "{{ (((as_timestamp(now()) - as_timestamp(states('sensor.home_assistant_uptime'))) % 3600) / 60) | int > 2 }}"
+    - platform  : template
+      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
     - platform  : event
       event_type: automation_reloaded
     - platform  : state
