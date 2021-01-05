@@ -10,6 +10,11 @@
     - condition : state
       entity_id : 'binary_sensor.anybody_home'
       state     : 'on'
+    - condition : not
+      conditions:
+        - condition: state
+          entity_id: media_player.smart_speaker
+          state    : playing
   action:
     - service   : tts.cloud_say
       entity_id : media_player.smart_speaker

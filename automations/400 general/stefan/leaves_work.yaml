@@ -13,6 +13,11 @@
     - condition : time
       after     : '15:00:00'
       before    : '19:00:00'
+    - condition : not
+      conditions:
+        - condition: state
+          entity_id: media_player.smart_speaker
+          state    : playing
   action:
     - service   : tts.cloud_say
       entity_id : media_player.smart_speaker
