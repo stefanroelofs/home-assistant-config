@@ -1,0 +1,28 @@
+- alias          : home_office_pause_spotify_when_called
+  id             : 8b70c580-024c-4a62-82b5-5b8fbfc3b0bd
+  trigger:
+    - platform   : state
+      entity_id  : sensor.stefan_phone_app_telefoon_status
+      to         : ringing
+    - platform   : state
+      entity_id  : sensor.stefan_phone_app_telefoon_status
+      to         : offhook
+  condition:
+    - condition  : state      # Only pause playback when something is playing.
+      entity_id  : media_player.spotify_stefanroelofs
+      state      : playing
+    - condition  : state      # Only pause playback when playing on my laptop.
+      entity_id  : media_player.spotify_stefanroelofs
+      attribute  : source
+      state      : PWR-L-075
+  action:
+    - service    : media_player.media_pause
+      entity_id  : media_player.spotify_stefanroelofs
+    - wait_for_trigger:
+      - platform : state
+        entity_id: sensor.stefan_phone_app_telefoon_status
+        to       : idle
+      timeout:
+        seconds  : 300
+    - service    : media_player.media_play
+      entity_id  : media_player.spotify_stefanroelofs
