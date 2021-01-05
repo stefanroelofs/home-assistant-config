@@ -15,11 +15,11 @@
       entity_id : media_player.plex_plexhometheater_rasplex
       attribute : media_content_type
       state     : 'movie'
-    # Only dim the lights when the movie is longer than 1 hour.
+    # Only dim the lights when the movie is longer than 0,5 hour.
     - condition : numeric_state
       entity_id : media_player.plex_plexhometheater_rasplex
       attribute : media_duration
-      above     : 3600
+      above     : 1800
   action:
     - service   : scene.turn_on
       data:
