@@ -3,7 +3,7 @@
 #################################################################
 
 logger:
-  default: info
+  default: warning
   logs:
     homeassistant.components.plex.media_player : info
     
