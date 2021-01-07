@@ -1,0 +1,100 @@
+# Controlling my Buva Qstream ventilation system using:
+# * A Wemos D1 mini lite (an ESP8266 based board)
+# * A Wemos power shield so I can power the Wemos from the ventilation units 12V supply.
+# * A simple PWM to 10V convertor like this: https://www.cheaptech.nl/pwm-signaal-te-voltage-converter-1-3-khz-0-10-v-pw.html
+# * The amazing ESPHome firmware tool: https://esphome.io
+# * Home Assistant to tie it all together: https://www.home-assistant.io
+
+# I/O List
+#
+# OUTPUTS:
+#   GPIO4   D2    pwm_output      PWM pulse output to the 10V converter
+#   GPIO2   D4                    Status Led              connected to on-board LED, pin is high at BOOT, boot failure if pulled LOW
+#
+# Don't use pin D3 (GPIO0) as output! The D1 won't boot because it is pulled low.
+
+# Reference / photo: https://www.wemos.cc/en/latest/d1/d1_mini.html
+# Credits: https://gist.github.com/SqyD/38d10391c2e21988406d2bdaec24f031
+
+substitutions:
+  devicename        : "d1_mini_mechanical_ventilation"
+  devicelocation    : "Mech Vent"
+  ip_address        : !secret ip_address_d1_mini_MV
+
+esphome:
+  name              : $devicename
+  platform          : ESP8266
+  board             : d1_mini_lite
+
+wifi:
+  ssid              : !secret wifi_ssid
+  password          : !secret wifi_password
+  ap:
+    ssid            : "${devicelocation} Fallback Hotspot"
+    password        : !secret wifi_fallback_password
+  manual_ip:
+    static_ip       : ${ip_address}
+    gateway         : !secret gateway_ip
+    subnet          : 255.255.255.0
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable Web server.
+web_server:
+  port              : 80
+
+# Sync time with Home Assistant.
+time:
+  - platform        : homeassistant
+    id              : homeassistant_time
+
+sensor:
+  # Sensors with general information.
+  - platform        : uptime
+    name            : "${devicelocation} Uptime Sensor"
+    update_interval : 60s
+
+  - platform        : wifi_signal
+    name            : "${devicelocation} WiFi Signal"
+    update_interval : 60s
+
+text_sensor:
+  - platform        : version
+    name            : "${devicelocation} Version"
+
+output:
+  platform          : esp8266_pwm
+  pin               : D2
+  frequency         : 2000 Hz
+  id                : pwm_output
+
+fan:
+  platform          : speed
+  output            : pwm_output
+  name              : "Ventilation"
+  speed:
+    low             : 0.25
+    medium          : 0.5
+    high            : 0.8
+
+switch:
+  # Switch to restart the plug
+  - platform        : restart
+    name            : "${devicelocation} Restart"
+
+binary_sensor:
+  - platform        : status
+    name            : "${devicelocation} Status"
+
+status_led:
+  pin:
+    number          : GPIO2
+    inverted        : True
