@@ -30,6 +30,7 @@ esphome:
   on_boot:
     priority  : -10
     then:
+      - switch.turn_on: switch_relay4
       - switch.turn_on: switch_relay6
 
 wifi:
@@ -115,10 +116,10 @@ light:
     id              : lightstudy3
     name            : "${devicelocation} 3"
     output          : relay3_output
-  - platform        : binary
-    id              : lightbedroom
-    name            : "Bedroom 3 Ceiling"
-    output          : relay4_output
+#  - platform        : binary   # Changed this for a smart Ikea bulb.
+#    id              : lightbedroom
+#    name            : "Bedroom 3 Ceiling"
+#    output          : relay4_output
   - platform        : binary
     id              : lightlaundry
     name            : "Laundry room Ceiling"
@@ -129,6 +130,10 @@ switch:
   - platform        : restart
     name            : "${devicelocation} Restart"
   - platform        : output
+    name            : "Bedroom 3 Ceiling Power"
+    output          : relay4_output
+    id              : switch_relay4
+  - platform        : output
     name            : "Second Floor Landing Ceiling Power"
     output          : relay6_output
     id              : switch_relay6
@@ -136,17 +141,18 @@ switch:
 binary_sensor:
 
 # Bedroom switch
-  - platform   : gpio
-    name       : "Bedroom 3 Switch"
-    pin:
-      number   : GPIO0
-      inverted : True
-      mode     : INPUT_PULLUP
-    filters:
-      - delayed_on_off : 20ms
-    on_state:
-      then:
-        - light.toggle : lightbedroom
+# This lightswitch is disabled, there is a big wardrobe in front of it.
+#  - platform   : gpio
+#    name       : "Bedroom 3 Switch"
+#    pin:
+#      number   : GPIO0
+#      inverted : True
+#      mode     : INPUT_PULLUP
+#    filters:
+#      - delayed_on_off : 20ms
+#    on_state:
+#      then:
+#        - light.toggle : lightbedroom
 
 # Laundry room switch
   - platform   : gpio
