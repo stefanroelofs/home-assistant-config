@@ -76,13 +76,20 @@ output:
   frequency         : 2000 Hz
   id                : pwm_output
 
+# Voorgeprogrammeerde capaciteit (uit usermanual):
+#  - Hoogstand (L4)   : 70 % - 7 V aansturing
+#  - Hoogstand (L3)   : 50 % - 5 V aansturing
+#  - Middenstand (L2) : 30 % - 3 V aansturing
+#  - Laagstand (L1)   : 20 % - 2 V aansturing
+#  - Nachtstand (N) = Hoogstand (L3)
+
 fan:
   platform          : speed
   output            : pwm_output
-  name              : "Ventilation"
+  name              : "${devicelocation} Fan"
   speed:
     low             : 0.25
-    medium          : 0.5
+    medium          : 0.45
     high            : 0.8
 
 switch:

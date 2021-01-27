@@ -7,20 +7,23 @@
         entity_id  : timer.bathroom_light_timeout
   action:
     - choose:
+
       - conditions:
-          condition    : state
-          entity_id    : binary_sensor.bathroom_motionsensor_occupancy
-          state        : 'on'             # Do not turn off light if the motion event is still active.
+          - condition  : state
+            entity_id  : binary_sensor.bathroom_motionsensor_occupancy
+            state      : 'on'             # Do not turn off light if the motion event is still active.
         sequence:                         # In this case restart the timer and wait for it to trigger on a falling edge.
           - service    : timer.start
             entity_id  : timer.bathroom_light_timeout
+
       - conditions:
-          condition    : numeric_state
-          entity_id    : sensor.bathroom_tempsensor_humidity
-          above        : 71
+          - condition  : state
+            entity_id  : binary_sensor.bathroom_hygrostat
+            state      : 'on' # high humidity detected
         sequence:
           - service    : timer.start
             entity_id  : timer.bathroom_light_timeout
+
       default:
         - service      : light.turn_off
           data:

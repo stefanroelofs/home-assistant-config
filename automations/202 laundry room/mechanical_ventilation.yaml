@@ -1,0 +1,66 @@
+- alias         : laundry_room_mechanical_ventilation
+  id            : 2975023b-791e-480f-a803-064d369830c0
+  mode          : single
+  max_exceeded  : silent
+  trigger:
+    - platform  : homeassistant
+      event     : start
+    - platform  : event
+      event_type: automation_reloaded
+    - platform  : state
+      entity_id:
+        - binary_sensor.bathroom_hygrostat
+        - binary_sensor.anybody_home
+    - platform  : time
+      at:
+        - "00:00:00"
+        - "08:00:00"
+  action:
+    choose:
+
+      # Turn the fan off if nobody is home.
+      - conditions:
+          - condition   : state
+            entity_id   : binary_sensor.anybody_home
+            state       : 'off' # nobody is home
+        sequence:
+          - service     : fan.turn_off
+            entity_id   : fan.mech_vent_fan
+
+      # Set fan to High when someone is showering, but only during the daytime.
+      - conditions:
+          - condition   : state
+            entity_id   : binary_sensor.bathroom_hygrostat
+            state       : 'on' # high humidity detected
+          - condition   : time
+            after       : "07:00:00"
+            before      : "00:00:00"
+        sequence:
+          - service     : fan.turn_on
+            entity_id   : fan.mech_vent_fan
+          - service     : fan.set_speed
+            data:
+              entity_id : fan.mech_vent_fan
+              speed     : high
+
+      # Set fan to medium at night. Everybody is breathing in their beds.
+      - conditions:
+          - condition   : time
+            after       : "00:00:00"
+            before      : "08:00:00"
+        sequence:
+          - service     : fan.turn_on
+            entity_id   : fan.mech_vent_fan
+          - service     : fan.set_speed
+            data:
+              entity_id : fan.mech_vent_fan
+              speed     : medium
+  
+    # Set fan to low during the day
+    default:
+      - service         : fan.turn_on
+        entity_id       : fan.mech_vent_fan
+      - service         : fan.set_speed
+        data:
+          entity_id     : fan.mech_vent_fan
+          speed         : low
