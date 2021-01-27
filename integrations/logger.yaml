@@ -6,7 +6,9 @@ logger:
   default: warning
   logs:
     homeassistant.components.plex.media_player : info
-    
+#    custom_components.hacs: debug
+#    hacs: debug
+
 #    homeassistant.components.modbus            : debug
 #    pymodbus.client                            : debug
 

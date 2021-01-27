@@ -217,10 +217,10 @@
           aliases:
             - Wasruimte
 
-        # Buiten
-        light.wled1:
-          name: Kerstverlichting Heg
-          room: Buiten
-          aliases:
-            - Gekleurde lampjes
+#        # Buiten
+#        light.wled1:
+#          name: Kerstverlichting Heg
+#          room: Buiten
+#          aliases:
+#            - Gekleurde lampjes
 
