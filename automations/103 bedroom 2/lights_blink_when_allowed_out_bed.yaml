@@ -1,5 +1,6 @@
 - alias         : bedroom_2_lights_blink_when_allowed_out_bed
   id            : 1c0b8b89-ed6e-4b0b-af8f-ee3de5a66d7f
+  initial_state : false
   trigger:
     - platform  : time
       at        : '07:30:00'
