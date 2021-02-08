@@ -1,5 +1,7 @@
 - alias                     : bedroom_master_6gang_press_house_off
   id                        : cc99321c-a134-46c0-80e2-23e0521298db
+  mode                      : queued
+  max                       : 2
   trigger:
     - platform              : event
       event_type            : zha_event
@@ -28,3 +30,12 @@
       data:
         entity_id           : all
         transition          : 0.5
+    - service               : switch.turn_off
+      entity_id             : switch.wake_up_vaste_pc
+    - service               : remote.turn_off
+      entity_id             : remote.roelofs_harmony_hub
+    - delay                 : '00:00:10'
+    - service               : switch.turn_off
+      entity_id             : switch.living_room_entertainment_outlet_relay
+    - service               : switch.turn_off
+      entity_id             : switch.living_room_charging_station_outlet_relay
