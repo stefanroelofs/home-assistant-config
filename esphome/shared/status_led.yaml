@@ -1,0 +1,6 @@
+# The status_led hooks into all ESPHome components and can indicate the status of the device. 
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number   : $status_led_pin
+    inverted : true

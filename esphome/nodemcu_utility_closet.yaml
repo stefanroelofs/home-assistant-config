@@ -13,58 +13,25 @@
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 substitutions:
-  devicename     : "nodemcu_utility_closet"
-  devicelocation : "Utility closet Doorbell"
-  ip_address     : !secret ip_address_nodemcu_2
+  devicename        : "nodemcu_utility_closet"
+  devicelocation    : "Utility closet Doorbell"
+  ip_address        : !secret ip_address_nodemcu_2
+  status_led_pin    : GPIO2
 
 esphome:
-  name        : $devicename
-  platform    : ESP8266
-  board       : nodemcuv2
+  name              : $devicename
+  platform          : ESP8266
+  board             : nodemcuv2
 
-wifi:
-  ssid        : !secret wifi_ssid
-  password    : !secret wifi_password
-  ap:
-    ssid      : "Utility closet Fallback Hotspot"
-    password  : !secret wifi_fallback_password
-  manual_ip:
-    static_ip : ${ip_address}
-    gateway   : !secret gateway_ip
-    subnet    : 255.255.255.0
-
-captive_portal:
-
-# Enable logging
-logger:
-
-# Enable Home Assistant API
-api:
-
-ota:
-
-# Enable Web server.
-web_server:
-  port        : 80
-
-# Sync time with Home Assistant.
-time:
-  - platform             : homeassistant
-    id                   : homeassistant_time
-
-sensor:
-  # Sensors with general information.
-  - platform             : uptime
-    name                 : "${devicelocation} Uptime Sensor"
-    update_interval      : 60s
-
-  - platform             : wifi_signal
-    name                 : "${devicelocation} WiFi Signal"
-    update_interval      : 60s
+<<: !include shared/common.yaml
+<<: !include shared/status_led.yaml
 
 text_sensor:
-  - platform             : version
-    name                 : "${devicelocation} Version"
+  - !include shared/text_sensors/version.yaml
+
+sensor:
+  - !include shared/sensors/uptime.yaml
+  - !include shared/sensors/wifi_signal.yaml
 
 # Global to store the on/off state of the chime
 globals:
@@ -91,9 +58,7 @@ script:
 
 # Exposed switches.
 switch:
-  # Switch to restart the doorbell.
-  - platform        : restart
-    name            : "${devicelocation} Restart"
+  - !include shared/switches/restart.yaml
 
   # Switch to turn on/off the chime from Home Assistant.
   - platform        : output
@@ -156,10 +121,4 @@ binary_sensor:
     name            : "${devicelocation} Motion"
     device_class    : motion
 
-  - platform        : status
-    name            : "${devicelocation} Status"
-
-status_led:
-  pin:
-    number          : GPIO2
-    inverted        : true
+  - !include shared/binary_sensors/status.yaml

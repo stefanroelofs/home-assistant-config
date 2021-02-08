@@ -1,10 +1,9 @@
 substitutions:
-  devicename     : "powerplug_1"
-  devicelocation : "Staircase Closet Floorheatingpump Outlet"
-  # Higher value gives lower watt readout
-  current_res    : '0.00290'
-  # Lower value gives lower voltage readout
-  voltage_div    : '940'
-  ip_address     : !secret ip_address_powerplug1
+  devicename        : "powerplug_1"
+  devicelocation    : "Staircase Closet Floorheatingpump Outlet"
+  current_res       : '0.00290'   # Higher value gives lower watt readout
+  voltage_div       : '940'       # Lower value gives lower voltage readout
+  ip_address        : !secret ip_address_powerplug1
+  status_led_pin    : GPIO00      # Red led output
 
-<<: !include .powerplug_base.yaml
+<<: !include shared/device_powerplug.yaml

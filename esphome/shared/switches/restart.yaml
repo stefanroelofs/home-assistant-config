@@ -1,0 +1,4 @@
+# The restart switch platform allows you to restart your node remotely through Home Assistant.
+# https://esphome.io/components/switch/restart.html
+platform  : restart
+name      : "${devicelocation} Restart"

@@ -1,0 +1,35 @@
+# Shelly 1 device
+# Output is constantly low (for when the relay is not connected)
+
+esphome:
+  name        : $devicename
+  platform    : ESP8266
+  board       : esp01_1m
+
+<<: !include common.yaml
+
+text_sensor:
+  - !include text_sensors/version.yaml
+
+sensor:
+  - !include sensors/uptime.yaml
+  - !include sensors/wifi_signal.yaml
+
+binary_sensor:
+  - platform             : gpio
+    pin                  : GPIO5
+    name                 : "${devicelocation} Switch"
+    filters:
+      - delayed_on       : 10ms
+      - delayed_off      : 10ms
+
+  - !include binary_sensors/status.yaml
+
+switch:
+  - !include switches/restart.yaml
+
+# Output is not used and not connected
+output:
+  - platform             : gpio
+    pin                  : GPIO4
+    id                   : relay_output

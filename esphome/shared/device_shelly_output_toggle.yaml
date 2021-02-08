@@ -1,0 +1,44 @@
+# Shelly 1 device
+# Output toggles when the switch is operated
+
+esphome:
+  name        : $devicename
+  platform    : ESP8266
+  board       : esp01_1m
+
+<<: !include common.yaml
+
+text_sensor:
+  - !include text_sensors/version.yaml
+
+sensor:
+  - !include sensors/uptime.yaml
+  - !include sensors/wifi_signal.yaml
+
+binary_sensor:
+  - platform             : gpio
+    pin                  : GPIO5
+    name                 : "${devicelocation} Switch"
+    filters:
+      - delayed_on       : 10ms
+      - delayed_off      : 10ms
+    on_state:
+      then:
+        - light.toggle   : light_output
+
+  - !include binary_sensors/status.yaml
+
+light:
+  - platform             : binary
+    name                 : "${devicelocation} Light"
+    output               : relay_output
+    id                   : light_output
+
+switch:
+  - !include switches/restart.yaml
+
+output:
+  - platform             : gpio
+    pin                  : GPIO4
+    id                   : relay_output
+  

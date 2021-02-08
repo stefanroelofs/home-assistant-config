@@ -3,4 +3,4 @@ substitutions:
   devicelocation : "Kitchen Counter"
   ip_address     : !secret ip_address_shelly3
 
-<<: !include .shelly_base.yaml
+<<: !include shared/device_shelly_output_toggle.yaml
