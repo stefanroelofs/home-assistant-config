@@ -218,29 +218,29 @@ cards:
       - type: horizontal-stack
         cards:
           - type       : custom:button-card
-            entity     : switch.living_room_activity_tv
+            entity     : switch.roelofs_harmony_hub_tv_kijken
             icon       : mdi:television
             color_type : card
             color      : "#7CBE6E"
           - type       : custom:button-card
-            entity     : switch.living_room_activity_radio
+            entity     : switch.roelofs_harmony_hub_snes
             icon       : mdi:radio
             color_type : card
             color      : "#7CBE6E"
           - type       : custom:button-card
-            entity     : switch.living_room_activity_plex
+            entity     : switch.roelofs_harmony_hub_plex_starten
             icon       : mdi:plex
             color_type : card
             color      : "#7CBE6E"
       - type: horizontal-stack
         cards:
           - type       : custom:button-card
-            entity     : switch.living_room_activity_chromecast
+            entity     : switch.roelofs_harmony_hub_chromecast_netflix
             icon       : mdi:google-chrome
             color_type : card
             color      : "#7CBE6E"
           - type       : custom:button-card
-            entity     : switch.living_room_activity_dvd
+            entity     : switch.roelofs_harmony_hub_een_dvd_kijken
             icon       : mdi:disc-player
             color_type : card
             color      : "#7CBE6E"

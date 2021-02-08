@@ -10,7 +10,7 @@
       for       : "00:08:00"
   condition:
     - condition : state
-      entity_id : switch.living_room_activity_chromecast
+      entity_id : switch.roelofs_harmony_hub_chromecast_netflix
       state     : 'on'
   action:
     - service   : remote.turn_off
