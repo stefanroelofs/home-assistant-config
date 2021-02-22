@@ -109,6 +109,7 @@ binary_sensor:
 # This lightswitch is disabled, there is a big wardrobe in front of it.
 #  - platform   : gpio
 #    name       : "Bedroom 3 Switch"
+#    internal   : true                         # Do not expose switch to HA. Send events instead.
 #    pin:
 #      number   : GPIO0
 #      inverted : True
@@ -118,10 +119,16 @@ binary_sensor:
 #    on_state:
 #      then:
 #        - light.toggle : lightbedroom
+#        - homeassistant.event:
+#            event        : esphome.button_switched
+#            data:
+#              name       : $devicename
+#              location   : $devicelocation
 
 # Laundry room switch
   - platform   : gpio
     name       : "Laundry room Switch"
+    internal   : true                         # Do not expose switch to HA. Send events instead.
     pin:
       number   : GPIO1
       inverted : True
@@ -131,10 +138,16 @@ binary_sensor:
     on_state:
       then:
         - light.toggle : lightlaundry
+        - homeassistant.event:
+            event      : esphome.button_switched
+            data:
+              name     : $devicename
+              location : $devicelocation
 
 # Office switch
   - platform   : gpio
     name       : "${devicelocation} Switch"
+    internal   : true                         # Do not expose switch to HA. Send events instead.
     pin:
       number   : GPIO3
       inverted : True
@@ -161,5 +174,10 @@ binary_sensor:
               - light.turn_on  : lightstudy2
               - delay          : 300ms
               - light.turn_on  : lightstudy3
+        - homeassistant.event:
+            event      : esphome.button_switched
+            data:
+              name     : $devicename
+              location : $devicelocation
 
   - !include shared/binary_sensors/status.yaml

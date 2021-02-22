@@ -34,12 +34,6 @@ binary_sensor.bedroom_1_wallswitch:
 binary_sensor.bedroom_2_wallswitch:
   device_class : ~
 
-binary_sensor.first_floor_landing_switch:
-  device_class : ~
-
-binary_sensor.second_floor_landing_switch:
-  device_class : ~
-
 # Presence sensors
 binary_sensor.anybody_home:
   device_class : presence

@@ -1,14 +1,10 @@
 - alias             : first_floor_landing_wallswitch_light_ceiling
   id                : ae3036b8-0ccf-43e9-ad8c-8bf5be20f251
   trigger:
-    - platform      : state
-      entity_id     : binary_sensor.first_floor_landing_switch
-      from          : 'off'
-      to            : 'on'
-    - platform      : state
-      entity_id     : binary_sensor.first_floor_landing_switch
-      from          : 'on'
-      to            : 'off'
+    - platform      : event
+      event_type    : esphome.button_switched
+      event_data:
+        location    : "First Floor Landing"
   condition:
     - condition    : template
       value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"

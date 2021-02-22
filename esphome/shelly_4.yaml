@@ -3,4 +3,10 @@ substitutions:
   devicelocation : "First Floor Landing"
   ip_address     : !secret ip_address_shelly4
 
-<<: !include shared/device_shelly_output_on.yaml
+globals:
+  - id              : use_output
+    type            : bool
+    restore_value   : true    # output relay should be constantly high.
+    initial_value   : 'true'
+
+<<: !include shared/device_shelly_detached_output.yaml

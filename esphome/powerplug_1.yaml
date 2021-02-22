@@ -5,5 +5,6 @@ substitutions:
   voltage_div       : '940'       # Lower value gives lower voltage readout
   ip_address        : !secret ip_address_powerplug1
   status_led_pin    : GPIO00      # Red led output
+  max_power         : '2000'      # 2300W for 10A
 
 <<: !include shared/device_powerplug.yaml

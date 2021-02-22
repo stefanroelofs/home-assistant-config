@@ -3,4 +3,10 @@ substitutions:
   devicelocation : "Second Floor Landing"
   ip_address     : !secret ip_address_shelly6
 
-<<: !include shared/device_shelly_output_off.yaml
+globals:
+  - id              : use_output
+    type            : bool
+    restore_value   : false   # output relay is not connected to anything.
+    initial_value   : 'false'
+
+<<: !include shared/device_shelly_detached_output.yaml

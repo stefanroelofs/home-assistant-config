@@ -3,4 +3,4 @@ substitutions:
   devicelocation : "Staircase Closet"
   ip_address     : !secret ip_address_shelly5
 
-<<: !include shared/device_shelly_output_toggle.yaml
+<<: !include shared/device_shelly.yaml

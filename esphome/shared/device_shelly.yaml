@@ -1,5 +1,12 @@
-# Shelly 1 device
+# Device: Shelly 1
+# Info: https://www.esphome-devices.com/devices/shelly-1/
+#
 # Output toggles when the switch is operated
+#
+# GPIO Pinout
+# Pin     Function
+# GPIO4   Relay
+# GPIO5   Switch input
 
 esphome:
   name        : $devicename
@@ -19,12 +26,18 @@ binary_sensor:
   - platform             : gpio
     pin                  : GPIO5
     name                 : "${devicelocation} Switch"
+    internal             : true                         # Do not expose switch to HA. Send events instead.
     filters:
       - delayed_on       : 10ms
       - delayed_off      : 10ms
     on_state:
       then:
         - light.toggle   : light_output
+        - homeassistant.event:
+            event        : esphome.button_switched
+            data:
+              name       : $devicename
+              location   : $devicelocation
 
   - !include binary_sensors/status.yaml
 
@@ -33,6 +46,7 @@ light:
     name                 : "${devicelocation} Light"
     output               : relay_output
     id                   : light_output
+    restore_mode         : restore_default_off
 
 switch:
   - !include switches/restart.yaml
