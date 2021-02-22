@@ -1,0 +1,11 @@
+- alias         : bathroom_set_humidity
+  id            : 416097d2-3aed-40be-85f0-e81c19f8c7d8
+  use_blueprint:
+    path: dondochaka/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline.yaml
+    input:
+      humidity_sensor           : sensor.bathroom_tempsensor_humidity
+      reference_humidity        : 60
+      reference_humidity_sensor : sensor.bedroom_master_tempsensor_humidity
+      fan_switch                : input_boolean.bathroom_humidity_high
+      rising_threshold          : 8
+      falling_threshold         : 16

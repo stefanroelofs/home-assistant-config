@@ -3,3 +3,9 @@
   entity_id   : sensor.living_room_tempsensor_temperature
   max_age:
     hours     : 24
+
+- platform    : statistics
+  name        : bathroom_humidity_stats
+  entity_id   : sensor.bathroom_tempsensor_humidity
+  max_age:
+    hours     : 24

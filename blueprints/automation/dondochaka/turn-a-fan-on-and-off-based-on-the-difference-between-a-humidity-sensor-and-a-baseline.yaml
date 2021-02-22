@@ -1,0 +1,77 @@
+blueprint:
+  name: Humidity Management
+  description: Turn a fan on and off based on the difference between a humidity sensor and a baseline
+  domain: automation
+  input:
+    humidity_sensor:
+      name: Humidity Sensor
+      description: A sensor that measures the humidity of the area
+      selector:
+        entity:
+          domain: sensor
+    reference_humidity:
+      name: Reference Humidity
+      description: A percentage point value that indicates the baseline humidity if
+        there is no reference sensor available
+      default: 60
+    reference_humidity_sensor:
+      name: Reference Humidity Sensor
+      description: A sensor that indicates the baseline humidity of the location
+      selector:
+        entity:
+          domain: sensor
+      default: []
+    fan_switch:
+      name: Fan Switch
+      description: A switch that turns the fan on and off
+      selector:
+        entity:
+          domain: input_boolean
+    rising_threshold:
+      name: Rising Threshold
+      description: How many percentage points above the reference humidity the sensor
+        can rise before the fan is turned on
+      selector:
+        number:
+          min: 0.0
+          max: 100.0
+          mode: slider
+          step: 1.0
+      default: 8
+    falling_threshold:
+      name: Falling Threshold
+      description: How many percentage points above the reference humidity the sensor
+        must fall to before the fan is turned off
+      selector:
+        number:
+          min: 0.0
+          max: 100.0
+          mode: slider
+          step: 1.0
+      default: 3
+  source_url: https://community.home-assistant.io/t/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline/255999
+trigger:
+- entity_id: !input 'humidity_sensor'
+  platform: state
+- entity_id: !input 'reference_humidity_sensor'
+  platform: state
+condition:
+- condition: template
+  value_template: '{{ mode != switch_state }}'
+action:
+- service: input_boolean.turn_{{mode}}
+  entity_id: !input 'fan_switch'
+variables:
+  reference_humidity: !input 'reference_humidity'
+  humidity_sensor: !input 'humidity_sensor'
+  reference_humidity_sensor: !input 'reference_humidity_sensor'
+  fan_switch: !input 'fan_switch'
+  switch_state: '{{ states(fan_switch) }}'
+  rising_threshold: !input 'rising_threshold'
+  falling_threshold: !input 'falling_threshold'
+  difference: '{{ states(humidity_sensor)|float - (states(reference_humidity_sensor)|float
+    or reference_humidity|float) }}'
+  mode: '{% if switch_state == ''off'' and difference|float > rising_threshold|float
+    %}on{% elif switch_state == ''on'' and difference|float > falling_threshold|float
+    %}on{% else %}off{% endif %}'
+mode: single

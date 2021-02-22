@@ -1,0 +1,7 @@
+- platform    : min_max
+  name        : bathroom_humidity_mean
+  type        : mean
+  round_digits: 2
+  entity_ids:
+    - sensor.bathroom_tempsensor_humidity
+    - sensor.bedroom_master_tempsensor_humidity
