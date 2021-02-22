@@ -1,4 +1,4 @@
-- alias                     : living_room_sideboard_switch
+- alias                     : kitchen_sideboard_switch
   id                        : 9a7ded06-d39f-4747-b972-d7066b9aef35
   trigger:
     - platform              : event
@@ -8,4 +8,4 @@
         command             : 'single'
   action:
     - service               : light.toggle
-      entity_id             : light.living_room_sideboard
+      entity_id             : light.kitchen_sideboard

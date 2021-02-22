@@ -10,5 +10,3 @@ entities:
     state     : 'off'
   light.living_room_ceiling_middle:
     state     : 'off'
-  light.living_room_sideboard:
-    state     : 'off'

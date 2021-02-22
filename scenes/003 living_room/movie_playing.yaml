@@ -16,5 +16,3 @@ entities:
     state     : 'on'
     brightness: 35
     color_temp: 261
-  light.living_room_sideboard:
-    state     : 'off'

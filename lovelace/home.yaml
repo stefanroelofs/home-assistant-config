@@ -47,7 +47,7 @@ cards:
             entity : light.living_room_ceiling_middle
           - type   : custom:slider-entity-row
             entity : light.living_room_ceiling_back
-          - entity : light.living_room_sideboard
+          - entity : light.kitchen_sideboard
           - entity : light.staircase_closet_light
 
       - type       : custom:fold-entity-row

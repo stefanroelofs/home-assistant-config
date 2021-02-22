@@ -2,10 +2,6 @@ light.living_room_lights:
   friendly_name : "Woonkamer"
   icon          : mdi:sofa
 
-light.living_room_sideboard:
-  friendly_name : "Servieskast"
-  icon          : mdi:food-variant
-
 light.dining_area_ceiling_group:
   icon          : mdi:silverware
 

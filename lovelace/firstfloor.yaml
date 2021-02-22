@@ -142,7 +142,7 @@
               width  : 2.5%
 
           - type     : image
-            entity   : light.living_room_sideboard
+            entity   : light.kitchen_sideboard
             tap_action:
               action : toggle
             hold_action:
