@@ -1,5 +1,7 @@
 - alias                     : bedroom_master_6gang_press_dim_up   # MID RIGHT
   id                        : de5b1450-48c0-41fd-9760-6e7301eee1f4
+  mode                      : restart
+  max_exceeded              : silent
   trigger:
     - platform              : event
       event_type            : zha_event
@@ -14,5 +16,5 @@
     - service               : light.turn_on
       data:
         entity_id           : light.bedroom_master_ceiling
-        transition          : 0.5
-        brightness_step_pct : 10
+        transition          : 1
+        brightness_step_pct : 25
