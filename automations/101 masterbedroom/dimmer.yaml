@@ -1,0 +1,11 @@
+- alias                     : bedroom_master_dimmer
+  id                        : a47952f0-c916-45d6-857c-b01b2f901947
+  use_blueprint:
+    path: WarriorRocker/hue_dimmer_switch.yaml
+    input:
+      remote           : 7ebd2ac080f3447ba5fcb3112cb8b61d
+      light:
+        entity_id      : light.bedroom_master_ceiling
+      force_brightness : False
+      brightness       : 255
+      min_brightness   : 1
