@@ -1,0 +1,109 @@
+- alias                     : bedroom_master_6_gang_remote
+  id                        : 0a2927be-2460-4caf-8adc-4a92667bfe8a
+  mode                      : restart
+  max_exceeded              : silent
+  trigger:
+    - platform              : event
+      event_type            : zha_event
+      event_data:
+        device_id           : d16caab4c9f94f688fb24f14203fe04c
+  action:
+    - variables:
+        command             : '{{ trigger.event.data.command }}'
+        cluster_id          : '{{ trigger.event.data.cluster_id }}'
+        endpoint_id         : '{{ trigger.event.data.endpoint_id }}'
+        args                : '{{ trigger.event.data.args }}'
+        cur_brightness      : '{{ state_attr(''light.bedroom_master_ceiling'', ''brightness'') }}'
+    - choose:
+
+      # TOP LEFT
+      - conditions:
+#        - '{{ command == ''1_single'' }}'
+        - '{{ cluster_id == 18 }}'
+        - '{{ endpoint_id == 1 }}'
+        sequence:
+          - service         : light.turn_off
+            data:
+              entity_id     : light.bedroom_master_ceiling
+              transition    : 1
+
+      # TOP RIGHT
+      - conditions:
+#        - '{{ command == ''2_single'' }}'  # Also catch double presses
+        - '{{ cluster_id == 18 }}'
+        - '{{ endpoint_id == 2 }}'
+        sequence:
+          - service         : light.turn_on
+            data:
+              entity_id     : light.bedroom_master_ceiling
+              transition    : 1
+#              profile       : relax
+
+      # MID LEFT
+      - conditions:
+#        - '{{ command == ''3_single'' }}'
+        - '{{ cluster_id == 18 }}'
+        - '{{ endpoint_id == 3 }}'
+        sequence:
+          - choose:
+            - conditions: '{{ (cur_brightness - 25) >= 1 }}'
+              sequence:
+              - service     : light.turn_on
+                data:
+                  entity_id : light.bedroom_master_ceiling
+                  transition: 1
+                  brightness_step : -25
+            default:
+            - service       : light.turn_on
+              data:
+                entity_id   : light.bedroom_master_ceiling
+                transition  : 1
+                brightness  : 1
+
+      # MID RIGHT
+      - conditions:
+#        - '{{ command == ''4_single'' }}'
+        - '{{ cluster_id == 18 }}'
+        - '{{ endpoint_id == 4 }}'
+        sequence:
+          - service         : light.turn_on
+            data:
+              entity_id     : light.bedroom_master_ceiling
+              transition    : 1
+              brightness_step : 25
+
+      # BOTTOM LEFT / RIGHT
+      - conditions:
+#        - '{{ command == ''5_single'' }}'
+#        - '{{ command == ''6_single'' }}'
+        - '{{ cluster_id == 18 }}'
+        - condition        : or
+          conditions:
+             - '{{ endpoint_id == 5 }}'
+             - '{{ endpoint_id == 6 }}'
+        sequence:
+          - service         : light.turn_off
+            data:
+              entity_id     : all
+              transition    : 1
+          - service         : switch.turn_off
+            entity_id:
+              - switch.wake_up_vaste_pc
+              - switch.living_room_entertainment_outlet_relay
+              - switch.living_room_charging_station_outlet_relay
+          - service         : remote.turn_off
+            entity_id       : remote.roelofs_harmony_hub
+
+# Complete zha_event Data contents:
+# "device_ieee": "04:cf:8c:df:3c:75:b3:fb",
+# "unique_id": "04:cf:8c:df:3c:75:b3:fb:1:0x0012",
+# "device_id": "d16caab4c9f94f688fb24f14203fe04c",
+# "endpoint_id": 1,
+# "cluster_id": 18,
+# "command": "1_single",
+# "args": {
+#     "button": 1,
+#     "press_type": "single",
+#     "attr_id": 85,
+#     "value": 1
+# }
