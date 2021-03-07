@@ -8,6 +8,7 @@
         include_domains:
           - light
           - climate
+          - fan
 
         exclude_entities:
           - light.living_room_lights
@@ -68,6 +69,9 @@
           aliases:
             - woonkamer eettafel
             - eettafel
+            - eettafel lamp
+            - lamp boven eettafel
+            - lampen boven eettafel
             - tafel
             - woonkamer tafel
             - eethoek
@@ -85,7 +89,9 @@
           room: Woonkamer
           aliases:
             - Spotje achterdeur
+            - Spotje bij achterdeur
             - Spot achterdeur
+            - Spot bij achterdeur
             - Plafond bij achterdeur
 
         light.living_room_ceiling_middle:
@@ -94,6 +100,7 @@
           aliases:
             - Spotje woonkamer
             - Spot woonkamer
+            - Spotje bij trapkast
             - Spotje plafond
             - Plafond
 
@@ -125,6 +132,8 @@
           aliases:
             - Toiletverlichting
             - WC lamp
+            - Lamp op WC
+            - Lamp op toilet
 
         light.staircase_closet_light:
           name: Trapkast
@@ -135,6 +144,7 @@
           room: Hal
           aliases:
             - Lamp bij voordeur
+            - Lamp in de hal
 
         light.kitchen_ceiling_group:
           name: Keukenplafond
@@ -182,14 +192,21 @@
           name: Olivia's kamer
           room: Slaapkamer 1
           aliases:
+            - Kind nummer 1
             - Olivia's slaapkamer
+            - Olivia's kamer
+            - Slaapkamer van Olivia
+            - Kamer van Olivia
 
         light.bedroom_2_ceiling:
-          name: Babykamer
+          name: Matthijs' kamer
           room: Slaapkamer 2
           aliases:
             - Babykamer
             - Kind nummer 3
+            - Matthijs' slaapkamer
+            - Slaapkamer van Matthijs
+            - Kamer van Matthijs
 
 
         # 2e verdieping
@@ -203,7 +220,11 @@
           name: Damian's kamer
           room: Slaapkamer 3
           aliases:
+            - Kind nummer 1
             - Damian's slaapkamer
+            - Damian's kamer
+            - Slaapkamer van Damian
+            - Kamer van Damian
 
         light.home_office:
           name: Thuiskantoor
@@ -219,6 +240,15 @@
           room: Waskamer
           aliases:
             - Wasruimte
+
+        fan.mech_vent_fan:
+          name: Mechanische ventilatie
+          room: Waskamer
+          aliases:
+            - Afzuiging
+            - MV
+            - Buva
+
 
 #        # Buiten
 #        light.wled1:
