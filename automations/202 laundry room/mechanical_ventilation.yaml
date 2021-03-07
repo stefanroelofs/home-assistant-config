@@ -9,8 +9,15 @@
       event_type: automation_reloaded
     - platform  : state
       entity_id:
-        - binary_sensor.bathroom_hygrostat
         - binary_sensor.anybody_home
+    - platform  : state
+      entity_id : binary_sensor.bathroom_hygrostat
+      from      : 'off'
+      to        : 'on'
+    - platform  : state
+      entity_id : binary_sensor.bathroom_hygrostat
+      from      : 'on'
+      to        : 'off'
     - platform  : time
       at:
         - "00:00:00"
