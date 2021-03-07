@@ -1,0 +1,9 @@
+- alias               : bedroom_2_dimmer
+  id                  : ce5766f8-f5c7-4f9b-8c54-19879046ed68
+  use_blueprint:
+    path              : stefanroelofs/hue_dimmer_switchV2.yaml
+    input:
+      on_button_mode  : fixed brightness when on
+      remote          : bf017ebac6264fe2a48f810823d93c2c
+      light           : light.bedroom_2_ceiling
+      min_brightness  : 1

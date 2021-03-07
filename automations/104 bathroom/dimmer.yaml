@@ -1,11 +1,9 @@
-- alias                     : bathroom_dimmer
-  id                        : 7b6b2dcd-8c6f-40a4-b4b3-20be5cd3824a
+- alias               : bathroom_dimmer
+  id                  : 7b6b2dcd-8c6f-40a4-b4b3-20be5cd3824a
   use_blueprint:
-    path: WarriorRocker/hue_dimmer_switch.yaml
+    path              : stefanroelofs/hue_dimmer_switchV2.yaml
     input:
-      remote           : e8a538a1dff742198df44c80db74a023
-      light:
-        area_id        : 8bf0272dd79b41948f7a0df67b74b590
-      force_brightness : False
-      brightness       : 255
-      min_brightness   : 20
+      on_button_mode  : fixed brightness when on
+      remote          : e8a538a1dff742198df44c80db74a023
+      light           : light.bathroom_lights
+      min_brightness  : 20

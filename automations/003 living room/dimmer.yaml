@@ -1,11 +1,9 @@
-- alias                     : living_room_dimmer
-  id                        : 47f5b64d-9021-4ccf-84c0-5f51f26cf134
+- alias               : living_room_dimmer
+  id                  : 47f5b64d-9021-4ccf-84c0-5f51f26cf134
   use_blueprint:
-    path: WarriorRocker/hue_dimmer_switch.yaml
+    path              : stefanroelofs/hue_dimmer_switchV2.yaml
     input:
-      remote           : 69713b4fc2c44a828edd99fab9075a80
-      light:
-        entity_id      : light.living_room_lights
-      force_brightness : True
-      brightness       : 144
-      min_brightness   : 20
+      on_button_mode  : fixed brightness when on
+      remote          : 69713b4fc2c44a828edd99fab9075a80
+      light           : light.living_room_lights
+      min_brightness  : 1
