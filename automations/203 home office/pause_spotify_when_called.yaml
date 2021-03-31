@@ -23,6 +23,6 @@
         entity_id: sensor.stefan_phone_app_telefoon_status
         to       : idle
       timeout:
-        seconds  : 300
+        minutes  : 30
     - service    : media_player.media_play
       entity_id  : media_player.spotify_stefanroelofs
