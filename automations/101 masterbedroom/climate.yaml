@@ -17,8 +17,7 @@
         - "22:00:00"
         - "23:00:00"
   condition:
-    - condition : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
     - choose:
         # Turn radiator off

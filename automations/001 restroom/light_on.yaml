@@ -8,8 +8,7 @@
       entity_id    : light.restroom_light                      # Needed because its possible to start the light by hand without motion sensor detecting motion.
       to           : 'on'
   condition:
-    - condition    : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
     - condition    : state
       entity_id    : input_boolean.cleaning_mode
       state        : 'off'

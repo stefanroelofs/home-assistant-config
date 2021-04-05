@@ -11,8 +11,7 @@
       from      : 'on'
       to        : 'off'
   condition:
-    - condition    : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
     - service   : light.toggle
       data:

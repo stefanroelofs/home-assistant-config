@@ -7,13 +7,7 @@
     platform    : state
     entity_id   : sensor.version_latest
   condition:
-    - condition : template
-      value_template: >-
-        {{
-          states('sensor.version_latest')
-          !=
-          states('sensor.version_current')
-        }}
+    - "{{ states('sensor.version_latest') != states('sensor.version_current') }}"
   action:
     - service   : notify.stefan
       data:

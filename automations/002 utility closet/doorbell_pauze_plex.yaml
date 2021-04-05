@@ -11,8 +11,7 @@
     - condition : state
       entity_id : remote.roelofs_harmony_hub
       state     : 'on'
-    - condition : template
-      value_template: "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Plex starten ') }}"
+    - "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Plex starten ') }}"
   action:
     - service   : remote.send_command
       data:
