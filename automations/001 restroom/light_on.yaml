@@ -2,18 +2,21 @@
   id               : 7c39b021-8e64-4039-ae42-55537f15eb2d
   mode             : queued
   trigger:
+    - platform     : homeassistant
+      event        : start
+    - platform     : event
+      event_type   : automation_reloaded
     - platform     : state
       entity_id    : binary_sensor.restroom_motionsensor_zone  # Use zone instead of occupancy. Occupancy has a built in 8 minute delay before becoming Clear again.
-    - platform     : state
-      entity_id    : light.restroom_light                      # Needed because its possible to start the light by hand without motion sensor detecting motion.
-      to           : 'on'
   condition:
     - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
     - condition    : state
-      entity_id    : input_boolean.cleaning_mode
-      state        : 'off'
+      entity_id    : light.restroom_light
+      state        : "off"
+    - condition    : state
+      entity_id    : binary_sensor.restroom_motionsensor_zone
+      state        : "on"
   action:
     - service      : light.turn_on
-      entity_id    : light.restroom_light
-    - service      : timer.start     # this restarts the timer if it is already running
-      entity_id    : timer.restroom_light_timeout
+      target:
+        entity_id  : light.restroom_light

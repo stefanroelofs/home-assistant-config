@@ -80,7 +80,6 @@ cards:
         entities:
           - light.hallway_light
           - light.restroom_light
-          - timer.restroom_light_timeout
 
 
 # ----------------------------------------------------------------------

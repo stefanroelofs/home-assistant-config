@@ -1,4 +1,0 @@
-restroom_light_timeout:
-  duration : '00:04:00'
-
-# Restroom light turns off after 4 minutes without motion
