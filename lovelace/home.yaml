@@ -165,15 +165,6 @@ cards:
       - switch.wake_up_vaste_pc
       - remote.roelofs_harmony_hub
 
-  - type  : entities
-    title : Circadian Lighting
-    show_header_toggle: true
-    entities:
-      - entity: switch.circadian_lighting_landings
-      - entity: switch.circadian_lighting_bathroom
-      - entity: switch.circadian_lighting_bedroom_master
-      - entity: switch.circadian_lighting_ground_floor
-
   - type : custom:vertical-stack-in-card
     title: Afvalkalender
     cards:

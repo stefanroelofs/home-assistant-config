@@ -1,6 +1,0 @@
-# Never enable the switch for the landings! Landing lights are turned on too short to have any effect.
-- platform : circadian_lighting
-  name     : landings
-  lights_rgb:
-    - light.first_floor_landing_ceiling
-    - light.second_floor_landing_ceiling
