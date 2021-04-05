@@ -6,27 +6,7 @@
       event_data:
         location    : "First Floor Landing"
   condition:
-    - condition    : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
-    - choose:
-        - conditions:
-          - condition         : state
-            entity_id         : binary_sensor.night
-            state             : 'off'
-          sequence:
-            - service         : light.toggle
-              data:
-                entity_id     : light.first_floor_landing_ceiling
-                kelvin        : "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
-                brightness_pct: "{{ state_attr('switch.circadian_lighting_landings', 'brightness') | int }}"
-                transition    : 2
-      default:
-        - service             : light.toggle
-          data:
-            entity_id         : light.first_floor_landing_ceiling
-            brightness        : 15             # Integer between 0 and 255
-            xy_color:
-              - 0.675
-              - 0.322
-            transition        : 0.5
+    - service       : light.toggle
+      entity_id     : light.first_floor_landing_ceiling

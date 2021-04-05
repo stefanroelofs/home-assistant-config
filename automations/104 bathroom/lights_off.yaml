@@ -7,7 +7,6 @@
         entity_id  : timer.bathroom_light_timeout
   action:
     - choose:
-
       - conditions:
           - condition  : state
             entity_id  : binary_sensor.bathroom_motionsensor_occupancy

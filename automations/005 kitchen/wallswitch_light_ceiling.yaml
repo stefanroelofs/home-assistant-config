@@ -1,17 +1,11 @@
-- alias         : kitchen_wallswitch_light_ceiling
-  id            : 809340a3-3e1a-49b7-9bea-7ead121fcd1c
+- alias             : kitchen_wallswitch_light_ceiling
+  id                : 809340a3-3e1a-49b7-9bea-7ead121fcd1c
+  mode              : queued
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.kitchen_wallswitch
-      from      : 'off'
-      to        : 'on'
-    - platform  : state
-      entity_id : binary_sensor.kitchen_wallswitch
-      from      : 'on'
-      to        : 'off'
+    - platform      : state
+      entity_id     : binary_sensor.kitchen_wallswitch
   condition:
-    - condition    : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
-    - service   : light.toggle
-      entity_id : light.kitchen_ceiling_group
+    - service       : light.toggle
+      entity_id     : light.kitchen_ceiling_group

@@ -1,0 +1,29 @@
+- alias         : general_adaptive_lightning_sleep_mode_enable
+  id            : 3c58521e-5074-432a-87b3-e2d6a75525e9
+  description   : "Adaptive lighting: toggle 'sleep mode'"
+  trigger:
+    - platform  : state
+      entity_id : binary_sensor.night
+    - platform  : homeassistant
+      event     : start  # in case the states aren't properly restored
+    - platform  : event
+      event_type: automation_reloaded # in case automations reload
+  variables:
+    entities:
+      - switch.adaptive_lighting_sleep_mode_dining_area_ceiling
+      - switch.adaptive_lighting_sleep_mode_landings
+      - switch.adaptive_lighting_sleep_mode_bathroom
+  action:
+    - choose:
+      - conditions:
+          - condition  : state
+            entity_id  : binary_sensor.night
+            state      : 'on'
+        sequence:
+          - service    : switch.turn_on
+            target:
+              entity_id: "{{ entities }}"
+      default:
+        - service      : switch.turn_off
+          target:
+            entity_id  : "{{ entities }}"

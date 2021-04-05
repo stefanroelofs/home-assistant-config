@@ -1,0 +1,29 @@
+- alias         : general_adaptive_lightning_enable
+  id            : 6ad45291-70ad-4eee-b7f7-f7ef87261dea
+  description   : "Enable Adaptive lighting"
+  trigger:
+    - platform  : state
+      entity_id : input_boolean.cleaning_mode
+    - platform  : homeassistant
+      event     : start  # in case the states aren't properly restored
+    - platform  : event
+      event_type: automation_reloaded # in case automations reload
+  variables:
+    entities:
+      - switch.adaptive_lighting_dining_area_ceiling
+      - switch.adaptive_lighting_landings
+      - switch.adaptive_lighting_bathroom
+  action:
+    - choose:
+      - conditions:
+          - condition  : state
+            entity_id  : input_boolean.cleaning_mode
+            state      : 'on'
+        sequence:
+          - service    : switch.turn_off
+            target:
+              entity_id: "{{ entities }}"
+      default:
+        - service      : switch.turn_on
+          target:
+            entity_id  : "{{ entities }}"

@@ -1,21 +1,21 @@
-- alias            : first_floor_landing_ceiling_on
-  id               : 997e3172-eaae-4a75-98ed-bca25e751faa
+- alias            : bathroom_lights_on
+  id               : 944d1061-0948-4f4a-a405-d1777711fc5f
   mode             : queued
   trigger:
     - platform     : state
-      entity_id    : binary_sensor.first_floor_landing_motionsensor_occupancy
+      entity_id    : binary_sensor.bathroom_motionsensor_occupancy
 #    - platform     : state          # Start timer when manually turned on without detecting motion
-#      entity_id    : light.first_floor_landing_ceiling
+#      entity_id    : light.bathroom_lights
 #      to           : 'on'
   condition:
     - condition    : numeric_state  # Only start light when it's dark enough
-      entity_id    : sensor.first_floor_landing_motionsensor_illuminance
+      entity_id    : sensor.bathroom_motionsensor_illuminance
       below        : 35             # Lux
     - condition    : state
       entity_id    : input_boolean.cleaning_mode
       state        : 'off'
   action:
     - service      : light.turn_on
-      entity_id    : light.first_floor_landing_ceiling
+      entity_id    : light.bathroom_lights
     - service      : timer.start    # this restarts the timer if it is already running
-      entity_id    : timer.first_floor_landing_light_timeout
+      entity_id    : timer.bathroom_light_timeout

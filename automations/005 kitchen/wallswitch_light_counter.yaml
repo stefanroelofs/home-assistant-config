@@ -1,21 +1,28 @@
-- alias         : kitchen_wallswitch_light_counter
-  id            : f958d195-66a7-409d-b278-0d0a4c001882
+- alias             : kitchen_wallswitch_light_counter
+  id                : f958d195-66a7-409d-b278-0d0a4c001882
+  mode              : single
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.kitchen_wallswitch
-      from      : 'off'
-      to        : 'on'
-    - platform  : state
-      entity_id : binary_sensor.kitchen_wallswitch
-      from      : 'on'
-      to        : 'off'
-  condition:
-    - condition     : template
-      value_template: "{{ states.light.kitchen_ceiling_group.state == states.light.kitchen_counter_light.state }}"
-    - condition     : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - platform      : state
+      entity_id     : light.kitchen_ceiling_group
+    - platform      : homeassistant
+      event         : start
+    - platform      : event
+      event_type    : automation_reloaded
   action:
-    - service   : light.toggle
-      entity_id : light.kitchen_counter_light
-
-# Only switch the kitchen counter light when it has the same state as the ceiling light.
+    - choose:
+        - conditions:
+            - condition  : state
+              entity_id  : light.kitchen_ceiling_group
+              state      : "on"
+            - condition  : numeric_state
+              entity_id  : light.kitchen_ceiling_group
+              attribute  : brightness
+              above      : 120
+          sequence:
+            - service    : light.turn_on
+              target:
+                entity_id: light.kitchen_counter_light
+      default:
+        - service        : light.turn_off
+          target:
+            entity_id    : light.kitchen_counter_light
