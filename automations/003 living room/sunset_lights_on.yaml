@@ -19,6 +19,6 @@
         entity_id:
           - scene.living_room_comfort
           - scene.dining_area_comfort
-        transition: 2
+        transition: 30
 #    - service   : switch.turn_on
 #      entity_id : switch.xiaomi_switch_2   # christmas tree
