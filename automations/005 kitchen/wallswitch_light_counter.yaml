@@ -2,12 +2,17 @@
   id                : f958d195-66a7-409d-b278-0d0a4c001882
   mode              : single
   trigger:
-    - platform      : state
-      entity_id     : light.kitchen_ceiling_group
     - platform      : homeassistant
       event         : start
+
     - platform      : event
       event_type    : automation_reloaded
+
+    - platform      : state
+      entity_id     : light.kitchen_ceiling_group
+      for           : "00:00:02"
+      # State has to be stable for at least 2 seconds, to prevent flashing the lights (this can happen when adaptive_lightning changes the brightness after turning the lights on)
+
   action:
     - choose:
         - conditions:
@@ -17,7 +22,7 @@
             - condition  : numeric_state
               entity_id  : light.kitchen_ceiling_group
               attribute  : brightness
-              above      : 120
+              above      : 120  # about 47 % brightness
           sequence:
             - service    : light.turn_on
               target:
