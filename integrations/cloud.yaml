@@ -198,7 +198,7 @@
             - Slaapkamer van Olivia
             - Kamer van Olivia
 
-        light.bedroom_2_ceiling:
+        light.bedroom_2_lights:
           name: Matthijs' kamer
           room: Slaapkamer 2
           aliases:

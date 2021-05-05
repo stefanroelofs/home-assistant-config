@@ -29,6 +29,11 @@
 #    - light.bedroom_1_table
 
 - platform : group
+  name     : bedroom_2_lights
+  entities:
+    - light.bedroom_2_ceiling
+
+- platform : group
   name     : bedroom_3_lights
   entities:
     - light.bedroom_3_ceiling

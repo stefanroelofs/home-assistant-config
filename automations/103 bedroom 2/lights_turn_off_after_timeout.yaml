@@ -3,25 +3,25 @@
   initial_state : false
   trigger:
     - platform  : state
-      entity_id : light.bedroom_2_ceiling
-      to        : 'on'
+      entity_id : light.bedroom_2_lights
+      to        : "on"
       for:
         minutes : 15
     - platform  : state
       entity_id : binary_sensor.kinderbedtijd
-      to        : 'on'
+      to        : "on"
   condition:
     - condition : state
-      entity_id : light.bedroom_2_ceiling
-      state     : 'on'
+      entity_id : light.bedroom_2_lights
+      state     : "on"
       for:
         minutes : 15
     - condition : state
       entity_id : binary_sensor.kinderbedtijd
-      state     : 'on'
+      state     : "on"
     - condition : state
       entity_id : input_boolean.cleaning_mode
-      state     : 'off'
+      state     : "off"
   action:
     - service   : light.turn_off
-      entity_id : light.bedroom_2_ceiling
+      entity_id : light.bedroom_2_lights

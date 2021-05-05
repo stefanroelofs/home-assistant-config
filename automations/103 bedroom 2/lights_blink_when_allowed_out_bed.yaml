@@ -11,6 +11,6 @@
   action:
     - service     : light.turn_on
       data:
-        entity_id : light.bedroom_2_ceiling
+        entity_id : light.bedroom_2_lights
         brightness: 255
         flash     : long
