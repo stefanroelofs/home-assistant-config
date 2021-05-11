@@ -32,7 +32,8 @@
             state       : 'off' # nobody is home
         sequence:
           - service     : fan.turn_off
-            entity_id   : fan.mech_vent_fan
+            target:
+              entity_id : fan.mech_vent_fan
 
       # Set fan to High when someone is showering, but only during the daytime.
       - conditions:
@@ -44,11 +45,10 @@
             before      : "00:00:00"
         sequence:
           - service     : fan.turn_on
-            entity_id   : fan.mech_vent_fan
-          - service     : fan.set_speed
-            data:
+            target:
               entity_id : fan.mech_vent_fan
-              speed     : high
+            data:
+              percentage: 80 # %
 
       # Set fan to medium at night. Everybody is breathing in their beds.
       - conditions:
@@ -57,17 +57,15 @@
             before      : "08:00:00"
         sequence:
           - service     : fan.turn_on
-            entity_id   : fan.mech_vent_fan
-          - service     : fan.set_speed
-            data:
+            target:
               entity_id : fan.mech_vent_fan
-              speed     : medium
+            data:
+              percentage: 45 # %
   
     # Set fan to low during the day
     default:
       - service         : fan.turn_on
-        entity_id       : fan.mech_vent_fan
-      - service         : fan.set_speed
-        data:
+        target:
           entity_id     : fan.mech_vent_fan
-          speed         : low
+        data:
+          percentage    : 25 # %
