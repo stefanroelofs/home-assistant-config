@@ -1,31 +1,33 @@
-- alias         : living_room_ceiling_back_backdoor
-  id            : 1ffed76c-0e3a-40f6-a02f-4e597e296b89
+- alias             : living_room_ceiling_back_backdoor
+  id                : 1ffed76c-0e3a-40f6-a02f-4e597e296b89
+  mode              : single
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.living_room_doorsensor
+    - platform      : state   # trigger when door opens
+      entity_id     : binary_sensor.living_room_doorsensor
+      from          : "off"
+      to            : "on"
   condition:
-    - condition : state
-      entity_id : binary_sensor.darkness
-      state     : 'on'
+    - condition     : state   # only when it's night
+      entity_id     : binary_sensor.darkness
+      state         : "on"
   action:
-    - choose:
-        # Door open
-        - conditions:
-          - condition       : state
-            entity_id       : binary_sensor.living_room_doorsensor
-            state           : 'on'
-          sequence:
-          - service         : scene.create
-            data:
-              scene_id      : living_room_ceiling_back_before
-              snapshot_entities:
-              - light.living_room_ceiling_back
-          - service         : light.turn_on
-            data:
-              entity_id     : light.living_room_ceiling_back
-              brightness    : 255  # max brightness
-
-      # Default: Door closed
-      default:
-        - service           : scene.turn_on
-          entity_id         : scene.living_room_ceiling_back_before
+    - service       : scene.create  # Save current state of light
+      data:
+        scene_id    : living_room_ceiling_back_before
+        snapshot_entities:
+        - light.living_room_ceiling_back
+    - service       : light.turn_on # Turn light on with full brightness
+      target:
+        entity_id   : light.living_room_ceiling_back
+      data:
+        brightness  : 255
+    - wait_for_trigger:             # Wait for door to close again
+        - platform  : state
+          entity_id : binary_sensor.living_room_doorsensor
+          from      : "on"
+          to        : "off"
+          for       : 5
+      timeout       : "00:15:00"    # Door has been open for too long, don't change lights anymore.
+      continue_on_timeout: false
+    - service       : scene.turn_on # Set previous state of light back
+      entity_id     : scene.living_room_ceiling_back_before
