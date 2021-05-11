@@ -5,8 +5,7 @@
       event_type    : esphome.button_switched
       event_data:
         location    : "First Floor Landing"
-  condition:
-    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
     - service       : light.toggle
-      entity_id     : light.first_floor_landing_ceiling
+      target:
+        entity_id   : light.first_floor_landing_ceiling
