@@ -1,0 +1,12 @@
+- alias               : restroom_light
+  id                  : 1a05cfe2-528e-49ed-85dd-8f473f87de9c
+  description         : ''
+  use_blueprint:
+    path              : stefanroelofs/motion_lightV2.yaml
+    input:
+      motion_entity   : binary_sensor.restroom_motionsensor_zone
+      light_entity    : light.restroom_light
+      no_motion_delay : 60
+      inhibit_entity  : input_boolean.cleaning_mode
+      inhibit_entity_state: false
+      transition_to_off: 0

@@ -1,0 +1,14 @@
+- alias               : bathroom_lights
+  id                  : 12e2e07b-7ccb-43b3-b70f-69c6dbdacaf4
+  description         : ''
+  use_blueprint:
+    path              : stefanroelofs/motion_lightV2.yaml
+    input:
+      motion_entity   : binary_sensor.bathroom_motionsensor_occupancy
+      light_entity    : light.bathroom_lights
+      no_motion_delay : 180
+      inhibit_entity  : binary_sensor.bathroom_inhibit_lights
+      inhibit_entity_state: false
+      lux_entity      : sensor.bathroom_motionsensor_illuminance
+      lux_threshold   : 35
+      transition_to_off: 5

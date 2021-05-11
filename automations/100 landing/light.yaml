@@ -1,0 +1,14 @@
+- alias               : first_floor_landing_light
+  id                  : cf97352c-1699-4076-b434-dbd0faa5b06e
+  description         : ''
+  use_blueprint:
+    path              : stefanroelofs/motion_lightV2.yaml
+    input:
+      motion_entity   : binary_sensor.first_floor_landing_motionsensor_occupancy
+      light_entity    : light.first_floor_landing_ceiling
+      no_motion_delay : 120
+      inhibit_entity  : input_boolean.cleaning_mode
+      inhibit_entity_state: false
+      lux_entity      : sensor.first_floor_landing_motionsensor_illuminance
+      lux_threshold   : 35
+      transition_to_off: 5

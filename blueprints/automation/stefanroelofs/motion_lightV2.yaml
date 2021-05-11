@@ -1,0 +1,136 @@
+blueprint:
+  name                 : Motion-activated Light V2
+  description          : Turn on a light when motion is detected.
+  domain               : automation
+
+  input:
+    motion_entity:
+      name             : Motion Sensor
+      description      : A sensor that detects occupancy
+      selector:
+        entity:
+          domain       : binary_sensor
+          device_class : occupancy
+    light_entity:
+      name             : Light target
+      description      : The light entity to switch on / off
+      selector:
+        entity:
+          domain       : light
+    no_motion_delay:
+      name             : Wait time
+      description      : Time to leave the light on after last motion is detected.
+      default          : 120
+      selector:
+        number:
+          min          : 0
+          max          : 3600
+          unit_of_measurement: seconds
+    inhibit_entity:
+      name             : Inhibit entity (Optional)
+      description      : Inhibit this automation if this entity is in a desired state (see next input)
+      default:
+      selector:
+        entity:
+    inhibit_entity_state:
+      name             : Inhibit entity desired state (Optional)
+      description      : Inhibit this automation when entity has this state
+      default          : false
+      selector:
+        boolean:
+    lux_entity:
+      name             : Lux sensor (Optional)
+      description      : Only turn light on when illuminance is above a threshold
+      default:
+      selector:
+        entity:
+          domain       : sensor
+          device_class : illuminance
+    lux_threshold:
+      name             : Lux threshold (Optional)
+      description      : Illuminance must be above this level to turn the light on.
+      default          : 35
+      selector:
+        number:
+          min          : 0
+          max          : 6000
+          unit_of_measurement: lx
+    transition_to_off:
+      name             : Transition to off
+      description      : Time to transition the light to off state
+      default          : 5
+      selector:
+        number:
+          min          : 0
+          max          : 60
+          unit_of_measurement: seconds
+
+mode                   : queued
+
+variables:
+  lux_entity           : !input lux_entity
+  lux_threshold        : !input lux_threshold
+  inhibit_entity       : !input inhibit_entity
+  inhibit_entity_state : !input inhibit_entity_state
+
+trigger:
+  - platform           : homeassistant
+    event              : start
+
+  - platform           : event
+    event_type         : automation_reloaded
+
+  - platform           : state
+    entity_id          : !input motion_entity
+    from               : "off"
+    to                 : "on"
+
+  - platform           : state
+    entity_id          : !input motion_entity
+    from               : "on"
+    to                 : "off"
+    for                : !input no_motion_delay
+
+  - platform           : state
+    entity_id          : !input light_entity
+    from               : "off"
+    to                 : "on"
+    for                : !input no_motion_delay
+
+condition:
+   # Check if automation blocker exist or is in desired state, otherwise do not run
+  - condition          : or
+    conditions:
+      - "{{ inhibit_entity == None }}"
+      - "{{ inhibit_entity_state and states[inhibit_entity].state == 'on' }}"
+      - "{{ not inhibit_entity_state and states[inhibit_entity].state == 'off' }}"
+
+action:
+  - choose:
+      - conditions:
+        - condition    : state
+          entity_id    : !input light_entity
+          state        : "off"
+        - condition    : state
+          entity_id    : !input motion_entity
+          state        : "on"
+        - "{{ lux_entity == None or states('lux_entity') | float < lux_threshold }}"
+        sequence:
+        - service      : light.turn_on
+          target:
+            entity_id  : !input light_entity
+
+      - conditions:
+        - condition    : state
+          entity_id    : !input light_entity
+          state        : "on"
+        - condition    : state
+          entity_id    : !input motion_entity
+          state        : "off"
+          for          : !input no_motion_delay
+        sequence:
+        - service      : light.turn_off
+          target:
+            entity_id  : !input light_entity
+          data:
+            transition : !input transition_to_off

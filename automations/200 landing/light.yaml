@@ -1,0 +1,14 @@
+- alias               : second_floor_landing_light
+  id                  : 35733b44-ae11-4eae-a4df-c2f5ca29becc
+  description         : ''
+  use_blueprint:
+    path              : stefanroelofs/motion_lightV2.yaml
+    input:
+      motion_entity   : binary_sensor.second_floor_landing_motionsensor_zone
+      light_entity    : light.second_floor_landing_ceiling
+      no_motion_delay : 120
+      inhibit_entity  : input_boolean.cleaning_mode
+      inhibit_entity_state: false
+      lux_entity      : sensor.second_floor_landing_motionsensor_illuminance
+      lux_threshold   : 40
+      transition_to_off: 5
