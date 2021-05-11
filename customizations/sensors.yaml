@@ -1,39 +1,50 @@
 # Windows
 binary_sensor.kitchen_windowsensor:
-  device_class : window
+  device_class: window
 
 binary_sensor.bathroom_windowsensor:
-  device_class : window
+  device_class: window
 
 # Doors
 binary_sensor.staircase_closet_doorsensor:
-  device_class : door
+  device_class: door
 
 binary_sensor.living_room_doorsensor:
-  device_class : door
+  device_class: door
 
 binary_sensor.hallway_doorsensor:
-  device_class : door
+  device_class: door
 
 binary_sensor.bedroom_master_wardrobe_doorsensor:
-  device_class : door
+  device_class: door
 
 # Wallswitches
 binary_sensor.living_room_wallswitch:
-  device_class : ~
+  device_class: ~
 
 binary_sensor.kitchen_wallswitch:
-  device_class : ~
+  device_class: ~
 
 binary_sensor.dining_area_wallswitch:
-  device_class : ~
+  device_class: ~
 
 binary_sensor.bedroom_1_wallswitch:
-  device_class : ~
+  device_class: ~
 
 binary_sensor.bedroom_2_wallswitch:
-  device_class : ~
+  device_class: ~
 
 # Presence sensors
 binary_sensor.anybody_home:
-  device_class : presence
+  device_class: presence
+
+# Motion sensors
+binary_sensor.restroom_motionsensor_zone:
+  device_class: occupancy
+binary_sensor.restroom_motionsensor_occupancy:
+  device_class: motion
+
+binary_sensor.second_floor_landing_motionsensor_zone:
+  device_class: occupancy
+binary_sensor.second_floor_landing_motionsensor_occupancy:
+  device_class: motion
