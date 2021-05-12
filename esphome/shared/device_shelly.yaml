@@ -15,11 +15,9 @@ esphome:
 
 <<: !include common.yaml
 
-text_sensor:
-  - !include text_sensors/version.yaml
-
 sensor:
   - !include sensors/uptime.yaml
+  - !include sensors/uptime_timestamp.yaml
   - !include sensors/wifi_signal.yaml
 
 binary_sensor:

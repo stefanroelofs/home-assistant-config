@@ -37,3 +37,10 @@ web_server:
 time:
   - platform  : homeassistant
     id        : homeassistant_time
+    timezone: "Europe/Amsterdam"
+    on_time_sync:
+      - component.update: sensor_uptime_timestamp
+
+text_sensor:  
+  - !include text_sensors/version.yaml
+  - !include text_sensors/wifi_info.yaml

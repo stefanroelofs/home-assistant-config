@@ -37,11 +37,9 @@ esphome:
 <<: !include shared/common.yaml
 <<: !include shared/status_led.yaml
 
-text_sensor:
-  - !include shared/text_sensors/version.yaml
-
 sensor:
   - !include shared/sensors/uptime.yaml
+  - !include shared/sensors/uptime_timestamp.yaml
   - !include shared/sensors/wifi_signal.yaml
 
 output:

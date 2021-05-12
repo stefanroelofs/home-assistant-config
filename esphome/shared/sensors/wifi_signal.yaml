@@ -2,4 +2,4 @@
 # https://esphome.io/components/sensor/wifi_signal.html
 platform        : wifi_signal
 name            : "${devicelocation} WiFi Signal"
-update_interval : 60s
+update_interval : 300s

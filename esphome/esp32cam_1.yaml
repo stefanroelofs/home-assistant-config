@@ -16,11 +16,9 @@ esphome:
 binary_sensor:
   - !include shared/binary_sensors/status.yaml
 
-text_sensor:
-  - !include shared/text_sensors/version.yaml
-
 sensor:
   - !include shared/sensors/uptime.yaml
+  - !include shared/sensors/uptime_timestamp.yaml
   - !include shared/sensors/wifi_signal.yaml
 
 switch:

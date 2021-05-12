@@ -1,5 +1,6 @@
 # The uptime sensor allows you to track the time the ESP has stayed up for in seconds. 
 # https://esphome.io/components/sensor/uptime.html
 platform        : uptime
-name            : "${devicelocation} Uptime Sensor"
-update_interval : 60s
+id              : sensor_uptime
+
+# Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an id without a name will implicitly set this to true.
