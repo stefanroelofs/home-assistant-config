@@ -13,5 +13,5 @@
 
     bathroom_inhibit_lights:
       value_template: >-
-        {{ is_state('input_boolean.cleaning_mode', 'false')
+        {{ is_state('input_boolean.cleaning_mode', 'on')
         or is_state('binary_sensor.bathroom_hygrostat', 'on') }}
