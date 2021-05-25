@@ -13,6 +13,7 @@
       - switch.adaptive_lighting_dining_area_ceiling
       - switch.adaptive_lighting_landings
       - switch.adaptive_lighting_bathroom
+      - switch.adaptive_lighting_bedrooms
   action:
     - choose:
       - conditions:

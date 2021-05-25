@@ -13,6 +13,7 @@
       - switch.adaptive_lighting_sleep_mode_dining_area_ceiling
       - switch.adaptive_lighting_sleep_mode_landings
       - switch.adaptive_lighting_sleep_mode_bathroom
+      - switch.adaptive_lighting_sleep_mode_bedrooms
   action:
     - choose:
       - conditions:
