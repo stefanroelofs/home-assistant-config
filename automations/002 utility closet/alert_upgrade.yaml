@@ -5,23 +5,23 @@
   id            : f91e8ddf-fd5c-47b6-8443-880303081333
   trigger:
     platform    : state
-    entity_id   : sensor.version_latest
-  condition:
-    - "{{ states('sensor.version_latest') != states('sensor.version_current') }}"
+    entity_id   : binary_sensor.updater
+    from        : "off"
+    to          : "on"
   action:
     - service   : notify.stefan
       data:
         title   : Upgrade time!
-        message: >-
-          Upgrade available for HA{{ states('sensor.version_current') }}.
-          Version {{ states('sensor.version_latest') }} is ready!
+        message : >-
+          "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
         data:
-          tag   : ha_upgrade
-          icon  : !secret url_update_icon
+          tag         : ha_upgrade
+          icon_url    : !secret url_update_icon
+          clickAction : "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+          group       : "ha_notification_group"
     - service   : persistent_notification.create
       data:
         title   : Upgrade time!
-        message: >-
-          Upgrade available for HA{{ states('sensor.version_current') }}.
-          Version {{ states('sensor.version_latest') }} is ready!
+        message : >-
+          "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
         notification_id: ha_upgrade
