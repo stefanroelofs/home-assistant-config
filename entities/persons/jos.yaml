@@ -1,0 +1,4 @@
+- name    : Jos
+  id      : jos
+  device_trackers:
+    - device_tracker.galaxy_a40

@@ -1,6 +1,6 @@
 - name    : Marcella
   id      : marcella
   device_trackers:
-    - device_tracker.marcella_phone_wifi
-    - device_tracker.marcella_phone_bt
+    - device_tracker.marcella_phone_app
     - device_tracker.life360_marcella
+    - device_tracker.telefoon_marcella

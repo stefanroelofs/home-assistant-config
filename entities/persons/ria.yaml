@@ -1,4 +1,4 @@
 - name    : Ria
   id      : ria
   device_trackers:
-    - device_tracker.galaxy_a5_2016
+    - device_tracker.galaxy_a41_van_ria
