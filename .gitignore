@@ -1,5 +1,6 @@
 # Generic ignores
 *.log
+*.log.[0-9]
 *.db
 *.db-shm
 *.db-wal
