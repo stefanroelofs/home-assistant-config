@@ -6,8 +6,10 @@
   trigger:
     platform    : state
     entity_id   : binary_sensor.updater
-    from        : "off"
-    to          : "on"
+  condition:
+    - condition : state
+      entity_id : binary_sensor.updater
+      state     : "on"
   action:
     - service   : notify.stefan
       data:
