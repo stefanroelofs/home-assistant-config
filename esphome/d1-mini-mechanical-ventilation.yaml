@@ -17,7 +17,7 @@
 # Credits: https://gist.github.com/SqyD/38d10391c2e21988406d2bdaec24f031
 
 substitutions:
-  devicename        : "d1_mini_mech_vent"
+  devicename        : "d1-mini-mech-vent"
   devicelocation    : "Mech Vent"
   ip_address        : !secret ip_address_d1_mini_MV
   status_led_pin    : GPIO2
