@@ -13,7 +13,7 @@
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 substitutions:
-  devicename        : "nodemcu_utility_closet"
+  devicename        : "nodemcu-utility-closet"
   devicelocation    : "Utility closet Doorbell"
   ip_address        : !secret ip_address_nodemcu_2
   status_led_pin    : GPIO2
