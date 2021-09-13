@@ -93,8 +93,8 @@ sensor:
 #        # Make everything below 2W appear as just 0W.
 #        # Furthermore it corrects 1.14W for the power usage of the plug.
 #        - lambda         : if (x < (2 + 0.5)) return 0; else return (x - 0.5);
-    change_mode_every    : 4
-    update_interval      : 10s
+    change_mode_every    : 8
+    update_interval      : 60s
 
   - platform             : total_daily_energy
     name                 : "${devicelocation} Total Daily Energy"
