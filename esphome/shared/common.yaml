@@ -9,6 +9,7 @@ wifi:
     static_ip : ${ip_address}
     gateway   : !secret gateway_ip
     subnet    : 255.255.255.0
+#  use_address: nodemcu_utility_closet.local
 
 # Enable WiFi hotspot
 # https://esphome.io/components/captive_portal.html
