@@ -37,4 +37,4 @@
   name     : bedroom_3_lights
   entities:
     - light.bedroom_3_ceiling
-    - light.bedroom_3_table
+#    - light.bedroom_3_table
