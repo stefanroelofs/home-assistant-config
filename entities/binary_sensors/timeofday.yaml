@@ -1,6 +1,6 @@
 - platform     : tod
   name         : morning
-  after        : '07:00'
+  after        : '06:30'
   before       : '12:00'
 
 - platform     : tod
