@@ -1,0 +1,66 @@
+- alias         : bedroom_master_wardrobe
+  id            : 62d8bc21-a58a-40fc-8a3b-88327d985d84
+  mode          : queued
+  trigger:
+    - platform  : state  # Turn on lights when doors open
+      id        : "doors_opened"
+      entity_id : binary_sensor.bedroom_master_wardrobe_doorsensor
+      from      : 'off'
+      to        : 'on'
+    - platform  : state   # Turn off lights 4 seconds after closing doors
+      entity_id : binary_sensor.bedroom_master_wardrobe_doorsensor
+      id        : "doors_closed"
+      from      : 'on'
+      to        : 'off'
+      for       : "00:00:04"
+    - platform  : state   # Turn off lights if they are on for 10 minutes
+      id        : "doors_forgotten"
+      entity_id : light.bedroom_master_wardrobe_light
+      to        : 'on'
+      for       : "00:10:00"
+  action:
+    - choose:
+        # Turn lights off
+        - conditions:
+            - condition     : or
+              conditions:
+                - condition : trigger
+                  id        : "doors_closed"
+                - condition : trigger
+                  id        : "doors_forgotten"
+          sequence:
+            - service       : light.turn_off
+              target:
+                entity_id   : light.bedroom_master_wardrobe_light
+
+        # Set lights on
+        - conditions:
+            - condition     : state
+              entity_id     : binary_sensor.evening
+              state         : 'on'
+          sequence:
+            - service       : light.turn_on
+              target:
+                entity_id   : light.bedroom_master_wardrobe_light
+              data:
+                brightness  : 120
+
+        # Set lights on
+        - conditions:
+            - condition     : state
+              entity_id     : binary_sensor.night
+              state         : 'on'
+          sequence:
+            - service       : light.turn_on
+              target:
+                entity_id   : light.bedroom_master_wardrobe_light
+              data:
+                brightness  : 75
+
+      # Default: Set lights on
+      default:
+        - service           : light.turn_on
+          target:
+            entity_id       : light.bedroom_master_wardrobe_light
+          data:
+            brightness      : 255
