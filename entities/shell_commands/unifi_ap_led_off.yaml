@@ -1,0 +1,2 @@
+unifi_ap_led_off: >-
+  ssh stefanroelofs@192.168.1.24 "sed -i '/led_enabled/cmgmt.led_enabled=false' /var/etc/persistent/cfg/mgmt"
