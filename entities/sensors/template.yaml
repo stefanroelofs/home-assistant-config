@@ -32,6 +32,15 @@
       unit_of_measurement : kWh
       value_template      : "{{ states('sensor.energy_yearly_offpeak')|float + states('sensor.energy_yearly_peak')|float }}"
 
+    stefan_time_in_office_last_week:
+      friendly_name       : stefan_time_in_office_last_week
+      unit_of_measurement : h
+      value_template      : "{{ states('sensor.stefan_time_in_office_last_monday') | float
+                              + states('sensor.stefan_time_in_office_last_tuesday') | float
+                              + states('sensor.stefan_time_in_office_last_wednesday') | float
+                              + states('sensor.stefan_time_in_office_last_thursday') | float
+                              + states('sensor.stefan_time_in_office_last_friday') | float }}"
+
 #    unavailable_entities:
 #      entity_id           : sensor.time
 #      friendly_name       : Unavailable Entities

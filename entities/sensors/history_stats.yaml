@@ -1,0 +1,82 @@
+## Time in office tracker
+- platform  : history_stats
+  name      : stefan_time_in_office_last_monday
+  entity_id : person.stefan
+  state     : "Work_Stefan"
+  type      : time
+  start     : "{{ as_timestamp( now().replace(hour=0, minute=0, second=0) ) - now().weekday() * 86400 }}"
+  duration:
+    days    : 1
+
+- platform  : history_stats
+  name      : stefan_time_in_office_last_tuesday
+  entity_id : person.stefan
+  state     : "Work_Stefan"
+  type      : time
+  start     : "{{ (as_timestamp( now().replace(hour=0, minute=0, second=0) ) - (now().weekday() - 1 if now().weekday() - 1 >= 0 else now().weekday() + 6) * 86400) }}"
+  duration:
+    days    : 1
+
+- platform  : history_stats
+  name      : stefan_time_in_office_last_wednesday
+  entity_id : person.stefan
+  state     : "Work_Stefan"
+  type      : time
+  start     : "{{ (as_timestamp( now().replace(hour=0, minute=0, second=0) ) - (now().weekday() - 2 if now().weekday() - 2 >= 0 else now().weekday() + 5) * 86400) }}"
+  duration:
+    days    : 1
+
+- platform  : history_stats
+  name      : stefan_time_in_office_last_thursday
+  entity_id : person.stefan
+  state     : "Work_Stefan"
+  type      : time
+  start     : "{{ (as_timestamp( now().replace(hour=0, minute=0, second=0) ) - (now().weekday() - 3 if now().weekday() - 3 >= 0 else now().weekday() + 4) * 86400) }}"
+  duration:
+    days    : 1
+
+- platform  : history_stats
+  name      : stefan_time_in_office_last_friday
+  entity_id : person.stefan
+  state     : "Work_Stefan"
+  type      : time
+  start     : "{{ (as_timestamp( now().replace(hour=0, minute=0, second=0) ) - (now().weekday() - 4 if now().weekday() - 4 >= 0 else now().weekday() + 3) * 86400) }}"
+  duration:
+    days    : 1
+
+## covid19 at home tracker
+- platform  : history_stats
+  name      : stefan_quarantine_time_home
+  entity_id : person.stefan
+  state     : "home"
+  type      : ratio
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : stefan_quarantine_times_left
+  entity_id : person.stefan
+  state     : "home"
+  type      : count
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : marcella_quarantine_time_home
+  entity_id : person.marcella
+  state     : "home"
+  type      : ratio
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
+
+- platform  : history_stats
+  name      : marcella_quarantine_times_left
+  entity_id : person.marcella
+  state     : "home"
+  type      : count
+  duration:
+    days    : 7
+  end       : "{{ now() }}"
