@@ -5,7 +5,7 @@
   id            : f91e8ddf-fd5c-47b6-8443-880303081333
   trigger:
     platform    : state
-    entity_id   : binary_sensor.updater
+    entity_id   : binary_sensor.updater   # Also triggers on attribute changes
   condition:
     - condition : state
       entity_id : binary_sensor.updater
