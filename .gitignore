@@ -1,6 +1,7 @@
 # Generic ignores
 *.log
 *.log.[0-9]
+*.log.fault
 *.db
 *.db-shm
 *.db-wal
@@ -16,6 +17,7 @@ glances
 tts
 www/profile_pics
 neighbours
+zha_ota
 
 # Specific file ignores
 .config_entries.json
@@ -37,6 +39,7 @@ zwcfg_*
 zwscene.xml
 www/google5d94d8bd4509d7af.html
 www/community/zigbee2mqtt_networkmap/source.js
+uuids.txt
 
 # Ignore add-on files
 aircast.xml
