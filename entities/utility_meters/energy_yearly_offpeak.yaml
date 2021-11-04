@@ -1,0 +1,6 @@
+energy_yearly_offpeak:
+  source : sensor.energy_consumption_tarif_1
+  name   : Energy Total (Offpeak)
+  cycle  : yearly
+  offset:
+    days : 74 # Number of days until 16-03-2022

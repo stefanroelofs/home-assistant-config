@@ -1,4 +1,4 @@
-daily_energy_peak:
+energy_daily_peak:
   source : sensor.energy_consumption_tarif_2
-  name   : Daily Energy (Peak)
+  name   : Energy Daily (Peak)
   cycle  : daily

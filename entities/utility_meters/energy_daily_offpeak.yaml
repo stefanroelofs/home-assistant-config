@@ -1,4 +1,4 @@
-daily_energy_offpeak:
+energy_daily_offpeak:
   source : sensor.energy_consumption_tarif_1
-  name   : Daily Energy (Offpeak)
+  name   : Energy Daily (Offpeak)
   cycle  : daily

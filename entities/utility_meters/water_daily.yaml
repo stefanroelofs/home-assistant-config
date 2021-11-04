@@ -1,0 +1,4 @@
+water_daily:
+  source : sensor.water_meter_total_consumption
+  name   : Waterusage Daily
+  cycle  : daily

@@ -1,0 +1,12 @@
+water_total:
+  source : sensor.water_meter_total_consumption
+  name   : Waterusage Total
+  cron   : '0 0 * */1000 *'
+
+# Trick utility_meter to never reset with pattern: 0 0 * */1000 * (resets every 1000 months)
+
+# Folow these steps to calibrate the meter so it has the same value as the real meter:
+# In Developer Tools -> Services, call the service: UTILITY_METER.CALIBRATE
+# Select entity: sensor.waterusage_total
+# Set the value to the current meter readout
+# Select: Call Service

@@ -17,15 +17,20 @@
       friendly_name       : "sun_elevation"
       value_template      : "{{ state_attr('sun.sun', 'elevation') }}"
 
-    daily_energy:
-      friendly_name       : Daily Energy
+    energy_daily:
+      friendly_name       : Energy Daily
       unit_of_measurement : kWh
-      value_template      : "{{ states('sensor.daily_energy_offpeak')|float + states('sensor.daily_energy_peak')|float }}"
+      value_template      : "{{ states('sensor.energy_daily_offpeak')|float + states('sensor.energy_daily_peak')|float }}"
 
-    monthly_energy:
-      friendly_name       : Monthly Energy
+    energy_monthly:
+      friendly_name       : Energy Monthly
       unit_of_measurement : kWh
-      value_template      : "{{ states('sensor.monthly_energy_offpeak')|float + states('sensor.monthly_energy_peak')|float }}"
+      value_template      : "{{ states('sensor.energy_monthly_offpeak')|float + states('sensor.energy_monthly_peak')|float }}"
+
+    energy_yearly:
+      friendly_name       : Energy Yearly
+      unit_of_measurement : kWh
+      value_template      : "{{ states('sensor.energy_yearly_offpeak')|float + states('sensor.energy_yearly_peak')|float }}"
 
 #    unavailable_entities:
 #      entity_id           : sensor.time

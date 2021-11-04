@@ -1,4 +1,4 @@
-monthly_energy_peak:
+energy_monthly_peak:
   source : sensor.energy_consumption_tarif_2
-  name   : Monthly Energy (Peak)
+  name   : Energy Monthly (Peak)
   cycle  : monthly
