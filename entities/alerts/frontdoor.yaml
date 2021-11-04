@@ -8,3 +8,6 @@ frontdoor:
   skip_first   : true
   notifiers:
     - all
+  data:
+    tag        : "frontdoor_alert"    # Replace notification with the same tag
+    timeout    : 720   # How many seconds the notification should be received by the device
