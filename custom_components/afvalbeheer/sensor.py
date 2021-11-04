@@ -1,7 +1,7 @@
 """
 Sensor component for waste pickup dates from dutch and belgium waste collectors
 Original Author: Pippijn Stortelder
-Current Version: 4.7.31 20211005 - Pippijn Stortelder
+Current Version: 4.7.33 20211022 - Pippijn Stortelder
 20210112 - Updated date format for RD4
 20210114 - Fix error made in commit 9d720ec
 20210120 - Enabled textile for RecycleApp
@@ -29,6 +29,8 @@ Current Version: 4.7.31 20211005 - Pippijn Stortelder
 20210930 - Fix for Alkmaar
 20211001 - Switch Avalex tot Ximmio
 20211005 - Small bug fix
+20211019 - Add support for housenumber additions on the Circulus Berkel API
+20211022 - Update Mijnafvalwijzer mapping
 
 Example config:
 Configuration.yaml:
@@ -166,6 +168,7 @@ WASTE_TYPE_GREY = 'restafval'
 WASTE_TYPE_GREY_BAGS = 'restafvalzakken'
 WASTE_TYPE_SORTI = 'sortibak'
 WASTE_TYPE_KCA = 'chemisch'
+WASTE_TYPE_KCA_LOCATION = 'chemisch-brengen'
 WASTE_TYPE_MILIEUB = 'milieuboer'
 WASTE_TYPE_PAPER_PMD = 'papier-pmd'
 WASTE_TYPE_PACKAGES = 'pmd'
@@ -560,6 +563,7 @@ class AfvalwijzerCollector(WasteCollector):
         'tuinafval': WASTE_TYPE_BULKYGARDENWASTE,
         'glas': WASTE_TYPE_GLASS,
         'gft': WASTE_TYPE_GREEN,
+        'kcalocatie': WASTE_TYPE_KCA_LOCATION,
         'kca': WASTE_TYPE_KCA,
         'restafval': WASTE_TYPE_GREY,
         'plastic': WASTE_TYPE_PACKAGES,
@@ -659,6 +663,16 @@ class CirculusBerkelCollector(WasteCollector):
             r = requests.post(
                 '{}/register/zipcode.json'.format(self.main_url), data=data, cookies=cookies
             )
+
+            json_response_data = r.json()
+            if self.suffix != "" and json_response_data["flashMessage"] != "":
+                authenticationUrl = ""
+                for address in json_response_data["customData"]["addresses"]:
+                    if re.search(' '+self.street_number+' '+self.suffix.lower(), address["address"]) != None:
+                        authenticationUrl = address["authenticationUrl"]
+                        break
+                r = requests.get(self.main_url+authenticationUrl, cookies=cookies)
+
             logged_in_cookies = r.cookies
         else:
             _LOGGER.error("Unable to get Session Cookie")
