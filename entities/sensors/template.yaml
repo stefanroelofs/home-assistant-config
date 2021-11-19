@@ -20,26 +20,26 @@
     energy_daily:
       friendly_name       : Energy Daily
       unit_of_measurement : kWh
-      value_template      : "{{ states('sensor.energy_daily_offpeak')|float + states('sensor.energy_daily_peak')|float }}"
+      value_template      : "{{ states('sensor.energy_daily_offpeak') | float(default=0.0) + states('sensor.energy_daily_peak') | float(default=0.0) }}"
 
     energy_monthly:
       friendly_name       : Energy Monthly
       unit_of_measurement : kWh
-      value_template      : "{{ states('sensor.energy_monthly_offpeak')|float + states('sensor.energy_monthly_peak')|float }}"
+      value_template      : "{{ states('sensor.energy_monthly_offpeak') | float(default=0.0) + states('sensor.energy_monthly_peak') | float(default=0.0) }}"
 
     energy_yearly:
       friendly_name       : Energy Yearly
       unit_of_measurement : kWh
-      value_template      : "{{ states('sensor.energy_yearly_offpeak')|float + states('sensor.energy_yearly_peak')|float }}"
+      value_template      : "{{ states('sensor.energy_yearly_offpeak') | float(default=0.0) + states('sensor.energy_yearly_peak') | float(default=0.0) }}"
 
     stefan_time_in_office_last_week:
       friendly_name       : stefan_time_in_office_last_week
       unit_of_measurement : h
-      value_template      : "{{ states('sensor.stefan_time_in_office_last_monday') | float
-                              + states('sensor.stefan_time_in_office_last_tuesday') | float
-                              + states('sensor.stefan_time_in_office_last_wednesday') | float
-                              + states('sensor.stefan_time_in_office_last_thursday') | float
-                              + states('sensor.stefan_time_in_office_last_friday') | float }}"
+      value_template      : "{{ states('sensor.stefan_time_in_office_last_monday') | float(default=0.0)
+                              + states('sensor.stefan_time_in_office_last_tuesday') | float(default=0.0)
+                              + states('sensor.stefan_time_in_office_last_wednesday') | float(default=0.0)
+                              + states('sensor.stefan_time_in_office_last_thursday') | float(default=0.0)
+                              + states('sensor.stefan_time_in_office_last_friday') | float(default=0.0) }}"
 
 #    unavailable_entities:
 #      entity_id           : sensor.time
