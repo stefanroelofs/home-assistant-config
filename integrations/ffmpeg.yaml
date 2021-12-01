@@ -1,0 +1,5 @@
+ffmpeg:
+
+# https://www.home-assistant.io/integrations/ffmpeg
+# This integration is needed by Eufy security:
+# https://github.com/fuatakgun/eufy_security
