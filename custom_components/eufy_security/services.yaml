@@ -1,0 +1,99 @@
+send_message:
+  name: Send Message
+  description: Send a JSON message to Web Socket
+  fields:
+    message:
+      name: Message
+      description: Raw message in JSON format
+      required: true
+start_p2p_livestream:
+  name: Start Live Stream over P2P
+  description: Send start live stream command to camera
+  target:
+    entity:
+      domain: camera
+stop_p2p_livestream:
+  name: Stop Live Stream over P2P
+  description: Send stop live stream command to camera
+  target:
+    entity:
+      domain: camera
+start_rtsp_livestream:
+  name: Start Live Stream over RTSP
+  description: Send start live stream command to camera
+  target:
+    entity:
+      domain: camera
+stop_rtsp_livestream:
+  name: Stop Live Stream over RTSP
+  description: Send stop live stream command to camera
+  target:
+    entity:
+      domain: camera
+enable_rtsp:
+  name: Enable RTSP Configuration
+  description: Enable RTSP Configuration
+  target:
+    entity:
+      domain: camera
+disable_rtsp:
+  name: Disable RTSP Configuration
+  description: Disable RTSP Configuration
+  target:
+    entity:
+      domain: camera
+enable:
+  name: Enable
+  description: Enable
+  target:
+    entity:
+      domain: camera
+disable:
+  name: Disable
+  description: Disable
+  target:
+    entity:
+      domain: camera
+alarm_guard_schedule:
+  name: Change Mode to Schedule
+  description: Change Mode to Schedule
+  target:
+    entity:
+      domain: alarm_control_panel
+alarm_guard_geo:
+  name: Change Mode to Geo-Fencing
+  description: Change Mode to Geo-Fencing
+  target:
+    entity:
+      domain: alarm_control_panel
+alarm_arm_custom1:
+  name: Change Mode to Custom 1
+  description: Change Mode to Custom 1
+  target:
+    entity:
+      domain: alarm_control_panel
+alarm_arm_custom2:
+  name: Change Mode to Custom 2
+  description: Change Mode to Custom 2
+  target:
+    entity:
+      domain: alarm_control_panel
+alarm_arm_custom3:
+  name: Change Mode to Custom 3
+  description: Change Mode to Custom 3
+  target:
+    entity:
+      domain: alarm_control_panel
+alarm_trigger_with_duration:
+  name: Trigger Alarm for a given duration (seconds)
+  description: Trigger Alarm for a given duration (seconds
+  target:
+    entity:
+      domain: alarm_control_panel
+  fields:
+    duration:
+      name: Duration
+      description: Duration (in seconds)
+      required: true
+      example: 10
+      default: 10
