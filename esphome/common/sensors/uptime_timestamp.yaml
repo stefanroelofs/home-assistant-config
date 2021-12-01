@@ -1,0 +1,13 @@
+platform: template
+id: sensor_uptime_timestamp
+name: "${name} Uptime"
+icon: "mdi:clock"
+device_class: "timestamp"
+entity_category: diagnostic
+accuracy_decimals: 0
+update_interval: never
+lambda: |-
+  static float timestamp = (
+    id(homeassistant_time).utcnow().timestamp - id(sensor_uptime).state
+  );
+  return timestamp;

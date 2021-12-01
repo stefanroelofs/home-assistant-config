@@ -1,10 +1,10 @@
 substitutions:
-  slug: "powerplug-1"
-  name: "Staircase Closet Floorheatingpump Outlet"
-  description: "Blitzwolf BW-SHP6. Floorheatingpump outlet"
+  slug: "powerplug-2"
+  name: "Living Room Entertainment Outlet"
+  description: "Blitzwolf BW-SHP6. Living Room Entertainment outlet"
   current_res: "0.00290" # Higher value gives lower watt readout
   voltage_div: "940" # Lower value gives lower voltage readout
-  ip_address: !secret ip_address_powerplug1
+  ip_address: !secret ip_address_powerplug2
   max_power: "2000" # 2300W for 10A
 
 packages:

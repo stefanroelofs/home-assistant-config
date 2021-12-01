@@ -1,0 +1,64 @@
+# Device: Shelly 1, with detached output
+# Info: https://www.esphome-devices.com/devices/shelly-1/
+#
+# Output is either constantly high (connected to a Hue bulb), or not connected at all.
+#
+# GPIO Pinout
+# Pin     Function
+# GPIO4   Relay
+# GPIO5   Switch input
+
+esphome:
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP8266
+  board: esp01_1m
+  on_boot:
+    priority: -10
+    then:
+      - if:
+          condition:
+            # Should return either true or false
+            lambda: "return id(use_output);"
+          then:
+            - switch.turn_on: switch_output
+
+packages:
+  common: !include ../common/common.yaml
+
+binary_sensor:
+  - platform: gpio
+    id: switch_input
+    pin: GPIO5
+    name: "${name} Switch"
+    internal: true # Do not expose switch to HA. Send events instead.
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+    on_state:
+      then:
+        - if:
+            condition:
+              and:
+                - wifi.connected:
+                - api.connected:
+            then:
+              - homeassistant.event:
+                  event: esphome.button_switched
+                  data:
+                    name: "${slug}"
+                    location: "${name}"
+            else:
+              - switch.toggle: switch_output
+
+switch:
+  - platform: output
+    id: switch_output
+    name: "${name} Light Power"
+    output: relay_output
+
+output:
+  - platform: gpio
+    id: relay_output
+    pin: GPIO4

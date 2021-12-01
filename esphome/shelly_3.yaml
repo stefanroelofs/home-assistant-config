@@ -1,6 +1,0 @@
-substitutions:
-  devicename     : "shelly_3"
-  devicelocation : "Kitchen Counter"
-  ip_address     : !secret ip_address_shelly3
-
-<<: !include shared/device_shelly.yaml

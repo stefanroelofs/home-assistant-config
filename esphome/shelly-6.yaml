@@ -1,0 +1,14 @@
+substitutions:
+  slug: "shelly-6"
+  name: "Second Floor Landing"
+  description: "Shelly device behind lightswitch on 2nd floor landing. Relay is not connected."
+  ip_address: !secret ip_address_shelly6
+
+globals:
+  - id: use_output
+    type: bool
+    restore_value: false # output relay is not connected to anything.
+    initial_value: "false"
+
+packages:
+  device: !include devices/shelly_detached_output.yaml

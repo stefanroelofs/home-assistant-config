@@ -13,110 +13,126 @@
 # Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 substitutions:
-  devicename        : "nodemcu-utility-closet"
-  devicelocation    : "Utility closet Doorbell"
-  ip_address        : !secret ip_address_nodemcu_2
-  status_led_pin    : GPIO2
+  slug: "nodemcu-utility-closet"
+  name: "Utility closet Doorbell"
+  description: "NodeMCU in utility closet. Used to control the doorbell, now only monitors motion."
+  ip_address: !secret ip_address_nodemcu_2
 
 esphome:
-  name              : $devicename
-  platform          : ESP8266
-  board             : nodemcuv2
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP8266
+  board: nodemcuv2
 
-<<: !include shared/common.yaml
-<<: !include shared/status_led.yaml
-
-sensor:
-  - !include shared/sensors/uptime.yaml
-  - !include shared/sensors/uptime_timestamp.yaml
-  - !include shared/sensors/wifi_signal.yaml
+packages:
+  common: !include common/common.yaml
 
 # Global to store the on/off state of the chime
 globals:
-  - id              : chime
-    type            : bool
-    restore_value   : true
-    initial_value   : 'true'
+  - id: chime
+    type: bool
+    restore_value: true
+    initial_value: "true"
 
 output:
-  - platform        : gpio
-    id              : relay1_output
-    pin             : GPIO12
-    inverted        : true
-  - platform        : gpio
-    id              : relay2_output
-    pin             : GPIO13
-    inverted        : true
+  - platform: gpio
+    id: relay1_output
+    pin: GPIO12
+    inverted: true
+  - platform: gpio
+    id: relay2_output
+    pin: GPIO13
+    inverted: true
 
 script:
-  id                : reset_chime
+  id: reset_chime
   then:
-  - delay           : 1500ms  # timer length
-  - switch.turn_off : chime_output
+    - delay: 1500ms # timer length
+    - switch.turn_off: chime_output
 
 # Exposed switches.
 switch:
-  - !include shared/switches/restart.yaml
-
   # Switch to turn on/off the chime from Home Assistant.
-  - platform        : output
-    id              : chime_output
-    name            : "${devicelocation} Chime"
-    output          : relay1_output
+  - platform: output
+    id: chime_output
+    name: "${name} Chime"
+    output: relay1_output
     on_turn_on:
-    - script.execute: reset_chime
+      - script.execute: reset_chime
 
   # Switch for relay 2 (currently spare)
-  - platform        : output
-    name            : "${devicelocation} Spare"
-    output          : relay2_output
+  - platform: output
+    name: "${name} Spare"
+    output: relay2_output
 
   # Switch to turn on/off chime when doorbell button is pushed.
   # It creates a "virtual" switch based on a global variable.
-  - platform        : template
-    name            : "${devicelocation} Chime Active"
-    id              : chime_active
-    restore_state   : false
+  - platform: template
+    name: "${name} Chime Active"
+    id: chime_active
+    icon: "mdi:alarm-bell"
+    restore_state: false
     turn_on_action:
       - globals.set:
-          id        : chime
-          value     : 'true'
+          id: chime
+          value: "true"
     turn_off_action:
       - globals.set:
-          id        : chime
-          value     : 'false'
+          id: chime
+          value: "false"
     lambda: |-
       return id(chime);
 
 # Binary sensor representing the Doorbell button push.
 binary_sensor:
-  - platform        : gpio
-    id              : button
-    name            : "${devicelocation} Button"
+  - platform: gpio
+    id: button
+    name: "${name} Button"
     pin:
       # Connected to GPIO on the ESP-01S.
-      number        : GPIO1
-      mode          : INPUT_PULLUP
-      inverted      : true
+      number: GPIO1
+      mode: INPUT_PULLUP
+      inverted: true
     filters:
       # Small filter, to debounce the button press.
-      - delayed_on  : 10ms
-      - delayed_off : 200ms
+      - delayed_on: 10ms
+      - delayed_off: 200ms
     on_press:
       # Only turn on the chime when it is active.
       then:
         if:
           condition:
-            - switch.is_on   : chime_active
+            - switch.is_on: chime_active
           then:
-            - switch.turn_on : chime_output
+            - switch.turn_on: chime_output
     on_release:
       # On release, turn of the chime.
-      - switch.turn_off      : chime_output
+      - switch.turn_off: chime_output
 
-  - platform        : gpio
-    pin             : GPIO14
-    name            : "${devicelocation} Motion"
-    device_class    : motion
+  - platform: gpio
+    pin: GPIO14
+    name: "${name} Motion"
+    device_class: motion
 
-  - !include shared/binary_sensors/status.yaml
+# This interval shuts off the
+# doorbell if it pushed for more
+# then 1.5-2.0 seconds.
+interval:
+  - interval: 500ms
+    then:
+      - if:
+          condition:
+            for:
+              time: 1.5s
+              condition:
+                - binary_sensor.is_on: button
+                - switch.is_on: chime_output
+          then:
+            - switch.turn_off: chime_output
+
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number   : GPIO2
+    inverted : true

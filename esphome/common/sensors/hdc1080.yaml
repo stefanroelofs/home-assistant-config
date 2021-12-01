@@ -1,0 +1,11 @@
+# HDC1080 Temperature+Humidity Sensor
+# https://esphome.io/components/sensor/hdc1080.html
+
+platform: hdc1080
+temperature:
+  id: sensor_temperature
+  name: "${name} Temperature"
+humidity:
+  id: sensor_humidity
+  name: "${name} Humidity"
+update_interval: 600s

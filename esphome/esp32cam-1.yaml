@@ -1,0 +1,45 @@
+substitutions:
+  slug: "esp32cam-1"
+  name: "ESP32Cam 1"
+  description: "Camera thingie"
+  ip_address: !secret ip_address_esp32cam1
+
+esphome:
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP32
+  board: esp32dev
+# board          : esp-wrover-kit  # alternative board
+
+packages:
+  common: !include common/common.yaml
+
+switch:
+  # Flash light of camera
+  - platform: gpio
+    pin: GPIO4
+    name: "${name} Flash"
+
+# https://esphome.io/components/esp32_camera.html
+esp32_camera:
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+
+  # Image settings
+  name: Image
+
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number   : GPIO33
+    inverted : true

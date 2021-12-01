@@ -1,0 +1,8 @@
+substitutions:
+  slug: "shelly-3"
+  name: "Kitchen Counter"
+  description: "Shelly device behind lightswitch on kitchen counter."
+  ip_address: !secret ip_address_shelly3
+
+packages:
+  device: !include devices/shelly.yaml

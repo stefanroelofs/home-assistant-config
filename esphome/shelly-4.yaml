@@ -1,0 +1,14 @@
+substitutions:
+  slug: "shelly-4"
+  name: "First Floor Landing"
+  description: "Shelly device behind lightswitch on 1nd floor landing. Relay is connected, but not switching."
+  ip_address: !secret ip_address_shelly4
+
+globals:
+  - id: use_output
+    type: bool
+    restore_value: true # output relay should be constantly high.
+    initial_value: "true"
+
+packages:
+  device: !include devices/shelly_detached_output.yaml

@@ -1,0 +1,49 @@
+# Device: Shelly 1
+# Info: https://www.esphome-devices.com/devices/shelly-1/
+#
+# Output toggles when the switch is operated
+#
+# GPIO Pinout
+# Pin     Function
+# GPIO4   Relay
+# GPIO5   Switch input
+
+esphome:
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP8266
+  board: esp01_1m
+
+packages:
+  common: !include ../common/common.yaml
+
+binary_sensor:
+  - platform: gpio
+    id: switch_input
+    pin: GPIO5
+    name: "${name} Switch"
+    internal: true # Do not expose switch to HA. Send events instead.
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+    on_state:
+      then:
+        - light.toggle: light_output
+        - homeassistant.event:
+            event: esphome.button_switched
+            data:
+              name: "${slug}"
+              location: "${name}"
+
+light:
+  - platform: binary
+    id: light_output
+    name: "${name} Light"
+    output: relay_output
+    restore_mode: restore_default_off
+
+output:
+  - platform: gpio
+    id: relay_output
+    pin: GPIO4

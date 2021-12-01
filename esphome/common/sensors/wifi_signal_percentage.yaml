@@ -1,0 +1,22 @@
+# WiFi Signal Percentage Sensor
+# A template sensor that calculates the Wi-Fi Signal Strength as a percentage.
+
+platform: template
+id: sensor_wifi_signal_percentage
+name: "${name} WiFi Signal %"
+icon: "mdi:wifi"
+unit_of_measurement: "%"
+entity_category: diagnostic
+update_interval: never
+lambda: |-
+  if (id(sensor_wifi_signal).state) {
+    if (id(sensor_wifi_signal).state <= -100 ) {
+      return 0;
+    } else if (id(sensor_wifi_signal).state >= -50) {
+      return 100;
+    } else {
+      return 2 * (id(sensor_wifi_signal).state + 100);
+    }
+  } else {
+    return NAN;
+  }

@@ -1,0 +1,69 @@
+# Water Meter
+#
+# This is device that is attached to my water meter. It has a little rotating
+# indicator, that rotates exactly once for each liter of water used.
+#
+# Using an inductive sensor, it can determine the water usage, as each pulse
+# now becomes a liter of water. Providing me current usage flow in L/min and
+# the total usage registered (in M3).
+#
+# Originally bought on: https://watermeterkit.nl
+# Original firmware: https://github.com/dwainscheeren/watermeterkit/blob/master/esphome/model-b.yaml
+#
+# But created my own ESPHome firmware for it (which is what you are looking at).
+#
+# The blue LED tells the device is powered on (built-in on the Wemos D1 mini).
+# The green LED blinks when a pulse is measures (each liter of water used).
+# The red LED shows if there is a problem:
+# - Blinks slow (once a second): Connection disrupted
+# - Blinks fast: ESPHome has an error settings up
+# - Off: All fine!
+
+substitutions:
+  slug: water-meter
+  name: Water Meter
+  description: Small pulse sensor attached to the water meter of my home.
+  ip_address: !secret ip_address_watermeter
+  watermeterkit_originalversion: "1.1"
+  watermeterkit_model: "model-b"
+
+esphome:
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP8266
+  board: d1_mini
+
+packages:
+  common: !include common/common.yaml
+
+# https://esphome.io/components/i2c.html
+i2c:
+  sda: GPIO4
+  scl: GPIO5
+
+output:
+  - platform: esp8266_pwm
+    id: output_led_green
+    pin: D4
+
+light:
+  - platform: monochromatic
+    id: light_led_green
+    output: output_led_green
+
+sensor:
+  - <<: !include common/sensors/hdc1080.yaml
+  - <<: !include common/sensors/pulse_meter_water.yaml
+    pin: D5
+    on_value:
+      then:
+        - light.turn_on:
+            id: light_led_green
+            flash_length: 1s
+
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number   : D3
+    inverted : false

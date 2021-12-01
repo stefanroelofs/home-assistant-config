@@ -1,0 +1,8 @@
+substitutions:
+  slug: "shelly-5"
+  name: "Staircase Closet"
+  description: "Shelly device behind lightswitch in staircase closet."
+  ip_address: !secret ip_address_shelly5
+
+packages:
+  device: !include devices/shelly.yaml

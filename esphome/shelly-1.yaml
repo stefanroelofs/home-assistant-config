@@ -1,0 +1,8 @@
+substitutions:
+  slug: "shelly-1"
+  name: "Restroom"
+  description: "Shelly device behind lightswitch in downstairs restroom"
+  ip_address: !secret ip_address_shelly1
+
+packages:
+  device: !include devices/shelly.yaml

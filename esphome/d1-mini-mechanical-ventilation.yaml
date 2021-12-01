@@ -17,35 +17,26 @@
 # Credits: https://gist.github.com/SqyD/38d10391c2e21988406d2bdaec24f031
 
 substitutions:
-  devicename        : "d1-mini-mech-vent"
-  devicelocation    : "Mech Vent"
-  ip_address        : !secret ip_address_d1_mini_MV
-  status_led_pin    : GPIO2
+  slug: "d1-mini-mech-vent"
+  name: "Mech Vent"
+  description: "D1 Mini in mechanical ventilation box"
+  ip_address: !secret ip_address_d1_mini_MV
 
 esphome:
-  name              : $devicename
-  platform          : ESP8266
-  board             : d1_mini_lite
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+  platform: ESP8266
+  board: d1_mini_lite
 
-<<: !include shared/common.yaml
-<<: !include shared/status_led.yaml
-
-binary_sensor:
-  - !include shared/binary_sensors/status.yaml
-
-sensor:
-  - !include shared/sensors/uptime.yaml
-  - !include shared/sensors/uptime_timestamp.yaml
-  - !include shared/sensors/wifi_signal.yaml
-
-switch:
-  - !include shared/switches/restart.yaml
+packages:
+  common: !include common/common.yaml
 
 output:
-  platform          : esp8266_pwm
-  pin               : D2
-  frequency         : 2000 Hz
-  id                : pwm_output
+  platform: esp8266_pwm
+  pin: D2
+  frequency: 2000 Hz
+  id: pwm_output
 
 # Voorgeprogrammeerde capaciteit (uit usermanual):
 #  - Hoogstand (L4)   : 70 % - 7 V aansturing
@@ -55,12 +46,20 @@ output:
 #  - Nachtstand (N) = Hoogstand (L3)
 
 fan:
-  platform          : speed
-  output            : pwm_output
-  name              : "${devicelocation} Fan"
-  speed_count       : 100 # %
+  platform: speed
+  id: fancomponent
+  name: "${name} Fan"
+  output: pwm_output
+  speed_count: 100 # %
+
 # Configuring individual speeds is deprecated.
 #  speed:
 #    low             : 0.25
 #    medium          : 0.45
 #    high            : 0.8
+
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number   : GPIO2
+    inverted : true
