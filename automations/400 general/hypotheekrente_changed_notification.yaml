@@ -1,0 +1,18 @@
+- alias: general_hypotheekrente_changed_notification
+  id: 432323c1-08e1-4f37-9508-dffbf3577602
+  mode: single
+  description: Send a notification when there is a new value for the current lowest available hypotheekrente.
+
+  trigger:
+    - platform: state
+      entity_id: sensor.laagste_hypotheekrente_10jr_vast
+  action:
+    - service: notify.stefan
+      data:
+        title: Laagste hypotheekrente gewijzigd
+        message: >
+          De laagste hypotheekrente is gewijzigd van {{ trigger.from_state.state }}% naar {{ trigger.to_state.state }}%.
+        data:
+          tag: "hypotheekrente_alert" # Replace notifications with identical tags
+          icon_url: "https://www.actuelerentestanden.nl/assets/images/actuelerentestanden.nl-logo.svg"
+          clickAction: "https://www.actuelerentestanden.nl/pages/rente/hypotheekrente-overzicht/annuiteitenhypotheek/10-jaar-rente-vast.asp?o=2"
