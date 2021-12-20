@@ -1,5 +1,0 @@
-- name      : Work_Stefan
-  latitude  : !secret work_stefan_latitude
-  longitude : !secret work_stefan_longitude
-  radius    : 152.4
-  icon      : mdi:city

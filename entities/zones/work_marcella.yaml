@@ -1,5 +1,0 @@
-- name      : Work_Marcella
-  latitude  : !secret work_marcella_latitude
-  longitude : !secret work_marcella_longitude
-  radius    : 152.4
-  icon      : mdi:home-city
