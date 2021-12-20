@@ -13,7 +13,6 @@ logger:
 #    pymodbus.client                            : debug
 
 #    homeassistant.components.withings          : error
-#    homeassistant.components.life360           : debug     # To show circles (zones) information during boot
 
 # Debug info about ZHA (usefull for firmware updates)
 #    homeassistant.components.zha               : debug
