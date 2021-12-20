@@ -4,7 +4,7 @@
   trigger:
     - platform  : zone
       entity_id : person.stefan
-      zone      : zone.work_stefan
+      zone      : zone.brink_harskamp
       event     : leave   # Event is either enter or leave
   condition:
     - condition : state
