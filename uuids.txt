@@ -1,8 +1,0 @@
-List of randomly generated uuid's.
-Use as id's for automations
-
-Generate with linux ssh command:    cat /proc/sys/kernel/random/uuid
-
-  id            : 432323c1-08e1-4f37-9508-dffbf3577602
-  id            : 8814ae24-d5e9-431c-b9cb-7fe7c66cf607
-  id            : a0e3472c-d44e-47a2-94c3-579e1bf37238
