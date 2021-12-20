@@ -8,6 +8,10 @@ icon: "mdi:wifi"
 unit_of_measurement: "%"
 entity_category: diagnostic
 update_interval: never
+filters:
+  - sliding_window_moving_average:
+      window_size: 15
+      send_every: 15
 lambda: |-
   if (id(sensor_wifi_signal).state) {
     if (id(sensor_wifi_signal).state <= -100 ) {
