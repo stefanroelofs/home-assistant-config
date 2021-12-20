@@ -1,4 +1,0 @@
-- name    : Dija
-  id      : dija
-  device_trackers:
-    - device_tracker.galaxy_a21s

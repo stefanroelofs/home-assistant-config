@@ -1,4 +1,0 @@
-- name    : Henk
-  id      : henk
-  device_trackers:
-    - device_tracker.iphone_van_henk
