@@ -68,5 +68,5 @@ sensor:
 binary_sensor:
   - <<: !include binary_sensors/status.yaml
 
-switch:
-  - <<: !include switches/restart.yaml
+button:
+  - <<: !include buttons/restart.yaml
