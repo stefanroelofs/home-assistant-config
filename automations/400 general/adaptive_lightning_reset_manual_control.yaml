@@ -1,0 +1,19 @@
+- alias: general_adaptive_lightning_reset_manual_control
+  id: a0e3472c-d44e-47a2-94c3-579e1bf37238
+  description: "Adaptive lighting: reset manual_control after 1 hour"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: adaptive_lighting.manual_control
+  variables:
+    light: "{{ trigger.event.data.entity_id }}"
+    switch: "{{ trigger.event.data.switch }}"
+  action:
+    - delay: "01:00:00"
+    - condition: template
+      value_template: "{{ light in state_attr(switch, 'manual_control') }}"
+    - service: adaptive_lighting.set_manual_control
+      data:
+        entity_id: "{{ switch }}"
+        lights: "{{ light }}"
+        manual_control: false
