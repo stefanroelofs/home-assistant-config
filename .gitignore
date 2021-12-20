@@ -39,7 +39,7 @@ zwcfg_*
 zwscene.xml
 www/google5d94d8bd4509d7af.html
 www/community/zigbee2mqtt_networkmap/source.js
-uuids.txt
+uuid.txt
 
 # Ignore add-on files
 aircast.xml
