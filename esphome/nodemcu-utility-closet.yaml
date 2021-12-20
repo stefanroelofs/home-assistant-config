@@ -87,7 +87,7 @@ switch:
 # Binary sensor representing the Doorbell button push.
 binary_sensor:
   - platform: gpio
-    id: button
+    id: doorbell_button
     name: "${name} Button"
     pin:
       # Connected to GPIO on the ESP-01S.
@@ -126,7 +126,7 @@ interval:
             for:
               time: 1.5s
               condition:
-                - binary_sensor.is_on: button
+                - binary_sensor.is_on: doorbell_button
                 - switch.is_on: chime_output
           then:
             - switch.turn_off: chime_output

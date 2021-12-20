@@ -104,7 +104,7 @@ sensor:
 binary_sensor:
   # Binary sensor for the button press
   - platform: gpio
-    id: button
+    id: toggle_button
     internal: true
     pin:
       number: GPIO13 # Button input
