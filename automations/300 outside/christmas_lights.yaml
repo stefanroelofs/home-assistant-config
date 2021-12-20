@@ -2,6 +2,10 @@
   id            : 9c93a7e9-ea9d-401a-b88f-2ceef305f743
   mode          : queued
   trigger:
+#    - platform  : homeassistant
+#      event     : start  # in case the states aren't properly restored
+    - platform  : event
+      event_type: automation_reloaded # in case automations reload
     - platform  : time
       at:
         - "07:30:00"      # Turn on light in the morning
@@ -28,12 +32,12 @@
                 after       : sunset
                 after_offset: "-00:45:00"
           sequence:
-            - service       : switch.turn_on
-              entity_id     : switch.living_room_charging_station_outlet_relay  # christmas star
             - service       : light.turn_on
-              entity_id     : light.wled1                                       # christmas light string in hedge
+              entity_id     : light.inside
+            - service       : light.turn_on
+              entity_id     : light.outside                                     # christmas light string in hedge
       default:
-        - service           : switch.turn_off
-          entity_id         : switch.living_room_charging_station_outlet_relay  # christmas star
         - service           : light.turn_off
-          entity_id         : light.wled1                                       # christmas light string in hedge
+          entity_id         : light.inside
+        - service           : light.turn_off
+          entity_id         : light.outside                                     # christmas light string in hedge
