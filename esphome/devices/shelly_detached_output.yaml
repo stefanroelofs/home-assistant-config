@@ -56,6 +56,7 @@ switch:
   - platform: output
     id: switch_output
     name: "${name} Light Power"
+    entity_category: config
     output: relay_output
 
 output:
