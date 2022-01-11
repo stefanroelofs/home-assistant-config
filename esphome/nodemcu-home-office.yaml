@@ -1,40 +1,58 @@
-# I/O List
+# DEVICE:
+# ESP32S ESP-WROOM-32
+# https://www.aliexpress.com/item/1005002952149285.html
+# ESP32 30Pin
+# Drivers for built-in 2102 chip:
+# https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
 #
-# OUTPUTS:
-#   GPIO4   D2    relay1_output   Home office 1
-#   GPIO5   D1    relay2_output   Home office 2
-#   GPIO12  D6    relay3_output   Home office 3
-#   GPIO13  D7    relay4_output   Bedroom
-#   GPIO14  D5    relay5_output   Laundry room
-#   GPIO15  D8    relay6_output   Landing (power toggle)  Boot fails if pulled HIGH
-#   GPIO2   D4                    Status Led              connected to on-board LED, pin is high at BOOT, boot failure if pulled LOW
+# I/O List (left side of device)
 #
-# INPUTS:
-#   GPIO0   D3                    Switch Bedroom          boot failure if pulled LOW
-#   GPIO1   TX                    Switch Laundry room     pin is high at BOOT, boot failure if pulled LOW
-#   GPIO3   RX                    Switch Office           pin is high at BOOT
+# EN    Enable                  Connected to Restart button on ESP32.
+# VP    GPIO 36   Input only    I could not use these inputs. No pull up/down resistors, so input is floating when not connected.
+# VN    GPIO 39   Input only    This input is somehow bridged with GPIO 36? Both inputs switch at the same time.
+# D34   GPIO 34   Input only    I could not use these inputs. No pull up/down resistors, so input is floating when not connected.
+# D35   GPIO 35   Input only    I could not use these inputs. No pull up/down resistors, so input is floating when not connected.
+# D32   GPIO 32   Ok            relay1_output
+# D33   GPIO 33   Ok            relay2_output
+# D25   GPIO 25   Ok            relay3_output
+# D26   GPIO 26   Ok            relay4_output
+# D27   GPIO 27   Ok            relay5_output
+# D14   GPIO 14   outputs PWM signal at boot
+# D12   GPIO 12   Output only; boot fail if pulled high
+# D13   GPIO 13   Ok            relay6_output
+# GND   Ground
+# VIN   5V DC
 #
-# LET OP!!!!!!!! ALLE 3 DE SCHAKELAARS MOETEN NAAR BENEDEN STAAN! DAN ZIJN DE 3 INPUTS LAAG.
+# I/O List (right side of device)
 #
-# Reference / photo: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
+# D18   GPIO 18   Ok            Switch Bedroom
+# D17   GPIO 17   Ok            Switch Laundry room
+# D16   GPIO 16   Ok            Switch Office
+#
+# GPIO 2 is connected to blue on-board LED
+#
+# Pinout (30Pin board): https://www.studiopieters.nl/esp32-pinout/
+# Reference:            https://randomnerdtutorials.com/esp32-pinout-reference-gpios/
+#
+# Note: When all 3 light switches are in the down position, all the inputs are low.
 
 substitutions:
   slug: "nodemcu-office"
   name: "Home Office"
-  description: "Broken as fuck!!"
+  description: "ESP32 - Lightcontrol for attic"
   ip_address: !secret ip_address_nodemcu_1
 
 esphome:
   name: "${slug}"
   comment: "${description}"
   build_path: "./.build/${slug}/"
-  platform: ESP8266
-  board: nodemcuv2
+  platform: ESP32
+  board: nodemcu-32s
   on_boot:
     priority: -10
     then:
       - switch.turn_on: switch_relay4
-#      - switch.turn_on: switch_relay6
+      - switch.turn_on: switch_relay6
 
 packages:
   common: !include common/common.yaml
@@ -42,27 +60,27 @@ packages:
 output:
   - platform: gpio
     id: relay1_output
-    pin: GPIO4
+    pin: GPIO32
     inverted: true
   - platform: gpio
     id: relay2_output
-    pin: GPIO5
+    pin: GPIO33
     inverted: true
   - platform: gpio
     id: relay3_output
-    pin: GPIO12
+    pin: GPIO25
     inverted: true
   - platform: gpio
     id: relay4_output
-    pin: GPIO13
+    pin: GPIO26
     inverted: true
   - platform: gpio
     id: relay5_output
-    pin: GPIO14
+    pin: GPIO27
     inverted: true
   - platform: gpio
     id: relay6_output
-    pin: GPIO15
+    pin: GPIO13
     inverted: true
 
 light:
@@ -78,10 +96,10 @@ light:
     id: lightstudy3
     name: "${name} 3"
     output: relay3_output
-  #  - platform        : binary   # Changed this for a smart Ikea bulb.
-  #    id              : lightbedroom
-  #    name            : "Bedroom 3 Ceiling"
-  #    output          : relay4_output
+#  - platform        : binary   # Changed this for a smart Ikea bulb.
+#    id              : lightbedroom
+#    name            : "Bedroom 3 Ceiling"
+#    output          : relay4_output
   - platform: binary
     id: lightlaundry
     name: "Laundry room Ceiling"
@@ -92,46 +110,43 @@ switch:
     name: "Bedroom 3 Ceiling Power"
     output: relay4_output
     id: switch_relay4
-
-# Update 2021-05-24: This output was connected to GPIO15 D8.
-# But the esp would fail to boot up.
-# When I disconnected this output, it would boot up fine.
-# So this output must be pulled high on bootup, somehow....
-# I disconnected the output, and connected the relay to GND. This switches the relay permanently.
-#  - platform        : output
-#    name            : "Second Floor Landing Ceiling Power"
-#    output          : relay6_output
-#    id              : switch_relay6
+  - platform: output
+    name: "Second Floor Landing Ceiling Power"
+    output: relay6_output
+    id: switch_relay6
 
 binary_sensor:
   # Bedroom switch
-  # This lightswitch is disabled, there is a big wardrobe in front of it.
-  #  - platform   : gpio
-  #    name       : "Bedroom 3 Switch"
-  #    internal   : true                         # Do not expose switch to HA. Send events instead.
-  #    pin:
-  #      number   : GPIO0
-  #      inverted : True
-  #      mode     : INPUT_PULLUP
-  #    filters:
-  #      - delayed_on_off : 20ms
-  #    on_state:
-  #      then:
-  #        - light.toggle : lightbedroom
-  #        - homeassistant.event:
-  #            event        : esphome.button_switched
-  #            data:
-  #              name       : "${slug}"
-  #              location   : $name
+  - platform: gpio
+    name: "Bedroom 3 Switch"
+    internal: true # Do not expose switch to HA. Send events instead.
+    pin:
+      number: GPIO18
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    filters:
+      - delayed_on_off: 20ms
+    on_state:
+      then:
+#        - light.toggle: lightbedroom
+        - homeassistant.event:
+            event: esphome.button_switched
+            data:
+              name: "${slug}"
+              location: "Bedroom 3"
 
   # Laundry room switch
   - platform: gpio
     name: "Laundry room Switch"
     internal: true # Do not expose switch to HA. Send events instead.
     pin:
-      number: GPIO1
-      inverted: True
-      mode: INPUT_PULLUP
+      number: GPIO17
+      inverted: true
+      mode:
+        input: true
+        pullup: true
     filters:
       - delayed_on_off: 20ms
     on_state:
@@ -141,16 +156,18 @@ binary_sensor:
             event: esphome.button_switched
             data:
               name: "${slug}"
-              location: "${name}"
+              location: "Laundry room"
 
   # Office switch
   - platform: gpio
     name: "${name} Switch"
     internal: true # Do not expose switch to HA. Send events instead.
     pin:
-      number: GPIO3
-      inverted: True
-      mode: INPUT_PULLUP
+      number: GPIO16
+      inverted: true
+      mode:
+        input: true
+        pullup: true
     filters:
       - delayed_on_off: 20ms
     on_state:
@@ -182,5 +199,5 @@ binary_sensor:
 # https://esphome.io/components/status_led.html
 status_led:
   pin:
-    number   : GPIO2
-    inverted : true
+    number: GPIO2
+    inverted: false
