@@ -5,7 +5,7 @@
   id            : 148c250f-48e7-46e4-8e3e-5465fe3a9fb1
   trigger:
     - platform  : state
-      entity_id : media_player.woonkamer
+      entity_id : media_player.televisie
       to        : 'off'
       for       : "00:08:00"
   condition:

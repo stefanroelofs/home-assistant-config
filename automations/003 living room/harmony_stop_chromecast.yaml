@@ -15,7 +15,7 @@
       state     : "Chromecast/Netflix"
   action:
     - service   : media_player.media_stop
-      entity_id : media_player.woonkamer
+      entity_id : media_player.televisie
     - delay     : '00:00:10'
     - service   : media_player.turn_off
-      entity_id : media_player.woonkamer
+      entity_id : media_player.televisie

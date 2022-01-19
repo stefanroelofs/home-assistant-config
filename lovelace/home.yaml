@@ -245,7 +245,7 @@ cards:
     title: "Media"
     cards:
       - type  : media-control
-        entity: media_player.woonkamer
+        entity: media_player.televisie
     
       - type  : media-control
         entity: media_player.rasplex

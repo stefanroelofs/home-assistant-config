@@ -14,4 +14,4 @@
     - "{{ is_state_attr('remote.roelofs_harmony_hub', 'current_activity', 'Chromecast/Netflix') }}"
   action:
     - service   : media_player.media_pause
-      entity_id : media_player.woonkamer
+      entity_id : media_player.televisie

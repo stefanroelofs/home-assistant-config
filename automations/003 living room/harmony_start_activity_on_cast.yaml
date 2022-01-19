@@ -6,7 +6,7 @@
   description   : Set the correct activity on Harmony remote when you start casting to Woonkamer.
   trigger:
     - platform  : state
-      entity_id : media_player.woonkamer
+      entity_id : media_player.televisie
       to        : 'playing'
   condition:
     condition   : not

@@ -4,7 +4,7 @@
     - platform  : state
       entity_id:
         - media_player.plex_plexhometheater_rasplex
-        - media_player.woonkamer
+        - media_player.televisie
       from      : 'playing'
       for       : "00:00:05"
   condition:
