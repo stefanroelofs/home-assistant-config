@@ -1,22 +1,35 @@
+import inspect
 import logging
-from homeassistant.config_entries import ConfigEntry
 
-from homeassistant.core import HomeAssistant
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN, NAME, VERSION, Device
-from .const import CONF_FFMPEG_ANALYZE_DURATION, CONF_HOST, CONF_RTSP_SERVER_ADDRESS, CONF_RTSP_SERVER_PORT, CONF_USE_RTSP_SERVER_ADDON
-from .const import DEFAULT_FFMPEG_ANALYZE_DURATION, DEFAULT_RTSP_SERVER_PORT, DEFAULT_USE_RTSP_SERVER_ADDON
+from .const import DOMAIN, NAME, Device
 from .coordinator import EufySecurityDataUpdateCoordinator
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 class EufySecurityEntity(CoordinatorEntity):
-    def __init__(self, coordinator: EufySecurityDataUpdateCoordinator, entry: ConfigEntry, device: Device):
+    def __init__(
+        self,
+        coordinator: EufySecurityDataUpdateCoordinator,
+        entry: ConfigEntry,
+        device: Device,
+    ) -> None:
         super().__init__(coordinator)
         self.entry: ConfigEntry = entry
         self.device: Device = device
+        self.main_entity = False
+        class_name = str(type(self))
+        if "Camera" in class_name and device.is_camera() is True:
+            self.main_entity = True
+        if "AlarmControlPanel" in class_name:
+            self.main_entity = True
+        if "Sensor" in class_name and device.is_motion_sensor() is True:
+            self.main_entity = True
+        if "Lock" in class_name and device.is_lock() is True:
+            self.main_entity = True
 
     @property
     def device_info(self):
@@ -31,7 +44,7 @@ class EufySecurityEntity(CoordinatorEntity):
 
     @property
     def available(self) -> bool:
-        return not not self.coordinator.data
+        return self.coordinator.data
 
     @property
     def should_poll(self) -> bool:
@@ -39,9 +52,17 @@ class EufySecurityEntity(CoordinatorEntity):
 
     @property
     def state_attributes(self):
-        return {
+        default_attributes = {
             "type": self.device.type,
             "category": self.device.category,
-            "state": self.device.state,
-            "properties": self.device.properties,
         }
+        if self.main_entity is True:
+            default_attributes = default_attributes | {
+                "type": self.device.type,
+                "category": self.device.category,
+                "state": self.device.state,
+                "properties": self.device.properties,
+                "properties_metadata": self.device.properties_metadata,
+            }
+
+        return default_attributes
