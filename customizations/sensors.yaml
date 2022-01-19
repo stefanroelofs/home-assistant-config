@@ -1,36 +1,38 @@
 # Windows
+binary_sensor.bathroom_windowsensor:
+  device_class: window
+binary_sensor.bedroom_1_windowsensor:
+  device_class: window
+binary_sensor.bedroom_2_windowsensor:
+  device_class: window
+binary_sensor.bedroom_master_windowsensor_left:
+  device_class: window
+binary_sensor.bedroom_master_windowsensor_right:
+  device_class: window
 binary_sensor.kitchen_windowsensor:
   device_class: window
-
-binary_sensor.bathroom_windowsensor:
+binary_sensor.second_floor_bedroom_windowsensor:
   device_class: window
 
 # Doors
 binary_sensor.staircase_closet_doorsensor:
   device_class: door
-
 binary_sensor.living_room_doorsensor:
   device_class: door
-
 binary_sensor.hallway_doorsensor:
   device_class: door
-
 binary_sensor.bedroom_master_wardrobe_doorsensor:
   device_class: door
 
 # Wallswitches
 binary_sensor.living_room_wallswitch:
   device_class: ~
-
 binary_sensor.kitchen_wallswitch:
   device_class: ~
-
 binary_sensor.dining_area_wallswitch:
   device_class: ~
-
 binary_sensor.bedroom_1_wallswitch:
   device_class: ~
-
 binary_sensor.bedroom_2_wallswitch:
   device_class: ~
 
@@ -48,3 +50,13 @@ binary_sensor.second_floor_landing_motionsensor_zone:
   device_class: occupancy
 binary_sensor.second_floor_landing_motionsensor_occupancy:
   device_class: motion
+
+# Waste entity pictures
+sensor.acv_restafval:
+  entity_picture : /local/icons/acv/Rest.png
+sensor.acv_gft:
+  entity_picture : /local/icons/acv/GFT.png
+sensor.acv_papier:
+  entity_picture : /local/icons/acv/Papier.png
+sensor.acv_pmd:
+  entity_picture : /local/icons/acv/PMD.png
