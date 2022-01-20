@@ -1,0 +1,6 @@
+- binary_sensor:
+    - name: bathroom_inhibit_lights
+      unique_id: a976a545-e7df-439f-974d-91a57cdd2180
+      state: >-
+        {{ is_state('input_boolean.cleaning_mode', 'on')
+        or is_state('binary_sensor.bathroom_hygrostat', 'on') }}

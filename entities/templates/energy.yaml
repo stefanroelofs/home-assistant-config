@@ -1,0 +1,36 @@
+- sensor:
+    - name: Energy Daily Total
+      unique_id: 14761fab-85b3-49f5-aeb4-c664ffecfe44
+      unit_of_measurement: kWh
+      device_class: energy
+      state_class: total_increasing
+      state: >
+        {% if is_number(states('sensor.energy_daily_offpeak')) and is_number(states('sensor.energy_daily_peak')) %}
+          {{ states('sensor.energy_daily_offpeak') | float + states('sensor.energy_daily_peak') | float }}
+        {% else %}
+          None
+        {% endif %}
+
+    - name: Energy Monthly Total
+      unique_id: a9ff1a73-d71e-4c9a-b3a1-6863d5d99b87
+      unit_of_measurement: kWh
+      device_class: energy
+      state_class: total_increasing
+      state: >
+        {% if is_number(states('sensor.energy_monthly_offpeak')) and is_number(states('sensor.energy_monthly_peak')) %}
+          {{ states('sensor.energy_monthly_offpeak') | float + states('sensor.energy_monthly_peak') | float }}
+        {% else %}
+          None
+        {% endif %}
+
+    - name: Energy Yearly Total
+      unique_id: c24897ea-83a1-4251-8345-6168150b0f82
+      unit_of_measurement: kWh
+      device_class: energy
+      state_class: total_increasing
+      state: >
+        {% if is_number(states('sensor.energy_yearly_offpeak')) and is_number(states('sensor.energy_yearly_peak')) %}
+          {{ states('sensor.energy_yearly_offpeak') | float + states('sensor.energy_yearly_peak') | float }}
+        {% else %}
+          None
+        {% endif %}

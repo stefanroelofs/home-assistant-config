@@ -1,0 +1,8 @@
+- binary_sensor:
+    - name: anybody_home
+      unique_id: 6eaaa287-9ed1-4c65-acd9-15ccfabc8970
+      device_class: presence
+      state: >-
+        {{ is_state('person.marcella', 'home')
+        or is_state('person.stefan', 'home')
+        or is_state('input_boolean.guest_mode', 'on') }}
