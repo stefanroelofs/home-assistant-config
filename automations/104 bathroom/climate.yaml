@@ -2,8 +2,9 @@
   id            : 818bccea-3335-4f3d-b62b-4490c4f9ea03
   mode          : queued
   trigger:
-    - platform  : template
-      value_template: "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - platform: homeassistant
+      event: start # in case the states aren't properly restored
+      id: ha_start
     - platform  : event
       event_type: automation_reloaded
     - platform  : state
@@ -19,9 +20,16 @@
         - "06:30:00"
         - "07:30:00"
         - "08:30:00"
-  condition:
-    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+
   action:
+    - alias: Check if this is triggered by HA restart
+      choose:
+        - conditions:
+            condition: trigger
+            id: ha_start
+          sequence:
+            - delay:
+                minutes: 2
     - choose:
         # Turn radiator off
         - conditions:
