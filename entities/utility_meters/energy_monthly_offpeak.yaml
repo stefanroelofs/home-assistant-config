@@ -1,4 +1,4 @@
 energy_monthly_offpeak:
-  source : sensor.energy_consumption_tarif_1
-  name   : Energy Monthly (Offpeak)
-  cycle  : monthly
+  source: sensor.energy_consumption_tarif_1
+  name: Energy Monthly (Offpeak)
+  cycle: monthly

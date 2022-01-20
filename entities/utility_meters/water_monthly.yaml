@@ -1,4 +1,4 @@
 water_monthly:
-  source : sensor.water_meter_total_consumption
-  name   : Waterusage Monthly
-  cycle  : monthly
+  source: sensor.water_meter_total_consumption
+  name: Waterusage Monthly
+  cycle: monthly

@@ -1,4 +1,4 @@
 energy_yearly_offpeak:
-  source : sensor.energy_consumption_tarif_1
-  name   : Energy Total (Offpeak)
-  cron   : '0 0 16 3 *' # Yearly at 16-03
+  source: sensor.energy_consumption_tarif_1
+  name: Energy Yearly (Offpeak)
+  cron: "0 0 16 3 *" # Yearly at 16-03
