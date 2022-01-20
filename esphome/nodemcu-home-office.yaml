@@ -108,10 +108,12 @@ light:
 switch:
   - platform: output
     name: "Bedroom 3 Ceiling Power"
+    entity_category: config
     output: relay4_output
     id: switch_relay4
   - platform: output
     name: "Second Floor Landing Ceiling Power"
+    entity_category: config
     output: relay6_output
     id: switch_relay6
 
