@@ -5,7 +5,7 @@
   min_temp          : 15
   max_temp          : 25
   ac_mode           : false
-  target_temp       : 21.0
+  target_temp       : 20.5
   cold_tolerance    : 0.0
   hot_tolerance     : 0.3
   min_cycle_duration:
