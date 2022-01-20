@@ -1,0 +1,22 @@
+- alias: general_p2000_notification
+  id: c18eee7f-959a-4fb1-8654-4bdba22cc59c
+  mode: single
+  description: Send a notification when there is a new p2000 event
+
+  trigger:
+    - platform: state
+      entity_id: sensor.p2000_location_only
+  condition:
+    alias: "Time 07~23"
+    condition: time
+    after: "07:00:00"
+    before: "23:00:00"
+  action:
+    - service: notify.stefan
+      data:
+        title: P2000 Bericht - {{ state_attr('sensor.p2000_location_only', 'discipline') }}
+        message: >
+          {{ states('sensor.p2000_location_only') }} (Capcode: {{ state_attr('sensor.p2000_location_only', 'capcode') }})
+        data:
+          tag: "p2000_alert" # Replace notifications with identical tags
+          clickAction: "https://www.google.com/maps/search/?api=1&query={{ state_attr('sensor.p2000_location_only', 'latitude') }},{{ state_attr('sensor.p2000_location_only', 'longitude') }}"

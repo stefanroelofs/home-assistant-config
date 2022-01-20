@@ -1,6 +1,14 @@
-- platform      : p2000
-  regios        : 7       # Gelderland Midden
+- platform: p2000
+  regios: 7 # Gelderland Midden
   #disciplines   : 1,2,3,4 # 1 = Brandweer, 2 = Ambulance, 3 = Politie, 4 = KNRM
-  scan_interval : 60
-  radius        : 10000
-  icon          : mdi:fire-truck
+  scan_interval: 60
+  icon: mdi:fire-truck
+
+- platform: p2000
+  name: "p2000 location only"
+  regios: 7 # Gelderland Midden
+  #disciplines   : 1,2,3,4 # 1 = Brandweer, 2 = Ambulance, 3 = Politie, 4 = KNRM
+  scan_interval: 60
+  radius: 2000
+  icon: mdi:fire-truck
+  nolocation: false
