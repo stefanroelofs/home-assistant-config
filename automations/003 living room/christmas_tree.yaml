@@ -1,37 +1,47 @@
-- alias         : living_room_christmas_tree
-  id            : 8814ae24-d5e9-431c-b9cb-7fe7c66cf607
-  mode          : queued
+- alias: living_room_christmas_tree
+  id: 8814ae24-d5e9-431c-b9cb-7fe7c66cf607
+  mode: queued
   trigger:
-#    - platform  : homeassistant
-#      event     : start  # in case the states aren't properly restored
-    - platform  : event
+    - platform: homeassistant
+      event: start # in case the states aren't properly restored
+      id: ha_start
+    - platform: event
       event_type: automation_reloaded # in case automations reload
-    - platform  : time
+    - platform: time
       at:
-        - "07:30:00"      # Turn on light in the morning
-        - "00:00:00"      # Turn off light at midnight
-    - platform  : state
-      entity_id : binary_sensor.anybody_home
+        - "07:30:00" # Turn on light in the morning
+        - "00:00:00" # Turn off light at midnight
+    - platform: state
+      entity_id: binary_sensor.anybody_home
   condition:
-    - condition : state
-      entity_id : input_boolean.christmas_time
-      state     : 'on'
+    - condition: state
+      entity_id: input_boolean.christmas_time
+      state: "on"
   action:
-    - choose:
+    - alias: Check if this is triggered by HA restart
+      choose:
         - conditions:
-            - condition   : time        # Condition to turn on in the morning
-              after       : "07:30:00"
-              before      : "00:00:00"
-            - condition   : state
-              entity_id   : binary_sensor.anybody_home
-              state       : 'on'
+            condition: trigger
+            id: ha_start
           sequence:
-            - service       : switch.turn_on
-              entity_id     : switch.powerplug3_on_off
-            - service       : switch.turn_on
-              entity_id     : switch.powerplug4_on_off
+            - delay:
+                minutes: 2
+    - alias: Turn on when someone is home
+      choose:
+        - conditions:
+            - condition: time # Condition to turn on in the morning
+              after: "07:30:00"
+              before: "00:00:00"
+            - condition: state
+              entity_id: binary_sensor.anybody_home
+              state: "on"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.powerplug3_on_off
+            - service: switch.turn_on
+              entity_id: switch.powerplug4_on_off
       default:
-        - service           : switch.turn_off
-          entity_id         : switch.powerplug3_on_off
-        - service           : switch.turn_off
-          entity_id         : switch.powerplug4_on_off
+        - service: switch.turn_off
+          entity_id: switch.powerplug3_on_off
+        - service: switch.turn_off
+          entity_id: switch.powerplug4_on_off
