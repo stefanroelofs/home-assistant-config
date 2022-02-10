@@ -1,19 +1,78 @@
-- alias         : general_guest_mode_enable
-  id            : 6cdd2fc2-7666-4930-ae3c-a018e44c7da2
+- alias: general_guest_mode_enable
+  id: 6cdd2fc2-7666-4930-ae3c-a018e44c7da2
+  mode: single
+  description: Ask to confirm enabling guest mode
+
   trigger:
-    - platform  : state
+    - platform: state
       entity_id:
         - person.dija
         - person.ria
-      to        : 'home'
+        - person.jos
+      to: "home"
+
   condition:
-    - condition : state
-      entity_id : input_boolean.guest_mode
-      state     : 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+
   action:
-    - service   : input_boolean.turn_on
-      entity_id : input_boolean.guest_mode
-    - service   : notify.stefan
+    - alias: "Turn on Guest mode"
+      service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.guest_mode
+
+    - alias: "Set up variables for the actions"
+      variables:
+        # Including an id in the action allows us to identify this script run
+        # and not accidentally trigger for other notification actions
+        action_ok: "{{ 'OK' ~ context.id }}"
+        action_cancel: "{{ 'CANCEL_' ~ context.id }}"
+        timeout_minutes: 30
+
+    - alias: "Notify when guests arrive"
+      service: notify.stefan
       data:
-        title   : Guest mode
-        message : Guest mode is enabled.
+        title: Guest mode
+        message: Guests have arrived. Enable guest mode?
+        data:
+          tag: "guest_mode_alert" # Replace notifications with identical tags
+          notification_icon: mdi:account-multiple-plus-outline
+          timeout:
+            minutes: "{{ timeout_minutes }}"
+          actions:
+            - action: "{{ action_ok }}"
+              title: Ok
+            - action: "{{ action_cancel }}"
+              title: Cancel
+
+    - alias: "Wait for a response"
+      wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            # waiting for the specific action avoids accidentally continuing
+            # for another script/automation's notification action
+            action: "{{ action_ok }}"
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: "{{ action_cancel }}"
+      timeout:
+        minutes: "{{ timeout_minutes }}"
+      continue_on_timeout: false
+
+    - alias: "Perform the action"
+      choose:
+        - conditions: "{{ wait.trigger.event.data.action == action_ok }}"
+          sequence:
+            - alias: "Turn on Guest mode"
+              service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.guest_mode
+        - conditions: "{{ wait.trigger.event.data.action == action_cancel }}"
+          sequence:
+            - alias: "Cancel Guest mode"
+              service: input_boolean.turn_off
+              target:
+                entity_id: input_boolean.guest_mode
