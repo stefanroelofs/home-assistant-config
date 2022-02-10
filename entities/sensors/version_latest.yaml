@@ -1,4 +1,0 @@
-- platform : version
-  name     : version_latest
-  source   : hassio
-  image    : intel-nuc
