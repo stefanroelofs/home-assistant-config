@@ -9,10 +9,12 @@
   action:
     - service: notify.stefan
       data:
-        title: Laagste hypotheekrente gewijzigd
+        title: Laagste hypotheekrente gewijzigd!
         message: >
-          De laagste hypotheekrente is gewijzigd van {{ trigger.from_state.state }}% naar {{ trigger.to_state.state }}%.
+          Hypotheekrente is gewijzigd van {{ trigger.from_state.state }}% naar {{ trigger.to_state.state }}%
         data:
           tag: "hypotheekrente_alert" # Replace notifications with identical tags
           icon_url: "https://www.actuelerentestanden.nl/assets/images/actuelerentestanden.nl-logo.svg"
           clickAction: "https://www.actuelerentestanden.nl/pages/rente/hypotheekrente-overzicht/annuiteitenhypotheek/10-jaar-rente-vast.asp?o=2"
+          notification_icon: mdi:finance
+          color: "#DEE8F5"
