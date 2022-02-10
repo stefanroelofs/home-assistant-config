@@ -1,0 +1,16 @@
+- alias: general_picnic_update_ETA
+  id: 9e0149c4-6be0-4571-8e98-640ac2082f9d
+  mode: single
+  description: Update ETA sensors more frequently if delivery is near
+
+  trigger:
+    - platform: time_pattern
+      minutes: "/2"
+
+  condition:
+    - "{{ states('sensor.picnic_last_order_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ 901 > (as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) - as_timestamp(now(), 0)) > 0}}"
+
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.picnic_last_order_eta_start

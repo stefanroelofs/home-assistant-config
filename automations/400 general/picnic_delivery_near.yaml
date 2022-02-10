@@ -1,0 +1,56 @@
+- alias: general_picnic_delivery_near
+  id: a7bc83ae-92cd-40a5-8869-d73643c9513b
+  mode: single
+  max_exceeded: silent
+  description: Send a notification when the short window of the picnic delivery is near
+
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.picnic_last_order_eta_start
+        - sensor.picnic_last_order_eta_end
+    - platform: time
+      at: "18:59:00"
+    - platform: template # Trigger 15 minutes before eta start time.
+      value_template: >-
+        {% if states('sensor.picnic_last_order_eta_start') not in ['unknown','unavailable','none'] %}
+          {{ 901 > (as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) - as_timestamp(now(), 0)) > 840}}
+        {% endif %}
+
+  variables:
+    days_left: "{{ as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) | timestamp_custom('%d', '0') | int - as_timestamp(now(), 0) | timestamp_custom('%d', '0') | int }}"
+    day_name: >-
+      {% if days_left == 0 %} vandaag
+      {% elif days_left == 1 %} morgen
+      {% else %} ooit
+      {% endif %}
+
+  condition:
+    - "{{ days_left < 2 }}"
+    - "{{ states('sensor.picnic_last_order_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ states('sensor.picnic_last_order_eta_end') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ states('sensor.picnic_last_order_eta_start') | as_datetime > now() }}"
+
+  action:
+    - variables:
+        message: >
+          Picnic bezorgt {{ day_name }}, tussen {{ as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) | timestamp_custom('%H:%M', '00:00') }} en {{ as_timestamp(states('sensor.picnic_last_order_eta_end'), 0) | timestamp_custom('%H:%M', '00:00') }}!
+    - service: tts.cloud_say
+      entity_id: media_player.smart_speaker
+      data:
+        message: "{{ message }}"
+        language: "nl-NL"
+
+    - service: notify.all
+      data:
+        title: Picnic komt eraan!
+        message: "{{ message }}"
+        data:
+          tag: "picnic_alert" # Replace notifications with identical tags
+          icon_url: "https://picnic.app/nl/wp-content/uploads/sites/18/2020/11/logo.png"
+          notification_icon: mdi:cart
+          clickAction: "app://com.picnic.android" # Open picnic app on phone
+          timeout: 1800 # Notification is dismissed after timeout
+          color: "#eb4034"
+          ttl: 0
+          priority: high

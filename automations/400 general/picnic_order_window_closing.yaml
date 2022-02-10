@@ -1,29 +1,47 @@
-- alias         : general_picnic_order_window_closing
-  id            : df255aa4-3063-47e7-bb34-55361c6c4908
-  mode          : single
-  description   : Send a notification when there is 1 hour left to add groceries to the current order
+- alias: general_picnic_order_window_closing
+  id: df255aa4-3063-47e7-bb34-55361c6c4908
+  mode: single
+  description: Send a notification when there is 1 hour left to add groceries to the current order
 
   trigger:
     - platform: template
       value_template: >-
-        {% if states('sensor.picnic_last_order_slot_start') != "unavailable" %}
-          {{ 3600 > (as_timestamp(states('sensor.picnic_last_order_slot_start')) - as_timestamp(states('sensor.date') + " " + states('sensor.time'))) > 0}}
+        {% if states('sensor.picnic_selected_slot_max_order_time') not in ['unknown','unavailable','none'] %}
+          {{ 3600 > (as_timestamp(states('sensor.picnic_selected_slot_max_order_time')) - as_timestamp(now(), 0)) > 0}}
         {% endif %}
+      id: cart
+    - platform: template
+      value_template: >-
+        {% if states('sensor.picnic_last_order_max_order_time') not in ['unknown','unavailable','none'] %}
+          {{ 3600 > (as_timestamp(states('sensor.picnic_last_order_max_order_time')) - as_timestamp(now(), 0)) > 0}}
+        {% endif %}
+      id: order
+
+  variables:
+    message: >-
+      {% if trigger.id == "cart" %}
+        De Picnic bestelling is nog niet verzonden! Na {{ as_timestamp(states("sensor.picnic_selected_slot_max_order_time"), 0) | timestamp_custom('%H:%M', '00:00') }} kan het niet meer.
+      {% else %}
+        Wil je nog iets toevoegen aan je volgende Picnic bestelling? Na {{ as_timestamp(states("sensor.picnic_last_order_max_order_time"), 0) | timestamp_custom('%H:%M', '00:00') }} kan het niet meer.
+      {% endif %}
 
   action:
-    - service   : tts.cloud_say
-      entity_id : media_player.smart_speaker
+    - service: tts.cloud_say
+      entity_id: media_player.smart_speaker
       data:
-        message : >
-          Bestel nog snel je laatste Picnic boodschappen! Over een uur kan het niet meer.
-        language: 'nl-NL'
+        message: "{{ message }}"
+        language: "nl-NL"
 
-    - service   : notify.all
+    - service: notify.all
       data:
-        title   : Picnic komt eraan!
-        message : >
-          Bestel nog snel je laatste Picnic boodschappen! Na {{ as_timestamp(states("sensor.picnic_selected_slot_end")) | timestamp_custom("%H:%M") }} kan het niet meer.
+        title: Picnic bestelling gaat sluiten!
+        message: "{{ message }}"
         data:
-          icon_url    : "https://picnic.app/nl/wp-content/uploads/sites/18/2020/11/logo.png"
-          clickAction : "app://com.picnic.android"
-          timeout     : 3600 # How many seconds the notification should be received by the device
+          tag: "picnic_alert" # Replace notifications with identical tags
+          icon_url: "https://picnic.app/nl/wp-content/uploads/sites/18/2020/11/logo.png"
+          notification_icon: mdi:cart
+          clickAction: "app://com.picnic.android" # Open picnic app on phone
+          timeout: 1800 # Notification is dismissed after timeout
+          color: "#eb4034"
+          ttl: 0
+          priority: high
