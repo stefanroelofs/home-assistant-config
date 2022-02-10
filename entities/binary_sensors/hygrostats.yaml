@@ -1,9 +1,10 @@
-- platform        : generic_hygrostat
-  name            : bathroom_hygrostat
-  sensor          : sensor.bathroom_tempsensor_humidity # Source humidity sensor
-  delta_trigger   : 10                                  # Optional humidity swing to detect (%). Default = 3
-  target_offset   : 10                                  # Optional dehumidification target offset (%). Default = 3
-  min_on_time     : 300                                 # Optional min on time in seconds. Default = 0 seconds
-  max_on_time     : 3600                                # Optional safety max on time (sec). Default = 7200 sec
-  sample_interval : 20                                  # Optional time between taking humidity samples (sec). Default = 300 sec
-  min_humidity    : 30                                  # Optional minimum humidity to enable dehumidification (%). Don't turn on when humidity is less than 30%
+- platform: generic_hygrostat
+  name: bathroom_hygrostat
+  unique_id: bathroom_hygrostat
+  sensor: sensor.bathroom_tempsensor_humidity # Source humidity sensor
+  delta_trigger: 10 # Optional humidity swing to detect (%). Default = 3
+  target_offset: 10 # Optional dehumidification target offset (%). Default = 3
+  min_on_time: 300 # Optional min on time in seconds. Default = 0 seconds
+  max_on_time: 3600 # Optional safety max on time (sec). Default = 7200 sec
+  sample_interval: 20 # Optional time between taking humidity samples (sec). Default = 300 sec
+  min_humidity: 30 # Optional minimum humidity to enable dehumidification (%). Don't turn on when humidity is less than 30%
