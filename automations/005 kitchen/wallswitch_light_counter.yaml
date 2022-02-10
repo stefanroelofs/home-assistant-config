@@ -1,19 +1,15 @@
 - alias             : kitchen_wallswitch_light_counter
   id                : f958d195-66a7-409d-b278-0d0a4c001882
-  mode              : single
+  mode              : queued
   trigger:
-    - platform      : homeassistant
-      event         : start
-
-    - platform      : event
-      event_type    : automation_reloaded
-
     - platform      : state
-      entity_id     : light.kitchen_ceiling_group
-      for           : "00:00:02"
-      # State has to be stable for at least 2 seconds, to prevent flashing the lights (this can happen when adaptive_lightning changes the brightness after turning the lights on)
-
+      entity_id     : binary_sensor.kitchen_wallswitch
+  condition:
+    - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
+    - "{{ states.light.kitchen_ceiling_group.state == states.light.kitchen_counter_light.state }}"
+    # Only switch the kitchen counter light when it has the same state as the ceiling light.
   action:
+    - delay              : 2   # delay to allow adaptive lightning to set the correct brightness
     - choose:
         - conditions:
             - condition  : state
@@ -22,7 +18,7 @@
             - condition  : numeric_state
               entity_id  : light.kitchen_ceiling_group
               attribute  : brightness
-              above      : 120  # about 47 % brightness
+              above      : 100  # about 40 % brightness
           sequence:
             - service    : light.turn_on
               target:
