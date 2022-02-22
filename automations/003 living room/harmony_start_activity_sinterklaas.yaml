@@ -1,42 +1,39 @@
 #################################################################
 ## Sinterklaasjournaal aanzetten
 #################################################################
-- alias         : living_room_harmony_start_activity_sinterklaas
-  id            : 693d9973-16ae-4612-95ec-88a4c839c195
+- alias: living_room_harmony_start_activity_sinterklaas
+  id: 693d9973-16ae-4612-95ec-88a4c839c195
   trigger:
-    - platform  : time
-      at        : '17:58:00'
+    - platform: time
+      at: "17:58:00"
   condition:
-    - condition : state
-      entity_id : 'binary_sensor.anybody_home'
-      state     : 'on'
+    - condition: state
+      entity_id: "binary_sensor.anybody_home"
+      state: "on"
     - condition: template # Only between these dates
       value_template: >-
         {% set fromDate = '11-09' %}
         {% set toDate = '12-05' %}
         {{ fromDate <= now()|as_timestamp|timestamp_custom('%m-%d', False) <= toDate }}
-    - condition : state
-      entity_id : remote.roelofs_harmony_hub
-      state     : 'off'
+    - condition: state
+      entity_id: remote.roelofs_harmony_hub
+      state: "off"
   action:
-    - service   : switch.turn_on
-      entity_id : switch.living_room_entertainment_outlet_relay
-    - delay     : '00:00:10'
-    - service   : remote.turn_on
-      entity_id : remote.roelofs_harmony_hub
+    - service: remote.turn_on
+      entity_id: remote.roelofs_harmony_hub
       data:
         activity: "Tv kijken"
-    - delay     : '00:00:10'
-    - service   : remote.send_command   # The Power input on the remote is a toggle, so you never know if you turn it off or on.
+    - delay: "00:00:10"
+    - service: remote.send_command # The Power input on the remote is a toggle, so you never know if you turn it off or on.
       data:
         entity_id: remote.roelofs_harmony_hub
-        device  : "Youfone"
+        device: "Youfone"
         command:
-          - "A"                         # The 'A' input always turns the device on.
-    - delay     : '00:00:14'            # Wait for Youfone AVR to boot
-    - service   : remote.send_command
+          - "A" # The 'A' input always turns the device on.
+    - delay: "00:00:14" # Wait for Youfone AVR to boot
+    - service: remote.send_command
       data:
         entity_id: remote.roelofs_harmony_hub
-        device  : "Youfone"
+        device: "Youfone"
         command:
-          - "3"                         # Set correct channel
+          - "3" # Set correct channel

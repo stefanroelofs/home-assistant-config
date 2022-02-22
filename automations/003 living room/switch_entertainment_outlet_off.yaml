@@ -1,0 +1,18 @@
+- alias: living_room_switch_entertainment_outlet_off
+  id: 9d074eb6-060c-427e-a185-95d6f573e33c
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: input_select.house
+      to: "Sleep mode"
+    - platform: state
+      entity_id: binary_sensor.anybody_home
+      to: "off"
+  action:
+    - service: remote.turn_off
+      target:
+        entity_id: remote.roelofs_harmony_hub
+    - delay: "00:00:5"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.living_room_entertainment_outlet

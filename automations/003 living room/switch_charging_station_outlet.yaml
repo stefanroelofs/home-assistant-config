@@ -1,0 +1,20 @@
+- alias: living_room_switch_charging_station_outlet
+  id: ec286a80-c1f2-409c-8f14-190b43a2adf0
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: switch.living_room_entertainment_outlet
+  action:
+    - choose:
+      - conditions:
+          - condition  : state
+            entity_id  : switch.living_room_entertainment_outlet
+            state      : 'on'
+        sequence:
+          - service    : switch.turn_on
+            target:
+              entity_id: switch.living_room_charging_station_outlet_relay
+      default:
+        - service      : switch.turn_off
+          target:
+            entity_id  : switch.living_room_charging_station_outlet_relay
