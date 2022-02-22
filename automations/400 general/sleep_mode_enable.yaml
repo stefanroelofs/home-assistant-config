@@ -1,0 +1,50 @@
+- alias: general_sleep_mode_enable
+  id: e9fb4924-70a2-452b-bddb-e0dbfbece777
+  trigger:
+    - platform: time
+      at: "00:00:00"
+    - platform: state
+      entity_id:
+        - binary_sensor.stefan_phone_app_is_charging
+        - binary_sensor.marcella_phone_app_is_charging
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: remote.roelofs_harmony_hub
+        state: "off"
+      - condition: time
+        after: "20:00:00"
+        before: "03:00:00"
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: input_select.house
+            state: "Sleep mode"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.stefan_phone_app_is_charging
+            state: "on"
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: person.stefan
+                state: "home"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.marcella_phone_app_is_charging
+            state: "on"
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: person.marcella
+                state: "home"
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Sleep mode"

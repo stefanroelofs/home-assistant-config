@@ -6,23 +6,30 @@
     - platform: homeassistant
       event: start
       id: ha_start
+
     - platform: event
       event_type: automation_reloaded
+
     - platform: state
-      entity_id:
-        - binary_sensor.anybody_home
+      entity_id: input_select.house
+      to: "Sleep mode"
+
+    - platform: state
+      entity_id: input_select.house
+      to: "Sleep mode"
+      for: "00:30:00"
+
+    - platform: state
+      entity_id: input_select.house
+      from: "Sleep mode"
+
+    - platform: state
+      entity_id: binary_sensor.anybody_home
+
     - platform: state
       entity_id: binary_sensor.bathroom_hygrostat
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.bathroom_hygrostat
-      from: "on"
-      to: "off"
-    - platform: time
-      at:
-        - "00:00:00"
-        - "08:00:00"
+      from: ~
+
   action:
     - alias: Check if this is triggered by HA restart
       choose:
@@ -33,9 +40,9 @@
             - delay:
                 minutes: 1
 
-    - alias: Turn the fan off if nobody is home.
-      choose:
-        - conditions:
+    - choose:
+        - alias: Turn the fan off if nobody is home
+          conditions:
             - condition: state
               entity_id: binary_sensor.anybody_home
               state: "off" # nobody is home
@@ -44,14 +51,16 @@
               target:
                 entity_id: fan.mech_vent_fan
 
-        # Set fan to High when someone is showering, but only during the daytime.
-        - conditions:
+        - alias: Set fan to High when someone is showering, but only when we are not sleeping.
+          conditions:
             - condition: state
               entity_id: binary_sensor.bathroom_hygrostat
               state: "on" # high humidity detected
-            - condition: time
-              after: "07:00:00"
-              before: "00:00:00"
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: input_select.house
+                  state: "Sleep mode"
           sequence:
             - service: fan.turn_on
               target:
@@ -59,11 +68,12 @@
               data:
                 percentage: 80 # %
 
-        # Set fan to medium at night. Everybody is breathing in their beds.
-        - conditions:
-            - condition: time
-              after: "00:00:00"
-              before: "08:00:00"
+        - alias: Set fan to medium when we are asleep. Everybody is breathing in their beds.
+          conditions:
+            - condition: state
+              entity_id: input_select.house
+              state: "Sleep mode"
+              for: "00:30:00"
           sequence:
             - service: fan.turn_on
               target:
@@ -71,7 +81,7 @@
               data:
                 percentage: 45 # %
 
-      # Set fan to low during the day
+      alias: Set fan to low during the day
       default:
         - service: fan.turn_on
           target:

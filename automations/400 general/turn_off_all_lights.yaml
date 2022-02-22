@@ -1,0 +1,17 @@
+- alias: general_turn_off_all_lights
+  id: 5742a974-a716-49f1-b5ad-fb655a6e0d1a
+  trigger:
+    - platform: state
+      entity_id: input_select.house
+      to:
+        - "Sleep mode"
+        - "Away mode"
+        - "Vacation mode"
+      for: "00:00:10"
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: "{{ states['light'] | selectattr('state','==', 'on') | map(attribute='entity_id') | list }}"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.wake_up_vaste_pc

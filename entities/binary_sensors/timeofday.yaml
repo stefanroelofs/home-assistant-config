@@ -16,12 +16,6 @@
   before       : '00:00'
 
 - platform     : tod
-  name         : night
-  after        : '00:00'
-  before       : '06:30'
-
-
-- platform     : tod
   name         : darkness
   after        : sunset
   after_offset : '-00:15'

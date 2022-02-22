@@ -1,0 +1,28 @@
+- alias: general_sleep_mode_disable
+  id: e1808452-21ea-41ab-af23-efde2a005ab7
+  trigger:
+    - platform: time
+      at: "07:30:00"
+    - platform: state # Turn off when doors open
+      entity_id: binary_sensor.bedroom_master_wardrobe_doorsensor
+      from: "off"
+      to: "on"
+    - platform: numeric_state
+      entity_id:
+        - light.bedroom_master_ceiling
+        - light.bathroom_ceiling
+      attribute: brightness
+      above: 240
+  condition:
+    - condition: time
+      after: "06:00:00"
+      before: "11:00:00"
+    - condition: state
+      entity_id: input_select.house
+      state: "Sleep mode"
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Normal"

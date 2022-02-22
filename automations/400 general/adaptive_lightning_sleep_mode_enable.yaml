@@ -2,10 +2,12 @@
   id            : 3c58521e-5074-432a-87b3-e2d6a75525e9
   description   : "Adaptive lighting: toggle 'sleep mode'"
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.night
+    - platform: state
+      entity_id: input_select.house
+
     - platform  : homeassistant
       event     : start  # in case the states aren't properly restored
+
     - platform  : event
       event_type: automation_reloaded # in case automations reload
   variables:
@@ -18,8 +20,8 @@
     - choose:
       - conditions:
           - condition  : state
-            entity_id  : binary_sensor.night
-            state      : 'on'
+            entity_id  : input_select.house
+            state      : "Sleep mode"
         sequence:
           - service    : switch.turn_on
             target:
