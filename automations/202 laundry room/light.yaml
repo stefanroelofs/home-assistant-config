@@ -1,0 +1,14 @@
+- alias: laundry_room_light
+  id: 3533dd60-58c7-4b74-bc43-4fe7e50428cb
+  description: Turn on light when someone enters the area
+  use_blueprint:
+    path: stefanroelofs/motion_lightV2.yaml
+    input:
+      motion_entity: binary_sensor.laundry_room_motionsensor_zone
+      light_entity: light.laundry_room_ceiling
+      no_motion_delay: 120
+      inhibit_entity: input_select.house
+      inhibit_entity_state: "Cleaning mode"
+      lux_entity: sensor.laundry_room_motionsensor_illuminance
+      lux_threshold: 50
+      transition_to_off: 0
