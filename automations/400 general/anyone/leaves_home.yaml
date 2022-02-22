@@ -1,30 +1,22 @@
-- alias         : general_anyone_leaves_home
-  id            : d90a6a6a-9ab9-4fbf-bbaf-e284276afb52
+- alias: general_anyone_leaves_home
+  id: d90a6a6a-9ab9-4fbf-bbaf-e284276afb52
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.anybody_home
-      to        : 'off'
+    - platform: state
+      entity_id: binary_sensor.anybody_home
+      to: "off"
       for:
-        minutes : 1
+        minutes: 1
   action:
-    - service   : light.turn_off
-      entity_id : all
-    - service   : switch.turn_off
-      entity_id : switch.wake_up_vaste_pc
- #   - service   : switch.turn_off
- #     entity_id : switch.xiaomi_switch_2   # christmas tree
-    - service   : remote.turn_off
-      entity_id : remote.roelofs_harmony_hub
-    - delay     : '00:01:00'
-    - service   : switch.turn_off
-      entity_id : switch.living_room_entertainment_outlet_relay
-    - service   : switch.turn_off
-      entity_id : switch.living_room_charging_station_outlet_relay    # charging station
-
-    - service     : notify.stefan
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
       data:
-        title     : Vertrek van huis
-        message   : 'Er is niemand thuis. Ik heb alles uit gezet voor je.'
+        option: "Away mode"
+
+    - service: notify.stefan
+      data:
+        title: Vertrek van huis
+        message: "Er is niemand thuis. Ik heb alles uit gezet voor je."
         data:
-          tag     : leaving_alert
-          icon    : mdi:home-export-outline
+          tag: leaving_alert
+          icon: mdi:home-export-outline

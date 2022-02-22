@@ -1,8 +1,0 @@
-- alias         : general_guest_mode_disable
-  id            : cc31853d-c5db-4ea2-8521-121608cf6b64
-  trigger:
-    - platform  : time
-      at        : '02:00:00'
-  action:
-    - service   : input_boolean.turn_off
-      entity_id : input_boolean.guest_mode

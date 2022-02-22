@@ -13,8 +13,6 @@
         exclude_entities:
           - light.living_room_lights
           - light.staircase_closet_floorheatingpump_outlet_state_led
-          - light.living_room_entertainment_outlet_state_led
-
           - light.dining_area_ceiling_1
           - light.dining_area_ceiling_2
 
@@ -34,12 +32,8 @@
           - light.bathroom_ceiling
           - light.bathroom_bath_ledstrip
 
-          - light.ikea_of_sweden_tradfri_bulb_e14_cws_opal_600lm_275a99fe_level_light_color_on_off
-
         include_entities:
-          - input_boolean.cleaning_mode
-          - input_boolean.guest_mode
-          - input_boolean.vacation_mode
+          - input_select.house
 
           - binary_sensor.living_room_doorsensor
           - binary_sensor.hallway_doorsensor
@@ -50,6 +44,13 @@
       entity_config:
 
         # Begane grond
+        input_select.house:
+          name: Huis mode
+          aliases:
+            - Huis
+            - Huis stand
+            - Huis status
+
         climate.living_room:
           name: Thermostaat
           room: Woonkamer

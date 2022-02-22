@@ -5,4 +5,4 @@
       state: >-
         {{ is_state('person.marcella', 'home')
         or is_state('person.stefan', 'home')
-        or is_state('input_boolean.guest_mode', 'on') }}
+        or is_state('input_select.house', 'Guest mode') }}

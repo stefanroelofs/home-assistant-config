@@ -16,4 +16,8 @@
         entity_id:
           - scene.living_room_comfort
           - scene.dining_area_comfort
-        transition: 2
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Normal"

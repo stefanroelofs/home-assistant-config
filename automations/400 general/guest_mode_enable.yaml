@@ -12,15 +12,19 @@
       to: "home"
 
   condition:
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: "off"
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.house
+          state: "Guest mode"
 
   action:
     - alias: "Turn on Guest mode"
-      service: input_boolean.turn_on
+      service: input_select.select_option
       target:
-        entity_id: input_boolean.guest_mode
+        entity_id: input_select.house
+      data:
+        option: "Guest mode"
 
     - alias: "Set up variables for the actions"
       variables:
@@ -67,12 +71,16 @@
         - conditions: "{{ wait.trigger.event.data.action == action_ok }}"
           sequence:
             - alias: "Turn on Guest mode"
-              service: input_boolean.turn_on
+              service: input_select.select_option
               target:
-                entity_id: input_boolean.guest_mode
+                entity_id: input_select.house
+              data:
+                option: "Guest mode"
         - conditions: "{{ wait.trigger.event.data.action == action_cancel }}"
           sequence:
             - alias: "Cancel Guest mode"
-              service: input_boolean.turn_off
+              service: input_select.select_option
               target:
-                entity_id: input_boolean.guest_mode
+                entity_id: input_select.house
+              data:
+                option: "Normal"
