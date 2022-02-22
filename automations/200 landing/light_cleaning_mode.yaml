@@ -1,14 +1,14 @@
-- alias            : second_floor_landing_light_cleaning_mode
-  id               : e97179d3-e7eb-405c-b8fd-f1a34f37328d
+- alias: second_floor_landing_light_cleaning_mode
+  id: e97179d3-e7eb-405c-b8fd-f1a34f37328d
   trigger:
-    - platform     : state
-      entity_id    : input_boolean.cleaning_mode
-      to           : "on"
+    - platform: state
+      entity_id: input_select.house
+      to: "Cleaning mode"
   action:
-    - service      : light.turn_on
+    - service: light.turn_on
       target:
-        entity_id  : light.second_floor_landing_ceiling
+        entity_id: light.second_floor_landing_ceiling
       data:
-        color_temp : 180
-        brightness : 255
-        transition : 1
+        color_temp: 180
+        brightness: 255
+        transition: 1

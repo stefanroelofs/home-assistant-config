@@ -1,22 +1,24 @@
-- alias         : staircase_closet_light_off
-  id            : 32b75373-d85b-4704-b29d-8d72ac1ca4c1
+- alias: staircase_closet_light_off
+  id: 32b75373-d85b-4704-b29d-8d72ac1ca4c1
   trigger:
-    - platform  : state
-      entity_id : binary_sensor.staircase_closet_doorsensor
-      from      : 'on'
-      to        : 'off' # Door closes
-      for       : '00:00:05'
-    - platform  : state
-      entity_id : light.staircase_closet_light
-      to        : 'on'
-      for       : '00:01:30'
-    - platform  : state
-      entity_id : input_boolean.cleaning_mode
-      to        : 'off'
+    - platform: state
+      entity_id: binary_sensor.staircase_closet_doorsensor
+      from: "on"
+      to: "off" # Door closes
+      for: "00:00:05"
+    - platform: state
+      entity_id: light.staircase_closet_light
+      to: "on"
+      for: "00:02:30"
+    - platform: state
+      entity_id: input_select.house
+      from: "Cleaning mode"
   condition:
-    - condition : state
-      entity_id : input_boolean.cleaning_mode
-      state     : 'off'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.house
+          state: "Cleaning mode"
   action:
-    - service   : light.turn_off
-      entity_id : light.staircase_closet_light
+    - service: light.turn_off
+      entity_id: light.staircase_closet_light

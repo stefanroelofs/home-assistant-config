@@ -1,26 +1,28 @@
-- alias         : bedroom_1_lights_turn_off_after_timeout
-  id            : 3f693bb2-6c1a-43d2-86be-ed9573916f6a
+- alias: bedroom_1_lights_turn_off_after_timeout
+  id: 3f693bb2-6c1a-43d2-86be-ed9573916f6a
   trigger:
-    - platform  : state
-      entity_id : light.bedroom_1_lights
-      to        : 'on'
+    - platform: state
+      entity_id: light.bedroom_1_lights
+      to: "on"
       for:
-        minutes : 15
-    - platform  : state
-      entity_id : binary_sensor.kinderbedtijd
-      to        : 'on'
+        minutes: 15
+    - platform: state
+      entity_id: binary_sensor.kinderbedtijd
+      to: "on"
   condition:
-    - condition : state
-      entity_id : light.bedroom_1_lights
-      state     : 'on'
+    - condition: state
+      entity_id: light.bedroom_1_lights
+      state: "on"
       for:
-        minutes : 15
-    - condition : state
-      entity_id : binary_sensor.kinderbedtijd
-      state     : 'on'
-    - condition : state
-      entity_id : input_boolean.cleaning_mode
-      state     : 'off'
+        minutes: 15
+    - condition: state
+      entity_id: binary_sensor.kinderbedtijd
+      state: "on"
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.house
+          state: "Cleaning mode"
   action:
-    - service   : light.turn_off
-      entity_id : light.bedroom_1_lights
+    - service: light.turn_off
+      entity_id: light.bedroom_1_lights
