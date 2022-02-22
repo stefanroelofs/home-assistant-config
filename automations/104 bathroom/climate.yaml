@@ -1,25 +1,64 @@
-- alias         : bathroom_climate
-  id            : 818bccea-3335-4f3d-b62b-4490c4f9ea03
-  mode          : queued
+- alias: bathroom_climate
+  id: 818bccea-3335-4f3d-b62b-4490c4f9ea03
+  mode: queued
+
   trigger:
     - platform: homeassistant
       event: start # in case the states aren't properly restored
       id: ha_start
-    - platform  : event
+
+    - platform: event
       event_type: automation_reloaded
-    - platform  : state
+
+    - platform: state
       entity_id:
         - binary_sensor.bathroom_windowsensor
         - binary_sensor.anybody_home
-        - input_number.bathroom_target_temp
         - binary_sensor.bathroom_hygrostat
-    - platform  : time
+        - input_select.house
+
+    - platform: time
       at:
-        - "18:45:00"
-        - "22:30:00"
-        - "06:30:00"
-        - "07:30:00"
-        - "08:30:00"
+        - &weekday_morning_start "06:30:00"
+        - &weekday_morning_end "07:30:00"
+        #        - &weekend_morning_start "07:30:00"
+        #        - &weekend_morning_end "08:30:00"
+        - &evening_start "18:45:00"
+        - &evening_end "20:30:00"
+
+  variables:
+    anchors:
+      - &target
+        target:
+          area_id: badkamer
+
+      - &turn_off
+        <<: *target
+        alias: "Turn off heating"
+        service: climate.set_hvac_mode
+        data:
+          hvac_mode: "off"
+
+      - &turn_on
+        <<: *target
+        alias: "Turn on heating"
+        service: climate.set_hvac_mode
+        data:
+          hvac_mode: "heat"
+
+      - &turn_down
+        <<: *target
+        alias: "Turn down heating"
+        service: climate.set_temperature
+        data:
+          temperature: 15.0
+
+      - &turn_up
+        <<: *target
+        alias: "Turn up heating"
+        service: climate.set_temperature
+        data:
+          temperature: 26.0
 
   action:
     - alias: Check if this is triggered by HA restart
@@ -30,62 +69,84 @@
           sequence:
             - delay:
                 minutes: 2
+
     - choose:
-        # Turn radiator off
         - conditions:
-            condition         : or
-            conditions:
-              - condition     : state
-                entity_id     : binary_sensor.bathroom_windowsensor
-                state         : 'on' # window is open
-              - condition     : state
-                entity_id     : binary_sensor.anybody_home
-                state         : 'off' # nobody is home
+            - alias: "When nobody is home"
+              condition: state
+              entity_id: binary_sensor.anybody_home
+              state: "off"
           sequence:
-            - service         : climate.set_hvac_mode
-              data:
-                entity_id     : climate.bathroom_thermostatic_radiator_valve_thermostat
-                hvac_mode     : "off"
+            - *turn_off
 
-        # Set high temperature
         - conditions:
-            condition         : or
-            conditions:
-              - condition     : and    # Set temp on weekday mornings
-                conditions:
-                  - condition : state
-                    entity_id : binary_sensor.workday_sensor
-                    state     : 'on' # it is a weekday
-                  - condition : time
-                    after     : "06:30:00"
-                    before    : "07:30:00"
-              - condition     : and    # Set temp on weekend mornings
-                conditions:
-                  - condition : state
-                    entity_id : binary_sensor.workday_sensor
-                    state     : 'off' # it is weekend
-                  - condition : time
-                    after     : "07:30:00"
-                    before    : "08:30:00"
-              - condition     : time   # Set temp on evenings
-                after         : "18:45:00"
-                before        : "22:30:00"
-              - condition     : state
-                entity_id     : binary_sensor.bathroom_hygrostat
-                state         : 'on' # high humidity detected
+            - alias: "When outside temperature is too high"
+              condition: numeric_state
+              entity_id: sensor.buienradar_temperature
+              above: 18.0
           sequence:
-            - service         : climate.set_temperature
-              data:
-                entity_id     : climate.bathroom_thermostatic_radiator_valve_thermostat
-                hvac_mode     : heat
-                temperature   : "{{ states('input_number.bathroom_target_temp') }}"
+            - *turn_off
 
-      # Default: Set low temperature
+        - conditions:
+            - alias: "When the window is open"
+              condition: state
+              entity_id: binary_sensor.bathroom_windowsensor
+              state: "on"
+          sequence:
+            - *turn_off
+
+        - conditions:
+            - alias: "When we are sleeping"
+              condition: state
+              entity_id: input_select.house
+              state: "Sleep mode"
+          sequence:
+            - *turn_off
+
+        - conditions:
+            - alias: "When someone is in the shower"
+              condition: state
+              entity_id: binary_sensor.bathroom_hygrostat
+              state: "on" # high humidity detected
+          sequence:
+            - *turn_on
+            - *turn_up
+
+        - alias: "When it is morning on a weekday"
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on" # it is a weekday
+            - condition: time
+              after: *weekday_morning_start
+              before: *weekday_morning_end
+          sequence:
+            - *turn_on
+            - *turn_up
+
+        #        - alias: "When it is morning in the weekend"
+        #          conditions:
+        #            - condition: state
+        #              entity_id: binary_sensor.workday_sensor
+        #              state: "off" # it is weekend
+        #            - condition: time
+        #              after: *weekend_morning_start
+        #              before: *weekend_morning_end
+        #          sequence:
+        #            - *turn_on
+        #            - *turn_up
+
+        - conditions:
+            - alias: "When it is evening"
+              condition: time # Set temp on evenings
+              after: *evening_start
+              before: *evening_end
+          sequence:
+            - *turn_on
+            - *turn_up
+
+      alias: Set low temperature
       default:
-        - service             : climate.set_temperature
-          data:
-            entity_id         : climate.bathroom_thermostatic_radiator_valve_thermostat
-            hvac_mode         : heat
-            temperature       : 15.0
-
-# Credits: https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/bedroom_flynn/climate.yaml
+        - *turn_on
+        - *turn_down
+# Credits: https://github.com/frenck/home-assistant-config/blob/master/automations/bedroom_flynn/climate.yaml
