@@ -1,0 +1,7 @@
+- binary_sensor:
+    - name: wake_up_light_enabled
+      unique_id: 4acaa1b8-c521-4e93-b2ae-1ec67f3fd092
+      state: >-
+        {{ is_state('person.stefan', 'home')
+        and is_state('binary_sensor.workday_sensor', 'on')
+        and now() > today_at("06:00") }}

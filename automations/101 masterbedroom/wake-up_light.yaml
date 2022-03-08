@@ -1,4 +1,4 @@
-- alias: bedroom_master_wake-up_light
+- alias: bedroom_master_wake_up_light
   id: 203db602-158f-4207-ac30-2a99d983dff8
   description: Wake-up light alarm with sunrise effect
   use_blueprint:
@@ -7,4 +7,5 @@
       manual_time: '7:00:00'
       light_entity: light.bedroom_master_ceiling
       timestamp_sensor: sensor.stefan_phone_app_next_alarm
-      check_entity: binary_sensor.workday_sensor
+      check_entity: binary_sensor.wake_up_light_enabled
+      sunrise_duration: 20.0
