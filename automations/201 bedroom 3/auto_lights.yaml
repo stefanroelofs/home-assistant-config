@@ -1,18 +1,16 @@
 - alias         : bedroom_3_auto_lights
   id            : 45ecb78f-307b-4526-ac2d-83c8c4757b71
   trigger:
-    - platform  : time
-      at        : '08:32:00'
+    - platform: sun
+      event: sunrise
+      offset: "-00:12:32"
   condition:
     - condition : state
       entity_id : 'binary_sensor.anybody_home'
       state     : 'off'
-    - condition : state
-      entity_id : binary_sensor.darkness
-      state     : 'on'
   action:
     - service   : light.turn_on
       entity_id : light.bedroom_3_ceiling
-    - delay     : "{{ range(8 * 60, 12 * 60 + 1) | random }}"
+    - delay     : "00:13:49"
     - service   : light.turn_off
       entity_id : light.bedroom_3_ceiling
