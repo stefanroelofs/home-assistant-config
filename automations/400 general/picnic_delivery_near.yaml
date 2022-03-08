@@ -7,18 +7,18 @@
   trigger:
     - platform: state
       entity_id:
-        - sensor.picnic_last_order_eta_start
-        - sensor.picnic_last_order_eta_end
+        - sensor.picnic_next_delivery_eta_start
+        - sensor.picnic_next_delivery_eta_end
     - platform: time
       at: "18:59:00"
     - platform: template # Trigger 15 minutes before eta start time.
       value_template: >-
-        {% if states('sensor.picnic_last_order_eta_start') not in ['unknown','unavailable','none'] %}
-          {{ 901 > (as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) - as_timestamp(now(), 0)) > 840}}
+        {% if states('sensor.picnic_next_delivery_eta_start') not in ['unknown','unavailable','none'] %}
+          {{ 901 > (as_timestamp(states('sensor.picnic_next_delivery_eta_start'), 0) - as_timestamp(now(), 0)) > 840}}
         {% endif %}
 
   variables:
-    days_left: "{{ as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) | timestamp_custom('%d', '0') | int - as_timestamp(now(), 0) | timestamp_custom('%d', '0') | int }}"
+    days_left: "{{ as_timestamp(states('sensor.picnic_next_delivery_eta_start'), 0) | timestamp_custom('%d', '0') | int - as_timestamp(now(), 0) | timestamp_custom('%d', '0') | int }}"
     day_name: >-
       {% if days_left == 0 %} vandaag
       {% elif days_left == 1 %} morgen
@@ -27,14 +27,14 @@
 
   condition:
     - "{{ days_left < 2 }}"
-    - "{{ states('sensor.picnic_last_order_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
-    - "{{ states('sensor.picnic_last_order_eta_end') not in ['unknown', 'unavailable', 'none'] }}"
-    - "{{ states('sensor.picnic_last_order_eta_start') | as_datetime > now() }}"
+    - "{{ states('sensor.picnic_next_delivery_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ states('sensor.picnic_next_delivery_eta_end') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ states('sensor.picnic_next_delivery_eta_start') | as_datetime > now() }}"
 
   action:
     - variables:
         message: >
-          Picnic bezorgt {{ day_name }}, tussen {{ as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) | timestamp_custom('%H:%M', '00:00') }} en {{ as_timestamp(states('sensor.picnic_last_order_eta_end'), 0) | timestamp_custom('%H:%M', '00:00') }}!
+          Picnic bezorgt {{ day_name }}, tussen {{ as_timestamp(states('sensor.picnic_next_delivery_eta_start'), 0) | timestamp_custom('%H:%M', '00:00') }} en {{ as_timestamp(states('sensor.picnic_next_delivery_eta_end'), 0) | timestamp_custom('%H:%M', '00:00') }}!
     - service: tts.cloud_say
       entity_id: media_player.smart_speaker
       data:

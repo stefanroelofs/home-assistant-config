@@ -8,9 +8,9 @@
       minutes: "/2"
 
   condition:
-    - "{{ states('sensor.picnic_last_order_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
-    - "{{ 901 > (as_timestamp(states('sensor.picnic_last_order_eta_start'), 0) - as_timestamp(now(), 0)) > 0}}"
+    - "{{ states('sensor.picnic_next_delivery_eta_start') not in ['unknown', 'unavailable', 'none'] }}"
+    - "{{ 901 > (as_timestamp(states('sensor.picnic_next_delivery_eta_start'), 0) - as_timestamp(now(), 0)) > 0}}"
 
   action:
     - service: homeassistant.update_entity
-      entity_id: sensor.picnic_last_order_eta_start
+      entity_id: sensor.picnic_next_delivery_eta_start
