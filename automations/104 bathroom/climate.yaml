@@ -1,6 +1,7 @@
 - alias: bathroom_climate
   id: 818bccea-3335-4f3d-b62b-4490c4f9ea03
   mode: queued
+  description: "Credits: https://github.com/frenck/home-assistant-config/blob/master/automations/bedroom_flynn/climate.yaml"
 
   trigger:
     - platform: homeassistant
@@ -21,8 +22,8 @@
       at:
         - &weekday_morning_start "06:30:00"
         - &weekday_morning_end "07:30:00"
-        #        - &weekend_morning_start "07:30:00"
-        #        - &weekend_morning_end "08:30:00"
+        #- &weekend_morning_start "07:30:00"
+        #- &weekend_morning_end "08:30:00"
         - &evening_start "18:45:00"
         - &evening_end "20:30:00"
 
@@ -39,26 +40,21 @@
         data:
           hvac_mode: "off"
 
-      - &turn_on
+      - &turn_on_low
         <<: *target
-        alias: "Turn on heating"
-        service: climate.set_hvac_mode
+        alias: "Turn on heating to low temperature"
+        service: climate.set_temperature
         data:
           hvac_mode: "heat"
+          temperature: 14.0
 
-      - &turn_down
+      - &turn_on_high
         <<: *target
-        alias: "Turn down heating"
+        alias: "Turn on heating to high temperature"
         service: climate.set_temperature
         data:
-          temperature: 15.0
-
-      - &turn_up
-        <<: *target
-        alias: "Turn up heating"
-        service: climate.set_temperature
-        data:
-          temperature: 26.0
+          hvac_mode: "heat"
+          temperature: 20.0
 
   action:
     - alias: Check if this is triggered by HA restart
@@ -109,8 +105,7 @@
               entity_id: binary_sensor.bathroom_hygrostat
               state: "on" # high humidity detected
           sequence:
-            - *turn_on
-            - *turn_up
+            - *turn_on_high
 
         - alias: "When it is morning on a weekday"
           conditions:
@@ -121,20 +116,18 @@
               after: *weekday_morning_start
               before: *weekday_morning_end
           sequence:
-            - *turn_on
-            - *turn_up
+            - *turn_on_high
 
-        #        - alias: "When it is morning in the weekend"
-        #          conditions:
-        #            - condition: state
-        #              entity_id: binary_sensor.workday_sensor
-        #              state: "off" # it is weekend
-        #            - condition: time
-        #              after: *weekend_morning_start
-        #              before: *weekend_morning_end
-        #          sequence:
-        #            - *turn_on
-        #            - *turn_up
+        #- alias: "When it is morning in the weekend"
+        #  conditions:
+        #    - condition: state
+        #      entity_id: binary_sensor.workday_sensor
+        #      state: "off" # it is weekend
+        #    - condition: time
+        #      after: *weekend_morning_start
+        #      before: *weekend_morning_end
+        #  sequence:
+        #    - *turn_on_high
 
         - conditions:
             - alias: "When it is evening"
@@ -142,11 +135,8 @@
               after: *evening_start
               before: *evening_end
           sequence:
-            - *turn_on
-            - *turn_up
+            - *turn_on_high
 
       alias: Set low temperature
       default:
-        - *turn_on
-        - *turn_down
-# Credits: https://github.com/frenck/home-assistant-config/blob/master/automations/bedroom_flynn/climate.yaml
+        - *turn_on_low

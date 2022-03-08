@@ -35,26 +35,21 @@
         data:
           hvac_mode: "off"
 
-      - &turn_on
+      - &turn_on_low
         <<: *target
-        alias: "Turn on heating"
-        service: climate.set_hvac_mode
+        alias: "Turn on heating to low temperature"
+        service: climate.set_temperature
         data:
           hvac_mode: "heat"
+          temperature: 14.0
 
-      - &turn_down
+      - &turn_on_high
         <<: *target
-        alias: "Turn down heating"
+        alias: "Turn on heating to high temperature"
         service: climate.set_temperature
         data:
+          hvac_mode: "heat"
           temperature: 15.0
-
-      - &turn_up
-        <<: *target
-        alias: "Turn up heating"
-        service: climate.set_temperature
-        data:
-          temperature: 20.0
 
   action:
     - alias: Check if this is triggered by HA restart
@@ -113,10 +108,8 @@
               after: *evening_start
               before: *evening_end
           sequence:
-            - *turn_on
-            - *turn_up
+            - *turn_on_high
 
       alias: Set low temperature
       default:
-        - *turn_on
-        - *turn_down
+        - *turn_on_low
