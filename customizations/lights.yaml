@@ -2,24 +2,9 @@ light.living_room_lights:
   friendly_name : "Woonkamer"
   icon          : mdi:sofa
 
-light.dining_area_ceiling_group:
-  icon          : mdi:silverware
-
-light.kitchen_ceiling_group:
-  icon          : mdi:food-fork-drink
-
-light.first_floor_landing_ceiling:
-  icon          : mdi:home-floor-1
-
-light.second_floor_landing_ceiling:
-  icon          : mdi:home-floor-2
-
 light.bathroom_lights:
   friendly_name : "Badkamer"
   icon          : mdi:shower
-
-light.bedroom_master_ceiling:
-  icon          : mdi:bed-queen
 
 light.bedroom_1_lights:
   friendly_name : "Olivia's kamer"
@@ -32,10 +17,3 @@ light.bedroom_2_lights:
 light.bedroom_3_lights:
   friendly_name : "Damian's kamer"
   icon          : mdi:bed
-
-light.attic_laundry_room:
-  icon          : mdi:washing-machine
-
-light.home_office:
-  friendly_name : "Thuiskantoor"
-  icon          : mdi:briefcase

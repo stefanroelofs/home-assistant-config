@@ -40,17 +40,6 @@ binary_sensor.bedroom_2_wallswitch:
 binary_sensor.anybody_home:
   device_class: presence
 
-# Motion sensors
-binary_sensor.restroom_motionsensor_zone:
-  device_class: occupancy
-binary_sensor.restroom_motionsensor_occupancy:
-  device_class: motion
-
-binary_sensor.second_floor_landing_motionsensor_zone:
-  device_class: occupancy
-binary_sensor.second_floor_landing_motionsensor_occupancy:
-  device_class: motion
-
 # Waste entity pictures
 sensor.acv_restafval:
   entity_picture : /local/icons/acv/Rest.png
