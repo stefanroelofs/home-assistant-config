@@ -1,3 +1,0 @@
-- platform : switch
-  name     : kitchen_sideboard
-  entity_id: switch.kitchen_sideboard_outlet

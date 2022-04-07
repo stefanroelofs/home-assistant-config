@@ -1,6 +1,0 @@
-- platform    : derivative
-  source      : sensor.bathroom_tempsensor_humidity
-  name        : bathroom_humidity_change_per_min
-  round       : 2
-  unit_time   : min         # the resulting "unit_of_measurement" will be %/min
-  time_window : "00:00:30"  # we look at the change over the last 30 seconds
