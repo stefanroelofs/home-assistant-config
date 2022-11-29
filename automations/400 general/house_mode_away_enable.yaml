@@ -1,0 +1,49 @@
+- alias: general_house_mode_away_enable
+  id: d90a6a6a-9ab9-4fbf-bbaf-e284276afb52
+
+  trigger:
+    - platform: state
+      entity_id:
+        - person.stefan
+        - person.marcella
+        - person.dija
+        - person.ria
+        - person.jos
+      from: "home"
+      for:
+        minutes: 1
+
+  condition:
+    - alias: "ALL persons are NOT home"
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: person.stefan
+          state: "home"
+        - condition: state
+          entity_id: person.marcella
+          state: "home"
+        - condition: state
+          entity_id: person.dija
+          state: "home"
+        - condition: state
+          entity_id: person.ria
+          state: "home"
+        - condition: state
+          entity_id: person.jos
+          state: "home"
+
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Away mode"
+
+    - service: notify.stefan
+      data:
+        title: Vertrek van huis
+        message: "Er is niemand thuis. Ik heb alles uit gezet voor je."
+        data:
+          tag: leaving_alert
+          icon: mdi:home-export-outline

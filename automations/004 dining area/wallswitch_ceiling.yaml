@@ -8,4 +8,4 @@
     - "{{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) / 60) | int > 2 }}"
   action:
     - service       : light.toggle
-      entity_id     : light.dining_area_ceiling_group
+      entity_id     : light.dining_area_ceiling

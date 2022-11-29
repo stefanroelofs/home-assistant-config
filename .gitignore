@@ -15,7 +15,6 @@ __pycache__
 deps
 glances
 tts
-www/profile_pics
 neighbours
 zha_ota
 
@@ -30,7 +29,6 @@ html5_push_registrations.conf
 harmony_*.conf
 plex.conf
 ip_bans.yaml
-known_devices.yaml
 options.xml
 OZW_Log.txt
 pyozw.sqlite
@@ -54,3 +52,11 @@ notebooks
 
 # Specific keeps
 !.gitkeep
+
+# Build-in blueprints ignores
+blueprints/*/homeassistant
+
+# Ignore vendored stuff
+custom_components
+themes
+www/community

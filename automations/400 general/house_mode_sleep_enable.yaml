@@ -1,8 +1,6 @@
-- alias: general_sleep_mode_enable
+- alias: general_house_mode_sleep_enable
   id: e9fb4924-70a2-452b-bddb-e0dbfbece777
   trigger:
-    - platform: time
-      at: "00:00:00"
     - platform: state
       entity_id:
         - binary_sensor.stefan_phone_app_is_charging
@@ -17,6 +15,9 @@
       - condition: time
         after: "20:00:00"
         before: "03:00:00"
+      - condition: state
+        entity_id: "binary_sensor.anybody_home"
+        state: "on"
       - condition: not
         conditions:
           - condition: state

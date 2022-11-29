@@ -6,3 +6,11 @@ zha:
       otau_directory: /config/zha_ota            # Utilize .ota files to update everything else
 
 # More info: https://www.home-assistant.io/integrations/zha/#ota-firmware-updates
+
+#    network:
+#      channel: 25                                # What channel the radio should try to use.
+#      channels: [20, 25]                     # Channel mask
+#     channels: [15, 20, 25]                     # Channel mask
+
+# Changing network channel failed!! I could not reset the conbee2 gateway stick.
+# More info: https://www.home-assistant.io/integrations/zha#defining-zigbee-channel-to-use

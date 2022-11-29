@@ -1,4 +1,4 @@
-- alias: general_guest_mode_enable
+- alias: general_house_mode_guest_enable
   id: 6cdd2fc2-7666-4930-ae3c-a018e44c7da2
   mode: single
   description: Ask to confirm enabling guest mode

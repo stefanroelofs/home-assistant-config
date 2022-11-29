@@ -1,0 +1,23 @@
+- alias: general_house_mode_sleep_enable_on_time
+  id: fbd5cad3-a431-486e-9ebd-9a6a465509e9
+  trigger:
+    - platform: time
+      at: "00:00:00"
+  condition:
+    - condition: state
+      entity_id: remote.roelofs_harmony_hub
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.anybody_home"
+      state: "on"
+    - condition: state
+      entity_id: input_select.house
+      state:
+        - "Normal"
+        - "Guest mode"
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Sleep mode"

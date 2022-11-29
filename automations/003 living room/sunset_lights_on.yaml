@@ -1,24 +1,65 @@
 #################################################################
 ## Switch lights when darkness falls
 #################################################################
-- alias         : living_room_sunset_lights_on
-  id            : 6a4d749f-c854-4e68-9b58-c031fa06cd13
-  trigger:
-    - platform  : numeric_state
-      entity_id : sun.sun
-      attribute : elevation
-      below     : 3.0 # Can be a positive or negative number
-# Also turn on lights when nobody is home. To scare off burglars.
-#  condition:
-#    - condition : state
-#      entity_id : 'binary_sensor.anybody_home'
-#      state     : 'on'
-  action:
-    - service   : scene.turn_on
-      data:
-        entity_id:
-          - scene.living_room_comfort
-          - scene.dining_area_comfort
-        transition: 30
-#    - service   : switch.turn_on
-#      entity_id : switch.xiaomi_switch_2   # christmas tree
+
+#- alias: living_room_sunset_lights_on
+#  id: 6a4d749f-c854-4e68-9b58-c031fa06cd13
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sun.sun
+#      attribute: elevation
+#      below: 3.0 # Can be a positive or negative number
+#  action:
+#    - if:
+#        - alias: "If no one is home"
+#          condition: state
+#          entity_id: zone.home
+#          state: 0
+#      then:
+#        - alias: "Then start cleaning already!"
+#          service: light.turn_off
+#          target:
+#            area_id:
+#              - woonkamer
+      
+
+
+#- alias: living_room_sunset_lights_on
+#  id: 6a4d749f-c854-4e68-9b58-c031fa06cd13
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sun.sun
+#      attribute: elevation
+#      below: 3.0 # Can be a positive or negative number
+#  # Also turn on lights when nobody is home. To scare off burglars.
+#  #  condition:
+#  #    - condition : state
+#  #      entity_id : 'binary_sensor.anybody_home'
+#  #      state     : 'on'
+#  action:
+#    - service: scene.turn_on
+#      data:
+#        entity_id:
+#          - scene.living_room_comfort
+#          - scene.dining_area_comfort
+#        transition: 30
+#    - if:
+#        - alias: "If nobody home"
+#          condition: state
+#          entity_id: zone.home
+#          state: 0
+#      then:
+#        - alias: "Then await delay"
+#          delay: "01:38:11"
+#        - if:
+#          - alias: "If still nobody home, turn off lights"
+#            condition: state
+#            entity_id: zone.home
+#            state: 0
+#          then:
+#            - service: light.turn_off
+#              target:
+#                area_id:
+#                  - woonkamer
+#                  - eettafel
+#

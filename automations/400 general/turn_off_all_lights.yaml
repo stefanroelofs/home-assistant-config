@@ -6,12 +6,12 @@
       to:
         - "Sleep mode"
         - "Away mode"
-        - "Vacation mode"
       for: "00:00:10"
   action:
     - service: light.turn_off
       target:
         entity_id: "{{ states['light'] | selectattr('state','==', 'on') | map(attribute='entity_id') | list }}"
+#TODO: move this service call to new automation in office directory
     - service: switch.turn_off
       target:
         entity_id: switch.wake_up_vaste_pc

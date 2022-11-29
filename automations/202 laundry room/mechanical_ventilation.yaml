@@ -12,7 +12,9 @@
 
     - platform: state
       entity_id: input_select.house
-      to: "Sleep mode"
+      to:
+        - "Sleep mode"
+        - "Away mode"
 
     - platform: state
       entity_id: input_select.house
@@ -22,9 +24,6 @@
     - platform: state
       entity_id: input_select.house
       from: "Sleep mode"
-
-    - platform: state
-      entity_id: binary_sensor.anybody_home
 
     - platform: state
       entity_id: binary_sensor.bathroom_hygrostat
@@ -41,11 +40,11 @@
                 minutes: 1
 
     - choose:
-        - alias: Turn the fan off if nobody is home
+        - alias: Turn the fan off if house is in away mode
           conditions:
             - condition: state
-              entity_id: binary_sensor.anybody_home
-              state: "off" # nobody is home
+              entity_id: input_select.house
+              state: "Away mode"
           sequence:
             - service: fan.turn_off
               target:

@@ -2,7 +2,7 @@
   id            : 45ecb78f-307b-4526-ac2d-83c8c4757b71
   trigger:
     - platform: sun
-      event: sunrise
+      event: sunset
       offset: "-00:12:32"
   condition:
     - condition : state

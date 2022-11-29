@@ -11,4 +11,4 @@
       state     : 'on'
   action:
     - service   : light.turn_off
-      entity_id : light.kitchen_ceiling_group
+      entity_id : light.kitchen_ceiling

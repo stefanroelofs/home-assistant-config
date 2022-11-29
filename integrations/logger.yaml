@@ -5,18 +5,7 @@
 logger:
   default: warning
   logs:
-    homeassistant.components.plex.media_player: info
-    #custom_components.hacs: debug
-    #hacs: debug
-
-    #homeassistant.components.modbus : debug
-    #pymodbus.client : debug
-
-    #homeassistant.components.http : debug
-    #custom_components.adaptive_lighting : debug
-
-    #homeassistant.components.withings : error
-
+    homeassistant.withings: debug
     # Debug info about ZHA (usefull for firmware updates)
     #homeassistant.core: debug
     #homeassistant.components.zha: debug
@@ -30,3 +19,30 @@ logger:
     #zigpy_zigate: debug
     #zigpy_znp: debug
     #zhaquirks: debug
+
+  filters:
+    homeassistant:
+      # This can happen during restart having Ingress tabs open.
+      # I really don't care about it.
+      - "Error doing job: Task exception was never retrieved"
+
+    homeassistant.loader:
+      # Really? Cool... I know... I installed them...
+      # This filter currently doesn't work because custom integrations are loaded before the logger is filtered.
+      - "We found a custom integration" 
+
+    androidtv.adb_manager.adb_manager_async:
+      # Connection to settop box fails because I cut the power with a smart outlet.
+      - "Couldn't connect to 192.168.1.21:5555"
+
+    slixmpp.stringprep:
+      # Caused by Logitech harmony integration, no issues...
+      - "Using slower stringprep"
+
+    zigpy_deconz.api:
+      - "No response to 'Command.aps_data_indication'"
+
+    pychromecast.socket_client:
+      # Surpress too chatty Cast integration
+      - "Failed to connect to service ServiceInfo"
+      - "Error communicating with socket, resetting connection"

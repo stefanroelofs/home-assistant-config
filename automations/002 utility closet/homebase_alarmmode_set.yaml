@@ -1,0 +1,43 @@
+- alias: utility_closet_homebase_alarmmode_set
+  id: a44feda6-fd98-45bb-b805-b7a15e111751
+  mode: single
+
+  trigger:
+    - platform: homeassistant
+      event: start # in case the states aren't properly restored
+      id: ha_start
+
+    - platform: event
+      event_type: automation_reloaded
+
+    - platform: state
+      entity_id: input_select.house
+
+  action:
+    - alias: Check if this is triggered by HA restart
+      choose:
+        - conditions:
+            condition: trigger
+            id: ha_start
+          sequence:
+            - delay:
+                minutes: 1
+
+    - choose:
+        - conditions:
+            - alias: "House is in Away mode"
+              condition: state
+              entity_id: input_select.house
+              state: "Away mode"
+          sequence:
+            - service: alarm_control_panel.alarm_arm_away
+              target:
+                entity_id: alarm_control_panel.homebase
+              data: {}
+
+      alias: "We are home, set to arm_home"
+      default:
+        - service: alarm_control_panel.alarm_arm_home
+          target:
+            entity_id: alarm_control_panel.homebase
+          data: {}

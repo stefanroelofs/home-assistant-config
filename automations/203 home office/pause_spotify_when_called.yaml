@@ -14,7 +14,7 @@
     - condition  : state      # Only pause playback when playing on my laptop.
       entity_id  : media_player.spotify_stefanroelofs
       attribute  : source
-      state      : PWR-L-075
+      state      : LT-HK-MAC-ELE01
   action:
     - service    : media_player.media_pause
       entity_id  : media_player.spotify_stefanroelofs

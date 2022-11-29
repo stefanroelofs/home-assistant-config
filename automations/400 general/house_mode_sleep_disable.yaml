@@ -1,10 +1,12 @@
-- alias: general_sleep_mode_disable
+- alias: general_house_mode_sleep_disable
   id: e1808452-21ea-41ab-af23-efde2a005ab7
   trigger:
-    - platform: time
-      at: "07:30:00"
+    - platform: sun
+      event: sunrise
     - platform: state # Turn off when doors open
-      entity_id: binary_sensor.bedroom_master_wardrobe_doorsensor
+      entity_id:
+        - binary_sensor.bedroom_master_wardrobe_doorsensor
+        - light.kitchen_counter_light
       from: "off"
       to: "on"
     - platform: numeric_state
@@ -16,7 +18,7 @@
   condition:
     - condition: time
       after: "06:00:00"
-      before: "11:00:00"
+      before: "10:00:00"
     - condition: state
       entity_id: input_select.house
       state: "Sleep mode"

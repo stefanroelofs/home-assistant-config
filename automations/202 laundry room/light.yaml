@@ -5,7 +5,7 @@
     path: stefanroelofs/motion_lightV2.yaml
     input:
       motion_entity: binary_sensor.laundry_room_motionsensor_zone
-      light_entity: light.laundry_room_ceiling
+      light_entity: light.laundry_room_ceiling2
       no_motion_delay: 120
       inhibit_entity: input_select.house
       inhibit_entity_state: "Cleaning mode"

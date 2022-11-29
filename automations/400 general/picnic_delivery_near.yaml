@@ -54,3 +54,6 @@
           color: "#eb4034"
           ttl: 0
           priority: high
+
+    - delay:
+        minutes: 15

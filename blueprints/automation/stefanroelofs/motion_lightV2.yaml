@@ -99,9 +99,12 @@ condition:
   # Check if automation blocker exist or is in desired state, otherwise do not run
   - condition: or
     conditions:
+      # Continue automation when entity is not connected (null)
       - "{{ not inhibit_entity }}"
+      # Continue automation when entity state is not available
       - "{{ states(inhibit_entity) in ['unknown','unavailable','none'] }}"
-      - "{{ states[inhibit_entity].state != inhibit_entity_state }}"
+      # Continue automation when entity state differs from a given state
+      - "{{ not is_state(inhibit_entity, inhibit_entity_state) }}"
 
 action:
   - alias: Check if this is triggered by HA restart

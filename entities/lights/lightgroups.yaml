@@ -1,40 +1,8 @@
 # https://www.home-assistant.io/components/light.group/
 
 - platform : group
-  name     : home_office
+  name     : home_office_old
   entities:
     - light.home_office_1
     - light.home_office_2
     - light.home_office_3
-
-- platform : group
-  name     : living_room_lights
-  entities:
-    - light.living_room_tv_desk
-#    - light.living_room_ceiling_back  # Do not switch the back spot with the complete living room.
-    - light.living_room_display_cabinet
-    - light.living_room_ceiling_middle
-#    - c # Sideboard has its own remote
-
-- platform : group
-  name     : bathroom_lights
-  entities:
-    - light.bathroom_ceiling
-    - light.bathroom_bath_ledstrip
-
-- platform : group
-  name     : bedroom_1_lights
-  entities:
-    - light.bedroom_1_ceiling
-#    - light.bedroom_1_table
-
-- platform : group
-  name     : bedroom_2_lights
-  entities:
-    - light.bedroom_2_ceiling
-
-- platform : group
-  name     : bedroom_3_lights
-  entities:
-    - light.bedroom_3_ceiling
-#    - light.bedroom_3_table

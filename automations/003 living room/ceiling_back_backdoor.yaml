@@ -10,6 +10,9 @@
     - condition     : state   # only when it's night
       entity_id     : binary_sensor.darkness
       state         : "on"
+    - condition     : state
+      entity_id     : input_select.house
+      state         : 'Sleep mode'
   action:
     - service       : scene.create  # Save current state of light
       data:

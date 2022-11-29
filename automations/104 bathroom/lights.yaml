@@ -8,7 +8,7 @@
       light_entity    : light.bathroom_lights
       no_motion_delay : 180
       inhibit_entity  : binary_sensor.bathroom_inhibit_lights
-      inhibit_entity_state: false
+      inhibit_entity_state: "on"
       lux_entity      : sensor.bathroom_motionsensor_illuminance
       lux_threshold   : 35
       transition_to_off: 5

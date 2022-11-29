@@ -1,0 +1,29 @@
+#- alias: bedroom_master_wake_up_light_v2
+#  id: 0450d49c-603f-44cc-af8a-ee3255498c94
+#  description: Wake-up light alarm with sunrise effect
+#  mode: single
+#
+#  trigger:
+#    - platform: time
+#      at: "{{ states('sensor.stefan_phone_app_next_alarm') | as_datetime - timedelta(minutes=5) }}"
+#    - platform: time
+#      at: "{{ (now().time()|string)[:5] == (state_attr('input_datetime.your_time', 'timestamp') - state_attr('input_datetime.your_offset', 'timestamp')) | timestamp_custom('%H:%M', false) }}"
+#
+#  action:
+#    - service   : notify.stefan
+#      data:
+#        title   : TEST!
+#        message : "{{ now() }}"
+#        data:
+#          tag         : ha_upgrade
+#          icon_url    : !secret url_update_icon
+#          clickAction : "{{ state_attr('sensor.home_assistant_website', 'release_notes') }}"
+#          group       : "ha_notification_group"
+
+#      light_entity: light.bedroom_master_ceiling
+ #     timestamp_sensor: sensor.stefan_phone_app_next_alarm
+  #    check_entity: binary_sensor.wake_up_light_enabled
+   #   sunrise_duration: 20.0
+
+
+      # https://149walnut.com/2017-12-using-home-assistant-and-philips-hue-to-create-a-full-colour-sunrise-alarm-clock/

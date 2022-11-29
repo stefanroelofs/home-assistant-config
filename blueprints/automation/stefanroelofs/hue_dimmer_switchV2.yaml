@@ -6,12 +6,12 @@ blueprint:
     The top "on" button behaviour is adjustable. By default it behaves like this:
       - Press it while the light is off, and the light will turn on to the last set brightness.
       - Press it again while the light is on, the light will turn to the fixed brightness setting.
-    
+
     Dim up/down buttons will change the brightness smoothly and can be pressed
     and hold until the brightness is satisfactory.
 
     The bottom "off" button will turn the light off.
-    
+
     The "on" and "off" buttons can be assigned to an action when double
     or triple pressed. This allows you to assign e.g. a scene or something else.
 
@@ -20,7 +20,7 @@ blueprint:
 
     Does this blueprint not work for you? Did you add your Hue dimmer to ZHA before July 2020?
     It might help to press the 'Reconfigure device' button on the ZHA Device info page.
-    The naming of the command attribute in the zha_event was changed back then. 
+    The naming of the command attribute in the zha_event was changed back then.
 
   domain: automation
   source_url: https://gist.github.com/stefanroelofs/775e2e0a3cdb3d72a9451fb247492d59
@@ -81,164 +81,107 @@ blueprint:
           max: 255.0
           mode: slider
           step: 1.0
-    button_on_double:
-      name: On button - Double press
-      description: Action to run when double pressing the on button
-      default: []
-      selector:
-        action:
-    button_on_triple:
-      name: On button - Triple press
-      description: Action to run when triple pressing the on button
-      default: []
-      selector:
-        action:
-    button_on_long:
-      name: On button - Long press (repeating)
-      description: Action to run when holding down the on button
-      default: []
-      selector:
-        action:
-    button_off_double:
-      name: Off button - Double press
-      description: Action to run when double pressing the off button
-      default: []
-      selector:
-        action:
-    button_off_triple:
-      name: Off button - Triple press
-      description: Action to run when triple pressing the off button
-      default: []
-      selector:
-        action:
-    button_off_long:
-      name: Off button - Long press (repeating)
-      description: Action to run when holding down the off button
-      default: []
-      selector:
-        action:
 
 mode: restart
 max_exceeded: silent
 
 variables:
-  light              : !input 'light'
-  on_button_mode     : !input 'on_button_mode'
-  fixed_brightness   : !input 'fixed_brightness'
-  min_brightness     : !input 'min_brightness'
+  light: !input light
+  on_button_mode: !input on_button_mode
+  fixed_brightness: !input fixed_brightness
+  min_brightness: !input min_brightness
 
 # Trigger the automation when the selected dimmer remote sends an event
 # Also only trigger on cluster_id 64512. This ignores the 'old' events with cluster_id 8.
 trigger:
-- platform: event
-  event_type: zha_event
-  event_data:
-    device_id: !input 'remote'
-    cluster_id: 64512
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input "remote"
+      cluster_id: 64512
 
 action:
   - variables:
-      command        : '{{ trigger.event.data.command }}'
-      cur_brightness : '{{ state_attr(light, ''brightness'') | int }}'
-      is_turned_on   : '{{ states(light) == ''on'' }}'
-  
+      command: "{{ trigger.event.data.command }}"
+      cur_brightness: "{{ state_attr(light, 'brightness') | int(default=128) }}"
+      is_turned_on: "{{ states(light) == 'on' }}"
+
   - choose:
-    - conditions: '{{ command == ''on_press'' }}'
-      sequence:
-      - choose:
-        - conditions: '{{ on_button_mode == ''fixed brightness'' }}'
-          sequence:
+      - alias: On button pressed
+        conditions:
+          - condition: or
+            conditions:
+              - "{{ command == 'on_press' }}"
+              - "{{ command == 'on_double_press' }}"
+        sequence:
+          - choose:
+              - conditions: "{{ on_button_mode == 'fixed brightness' }}"
+                sequence:
+                  - service: light.turn_on
+                    data:
+                      entity_id: !input "light"
+                      transition: 1
+                      brightness: !input "fixed_brightness"
+              - conditions:
+                  - "{{ on_button_mode == 'fixed brightness when on' }}"
+                  - "{{ is_turned_on }}"
+                sequence:
+                  - service: light.turn_on
+                    data:
+                      entity_id: !input "light"
+                      transition: 1
+                      brightness: !input "fixed_brightness"
+            default:
+              - service: light.turn_on
+                data:
+                  entity_id: !input "light"
+                  transition: 1
+
+      - alias: Off button pressed
+        conditions:
+          - condition: or
+            conditions:
+              - "{{ command == 'off_press' }}"
+              - "{{ command == 'off_double_press' }}"
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: !input "light"
+              transition: 1
+
+      - alias: Up button pressed
+        conditions:
+          - condition: or
+            conditions:
+              - "{{ command == 'up_press' }}"
+              - "{{ command == 'up_double_press' }}"
+              - "{{ command == 'up_hold' }}"
+        sequence:
           - service: light.turn_on
             data:
-              entity_id : !input 'light'
+              entity_id: !input "light"
+              brightness_step: 50
               transition: 1
-              brightness: !input 'fixed_brightness'
-        - conditions:
-            - '{{ on_button_mode == ''fixed brightness when on'' }}'
-            - '{{ is_turned_on }}'
-          sequence:
-          - service: light.turn_on
-            data:
-              entity_id : !input 'light'
-              transition: 1
-              brightness: !input 'fixed_brightness'
-        default:
-        - service: light.turn_on
-          data:
-            entity_id : !input 'light'
-            transition: 1
 
-    - conditions: '{{ command == ''on_double_press'' }}'
-      sequence: !input 'button_on_double'
-
-    - conditions: '{{ command == ''on_triple_press'' }}'
-      sequence: !input 'button_on_triple'
-
-    - conditions: '{{ command == ''on_hold'' }}'
-      sequence: !input 'button_on_long'
-
-    - conditions: '{{ command == ''off_press'' }}'
-      sequence:
-      - service: light.turn_off
-        data:
-          entity_id : !input 'light'
-          transition: 1
-
-    - conditions: '{{ command == ''off_double_press'' }}'
-      sequence: !input 'button_off_double'
-
-    - conditions: '{{ command == ''off_triple_press'' }}'
-      sequence: !input 'button_off_triple'
-
-    - conditions: '{{ command == ''off_hold'' }}'
-      sequence: !input 'button_off_long'
-
-    - conditions: '{{ command == ''up_press'' }}'
-      sequence:
-      - service: light.turn_on
-        data:
-          entity_id : !input 'light'
-          brightness_step: 25
-          transition: 1
-  
-    - conditions: '{{ command == ''up_hold'' }}'
-      sequence:
-      - service: light.turn_on
-        data:
-          entity_id : !input 'light'
-          brightness_step: 50
-          transition: 1
-  
-    - conditions: '{{ command == ''down_press'' }}'
-      sequence:
-      - choose:
-        - conditions: '{{ (cur_brightness - 25) >= min_brightness }}'
-          sequence:
-          - service: light.turn_on
-            data:
-              entity_id : !input 'light'
-              transition: 1
-              brightness_step: -25
-        default:
-        - service: light.turn_on
-          data:
-            entity_id : !input 'light'
-            transition: 1
-            brightness: !input 'min_brightness'
-  
-    - conditions: '{{ command == ''down_hold'' }}'
-      sequence:
-      - choose:
-        - conditions: '{{ (cur_brightness - 50) >= min_brightness }}'
-          sequence:
-          - service: light.turn_on
-            data:
-              entity_id : !input 'light'
-              transition: 1
-              brightness_step: -50
-        default:
-        - service: light.turn_on
-          data:
-            entity_id : !input 'light'
-            transition: 1
-            brightness: !input 'min_brightness'
+      - alias: Down button pressed
+        conditions:
+          - condition: or
+            conditions:
+              - "{{ command == 'down_press' }}"
+              - "{{ command == 'down_double_press' }}"
+              - "{{ command == 'down_hold' }}"
+        sequence:
+          - choose:
+              - conditions: "{{ (cur_brightness - 50) >= min_brightness }}"
+                sequence:
+                  - service: light.turn_on
+                    data:
+                      entity_id: !input "light"
+                      transition: 1
+                      brightness_step: -50
+            default:
+              - service: light.turn_on
+                data:
+                  entity_id: !input "light"
+                  transition: 1
+                  brightness: !input "min_brightness"

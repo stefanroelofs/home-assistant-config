@@ -13,8 +13,8 @@
         sequence:
           - service    : switch.turn_on
             target:
-              entity_id: switch.living_room_charging_station_outlet_relay
+              entity_id: switch.living_room_charging_station_outlet
       default:
         - service      : switch.turn_off
           target:
-            entity_id  : switch.living_room_charging_station_outlet_relay
+            entity_id  : switch.living_room_charging_station_outlet

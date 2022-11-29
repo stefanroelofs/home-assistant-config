@@ -2,7 +2,7 @@ name          : dining_area_comfort
 id            : ced5b289-1b28-40b8-ba8f-7de0b6313769
 icon          : mdi:ceiling-light
 entities:
-  light.dining_area_ceiling_group:
+  light.dining_area_ceiling:
     state     : 'on'
     brightness: 144
     color_temp: 454

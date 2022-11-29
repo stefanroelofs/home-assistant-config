@@ -1,0 +1,24 @@
+- alias: general_house_mode_normal_enable
+  id: bb8550e9-a512-4595-b79c-0d1d76bf898d
+
+  trigger:
+
+    - platform: state
+      entity_id:
+        - person.stefan
+        - person.marcella
+      to: "home"
+
+  condition:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.house
+          state: "Guest mode"
+
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.house
+      data:
+        option: "Normal"

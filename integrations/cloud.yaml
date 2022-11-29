@@ -11,26 +11,9 @@
           - fan
 
         exclude_entities:
-          - light.living_room_lights
-          - light.staircase_closet_floorheatingpump_outlet_state_led
-          - light.dining_area_ceiling_1
-          - light.dining_area_ceiling_2
-
-          - light.kitchen_ceiling_1
-          - light.kitchen_ceiling_2
-          - light.kitchen_ceiling_3
-
           - light.home_office_1
           - light.home_office_2
           - light.home_office_3
-
-          - light.bedroom_1_ceiling
-
-          - light.bedroom_3_ceiling
-          - light.bedroom_3_table
-
-          - light.bathroom_ceiling
-          - light.bathroom_bath_ledstrip
 
         include_entities:
           - input_select.house
@@ -64,7 +47,7 @@
             - woonkamer
             - woonkamer temperatuur
         
-        light.dining_area_ceiling_group:
+        light.dining_area_ceiling:
           name: Eettafel
           room: Woonkamer
           aliases:
@@ -147,7 +130,7 @@
             - Lamp bij voordeur
             - Lamp in de hal
 
-        light.kitchen_ceiling_group:
+        light.kitchen_ceiling:
           name: Keukenplafond
           room: Keuken
           aliases:
@@ -227,7 +210,7 @@
             - Slaapkamer van Damian
             - Kamer van Damian
 
-        light.home_office:
+        light.home_office_old:
           name: Thuiskantoor
           room: Thuiskantoor
           aliases:
@@ -236,7 +219,7 @@
             - Thuiswerkplek
             - Bureau
 
-        light.laundry_room_ceiling:
+        light.laundry_room_ceiling2:
           name: Plafond
           room: Waskamer
           aliases:

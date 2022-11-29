@@ -1,22 +1,17 @@
 - platform: statistics
   name: living_room_temperature_stats
+  unique_id: living_room_temperature_stats
   entity_id: sensor.living_room_tempsensor_temperature
   state_characteristic: mean
+  sampling_size: 50
   max_age:
     hours: 24
 
 - platform: statistics
   name: "Bathroom humidity mean over last 24 hours"
+  unique_id: bathroom_humitity_mean_24h
   entity_id: sensor.bathroom_tempsensor_humidity
   state_characteristic: mean
+  sampling_size: 50
   max_age:
     hours: 24
-
-- platform: statistics
-  name: "Bathroom humidity change over 5 minutes"
-  entity_id: sensor.bathroom_tempsensor_humidity
-  state_characteristic: change
-  max_age:
-    minutes: 5
-  sampling_size: 50
-  precision: 1

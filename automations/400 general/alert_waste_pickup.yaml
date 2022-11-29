@@ -1,24 +1,25 @@
-- alias         : general_alert_waste_pickup_tomorrow
-  id            : da35982b-f44c-44b5-bd41-b1f68b0322c8
+- alias: general_alert_waste_pickup_tomorrow
+  id: da35982b-f44c-44b5-bd41-b1f68b0322c8
   trigger:
-    - platform  : time
-      at        : '19:00:00'
+    - platform: time
+      at: "19:00:00"
   condition:
-    condition   : not
+    condition: not
     conditions:
       - condition: state
         entity_id: sensor.acv_morgen
-        state    : 'Geen'
+        state: "Geen"
   action:
-    - service   : tts.cloud_say
-      entity_id : media_player.smart_speaker
+    - service: tts.cloud_say
+      entity_id: media_player.smart_speaker
       data:
-        message : "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
-        language: 'nl-NL'
-    - service   : notify.all
+        message: "De kliko mag aan de weg. {{ states('sensor.acv_morgen') }} word morgen opgehaald."
+        language: "nl-NL"
+
+    - service: notify.all
       data:
-        title   : 'Afval aan de weg!'
-        message : "{{ states('sensor.acv_morgen') }} word morgen opgehaald."
+        title: "Afval aan de weg!"
+        message: "♻️ {{ states('sensor.acv_morgen') }} word morgen opgehaald."
         data:
-          tag   : waste_alert
-          icon  : !secret url_waste_icon
+          tag: waste_alert
+          icon: !secret url_waste_icon

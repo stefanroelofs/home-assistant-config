@@ -7,9 +7,6 @@
     - condition: state
       entity_id: "binary_sensor.anybody_home"
       state: "off"
-    - condition: state
-      entity_id: binary_sensor.darkness
-      state: "on"
   action:
     - service: light.turn_on
       entity_id: light.bedroom_master_ceiling

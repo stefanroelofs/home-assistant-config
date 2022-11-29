@@ -46,7 +46,7 @@
         service: climate.set_temperature
         data:
           hvac_mode: "heat"
-          temperature: 14.0
+          temperature: 10.0
 
       - &turn_on_high
         <<: *target
@@ -54,7 +54,7 @@
         service: climate.set_temperature
         data:
           hvac_mode: "heat"
-          temperature: 20.0
+          temperature: 17.0
 
   action:
     - alias: Check if this is triggered by HA restart
