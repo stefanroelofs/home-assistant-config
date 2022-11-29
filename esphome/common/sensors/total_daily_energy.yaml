@@ -9,6 +9,9 @@
 platform: total_daily_energy
 id: sensor_total_daily_energy
 name: "${name} Daily Energy Usage"
+device_class: energy
+state_class: total_increasing
+entity_category: diagnostic
 filters:
   # Multiplication factor from W to kW is 0.001
   - multiply: 0.001

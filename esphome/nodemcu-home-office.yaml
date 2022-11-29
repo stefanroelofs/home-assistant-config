@@ -145,12 +145,12 @@ binary_sensor:
     internal: true # Do not expose switch to HA. Send events instead.
     pin:
       number: GPIO17
-      inverted: true
+      inverted: false
       mode:
         input: true
         pullup: true
     filters:
-      - delayed_on_off: 20ms
+      - delayed_on_off: 200ms
     on_state:
       then:
         - light.toggle: lightlaundry

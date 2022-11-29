@@ -13,13 +13,15 @@ id: sensor_pulse_meter
 name: "${name} Current Usage"
 icon: "mdi:water-pump"
 unit_of_measurement: "L/min"
+state_class: measurement
 timeout: 2min
 accuracy_decimals: 1
 total:
   id: sensor_pulse_meter_total
   name: "${name} Total Consumption"
   icon: "mdi:cube-outline"
-  unit_of_measurement: "M3"
+  unit_of_measurement: "m³"
+  state_class: total_increasing
   accuracy_decimals: 3
   filters:
     - multiply: 0.001
