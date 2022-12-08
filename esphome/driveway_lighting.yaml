@@ -1,0 +1,47 @@
+# Controlling my Buva Qstream ventilation system using:
+# * A Wemos D1 mini lite (an ESP8266 based board)
+# * A Wemos power shield so I can power the Wemos from the ventilation units 12V supply.
+# * A simple PWM to 10V convertor like this: https://www.cheaptech.nl/pwm-signaal-te-voltage-converter-1-3-khz-0-10-v-pw.html
+# * The amazing ESPHome firmware tool: https://esphome.io
+# * Home Assistant to tie it all together: https://www.home-assistant.io
+
+# I/O List
+#
+# OUTPUTS:
+#   GPIO4   D2    pwm_output      PWM pulse output to the 10V converter
+#   GPIO2   D4                    Status Led              connected to on-board LED, pin is high at BOOT, boot failure if pulled LOW
+#
+# Don't use pin D3 (GPIO0) as output! The D1 won't boot because it is pulled low.
+
+# Reference / photo: https://www.wemos.cc/en/latest/d1/d1_mini.html
+# Credits: https://gist.github.com/SqyD/38d10391c2e21988406d2bdaec24f031
+
+substitutions:
+  slug: "driveway-lighting"
+  name: "Oprit verlichting"
+  description: "Small relay to switch 12VDC power supply to in-lite spots"
+  ip_address: !secret ip_address_driveway_lighting
+
+esphome:
+  name: "${slug}"
+  comment: "${description}"
+  build_path: "./.build/${slug}/"
+
+esp8266:
+    board: esp01_1m
+
+packages:
+  common: !include common/common.yaml
+
+light:
+  - platform: binary
+    id: light_output
+    name: "${name} Light"
+    output: relay_output
+    restore_mode: restore_default_off
+
+output:
+  - platform: gpio
+    id: relay_output
+    pin: GPIO0
+    inverted: true
