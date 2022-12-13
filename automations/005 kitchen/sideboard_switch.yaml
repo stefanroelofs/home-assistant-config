@@ -8,4 +8,4 @@
         command             : 'single'
   action:
     - service               : light.toggle
-      entity_id             : light.kitchen_sideboard
+      entity_id             : light.living_room_sideboard

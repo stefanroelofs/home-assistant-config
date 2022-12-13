@@ -95,7 +95,7 @@
             - Display cabinet
             - Glazen kast
 
-        light.kitchen_sideboard:
+        light.living_room_sideboard:
           name: Servieskast
           room: Keuken
           aliases:
@@ -103,6 +103,7 @@
             - Kast keuken
             - Kast in de keuken
             - Keukenkast
+            - Speelgoedkast
 
         light.living_room_tv_desk:
           name: TV lamp
