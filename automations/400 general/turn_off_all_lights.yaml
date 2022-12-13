@@ -7,10 +7,25 @@
         - "Sleep mode"
         - "Away mode"
       for: "00:00:10"
+
+  variables:
+    exclude_entities:
+      - light.inside # christmas light string in front kitchen window
+      - light.outside # christmas light string in garden trees
+      - light.christmaslights_in_front
+      - media_player.spotify_stefanroelofs
+
   action:
-    - service: light.turn_off
+    - service: homeassistant.turn_off
       target:
-        entity_id: "{{ states['light'] | selectattr('state','==', 'on') | map(attribute='entity_id') | list }}"
+        entity_id: >
+          {{ expand(states.light, states.media_player)
+            | selectattr('state', 'eq', 'on')
+            | rejectattr('entity_id', 'in', exclude_entities)
+            | map(attribute='entity_id')
+            | list
+          }}
+
 #TODO: move this service call to new automation in office directory
     - service: switch.turn_off
       target:

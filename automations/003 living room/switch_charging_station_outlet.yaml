@@ -4,17 +4,24 @@
   trigger:
     - platform: state
       entity_id: switch.living_room_entertainment_outlet
+
+  condition:
+    - alias: During christmas time this plug switches the christmas tree
+      condition: state
+      entity_id: input_boolean.christmas_time
+      state: "off"
+
   action:
-    - choose:
-      - conditions:
-          - condition  : state
-            entity_id  : switch.living_room_entertainment_outlet
-            state      : 'on'
-        sequence:
-          - service    : switch.turn_on
-            target:
-              entity_id: switch.living_room_charging_station_outlet
-      default:
-        - service      : switch.turn_off
-          target:
-            entity_id  : switch.living_room_charging_station_outlet
+    - alias: Check if this is triggered by HA restart
+      if:
+        condition: state
+        entity_id: switch.living_room_entertainment_outlet
+        state: "on"
+      then:
+        service: switch.turn_on
+        target:
+          entity_id: switch.living_room_charging_station_outlet
+      else:
+        service: switch.turn_off
+        target:
+          entity_id: switch.living_room_charging_station_outlet

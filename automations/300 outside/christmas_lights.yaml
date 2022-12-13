@@ -7,48 +7,57 @@
       id: ha_start
     - platform: event
       event_type: automation_reloaded # in case automations reload
+    - platform: state
+      entity_id: input_boolean.christmas_time
     - platform: time
       at:
-        - "07:30:00" # Turn on light in the morning
-        - "00:00:05" # Turn off light a couple seconds after midnight
-    - platform: sun # Turn off light half hour after sunrise
+        - &turn_lights_on "07:30:00" # Turn on lights in the morning
+        - &turn_lights_off "23:30:00" # Turn off lights at night
+    - platform: sun # Turn off lights some time after sunrise
       event: sunrise
-      offset: "00:30:00"
-    - platform: sun # Turn on light half hour before sunset
+      offset: &sunrise_offset "00:30:00"
+    - platform: sun # Turn on lights some time before sunset
       event: sunset
-      offset: "-00:30:00"
+      offset: &sunset_offset "-00:30:00"
 
-  condition:
-    - condition: state
-      entity_id: input_boolean.christmas_time
-      state: "on"
+  variables:
+    entities:
+      - light.inside # christmas light string in front kitchen window
+      - light.outside # christmas light string in garden trees
+      - light.christmaslights_in_front # light in 2 trees in front of house
 
   action:
     - alias: Check if this is triggered by HA restart
-      choose:
-        - conditions:
-            condition: trigger
-            id: ha_start
-          sequence:
-            - delay:
-                minutes: 2
-    - choose:
-        - conditions:
-            condition: or
-            conditions:
-              - condition: time # Condition to turn on in the morning
-                after: "07:25:00"
-                before: "08:35:00"
-              - condition: sun # Condition to turn on in the evening
-                after: sunset
-                after_offset: "-00:45:00"
-          sequence:
-            #            - service: light.turn_on
-            #              entity_id: light.inside
-            - service: light.turn_on
-              entity_id: light.outside # christmas light string in hedge
-      default:
-        #        - service: light.turn_off
-        #          entity_id: light.inside
-        - service: light.turn_off
-          entity_id: light.outside # christmas light string in hedge
+      if:
+        condition: trigger
+        id: ha_start
+      then:
+        delay: "00:01:00" # Zigbee plug needs time to connect after HA start
+
+    - if:
+        - alias: Check if lights need to turn off
+          or:
+            - alias: Xmas has come and gone! :(
+              condition: state
+              entity_id: input_boolean.christmas_time
+              state: "off"
+            - alias: Too damn early (or late actually)
+              condition: time
+              after: *turn_lights_off
+              before: *turn_lights_on
+            - alias: Turn off during daytime
+              condition: sun
+              after: sunrise
+              after_offset: *sunrise_offset
+              before: sunset
+              before_offset: *sunset_offset
+      then:
+        - alias: "Turning lights off"
+          service: light.turn_off
+          target:
+            entity_id: "{{ entities }}"
+      else:
+        - alias: "Turning lights on"
+          service: light.turn_on
+          target:
+            entity_id: "{{ entities }}"

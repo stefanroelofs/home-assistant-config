@@ -7,41 +7,55 @@
       id: ha_start
     - platform: event
       event_type: automation_reloaded # in case automations reload
+    - platform: state
+      entity_id: input_boolean.christmas_time
     - platform: time
       at:
-        - "07:30:00" # Turn on light in the morning
-        - "00:00:00" # Turn off light at midnight
+        - &turn_lights_on "07:30:00" # Turn on lights in the morning
+        - &turn_lights_off "23:30:00" # Turn off lights at night
     - platform: state
-      entity_id: binary_sensor.anybody_home
-  condition:
-    - condition: state
-      entity_id: input_boolean.christmas_time
-      state: "on"
+      entity_id:
+        - input_select.house
+        - binary_sensor.anybody_home
+
   action:
     - alias: Check if this is triggered by HA restart
-      choose:
-        - conditions:
-            condition: trigger
-            id: ha_start
-          sequence:
-            - delay:
-                minutes: 2
-    - alias: Turn on when someone is home
-      choose:
-        - conditions:
-            - condition: time # Condition to turn on in the morning
-              after: "07:30:00"
-              before: "00:00:00"
-            - condition: state
+      if:
+        condition: trigger
+        id: ha_start
+      then:
+        delay: "00:01:00" # Zigbee plug needs time to connect after HA start
+
+    - if:
+        - alias: Check if lights need to turn off
+          or:
+            - alias: Xmas has come and gone! :(
+              condition: state
+              entity_id: input_boolean.christmas_time
+              state: "off"
+            - alias: Gone fishing.. (need to delete this sensor)
+              condition: state
               entity_id: binary_sensor.anybody_home
-              state: "on"
-          sequence:
-            - service: switch.turn_on
-              entity_id: switch.powerplug3_on_off
-            - service: switch.turn_on
-              entity_id: switch.powerplug4_on_off
-      default:
-        - service: switch.turn_off
-          entity_id: switch.powerplug3_on_off
-        - service: switch.turn_off
-          entity_id: switch.powerplug4_on_off
+              state: "off"
+            - alias: Sleepy time
+              condition: state
+              entity_id: input_select.house
+              state: "Sleep mode"
+            - alias: Also gone fishing..
+              condition: state
+              entity_id: input_select.house
+              state: "Away mode"
+            - alias: Too damn early (or late actually)
+              condition: time
+              after: *turn_lights_off
+              before: *turn_lights_on
+      then:
+        - alias: "Turning tree off"
+          service: switch.turn_off
+          target:
+            entity_id: switch.living_room_charging_station_outlet
+      else:
+        - alias: "Turning tree on"
+          service: switch.turn_on
+          target:
+            entity_id: switch.living_room_charging_station_outlet
