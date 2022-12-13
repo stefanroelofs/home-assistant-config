@@ -12,7 +12,7 @@
       state: "on"
     - condition: template # Only between these dates
       value_template: >-
-        {% set fromDate = '11-09' %}
+        {% set fromDate = '11-06' %}
         {% set toDate = '12-05' %}
         {{ fromDate <= now()|as_timestamp|timestamp_custom('%m-%d', False) <= toDate }}
     - condition: state
