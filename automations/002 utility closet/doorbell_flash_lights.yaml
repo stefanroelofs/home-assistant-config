@@ -1,24 +1,26 @@
 #################################################################
 ## Flash light when doorbell is pushed and chime is disabled.
 #################################################################
-- alias         : utility_closet_doorbell_pushed_flash_lights
-  id            : 41309159-285e-4c61-b47b-134d3945191d
+- alias: utility_closet_doorbell_pushed_flash_lights
+  id: 41309159-285e-4c61-b47b-134d3945191d
   trigger:
-    platform    : state
-    entity_id   : binary_sensor.utility_closet_doorbell_button
-    to          : 'on'
+    platform: state
+    entity_id: binary_sensor.deurbel_ringing_sensor
+    to: "on"
   condition:
-    - condition : state
-      entity_id : switch.utility_closet_doorbell_chime_active
-      state     : 'off'
+    condition: state
+    entity_id: input_select.house
+    state:
+      - "Normal"
+      - "Guest mode"
+      - "Cleaning mode"
   action:
-    - service   : light.turn_on
+    - service: light.turn_on
+      target:
+        entity_id:
+          - light.first_floor_landing_ceiling
+          - light.second_floor_landing_ceiling
+          - light.home_office_ceiling
       data:
-        entity_id : light.living_room_tv_desk
         brightness: 255
-        flash     : long
-    - service   : light.turn_on
-      data:
-        entity_id : light.first_floor_landing_ceiling
-        brightness: 255
-        flash     : long
+        flash: long

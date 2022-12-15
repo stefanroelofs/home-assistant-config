@@ -1,17 +1,17 @@
 #################################################################
 ## Notify on phone when doorbell is pushed
 #################################################################
-- alias         : utility_closet_doorbell_pushed_alert
-  id            : cb691e30-51a3-4130-9b7c-2f3238f86d73
+- alias: utility_closet_doorbell_pushed_alert
+  id: cb691e30-51a3-4130-9b7c-2f3238f86d73
   trigger:
-    platform    : state
-    entity_id   : binary_sensor.utility_closet_doorbell_button
-    to          : 'on'
+    platform: state
+    entity_id: binary_sensor.deurbel_ringing_sensor
+    to: "on"
   action:
-    - service   : notify.all
+    - service: notify.all
       data:
-        title   : Doorbell
-        message : '{{now().strftime("%H:%M:%S")}} Ding Dong! Someone is at the door.'
+        title: Doorbell
+        message: '{{now().strftime("%H:%M:%S")}} Ding Dong! Someone is at the door.'
         data:
-          tag   : doorbell_alert
-          icon  : !secret url_doorbell_icon
+          tag: doorbell_alert
+          icon: !secret url_doorbell_icon
