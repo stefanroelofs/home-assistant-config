@@ -1,22 +1,20 @@
 #################################################################
 ## Switch harmony to correct channel if somebody starts casting to the Chromecast
 #################################################################
-- alias         : living_room_harmony_start_activity_on_cast
-  id            : 12d00317-e454-452a-a37b-fddbef97a0ac
-  description   : Set the correct activity on Harmony remote when you start casting to Woonkamer.
+- alias: living_room_harmony_start_activity_on_cast
+  id: 12d00317-e454-452a-a37b-fddbef97a0ac
+  description: Set the correct activity on Harmony remote when you start casting to Woonkamer.
   trigger:
-    - platform  : state
-      entity_id : media_player.televisie
-      to        : 'playing'
+    - platform: state
+      entity_id: media_player.televisie
+      to: "playing"
   condition:
-    condition   : not
-    conditions:
-      - condition: state
-        entity_id: remote.roelofs_harmony_hub
-        attribute: current_activity
-        state    : 'Chromecast/Netflix'
+    - not:
+        condition: state
+        entity_id: select.roelofs_harmony_hub_activities
+        state: "Chromecast/Netflix"
   action:
-    - service   : remote.turn_on
-      entity_id : remote.roelofs_harmony_hub
+    - service: remote.turn_on
+      entity_id: remote.roelofs_harmony_hub
       data:
         activity: "Chromecast/Netflix"

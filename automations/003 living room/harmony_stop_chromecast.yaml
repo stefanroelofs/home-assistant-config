@@ -1,21 +1,21 @@
 #################################################################
 ## Stop playback on streaming device on chromecast when you kill the TV
 #################################################################
-- alias         : living_room_harmony_stop_chromecast
-  id            : 6ddff49f-537b-4122-a8f9-cf92778e0c10
+- alias: living_room_harmony_stop_chromecast
+  id: 6ddff49f-537b-4122-a8f9-cf92778e0c10
   trigger:
-    - platform  : state
-      entity_id : remote.roelofs_harmony_hub
-      attribute : current_activity
-      to        : 'PowerOff'
+    - platform: state
+      entity_id: select.roelofs_harmony_hub_activities
+      to: "power_off"
+      for: "00:00:05"
   condition:
-    - condition : state
-      entity_id : remote.roelofs_harmony_hub
-      attribute : last_activity
-      state     : "Chromecast/Netflix"
+    - condition: state
+      entity_id: remote.roelofs_harmony_hub
+      attribute: last_activity
+      state: "Chromecast/Netflix"
   action:
-    - service   : media_player.media_stop
-      entity_id : media_player.televisie
-    - delay     : '00:00:10'
-    - service   : media_player.turn_off
-      entity_id : media_player.televisie
+    - service: media_player.media_stop
+      entity_id: media_player.televisie
+    - delay: "00:00:5"
+    - service: media_player.turn_off
+      entity_id: media_player.televisie
