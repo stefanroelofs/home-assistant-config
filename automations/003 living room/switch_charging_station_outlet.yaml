@@ -12,7 +12,7 @@
       state: "off"
 
   action:
-    - alias: Check if this is triggered by HA restart
+    - alias: Folow the state of another smart plug
       if:
         condition: state
         entity_id: switch.living_room_entertainment_outlet

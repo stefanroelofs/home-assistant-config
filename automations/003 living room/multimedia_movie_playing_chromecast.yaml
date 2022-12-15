@@ -1,27 +1,27 @@
-- alias         : living_room_movie_playing_chromecast
-  id            : 7caf50eb-e0a3-4940-96c5-86e129088f46
-  description   : Dim the living room lights when a movie starts playing at night
+- alias: living_room_movie_playing_chromecast
+  id: 7caf50eb-e0a3-4940-96c5-86e129088f46
+  description: Dim the living room lights when a movie starts playing at night
   trigger:
-    - platform  : state
-      entity_id : media_player.televisie
-      to        : 'playing'
+    - platform: state
+      entity_id: media_player.televisie
+      to: "playing"
   condition:
     # Only dim the lights late at night.
-    - condition : time
-      after     : "21:00:00"
-      before    : "02:00:00"
+    - condition: time
+      after: "21:00:00"
+      before: "02:00:00"
     # Only dim the lights when a movie is playing - type can be: movie (netflix), music (spotify), none (Youtube)
-    - condition : state
-      entity_id : media_player.televisie
-      attribute : media_content_type
-      state     : 'movie'
+    - condition: state
+      entity_id: media_player.televisie
+      attribute: media_content_type
+      state: "movie"
     # Only dim the lights when the movie is longer than 0,5 hour.
-    - condition : numeric_state
-      entity_id : media_player.televisie
-      attribute : media_duration
-      above     : 1800
+    - condition: numeric_state
+      entity_id: media_player.televisie
+      attribute: media_duration
+      above: 1800
   action:
-    - service   : scene.turn_on
+    - service: scene.turn_on
       data:
-        entity_id : scene.living_room_movie_playing
+        entity_id: scene.living_room_movie_playing
         transition: 10

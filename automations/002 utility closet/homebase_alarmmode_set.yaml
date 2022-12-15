@@ -15,29 +15,26 @@
 
   action:
     - alias: Check if this is triggered by HA restart
-      choose:
-        - conditions:
-            condition: trigger
-            id: ha_start
-          sequence:
-            - delay:
-                minutes: 1
+      if:
+        condition: trigger
+        id: ha_start
+      then:
+        delay: "00:01:00" # Zigbee plug needs time to connect after HA start
 
-    - choose:
-        - conditions:
-            - alias: "House is in Away mode"
-              condition: state
-              entity_id: input_select.house
-              state: "Away mode"
-          sequence:
-            - service: alarm_control_panel.alarm_arm_away
-              target:
-                entity_id: alarm_control_panel.homebase
-              data: {}
-
-      alias: "We are home, set to arm_home"
-      default:
-        - service: alarm_control_panel.alarm_arm_home
-          target:
-            entity_id: alarm_control_panel.homebase
-          data: {}
+    - if:
+        alias: "House is in Away mode"
+        condition: state
+        entity_id: input_select.house
+        state: "Away mode"
+      then:
+        alias: "We are away, set to arm_away"
+        service: alarm_control_panel.alarm_arm_away
+        target:
+          entity_id: alarm_control_panel.homebase
+        data: {}
+      else:
+        alias: "We are home, set to arm_home"
+        service: alarm_control_panel.alarm_arm_home
+        target:
+          entity_id: alarm_control_panel.homebase
+        data: {}
