@@ -1,0 +1,43 @@
+- alias: outside_driveway_lights
+  id: 90c34456-e394-4767-b4bf-a1d375ced8b9
+  mode: queued
+  trigger:
+    - platform: homeassistant
+      event: start # in case the states aren't properly restored
+      id: ha_start
+    - platform: event
+      event_type: automation_reloaded # in case automations reload
+    - platform: time
+      at:
+        - &turn_lights_off "23:30:00" # Turn off lights at night
+    - platform: sun # Turn on lights some time before sunset
+      event: sunset
+      offset: &sunset_offset "-00:30:00"
+
+  action:
+    - alias: Check if this is triggered by HA restart
+      if:
+        condition: trigger
+        id: ha_start
+      then:
+        delay: "00:01:00" # Zigbee plug needs time to connect after HA start
+
+    - if:
+        - alias: Only turn on after sun down
+          condition: sun
+          after: sunset
+          after_offset: *sunset_offset
+        - alias: Only turn on when time is before limit
+          condition: time
+          after: "12:00:00"
+          before: *turn_lights_off
+      then:
+        - alias: "Turning lights on"
+          service: light.turn_on
+          target:
+            entity_id: light.oprit_verlichting_light
+      else:
+        - alias: "Turning lights off"
+          service: light.turn_off
+          target:
+            entity_id: light.oprit_verlichting_light

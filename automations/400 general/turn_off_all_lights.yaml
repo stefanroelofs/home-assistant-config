@@ -13,6 +13,7 @@
       - light.inside # christmas light string in front kitchen window
       - light.outside # christmas light string in garden trees
       - light.christmaslights_in_front
+      - light.oprit_verlichting_light
       - media_player.spotify_stefanroelofs
 
   action:
