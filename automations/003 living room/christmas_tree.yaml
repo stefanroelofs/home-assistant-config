@@ -9,6 +9,7 @@
       event_type: automation_reloaded # in case automations reload
     - platform: state
       entity_id: input_boolean.christmas_time
+      id: christmas_time_trigger
     - platform: time
       at:
         - &turn_lights_on "07:30:00" # Turn on lights in the morning
@@ -19,6 +20,19 @@
         - binary_sensor.anybody_home
 
   action:
+    - alias: Stop automation when it is not christmas time, and christmas time input boolean not triggered this
+      if:
+        - alias: Only operate switch during christmas time
+          condition: state
+          entity_id: input_boolean.christmas_time
+          state: "off"
+        - not:
+          - alias: Input boolean switched on or off
+            condition: trigger
+            id: christmas_time_trigger
+      then:
+        stop: "Stop running the rest of the sequence, it's not christmas yet!"
+
     - alias: Check if this is triggered by HA restart
       if:
         condition: trigger
