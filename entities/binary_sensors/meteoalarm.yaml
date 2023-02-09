@@ -1,0 +1,4 @@
+- platform: meteoalarm
+  country: "netherlands"
+  province: "Gelderland"
+  language: nl-NL
