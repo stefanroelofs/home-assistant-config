@@ -1,4 +1,4 @@
-- alias                     : kitchen_sideboard_switch
+- alias                     : living_room_sideboard_switch
   id                        : 9a7ded06-d39f-4747-b972-d7066b9aef35
   trigger:
     - platform              : event
