@@ -10,10 +10,12 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: remote.roelofs_harmony_hub
+        entity_id:
+          - media_player.android_tv_192_168_1_76
+          - media_player.av_samsung_soundbar_q990b
         state: "off"
       - condition: time
-        after: "20:00:00"
+        after: "21:00:00"
         before: "03:00:00"
       - condition: state
         entity_id: "binary_sensor.anybody_home"

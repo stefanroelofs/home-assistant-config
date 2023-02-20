@@ -30,24 +30,3 @@
     target:
       area_id: slaapkamer_3
   mode: single
-- id: '1659557754551'
-  alias: Notify tv doorbell
-  description: Show notification on tv when doorbell rings
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.deurbel_ringing_sensor
-    from: 'False'
-    to: 'True'
-  condition:
-  - condition: device
-    type: is_on
-    device_id: 66a5203e31dc467686b8cda0d649733b
-    entity_id: switch.roelofs_harmony_hub_tv_kijken
-    domain: switch
-  action:
-  - service: notify.android_tv
-    data:
-      title: Deurbel gaat!
-      message: Er staat iemand voor de deur.
-  mode: single

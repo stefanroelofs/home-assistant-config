@@ -1,19 +1,91 @@
-#################################################################
-## Notify on phone when doorbell is pushed
-#################################################################
 - alias: utility_closet_doorbell_pushed_alert
   id: cb691e30-51a3-4130-9b7c-2f3238f86d73
+  description: Notify several devices when someone is at the door
   trigger:
     platform: state
-    entity_id: binary_sensor.deurbel_ringing_sensor
-    from: "False"
-    to: "True"
+    entity_id: binary_sensor.deurbel_ringing
+    from: "off"
+    to: "on"
 
   action:
-    - service: notify.all
+    - alias: Say something on Google home speaker in kitchen
+      service: tts.cloud_say
+      entity_id: media_player.smart_speaker
+      data:
+        message: "Er staat iemand voor de deur."
+        language: "nl-NL"
+
+    - alias: Give message on TV
+      service: notify.android_tv_notifications
+      data:
+        title: "Deurbel gaat!"
+        message: "Er staat iemand voor de deur."
+        data:
+          duration: 5
+          position: "center"
+          fontsize: "large"
+          transparency: "75%"
+          color: "amber"
+          interrupt: 15
+
+    - alias: "Pause TV if something is playing"
+      if:
+        condition: state
+        entity_id: media_player.android_tv_192_168_1_76
+        state: "Playing"
+      then:
+        alias: "Pause anything playing on the TV"
+        service: media_player.media_pause
+        entity_id: media_player.android_tv_192_168_1_76
+
+    - alias: "Pause audio if something is casted to soundbar directly"
+      if:
+        condition: state
+        entity_id: media_player.av_samsung_soundbar_q990b
+        state: "On"
+      then:
+        alias: "Pause anything playing on the soundbar"
+        service: media_player.media_pause
+        entity_id: media_player.av_samsung_soundbar_q990b
+
+    - alias: Send notification to phone (redundant, for testing only)
+      service: notify.stefan
       data:
         title: Doorbell
-        message: '{{now().strftime("%H:%M:%S")}} Ding Dong! Someone is at the door.'
+        message: '{{now().strftime("%H:%M:%S")}} Ding Dong! Er is aangebeld.'
         data:
           tag: doorbell_alert
           icon: !secret url_doorbell_icon
+
+    - alias: "Flash lights if someone is home"
+      if:
+        condition: state
+        entity_id: input_select.house
+        state:
+          - "Normal"
+          - "Guest mode"
+          - "Cleaning mode"
+      then:
+        - service: scene.create
+          data:
+            scene_id: flash_lights_restore_scene
+            snapshot_entities:
+              - light.first_floor_landing_ceiling
+              - light.second_floor_landing_ceiling
+              - light.home_office_ceiling
+
+        - service: light.turn_on
+          target:
+            entity_id:
+              - light.first_floor_landing_ceiling
+              - light.second_floor_landing_ceiling
+              - light.home_office_ceiling
+          data:
+            brightness: 255
+            flash: long
+
+        - delay: "00:00:30"
+
+        - service: scene.turn_on
+          target:
+            entity_id: scene.flash_lights_restore_scene
