@@ -1,0 +1,11 @@
+- alias: kitchen_ensure_fridge_power
+  description: Fridge just always needs power enabled!!
+  id: bdd8e798-35b7-435d-9e31-7ef9ae6ca6a9
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: switch.kitchen_fridge_outlet
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.kitchen_fridge_outlet
