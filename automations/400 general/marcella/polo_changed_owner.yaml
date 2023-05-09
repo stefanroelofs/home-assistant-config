@@ -1,0 +1,21 @@
+- alias         : general_polo_changed_owner
+  id            : c2dc920a-aa56-44eb-a6d1-0b60618c49d5
+  trigger:
+    - platform  : state
+      entity_id : sensor.polo_ascription_date
+
+  condition:
+    - "{{ trigger.from_state.state not in ['unknown', 'unavailable'] }}"
+    - "{{ trigger.to_state.state not in ['unknown', 'unavailable'] }}"
+    - "{{ trigger.from_state.state != trigger.to_state.state}}"
+
+  action:
+    - service   : tts.cloud_say
+      entity_id : media_player.smart_speaker
+      data:
+        message : 'Oh nee toch, de Polo is nu echt verkocht!'
+        language: 'nl-NL'
+    - service   : notify.marcella
+      data:
+        title   : Polo (92-LH-HP)
+        message : 'Snif.. De Polo is verkocht :('
