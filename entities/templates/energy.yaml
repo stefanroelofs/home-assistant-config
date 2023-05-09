@@ -34,3 +34,15 @@
         {% else %}
           None
         {% endif %}
+
+    - name: Power Consumption Minus Fridge
+      unique_id: 4e3a2572-ddc0-494e-a728-f4da53edf362
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {% if is_number(states('sensor.power_consumption')) and is_number(states('sensor.kitchen_fridge_outlet_electrical_measurement')) and is_number(states('sensor.utility_closet_pc_outlet_electrical_measurement')) %}
+          {{ (states('sensor.power_consumption') | float * 1000) - states('sensor.kitchen_fridge_outlet_electrical_measurement') | float - states('sensor.utility_closet_pc_outlet_electrical_measurement') | float }}
+        {% else %}
+          None
+        {% endif %}
