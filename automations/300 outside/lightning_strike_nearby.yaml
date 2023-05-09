@@ -1,0 +1,28 @@
+- alias: lightning_notification
+  description: blitzortung automation - alert when there are lightning strikes nearby
+  id: ad1d49d2-fa51-4673-afd9-2afab1e7b214
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.blitzortung_lightning_counter
+
+  condition:
+    - "{{ trigger.from_state.state not in ['unknown', 'unavailable'] }}"
+    - "{{ trigger.to_state.state not in ['unknown', 'unavailable'] }}"
+    - "{{ trigger.from_state.state != trigger.to_state.state}}"
+    - condition: numeric_state
+      entity_id: zone.home
+      above: 0
+    - condition: numeric_state
+      entity_id: sensor.blitzortung_lightning_distance
+      below: 6
+
+  action:
+    - alias: Say something on Google home speaker in kitchen
+      service: tts.cloud_say
+      entity_id: media_player.smart_speaker
+      data:
+        message: 'Niet schrikken, er is onweer in de buurt. Bliksem is gedetecteerd op {{states("sensor.blitzortung_lightning_distance") | round (1, "floor")}} kilometer afstand van ons huis.'
+        language: "nl-NL"
+    - delay:
+        seconds : 30 # cooldown timer
