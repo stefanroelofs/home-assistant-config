@@ -1,6 +1,6 @@
 platform: template
 id: sensor_uptime_timestamp
-name: "${name} Uptime"
+name: Uptime
 icon: "mdi:clock"
 device_class: "timestamp"
 entity_category: diagnostic

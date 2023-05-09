@@ -9,8 +9,9 @@
 # GPIO5   Switch input
 
 esphome:
-  name: "${slug}"
-  comment: "${description}"
+  name: ${slug}
+  friendly_name: ${name}
+  comment: ${description}
   build_path: "./.build/${slug}/"
   platform: ESP8266
   board: esp01_1m
@@ -31,7 +32,7 @@ binary_sensor:
   - platform: gpio
     id: switch_input
     pin: GPIO5
-    name: "${name} Switch"
+    name: Switch
     internal: true # Do not expose switch to HA. Send events instead.
     filters:
       - delayed_on: 10ms
@@ -55,7 +56,7 @@ binary_sensor:
 switch:
   - platform: output
     id: switch_output
-    name: "${name} Light Power"
+    name: Light Power
     entity_category: config
     output: relay_output
 

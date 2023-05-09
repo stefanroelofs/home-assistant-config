@@ -10,7 +10,7 @@
 #
 platform: pulse_meter
 id: sensor_pulse_meter
-name: "${name} Current Usage"
+name: Current Usage
 icon: "mdi:water-pump"
 unit_of_measurement: "L/min"
 state_class: measurement
@@ -18,7 +18,7 @@ timeout: 2min
 accuracy_decimals: 1
 total:
   id: sensor_pulse_meter_total
-  name: "${name} Total Consumption"
+  name: Total Consumption
   icon: "mdi:cube-outline"
   unit_of_measurement: "m³"
   device_class: water

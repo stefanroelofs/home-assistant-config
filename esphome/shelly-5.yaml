@@ -2,7 +2,8 @@ substitutions:
   slug: "shelly-5"
   name: "Staircase Closet"
   description: "Shelly device behind lightswitch in staircase closet."
-  ip_address: !secret ip_address_shelly5
+  ip_address: !secret shelly5_ip_address
+  api_encryption_key: !secret shelly5_api_encryption_key
 
 packages:
   device: !include devices/shelly.yaml

@@ -2,4 +2,4 @@
 # https://esphome.io/components/button/restart.html
 platform: restart
 id: button_restart
-name: "${name} Restart"
+name: Restart

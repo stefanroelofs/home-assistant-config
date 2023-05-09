@@ -20,7 +20,8 @@ substitutions:
   slug: "d1-mini-mech-vent"
   name: "Mech Vent"
   description: "D1 Mini in mechanical ventilation box"
-  ip_address: !secret ip_address_d1_mini_MV
+  ip_address: !secret d1_mini_MV_ip_address
+  api_encryption_key: !secret d1_mini_MV_api_encryption_key
 
 esphome:
   name: "${slug}"

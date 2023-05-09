@@ -20,11 +20,13 @@ substitutions:
   slug: "driveway-lighting"
   name: "Oprit verlichting"
   description: "Small relay to switch 12VDC power supply to in-lite spots"
-  ip_address: !secret ip_address_driveway_lighting
+  ip_address: !secret driveway_lighting_ip_address
+  api_encryption_key: !secret driveway_lighting_api_encryption_key
 
 esphome:
-  name: "${slug}"
-  comment: "${description}"
+  name: ${slug}
+  friendly_name: ${name}
+  comment: ${description}
   build_path: "./.build/${slug}/"
 
 esp8266:
@@ -36,7 +38,7 @@ packages:
 light:
   - platform: binary
     id: light_output
-    name: "${name} Light"
+    name: Licht
     output: relay_output
     restore_mode: restore_default_off
 

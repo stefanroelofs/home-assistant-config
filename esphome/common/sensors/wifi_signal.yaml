@@ -2,7 +2,7 @@
 # https://esphome.io/components/sensor/wifi_signal.html
 platform: wifi_signal
 id: sensor_wifi_signal
-name: "${name} WiFi Signal"
+name: WiFi Signal
 update_interval: 300s
 entity_category: diagnostic
 state_class: measurement

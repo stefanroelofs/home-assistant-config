@@ -2,7 +2,8 @@ substitutions:
   slug: "shelly-6"
   name: "Second Floor Landing"
   description: "Shelly device behind lightswitch on 2nd floor landing. Relay is not connected."
-  ip_address: !secret ip_address_shelly6
+  ip_address: !secret shelly6_ip_address
+  api_encryption_key: !secret shelly6_api_encryption_key
 
 globals:
   - id: use_output

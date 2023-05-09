@@ -8,7 +8,7 @@
 #
 platform: total_daily_energy
 id: sensor_total_daily_energy
-name: "${name} Daily Energy Usage"
+name: Daily Energy Usage
 device_class: energy
 state_class: total_increasing
 entity_category: diagnostic

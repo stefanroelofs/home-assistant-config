@@ -15,10 +15,12 @@
 # GPIO15  Relay                 Relay
 
 esphome:
-  name: "${slug}"
-  comment: "${description}"
+  name: ${slug}
+  friendly_name: ${name}
+  comment: ${description}
   build_path: "./.build/${slug}/"
-  platform: ESP8266
+
+esp8266:
   board: esp8285
 
 packages:
@@ -37,7 +39,7 @@ sensor:
     # Current sensor
     current:
       id: device_current
-      name: "${name} Current"
+      name: Current
       unit_of_measurement: A
       accuracy_decimals: 3
       icon: mdi:flash-outline
@@ -56,7 +58,7 @@ sensor:
     # Voltage sensor
     voltage:
       id: device_voltage
-      name: "${name} Voltage"
+      name: Voltage
       unit_of_measurement: V
       accuracy_decimals: 1
       icon: mdi:flash-outline
@@ -67,7 +69,7 @@ sensor:
     #            - 237 -> 230
     power:
       id: device_power
-      name: "${name} Power"
+      name: Power
       unit_of_measurement: W
       accuracy_decimals: 0
       icon: mdi:flash-outline
@@ -88,7 +90,7 @@ sensor:
         - lambda: if (x < (2 + 1.15)) return 0; else return (x - 1.15);
     energy:
       id: device_energy
-      name: "${name} Energy"
+      name: Energy
       filters:
         # Multiplication factor from W to kW is 0.001
         - multiply: 0.001
@@ -122,7 +124,7 @@ switch:
     id: relay
     pin: GPIO15 # Relay output
     restore_mode: RESTORE_DEFAULT_ON
-    name: "${name} Relay"
+    name: Relay
     on_turn_on:
       - light.turn_on: led
     on_turn_off:
@@ -131,7 +133,7 @@ switch:
 light:
   # Light entity for state led
   - platform: monochromatic
-    name: "${name} State Led"
+    name: State Led
     id: led
     output: state_led
     entity_category: config

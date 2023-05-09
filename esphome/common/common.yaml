@@ -27,6 +27,8 @@ logger:
 # https://esphome.io/components/api.html
 api:
   id: component_api
+  encryption:
+    key: ${api_encryption_key}
 
 # Enable OTA (Over The Air) update component
 # https://esphome.io/components/ota.html

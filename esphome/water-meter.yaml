@@ -23,7 +23,8 @@ substitutions:
   slug: water-meter
   name: Water Meter
   description: Small pulse sensor attached to the water meter of my home.
-  ip_address: !secret ip_address_watermeter
+  ip_address: !secret watermeter_ip_address
+  api_encryption_key: !secret watermeter_api_encryption_key
   watermeterkit_originalversion: "1.1"
   watermeterkit_model: "model-b"
 
