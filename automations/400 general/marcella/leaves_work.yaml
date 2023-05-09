@@ -4,7 +4,7 @@
   trigger:
     - platform  : zone
       entity_id : person.marcella
-      zone      : zone.peoplepower_veenendaal
+      zone      : zone.posthuma_schutte_notariaat
       event     : leave   # Event is either enter or leave
   condition:
     - condition : state
