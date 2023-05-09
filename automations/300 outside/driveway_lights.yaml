@@ -35,9 +35,9 @@
         - alias: "Turning lights on"
           service: light.turn_on
           target:
-            entity_id: light.oprit_verlichting_light
+            entity_id: light.oprit_verlichting_licht
       else:
         - alias: "Turning lights off"
           service: light.turn_off
           target:
-            entity_id: light.oprit_verlichting_light
+            entity_id: light.oprit_verlichting_licht
