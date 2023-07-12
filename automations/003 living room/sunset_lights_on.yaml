@@ -9,18 +9,12 @@
       attribute: elevation
       below: 3.0 # Can be a positive or negative number
 
-  variables:
-    areaIds:
-      - woonkamer
-      - eettafel
-
   action:
     - service: light.turn_on
       target:
-        #area_id: "{{ areaIds }}"
-        area_id:
-          - woonkamer
-          - eettafel
+        entity_id:
+          - light.living_room_lights
+          - light.dining_area_ceiling
       data:
         transition: 30
 
@@ -35,7 +29,6 @@
             - alias: "Nobody came home, turn off the lights again"
               service: light.turn_off
               target:
-                #area_id: "{{ areaIds }}"
-                area_id:
-                  - woonkamer
-                  - eettafel
+                entity_id:
+                  - light.living_room_lights
+                  - light.dining_area_ceiling
